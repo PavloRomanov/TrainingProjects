@@ -13,7 +13,7 @@ namespace UnitTestWebServer
         [TestMethod]
         public void CreateClientTestMethod1()
         {           
-            CreateClient cc = new CreateClient();
+            CreateClient cc2 = new CreateClient();
            // string respons = cc.Get(null).Content;
             
              using (FileStream fs = new FileStream("D:\\CreateClient.html", FileMode.Create))
