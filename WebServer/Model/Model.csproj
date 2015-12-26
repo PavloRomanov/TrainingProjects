@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65CB9A55-B2D8-422A-9131-BFB328F240DE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{AAF36AE3-6CDB-4F3D-902B-3C603ECB5D33}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebServer</RootNamespace>
-    <AssemblyName>WebServer</AssemblyName>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -44,22 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Entity\Appeal.cs" />
+    <Compile Include="Entity\Client.cs" />
+    <Compile Include="Entity\Form.cs" />
+    <Compile Include="Entity\Manager.cs" />
+    <Compile Include="Entity\ModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="Servise\AppealServise.cs" />
+    <Compile Include="Servise\BaseServise.cs" />
+    <Compile Include="Servise\ClientServise.cs" />
+    <Compile Include="Servise\FormServise.cs" />
+    <Compile Include="Servise\ManagerServise.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CollectionLibrary\CollectionLibrary.csproj">
       <Project>{9d3d8f83-a2bf-49ce-9f61-d008815231e1}</Project>
       <Name>CollectionLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Routing\Routing.csproj">
-      <Project>{a2799301-8d33-454e-8510-0ce940c6b18b}</Project>
-      <Name>Routing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,85 +1,313 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using Routing;
+using Routing.Pages;
+using CollectionLibrary;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace WebServer
 {
     static class Client
-    {
+    {      
         public static void Handle(TcpClient client)
         {
             var stream = client.GetStream();
+           // Session session = Session.Instance;
 
             try
             {
-                var request = GetRequest(stream);
+                var requestString = GetRequest(stream);
 
-                var reqMatch = Regex.Match(request, @"^\w+\s+([^\s\?]+)[^\s]*\s+HTTP/.*|");
+                RequestParser parser = new RequestParser(requestString);
+                MyHashTable<string, string> request = parser.Parse();
 
-                if (reqMatch == Match.Empty)
+               //~~~~~~~~~~~~~~~~~
+                MyHashTable<string, string> cookies = parser.Cookies;
+                /*string sessionId = Session.Add(cookies).ToString();
+                cookies.Add("sessionId", sessionId);
+
+                //~~~~~~~~~~~~~~~~*/
+
+                string startLine = parser.startLine;
+
+                if (startLine == string.Empty)
+                {
+                    SendError(stream, 400);
+                    return;
+                }
+               
+                string method = request["method"];
+                MyHashTable<string, string> param = parser.Form;
+                string path = request["path"];               
+
+                if (path.IndexOf("..") >= 0)
                 {
                     SendError(stream, 400);
                     return;
                 }
 
-                var requestUri = reqMatch.Groups[1].Value;
-                requestUri = Uri.UnescapeDataString(requestUri);
-
-                if (requestUri.IndexOf("..") >= 0)
+                if (path == string.Empty)
                 {
-                    SendError(stream, 400);
-                    return;
+                    path += "index.html";
                 }
 
-                WriteResponse(stream, requestUri);
+                int index = path.LastIndexOf('.');
+                string extension;
+                string contentType;
+                string response;
+
+                if (index == -1)
+                {
+                    //response = GetResponse(path, method,  param, cookies);
+                    response = GetResponse(path, method, param, cookies);
+                    WriteResponse(stream, response);
+                }
+                else
+                {
+                    extension = path.Substring(index);
+                    contentType = GetContentType(extension);
+                    WriteResponseFromFile(stream, path, extension, contentType);
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                SendError(stream, 500);   
+                return;
+            }
+        }
+
+         private static void WriteResponseFromFile(NetworkStream stream, string path, string extension, string contentType)
+         {             
+             var filePath = "D:/COURSE_C#/www/" + path;
+
+             if (!File.Exists(filePath))
+             {
+                 SendError(stream, 404);
+                 return;
+             }
+            
+             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+             {
+                 var headers = "HTTP/1.1 200 OK\nContent-Type: " + contentType + "\nContent-Length: " + fs.Length + "\n\n";
+                 var headersBuffer = Encoding.ASCII.GetBytes(headers);
+                 stream.Write(headersBuffer, 0, headersBuffer.Length);
+
+                 var buffer = new byte[1024];
+
+                 while (true)
+                 {
+                     var count = fs.Read(buffer, 0, buffer.Length);
+
+                     if (count <= 0)
+                         break;
+
+                     stream.Write(buffer, 0, count);
+                 }
+             }
+         }
+
+        private static void WriteResponse(NetworkStream stream, string response)
+        {
+            try
+            {
+                if (stream.CanWrite)
+                {
+
+                    byte[] buffer = Encoding.ASCII.GetBytes(response);
+                    stream.Write(buffer, 0, buffer.Length);
+                }
+                else
+                {
+                    Console.WriteLine("Sorry.  You cannot write to this NetworkStream.");
+                }
             }
             catch (Exception)
             {
-                SendError(stream, 500);
+                SendError(stream, 503);
                 return;
             }
+
         }
 
-        private static void WriteResponse(NetworkStream stream, string requestUri)
+        
+        private static string GetResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> cookies)
+        {         
+            PageCreater pageCreater = PageCreater.Instance;
+            Response response = pageCreater.PrepareResponse(path, method, param, cookies);
+            string html;
+            int cod;
+            string codStr;
+            string location = response.Location;
+
+            switch (response.StatusAnswer)
+            {
+                case TypeOfAnswer.Informational:
+                    html = "<html><body><h1>Continue</h1></body></html>";
+                    cod = 100;
+                    codStr = "Continue";
+                    return GetAnswerString(html, cod, codStr);
+                        
+                case TypeOfAnswer.Success:
+                    html = response.Content;
+                    cod = 200;
+                    codStr = "Ok";
+                    return GetAnswerString(html, cod, codStr);
+
+                case TypeOfAnswer.Redirection:
+                    return GetRedirectionAnswerString(response);
+                        
+                case TypeOfAnswer.ClientError:
+                    html = "<html><body><h1>Not Found</h1></body></html>";
+                    cod = 404;
+                    codStr = "Not Found";
+                    return GetAnswerString(html, cod, codStr);
+                    
+                case TypeOfAnswer.ServerError:
+                    html = "<html><body><h1>Internal Server Error</h1></body></html>";
+                    cod = 500;
+                    codStr = "Internal Server Error";
+                    return GetAnswerString(html, cod, codStr);                                     
+                       
+            }          
+
+            return "";
+        }
+
+
+        private static string GetAnswerString(string html, int cod, string codStr)
         {
-            if (requestUri.EndsWith("/"))
+            StringBuilder answerString = new StringBuilder();
+            answerString.Append("HTTP/1.1").Append(cod).Append(codStr);
+            answerString.Append(Environment.NewLine);            
+            answerString.Append("Content-type: text/html");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Content-Length: ");
+            answerString.Append(html.Length.ToString());
+            answerString.Append(Environment.NewLine);
+            answerString.Append(Environment.NewLine);
+            answerString.Append(html);
+
+            return answerString.ToString();
+        }
+
+        private static string GetRedirectionAnswerString(Response rsp)
+        {
+            StringBuilder answerString = new StringBuilder();
+            answerString.Append("HTTP/1.1  303 See Other ");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Location: ").Append(rsp.Location);
+            answerString.Append(Environment.NewLine);
+
+            if (rsp.Cookie != null)
             {
-                requestUri += "index.html";
-            }
-
-            var filePath = "d://www/" + requestUri;
-
-            if (!File.Exists(filePath))
-            {
-                SendError(stream, 404);
-                return;
-            }
-
-            var extension = requestUri.Substring(requestUri.LastIndexOf('.'));
-            var contentType = GetContentType(extension);
-
-            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                var headers = "HTTP/1.1 200 OK\nContent-Type: " + contentType + "\nContent-Length: " + fs.Length + "\n\n";
-                var headersBuffer = Encoding.ASCII.GetBytes(headers);
-                stream.Write(headersBuffer, 0, headersBuffer.Length);
-
-                var buffer = new byte[1024];
-
-                while (true)
+                foreach (var item in rsp.Cookie)
                 {
-                    var count = fs.Read(buffer, 0, buffer.Length);
-
-                    if (count <= 0)
-                        break;
-
-                    stream.Write(buffer, 0, count);
+                    answerString.Append("Set-Cookie: ");
+                    answerString.Append(item.Key).Append("=").Append(item.Value);
+                    answerString.Append(Environment.NewLine);
                 }
             }
+
+            return answerString.ToString();
         }
+
+
+        /* private static string GetInformationalResponse()
+         {
+             StringBuilder answerString = new StringBuilder();
+             string html = "<html><body><h1>Continue</h1></body></html>";
+             answerString.Append("HTTP/1.1 100 Continue");
+             answerString.Append(Environment.NewLine);
+             answerString.Append("Content-type: text/html");
+             answerString.Append(Environment.NewLine);
+             answerString.Append("Content-Length: ");
+             answerString.Append(html.Length.ToString());
+             answerString.Append(Environment.NewLine);
+             answerString.Append(Environment.NewLine);
+             answerString.Append(html);
+
+             return answerString.ToString();
+         }
+
+        private static string GetSuccessResponse(Response rsp)
+        {
+            StringBuilder answerString = new StringBuilder();
+            answerString.Append("HTTP/1.1 200 OK");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Content-type: text/html");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Content-Length: ");
+            answerString.Append(rsp.Content.Length.ToString());
+            answerString.Append(Environment.NewLine);
+            answerString.Append(Environment.NewLine);
+            answerString.Append(rsp.Content);
+
+            return answerString.ToString();
+        }
+
+        private static string GetRedirectionResponse(Response rsp)
+        {
+            StringBuilder answerString = new StringBuilder();
+            answerString.Append("HTTP/1.1  303 See Other ");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Location: ").Append(rsp.Location);
+            answerString.Append(Environment.NewLine);
+
+            if (rsp.Cookie != null)
+            {
+                foreach (var item in rsp.Cookie)
+                {
+                    answerString.Append("Set-Cookie: ");
+                    answerString.Append(item.Key).Append("=").Append(item.Value);
+                    answerString.Append(Environment.NewLine);
+                }
+            }                
+
+            return answerString.ToString();
+        }
+
+        private static string GetClientErrorResponse(Response rsp)
+        {
+            StringBuilder answerString = new StringBuilder();
+            string html = "<html><body><h1>Not Found</h1></body></html>";
+            answerString.Append("HTTP/1.1 404 Not Found");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Content-type: text/html");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Content-Length: ");
+            answerString.Append(html.Length.ToString());
+            answerString.Append(Environment.NewLine);           
+            answerString.Append(Environment.NewLine);
+            answerString.Append(html);
+
+            return answerString.ToString();
+        }
+
+        private static string GetServerErrorResponse()
+        {
+            StringBuilder answerString = new StringBuilder();
+            string html = "<html><body><h1>Internal Server Error</h1></body></html>";
+            answerString.Append("HTTP/1.1 500  Internal Server Error");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Content-type: text/html");
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Content - Length: ");
+            answerString.Append(html.Length.ToString());
+            answerString.Append(Environment.NewLine);
+            answerString.Append(Environment.NewLine);
+            answerString.Append(html);
+
+            return answerString.ToString();
+        }*/
 
         private static string GetContentType(string extension)
         {
@@ -87,12 +315,13 @@ namespace WebServer
 
             switch (extension)
             {
+                case "":
                 case ".htm":
                 case ".html":
                     contentType = "text/html";
                     break;
                 case ".css":
-                    contentType = "text/stylesheet";
+                    contentType = "text/css";
                     break;
                 case ".js":
                     contentType = "text/javascript";
@@ -119,6 +348,7 @@ namespace WebServer
 
             return contentType;
         }
+
         private static string GetRequest(NetworkStream stream)
         {
             string request = "";
@@ -133,7 +363,8 @@ namespace WebServer
                     break;
                 }
             }
-
+            
+            Console.WriteLine(request);
             return request;
         }
 
@@ -147,5 +378,7 @@ namespace WebServer
 
             stream.Write(buffer, 0, buffer.Length);
         }
+
+   
     }
 }

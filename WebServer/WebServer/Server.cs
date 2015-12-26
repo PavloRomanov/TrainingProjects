@@ -16,6 +16,8 @@ namespace WebServer
             {
                 var client = listener.AcceptTcpClient();
                 new Thread(ClientThread).Start(client);
+                //Thread.Sleep(10000);
+
             }
 
             //listener.Stop();
@@ -23,15 +25,21 @@ namespace WebServer
 
         private static void ClientThread(object stateInfo)
         {
-            var client = (TcpClient)stateInfo;
-            try
+            Object block = new Object();
+            lock (block)
             {
-                Client.Handle(client);
+                var client = (TcpClient)stateInfo;
+                try
+                {
+                    Client.Handle(client);
+
+                }
+                finally
+                {
+                    client.Close();
+                }
             }
-            finally
-            {
-                client.Close();
-            }
+           
         }
     }
 }
