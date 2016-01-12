@@ -8,27 +8,35 @@ using Model.Entity;
 
 namespace Routing.Pages
 {
-    public class LoginPage : BasePage
+    public class LogIn : BasePage
     {
         protected override string Title { get { return "Log In"; } }
 
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
-            
-            //HtmlForm htmlForm = new HtmlForm();
-            StringBuilder body = new StringBuilder("");
-            /*
-            if(form != null && form.ContainsKey("message"))
-                body.Append("<p>").Append(form["message"]).Append("</p>");            
+
+            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
+            if (errors != null && errors.Count > 0)
+            {
+                htmlForm.AddInput("login", form["login"], InputType.text);
+                htmlForm.AddInput("password", form["password"], InputType.password);
+                                
+            }
+            else
+            {
+                htmlForm.AddInput("login", "", InputType.text);
+                htmlForm.AddInput("password", "", InputType.password);
+            }
+
+            StringBuilder body = new StringBuilder("<body bgcolor='#5DCFC3'>");
             body.Append(Environment.NewLine);
-            body.Append(htmlForm.BeginForm(RequestMethod.POST, "LoginPage"));
+            body.Append("<h1>Log In</h1>");
             body.Append(Environment.NewLine);
-            body.Append(new HtmlInput("login").ToString()).Append("<br/>");
             body.Append(Environment.NewLine);
-            body.Append(new HtmlInput("password", "", InputType.password).ToString()).Append("<br/>");
+
+            body.Append(htmlForm.ToString());
+
             body.Append(Environment.NewLine);
-            body.Append(htmlForm.EndForm());
-            */
 
             return body.ToString();
         }
@@ -39,18 +47,23 @@ namespace Routing.Pages
             Response response;
             try
             {
+                MyHashTable<string, string> errors = new MyHashTable<string, string>();
                 ManagerServise ms = new ManagerServise("manager.txt");
-                Manager manager = ms.GetElementByLogin(form["login"], form["password"]);
+                Manager manager = ms.GetElementByLogin(form["login"]);
 
                 if(manager == null)
+                {                    
+                    errors.Add("login", "User with such login does not exist!");                    
+                    response = this.Get(form, cookies, errors);
+                }
+                else if(manager.Password != form["password"])
                 {
-                    MyHashTable<string, string> content = new MyHashTable<string, string>();
-                    content.Add("message", "Login or password was wrong!!!");                    
-                    response = this.Get(content, cookies);
+                    errors.Add("password", "Password is wrong!");
+                    response = this.Get(form, cookies, errors);
                 }                    
                 else
                 {
-                    response = new Response("", TypeOfAnswer.Redirection, "index.html");
+                    response = new Response("", TypeOfAnswer.Redirection, "Index");
                     response.Cookie = new MyHashTable<string, string>();
                     User user = new User(manager.Id.ToString(), manager.Name, manager.Surname);
                     Guid sessionId = Guid.NewGuid();

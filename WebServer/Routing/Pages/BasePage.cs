@@ -42,7 +42,7 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<head>");
             header.Append(Environment.NewLine);
-            header.Append("<meta charset = 'utf-8'/>");
+            header.Append("<meta charset = UTF-8/>");
             
              header.Append(Environment.NewLine);
             header.Append("<title>");

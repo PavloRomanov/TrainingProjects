@@ -48,7 +48,8 @@
     <Compile Include="Pages\FormPage.cs" />
     <Compile Include="Pages\Helpers\HtmlForm.cs" />
     <Compile Include="Pages\Helpers\HtmlInput.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\Index.cs" />
+    <Compile Include="Pages\LogIn.cs" />
     <Compile Include="Pages\Helpers\ValidationHelper.cs" />
     <Compile Include="Pages\ViewClient.cs" />
     <Compile Include="Pages\IBasePage.cs" />

@@ -11,7 +11,7 @@ namespace Model.Servise
         {
         }
 
-        public Manager GetElementByLogin(string login, string password)
+        public Manager GetElementByLogin(string login)
         {
             Manager manager;
             lock (access)
@@ -20,7 +20,7 @@ namespace Model.Servise
 
                 foreach(var item in hashElement)
                 {
-                    if(item.Value.Login == login & item.Value.Password == password)
+                    if(item.Value.Login == login)
                     {
                         manager = item.Value;
                         return manager;

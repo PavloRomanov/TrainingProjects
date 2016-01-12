@@ -42,6 +42,8 @@ namespace Routing.Pages.Helpers
             _inputs.Add(input);
         }
 
+        
+
         public override string ToString()
         {
             StringBuilder begin = new StringBuilder(Environment.NewLine);

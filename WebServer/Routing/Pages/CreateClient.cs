@@ -15,10 +15,21 @@ namespace Routing.Pages
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
-            htmlForm.AddInput("name", "", InputType.text);
-            htmlForm.AddInput("surname", "", InputType.text);
-            htmlForm.AddInput("address", "", InputType.text);
-            htmlForm.AddInput("phone", "", InputType.text);
+            if(errors != null && errors.Count > 0)
+            {
+                htmlForm.AddInput("name", form["name"], InputType.text);
+                htmlForm.AddInput("surname", form["surname"], InputType.text);
+                htmlForm.AddInput("address", form["address"], InputType.text);
+                htmlForm.AddInput("phone", form["phone"], InputType.text);
+            }
+            else
+            {
+                htmlForm.AddInput("name", "", InputType.text);
+                htmlForm.AddInput("surname", "", InputType.text);
+                htmlForm.AddInput("address", "", InputType.text);
+                htmlForm.AddInput("phone", "", InputType.text);
+            }
+            
 
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");        
             body.Append(Environment.NewLine);
@@ -34,7 +45,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        protected override string AddGreeting(MyHashTable<string, string> cookies)
+        /*protected override string AddGreeting(MyHashTable<string, string> cookies)
         {
             StringBuilder greeting = new StringBuilder();
             if (cookies.ContainsKey("sessionId"))
@@ -44,11 +55,11 @@ namespace Routing.Pages
                 return greeting.ToString();
             }
             return "";
-        }
+        }*/
 
         public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
         {
-            Routing.Pages.Helpers.ValidationHelper vh = new ValidationHelper();
+            ValidationHelper vh = new ValidationHelper();
             MyHashTable<string, string> errors = new MyHashTable<string, string>();
 
             if (!vh.LikeName(form["name"]))
@@ -68,7 +79,7 @@ namespace Routing.Pages
                 errors.Add("address", "Invalid address!");
             }
            
-            if(errors == null)
+            if(errors.Count == 0)
             {
                 try
                 {

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Routing.Pages.Helpers;
 using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
@@ -38,48 +36,37 @@ namespace Routing.Pages
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
             Response response;
-            StringBuilder body = new StringBuilder("<body>");
+            
             try
             {
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 Guid id = new Guid(form["id"]);
 
-                Client client = cs.GetElement(id); 
-                               
+                Client client = cs.GetElement(id);
+
+                HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "UpdateClient", errors);
+                htmlForm.AddInput("id", client.Id.ToString(), InputType.hidden);
+                htmlForm.AddInput("name", "", InputType.text);
+                htmlForm.AddInput("surname", "", InputType.text);
+                htmlForm.AddInput("address", "", InputType.text);
+                htmlForm.AddInput("phone", "", InputType.text);
+
+                StringBuilder body = new StringBuilder("<body>");
                 body.Append("<form method='POST' action='UpdateClient'>");
                 body.Append(Environment.NewLine);
-                body.Append("<input type = 'hidden' name = 'id' value ='").Append(client.Id).Append("'/>");
+
+                body.Append(htmlForm.ToString());
+
                 body.Append(Environment.NewLine);
-                body.Append("<p>Name:</p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'name' value = '").Append(client.Name).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Surname:</p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'surname' value = '").Append(client.Surname).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Address:</p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'address' value = '").Append(client.Address).Append("'/>"); 
-                body.Append(Environment.NewLine);
-                body.Append("<p>Phone:</p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'phone'  value = '").Append(client.Phone).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'submit' value = 'Submit'/>");
-                body.Append(Environment.NewLine);
-                body.Append("</form>");
-                
+
+                return body.ToString();
             }
             catch (Exception)
             {
                 response = new Response("", TypeOfAnswer.ServerError, "");
                 return "";
             }
-
-            return body.ToString();
         }
-
      
     }
 }

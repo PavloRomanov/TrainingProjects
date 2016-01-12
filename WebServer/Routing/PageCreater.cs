@@ -17,12 +17,13 @@ namespace Routing
         private PageCreater()
         {
             pages = new MyHashTable<string, IBasePage>();
+            pages.Add("Index", new Index());
             pages.Add("CreateClient", new CreateClient());
             pages.Add("DeleteClient", new DeleteClient());
             pages.Add("UpdateClient", new UpdateClient());
             pages.Add("ClientsList", new ClientsList());
             pages.Add("ViewClient", new ViewClient());
-            pages.Add("LoginPage", new LoginPage());
+            pages.Add("LogIn", new LogIn());
             pages.Add("CreateManager", new CreateManager());
             pages.Add("NotFoundError", new NotFoundError());
         }

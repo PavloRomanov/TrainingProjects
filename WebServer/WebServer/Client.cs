@@ -55,7 +55,8 @@ namespace WebServer
 
                 if (path == string.Empty)
                 {
-                    path += "index.html";
+                    //path += "index.html";
+                    path += "Index";
                 }
 
                 int index = path.LastIndexOf('.');
