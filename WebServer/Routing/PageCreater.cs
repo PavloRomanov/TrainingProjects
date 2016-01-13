@@ -25,6 +25,10 @@ namespace Routing
             pages.Add("ViewClient", new ViewClient());
             pages.Add("LogIn", new LogIn());
             pages.Add("CreateManager", new CreateManager());
+            pages.Add("ManagersList", new ManagersList());
+            pages.Add("ViewManager", new ViewManager());
+            pages.Add("UpdateManager", new UpdateManager());
+            pages.Add("DeleteManager", new DeleteManager());
             pages.Add("NotFoundError", new NotFoundError());
         }
 

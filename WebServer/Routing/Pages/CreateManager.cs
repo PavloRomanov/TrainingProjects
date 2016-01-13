@@ -13,35 +13,36 @@ namespace Routing.Pages
 
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
+            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
+            if (errors != null && errors.Count > 0)
+            {
+                htmlForm.AddInput("name", form["name"], InputType.text);
+                htmlForm.AddInput("surname", form["surname"], InputType.text);
+                htmlForm.AddInput("address", form["address"], InputType.text);
+                htmlForm.AddInput("phone", form["phone"], InputType.text);
+                htmlForm.AddInput("login", form["login"], InputType.text);
+                htmlForm.AddInput("password", form["password"], InputType.text);
+
+            }
+            else
+            {
+                htmlForm.AddInput("name", "", InputType.text);
+                htmlForm.AddInput("surname", "", InputType.text);
+                htmlForm.AddInput("address", "", InputType.text);
+                htmlForm.AddInput("phone", "", InputType.text);
+                htmlForm.AddInput("login", "", InputType.text);
+                htmlForm.AddInput("password", "", InputType.text);
+            }
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
-            /*body.Append(Environment.NewLine);
+            body.Append(Environment.NewLine);
             body.Append("<h1>Create Manager</h1>");
             body.Append(Environment.NewLine);
             body.Append("<p style='text-align:right'><a href='index.html'><h3>Home</h3></a></p>");
             body.Append(Environment.NewLine);
-            body.Append(Environment.NewLine);
-            body.Append(HtmlForm.BeginForm(RequestMethod.POST, "CreateManager"));            
-            body.Append(Environment.NewLine);
-            body.Append("Name:<br/>");
-            body.Append(Environment.NewLine);
-            body.Append(new HtmlInput("name").ToString()).Append("<br/>");
-            body.Append(Environment.NewLine);
-            body.Append("Surname:<br/> ");
-            body.Append(Environment.NewLine);
-            body.Append(new HtmlInput("surname").ToString()).Append("<br/>");           
-            body.Append(Environment.NewLine);
-            body.Append("Login:<br/>");
-            body.Append(Environment.NewLine);
-            body.Append(new HtmlInput("login").ToString()).Append("<br/>");
-            body.Append(Environment.NewLine);
-            body.Append("Password:<br/>");
-            body.Append(Environment.NewLine);
-            body.Append(new HtmlInput("password", "", InputType.password).ToString()).Append("<br/>");
-            body.Append(Environment.NewLine);
-            body.Append(new HtmlInput("", "Clear", InputType.reset).ToString()).Append("<br/>");           
-            body.Append(HtmlForm.EndForm());
-            body.Append(Environment.NewLine);*/
 
+            body.Append(htmlForm.ToString());
+
+            body.Append(Environment.NewLine);
 
             return body.ToString();
         }
@@ -51,7 +52,7 @@ namespace Routing.Pages
             Response response;
             try
             {
-                Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["login"], form["password"]);
+                Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                 ManagerServise ms = new ManagerServise("manager.txt");                
                 ms.Add(manager);
             }
@@ -62,7 +63,7 @@ namespace Routing.Pages
                 return response;
             }
 
-            response = new Response("", TypeOfAnswer.Redirection, "index.html");
+            response = new Response("", TypeOfAnswer.Redirection, "ManagersList");
 
             return response;
         }

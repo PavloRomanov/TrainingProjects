@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\DeleteManager.cs" />
+    <Compile Include="Pages\ManagersList.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CreateClient.cs" />
     <Compile Include="Pages\AppealPages.cs" />
@@ -61,7 +63,9 @@
     <Compile Include="PageCreater.cs" />
     <Compile Include="Pages\ClientsList.cs" />
     <Compile Include="Session.cs" />
+    <Compile Include="Pages\UpdateManager.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Pages\ViewManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CollectionLibrary\CollectionLibrary.csproj">
