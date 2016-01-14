@@ -1,78 +1,62 @@
 ﻿using System;
 using System.Text;
 using CollectionLibrary;
+
 namespace Routing.Pages.Helpers
 {
-    public class HtmlInput
-    {
-        private InputType _type;
-        private string _name;
-        private string _value;       
+    public abstract class HtmlInput : IHtmlControl
+    {      
+        protected virtual string Type { get { return string.Empty; } }
 
-        public HtmlInput(string name)   
-            :this(name, null)         
-        {           
-        }
+        protected virtual string Name { get { return string.Empty; } }
 
-        public HtmlInput(string name, string value)
-            : this(name, value, InputType.text)
-        {
-        }
+        protected virtual string Value { get { return string.Empty; } }
 
-        public HtmlInput(string name, string value, InputType type)
-        {
-            _type = type;
-            _name = name;
-            _value = value;
-        }
-
-        public string GetTag(MyHashTable<string, string> errors = null)
+        public string GetTag(MyHashTable<string, string> errors = null, string atr1 = null)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);
-
-            tag.Append("<br/>" + _name + ":<br/>");
+            tag.Append("<br/>");
+            tag.Append(Name + "<br/>");
             tag.Append(Environment.NewLine);
-            tag.Append("<input type='").Append(_type).Append("' ");
-            if (_name != null)
-                tag.Append("name='").Append(_name).Append("' ");
-            if(_value != null)
-                tag.Append("value='").Append(_value).Append("' ");
+            tag.Append("<input type='").Append(Type).Append("' ");
+            if (Name != null)
+                tag.Append("name='").Append(Name).Append("' ");
+            if (Value != null)
+                tag.Append("value='").Append(Value).Append("' ");
+
+            tag.Append(atr1);
 
             if (errors != null)
             {
-                if (errors.ContainsKey(_name))
+                if (errors.ContainsKey(Name))
                 {
-                    tag.Append("style='border-color:red'");
+                    tag.Append("style='border-color:red'/>");
+                    string message = errors[Name];
+                    tag.Append("<span style = 'color:red'>").Append(message).Append("</span>");                   
+
                 }
+                else
+                {
+                    tag.Append("/>");
+                    tag.Append(Environment.NewLine);
+                    tag.Append("<br/>");
+                }
+            }
+            else
+            {
+                tag.Append("/>");
+                tag.Append(Environment.NewLine);
+                tag.Append("<br/>");
             }
 
-            tag.Append("/>");
-          
-            if (errors != null)
-            {
-                if(errors.ContainsKey(_name))
-                {                    
-                    string message = errors[_name];
-                    tag.Append("<span style = 'color:red'>").Append(message).Append("</span>");
-                }
-            }
-            tag.Append(Environment.NewLine);            
+
+            tag.Append(Environment.NewLine);
 
             return tag.ToString();
         }
+
+        protected abstract string AdditionalAttributes(string atr1, string atr2 = null);
     }
 
-    public enum InputType
-    {
-        button,
-        checkbox,
-        file,
-        hidden,
-        image,
-        password,
-        radio,
-        reset,
-        submit,
-        text
-    }
 }
+

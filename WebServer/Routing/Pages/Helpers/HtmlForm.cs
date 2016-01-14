@@ -22,11 +22,33 @@ namespace Routing.Pages.Helpers
             _inputs = new List<HtmlInput>();
         }
 
-        public void AddInput(string name, string value, InputType type = InputType.text)
+        public void AddInput(string name, string value, InputType type)
         {
             HtmlInput input;
 
-            if (type != InputType.text)
+            switch (type)
+            {
+                case InputType.text :
+                    input = new HtmlInputText(name, value);
+                    break;
+
+                case InputType.button:
+                    input = new HtmlInputButton(name, value);
+                    break;
+
+                case InputType.reset:
+                    input = new HtmlInputReset(name, value);
+                    break;
+
+                default:
+                    input = new HtmlInputText(name, value); 
+                    break;
+
+            }
+
+            
+
+            /*if (type != InputType.text)
             {
                 input = new HtmlInput(name, value, type);
             }
@@ -37,7 +59,7 @@ namespace Routing.Pages.Helpers
             else
             {
                 input = new HtmlInput(name);
-            }
+            }*/
 
             _inputs.Add(input);
         }
@@ -58,8 +80,8 @@ namespace Routing.Pages.Helpers
             }
 
             begin.Append(Environment.NewLine);
-            begin.Append(new HtmlInput("", "clear", InputType.submit).GetTag());
-            begin.Append(new HtmlInput("", "submit", InputType.submit).GetTag());
+            begin.Append(new HtmlInputReset("", "clear").GetTag());
+            begin.Append(new HtmlInputButton("", "submit").GetTag());
             begin.Append(Environment.NewLine);
             begin.Append("</form>");
             begin.Append(Environment.NewLine);
@@ -72,5 +94,19 @@ namespace Routing.Pages.Helpers
     {
         GET,
         POST
+    }
+
+    public enum InputType
+    {
+        button,
+        checkbox,
+        file,
+        hidden,
+        image,
+        password,
+        radio,
+        reset,
+        submit,
+        text
     }
 }

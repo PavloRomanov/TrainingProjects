@@ -46,8 +46,12 @@
     <Compile Include="Pages\CreateManager.cs" />
     <Compile Include="Pages\DeleteClient.cs" />
     <Compile Include="Pages\FormPage.cs" />
+    <Compile Include="Pages\Helpers\IHtmlControl.cs" />
     <Compile Include="Pages\Helpers\HtmlForm.cs" />
     <Compile Include="Pages\Helpers\HtmlInput.cs" />
+    <Compile Include="Pages\Helpers\HtmlInputButton.cs" />
+    <Compile Include="Pages\Helpers\HtmlInputReset.cs" />
+    <Compile Include="Pages\Helpers\HtmlInputText.cs" />
     <Compile Include="Pages\Index.cs" />
     <Compile Include="Pages\LogIn.cs" />
     <Compile Include="Pages\Helpers\ValidationHelper.cs" />
