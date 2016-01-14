@@ -4,48 +4,38 @@ using System.Runtime.Serialization;
 
 namespace Model.Entity
 {
+    public enum ClientAppeal
+    {
+        Low_speed_Internet = 1,
+        No_internet_connection,
+        Change_of_tariff_plan,
+        Installation_of_additional_equipment,
+        Another_question
+    }
+
     [DataContract]
     public class Appeal : ModelBase
     {
-        public enum AppealClient
-        {
-            Low_speed_Internet = 1,
-            No_internet_connection,
-            Change_of_tariff_plan,
-            Installation_of_additional_equipment,
-            Another_question
-        }
+        [DataMember]
+        public ClientAppeal ClientAppeal { get; set; }
+        [DataMember]
+        public Guid IdManager { get; set; }
 
         [DataMember]
-        private bool appeal; //was appeal
+        public string Rez { get; set; }
         [DataMember]
-        private bool rez; // found a solution
+        public string Comment { get; set; }
+        [DataMember]
+        public string References { get; set; }
 
         [DataMember]
-        private string answer;
+        public Guid IdClient { get; set; }
 
-        [DataMember]
-        private string specialist;
-
-        [DataMember]
-        private Client client;
-        public Appeal(Guid id, Client _client)
+        public Appeal(Guid id, Guid idclient, Guid idmanager)
             : base(id)
         {
-            answer = "";
-            specialist = "";
-            rez = false;
-            client = _client;
-        }
-
-        public bool Rezult()
-        {
-            return rez;
-        }
-
-        public bool WasAppeal()
-        {
-            return appeal;
+            IdClient = idclient;
+            IdManager = idmanager;
         }
     }
 }

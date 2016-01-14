@@ -55,6 +55,10 @@ namespace Routing.Pages
             page.Append(Environment.NewLine);
             page.Append("<li><a href='CreateManager'>Create Manager</a></li>");
             page.Append(Environment.NewLine);
+            page.Append("<li><a href='CreateAppeal'>Create Appeal</a></li>");
+            page.Append(Environment.NewLine);
+            page.Append("<li><a href='CreateForm'>Create Form</a></li>");
+            page.Append(Environment.NewLine);
             page.Append("<li><a href='Contact.html'>Contacts</a></li>");
             page.Append(Environment.NewLine);
             page.Append("<li><a href='LogIn'>LogIn</a></li>");

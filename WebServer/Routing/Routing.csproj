@@ -40,14 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\CreateForm.cs" />
+    <Compile Include="Pages\CreateAppeal.cs" />
     <Compile Include="Pages\DeleteManager.cs" />
     <Compile Include="Pages\ManagersList.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CreateClient.cs" />
-    <Compile Include="Pages\AppealPages.cs" />
     <Compile Include="Pages\CreateManager.cs" />
     <Compile Include="Pages\DeleteClient.cs" />
-    <Compile Include="Pages\FormPage.cs" />
     <Compile Include="Pages\Helpers\HtmlForm.cs" />
     <Compile Include="Pages\Helpers\HtmlInput.cs" />
     <Compile Include="Pages\Index.cs" />
