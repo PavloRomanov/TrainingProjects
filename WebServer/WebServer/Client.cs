@@ -88,7 +88,7 @@ namespace WebServer
 
          private static void WriteResponseFromFile(NetworkStream stream, string path, string extension, string contentType)
          {             
-             var filePath = "D:/COURSE_C#/www/" + path;
+             var filePath = "F:/COURSE_C#/www/" + path;
 
              if (!File.Exists(filePath))
              {
