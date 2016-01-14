@@ -6,13 +6,13 @@ namespace Routing.Pages.Helpers
 {
     public abstract class HtmlInput : IHtmlControl
     {      
-        protected virtual string Type { get { return string.Empty; } }
+        protected abstract string Type { get; }
 
         protected virtual string Name { get { return string.Empty; } }
 
         protected virtual string Value { get { return string.Empty; } }
 
-        public string GetTag(MyHashTable<string, string> errors = null, string atr1 = null)
+        public string GetTag(MyHashTable<string, string> errors = null)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);
             tag.Append("<br/>");
@@ -24,7 +24,7 @@ namespace Routing.Pages.Helpers
             if (Value != null)
                 tag.Append("value='").Append(Value).Append("' ");
 
-            tag.Append(atr1);
+            tag.Append(AdditionalAttributes());
 
             if (errors != null)
             {
@@ -55,7 +55,7 @@ namespace Routing.Pages.Helpers
             return tag.ToString();
         }
 
-        protected abstract string AdditionalAttributes(string atr1, string atr2 = null);
+        protected abstract string AdditionalAttributes();
     }
 
 }

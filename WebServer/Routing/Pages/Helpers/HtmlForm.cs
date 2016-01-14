@@ -22,7 +22,7 @@ namespace Routing.Pages.Helpers
             _inputs = new List<HtmlInput>();
         }
 
-        public void AddInput(string name, string value, InputType type)
+        public HtmlInput AddInput(string name, string value, InputType type)
         {
             HtmlInput input;
 
@@ -62,6 +62,8 @@ namespace Routing.Pages.Helpers
             }*/
 
             _inputs.Add(input);
+
+            return input;
         }
 
         

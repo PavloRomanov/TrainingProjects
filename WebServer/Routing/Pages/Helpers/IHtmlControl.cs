@@ -8,6 +8,6 @@ namespace Routing.Pages.Helpers
 {
     public interface IHtmlControl
     {
-        string GetTag(MyHashTable<string, string> errors = null, string atr1 = null);       
+        string GetTag(MyHashTable<string, string> errors = null);       
     }
 }

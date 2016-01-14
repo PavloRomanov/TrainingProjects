@@ -10,7 +10,7 @@ using Routing.Pages;
 using CollectionLibrary;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using System.Reflection;
 
 namespace WebServer
 {
@@ -87,10 +87,14 @@ namespace WebServer
         }
 
          private static void WriteResponseFromFile(NetworkStream stream, string path, string extension, string contentType)
-         {             
-             var filePath = "F:/COURSE_C#/www/" + path;
+         {
+#if DEBUG
+            var filePath = Path.Combine(AssemblyDirectory, "..", "..", "files", path);
+#else
+            var filePath = Path.Combine(AssemblyDirectory, "files", path);
+#endif
 
-             if (!File.Exists(filePath))
+            if (!File.Exists(filePath))
              {
                  SendError(stream, 404);
                  return;
@@ -115,6 +119,17 @@ namespace WebServer
                  }
              }
          }
+
+        public static string AssemblyDirectory
+        {
+            get
+            {
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return Path.GetDirectoryName(path);
+            }
+        }
 
         private static void WriteResponse(NetworkStream stream, string response)
         {

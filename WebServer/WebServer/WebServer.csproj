@@ -62,6 +62,12 @@
       <Name>Routing</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="files\Provider.jpg" />
+    <Content Include="files\TabStyle.css" />
+    <Content Include="files\TabStyle1.css" />
+    <Content Include="files\telephone.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

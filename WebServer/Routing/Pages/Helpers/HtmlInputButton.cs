@@ -41,7 +41,7 @@ namespace Routing.Pages.Helpers
         protected override string Value { get { return _value; } }
 
 
-        protected override string AdditionalAttributes(string atr1, string atr2 = null)
+        protected override string AdditionalAttributes()
         {
             return "";
         }
