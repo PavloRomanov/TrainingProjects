@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Text;
-using CollectionLibrary;
+
 
 namespace Routing.Pages.Helpers
 {
@@ -10,25 +9,18 @@ namespace Routing.Pages.Helpers
         private string _value;
 
         public HtmlInputText(string name)
-            : this(name, null)
+            : base(name, null)
         {
         }
 
         public HtmlInputText(string name, string value)
+            : base(name, value)
         {
             _name = name;
             _value = value;
         }
 
-        protected override string Type { get { return "text"; } }
-
-        protected override string Name { get { return _name; } }
-
-        protected override string Value { get { return _value; } }
-
-        protected override string AdditionalAttributes()
-        {
-            return "";
-        }
+        protected override string Type { get { return "text"; } }       
+        
     }
 }

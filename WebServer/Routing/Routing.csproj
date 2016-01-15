@@ -44,6 +44,7 @@
     <Compile Include="Pages\CreateAppeal.cs" />
     <Compile Include="Pages\DeleteManager.cs" />
     <Compile Include="Pages\Helpers\HtmlInputButton.cs" />
+    <Compile Include="Pages\Helpers\HtmlInputHidden.cs" />
     <Compile Include="Pages\Helpers\HtmlInputReset.cs" />
     <Compile Include="Pages\Helpers\HtmlInputText.cs" />
     <Compile Include="Pages\Helpers\IHtmlControl.cs" />

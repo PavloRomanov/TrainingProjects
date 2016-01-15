@@ -15,8 +15,15 @@ namespace Routing.Pages.Helpers
 
         public bool LikeName(string name)
         {
-            Regex rgx = new Regex(@"^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$");            
-            return rgx.IsMatch(name);
+            if(String.IsNullOrWhiteSpace(name) || name.Length > 15)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
         }
 
         public bool LikePhoneNumber(string phoneNumber)

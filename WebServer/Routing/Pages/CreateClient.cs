@@ -4,7 +4,6 @@ using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
 using Routing.Pages.Helpers;
-using System.Text.RegularExpressions;
 
 namespace Routing.Pages
 {
@@ -17,17 +16,23 @@ namespace Routing.Pages
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             if(errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("name", form["name"], InputType.text);
+                htmlForm.AddInput("name", form["name"], InputType.text).SetAdditionalAttributes("maxlength", "5");
                 htmlForm.AddInput("surname", form["surname"], InputType.text);
                 htmlForm.AddInput("address", form["address"], InputType.text);
-                htmlForm.AddInput("phone", form["phone"], InputType.text);
+                htmlForm.AddInput("phone", form["phone"], InputType.text).SetAdditionalAttributes("placeholder", "000-000-00-00");
             }
             else
             {
-                htmlForm.AddInput("name", "", InputType.text);
-                htmlForm.AddInput("surname", "", InputType.text);
-                htmlForm.AddInput("address", "", InputType.text);
-                htmlForm.AddInput("phone", "", InputType.text);
+                htmlForm.AddInput("name", "", InputType.text)
+                    .SetAdditionalAttributes("maxlength", "15")
+                    .SetAdditionalAttributes("placeholder", "max length of 15 characters");
+                htmlForm.AddInput("surname", "", InputType.text)
+                    .SetAdditionalAttributes("maxlength", "15")
+                    .SetAdditionalAttributes("placeholder", "max length of 15 characters");
+                htmlForm.AddInput("address", "", InputType.text)
+                    .SetAdditionalAttributes("maxlength", "50")
+                    .SetAdditionalAttributes("placeholder", "max length of 50 characters"); ;
+                htmlForm.AddInput("phone", "", InputType.text).SetAdditionalAttributes("placeholder", "000-000-00-00");
             }
             
 
@@ -62,11 +67,11 @@ namespace Routing.Pages
             ValidationHelper vh = new ValidationHelper();
             MyHashTable<string, string> errors = new MyHashTable<string, string>();
 
-            if (!vh.LikeName(form["name"]))
+            if (String.IsNullOrWhiteSpace(form["name"]))
             {
                errors.Add("name", "Invalid name!");                
             }
-            if (!vh.LikeName(form["surname"]))
+            if (String.IsNullOrWhiteSpace(form["surname"]))
             {
                 errors.Add("surname", "Invalid surname!");
             }

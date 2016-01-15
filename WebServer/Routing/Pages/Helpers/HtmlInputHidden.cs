@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Routing.Pages.Helpers
 {
-    class HtmlInputReset :HtmlInput
+    class HtmlInputHidden : HtmlInput
     {
         private string _name;
         private string _value;
-       
-        public HtmlInputReset(string name)
+
+        public HtmlInputHidden(string name)
             : base(name, null)
         {
         }
 
-        public HtmlInputReset(string name, string value)
+        public HtmlInputHidden(string name, string value)
             : base(name, value)
         {
             _name = name;
             _value = value;
         }
-      
-        protected override string Type { get { return "reset"; } }
+
+        protected override string Type { get { return "hidden"; } }
 
     }
 }

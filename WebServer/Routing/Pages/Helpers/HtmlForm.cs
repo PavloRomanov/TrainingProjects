@@ -1,9 +1,7 @@
 ﻿using CollectionLibrary;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Routing.Pages.Helpers
 {
@@ -39,34 +37,19 @@ namespace Routing.Pages.Helpers
                 case InputType.reset:
                     input = new HtmlInputReset(name, value);
                     break;
+                case InputType.hidden:
+                    input = new HtmlInputReset(name, value);
+                    break;
 
                 default:
                     input = new HtmlInputText(name, value); 
                     break;
-
             }
-
-            
-
-            /*if (type != InputType.text)
-            {
-                input = new HtmlInput(name, value, type);
-            }
-            else if (value != "")
-            {
-                input = new HtmlInput(name, value);
-            }
-            else
-            {
-                input = new HtmlInput(name);
-            }*/
 
             _inputs.Add(input);
 
             return input;
-        }
-
-        
+        }        
 
         public override string ToString()
         {

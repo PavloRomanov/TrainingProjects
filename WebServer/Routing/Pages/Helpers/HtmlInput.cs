@@ -5,12 +5,35 @@ using CollectionLibrary;
 namespace Routing.Pages.Helpers
 {
     public abstract class HtmlInput : IHtmlControl
-    {      
+    {
+        private string _name;
+        private string _value;
+        private MyHashTable<string, string> _additionalAttributes;
+
+        public HtmlInput(string name)
+            : this(name, null)
+        {
+        }
+
+        public HtmlInput(string name, string value)
+        {
+            _name = name;
+            _value = value;
+            _additionalAttributes = new MyHashTable<string, string>();
+
+        }
+
         protected abstract string Type { get; }
 
-        protected virtual string Name { get { return string.Empty; } }
+        protected string Name { get { return _name; } }
 
-        protected virtual string Value { get { return string.Empty; } }
+        protected string Value { get { return _value; } }
+
+        public HtmlInput SetAdditionalAttributes(string name, string value)
+        {
+            _additionalAttributes.Add(name, value);
+            return this;
+        }
 
         public string GetTag(MyHashTable<string, string> errors = null)
         {
@@ -24,7 +47,7 @@ namespace Routing.Pages.Helpers
             if (Value != null)
                 tag.Append("value='").Append(Value).Append("' ");
 
-            tag.Append(AdditionalAttributes());
+            tag.Append(GetAdditionalAttributes());
 
             if (errors != null)
             {
@@ -55,7 +78,23 @@ namespace Routing.Pages.Helpers
             return tag.ToString();
         }
 
-        protected abstract string AdditionalAttributes();
+        protected string GetAdditionalAttributes()
+        {
+            if(_additionalAttributes != null)
+            {
+                StringBuilder attributes = new StringBuilder();
+
+                foreach(var atr in _additionalAttributes)
+                {
+                    attributes.Append(atr.Key).Append("='").Append(atr.Value).Append("' ");                   
+                }
+                return attributes.ToString();
+            }
+            else
+            {
+                return "";
+            }           
+        }
     }
 
 }
