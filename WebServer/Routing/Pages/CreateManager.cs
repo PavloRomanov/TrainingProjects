@@ -14,6 +14,7 @@ namespace Routing.Pages
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
+            
             if (errors != null && errors.Count > 0)
             {
                 htmlForm.AddInput("name", form["name"], InputType.text);
@@ -22,7 +23,8 @@ namespace Routing.Pages
                 htmlForm.AddInput("phone", form["phone"], InputType.text);
                 htmlForm.AddInput("login", form["login"], InputType.text);
                 htmlForm.AddInput("password", form["password"], InputType.text);
-
+               // htmlForm.AddTag("",form["h1"]);
+                
             }
             else
             {
@@ -32,14 +34,14 @@ namespace Routing.Pages
                 htmlForm.AddInput("phone", "", InputType.text);
                 htmlForm.AddInput("login", "", InputType.text);
                 htmlForm.AddInput("password", "", InputType.text);
+                htmlForm.AddTag("","")//-----------
+                .SetAdditionalAttributes("style", "color: green");
+
             }
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Manager</h1>");
             body.Append(Environment.NewLine);
-            body.Append("<p style='text-align:right'><a href='index.html'><h3>Home</h3></a></p>");
-            body.Append(Environment.NewLine);
-
             body.Append(htmlForm.ToString());
 
             body.Append(Environment.NewLine);
