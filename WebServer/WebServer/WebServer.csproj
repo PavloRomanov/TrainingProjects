@@ -64,7 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="files\Provider.jpg" />
-    <Content Include="files\TabStyle.css" />
+    <Content Include="files\TabStyle.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="files\TabStyle1.css" />
     <Content Include="files\telephone.jpg" />
   </ItemGroup>

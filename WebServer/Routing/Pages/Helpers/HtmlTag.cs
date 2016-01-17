@@ -6,8 +6,19 @@ using System.Threading.Tasks;
 using CollectionLibrary;
 namespace Routing.Pages.Helpers
 {
-   public class HtmlTag : IHtmlControl
+    public class HtmlTag
     {
+
+        private string _tagName;
+        private string _text;
+
+        public HtmlTag(string tagName, string text)
+        {
+            _tagName = tagName;
+            _text = text;
+        }
+
+        /*
         private string _name;
         private string _value;
         private MyHashTable<string, string> _additionalAttributes;
@@ -50,9 +61,12 @@ namespace Routing.Pages.Helpers
                 return "";
             }
         }
-
-        public string GetTag(MyHashTable<string, string> errors = null)
+        */
+        public string GetTag()
         {
+            return "<" + _tagName + ">" + _text + "</" + _tagName + ">";//return "<select name='" + _name + "'><option value='samle'>option 1</option></select>";
+        }
+        /*
             StringBuilder tag = new StringBuilder(Environment.NewLine);
             tag.Append("<br/>");
             tag.Append(Name + "<br/>");
@@ -93,6 +107,7 @@ namespace Routing.Pages.Helpers
             tag.Append(Environment.NewLine);
             return tag.ToString();
         }
+        */
 
-        }
+    }
 }

@@ -38,11 +38,11 @@ namespace Routing.Pages
             
             StringBuilder header = new StringBuilder("<!DOCTYPE html>");            
             header.Append(Environment.NewLine);
-            header.Append("<html lang = 'en' xmlns = 'http://www.w3.org/1999/xhtml'>");
+            header.Append("<html lang='en' xmlns='http://www.w3.org/1999/xhtml'>");
             header.Append(Environment.NewLine);
             header.Append("<head>");
             header.Append(Environment.NewLine);
-            header.Append("<meta charset = UTF-8/>");
+            header.Append("<meta charset=UTF-8/>");
             
              header.Append(Environment.NewLine);
             header.Append("<title>");
@@ -57,7 +57,7 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<head>");
             header.Append(Environment.NewLine);
-            header.Append("<link rel = 'stylesheet' href = 'WebServer.files.TabStyle.css' type = 'text/css'/>");
+            header.Append("<link rel='stylesheet' href='/TabStyle.css' type='text/css'/>");
             header.Append(Environment.NewLine);
             header.Append("</head>");
             header.Append(Environment.NewLine);

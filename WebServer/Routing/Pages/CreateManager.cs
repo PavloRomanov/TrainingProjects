@@ -34,8 +34,8 @@ namespace Routing.Pages
                 htmlForm.AddInput("phone", "", InputType.text);
                 htmlForm.AddInput("login", "", InputType.text);
                 htmlForm.AddInput("password", "", InputType.text);
-                htmlForm.AddTag("","")//-----------
-                .SetAdditionalAttributes("style", "color: green");
+                htmlForm.AddTag(new HtmlTag("h1", "hello"));//-----------
+                //.SetAdditionalAttributes("style", "color: green");
 
             }
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");

@@ -23,9 +23,8 @@ namespace Routing.Pages.Helpers
         }
 
         //---------------------------------------------------------------------
-        public HtmlTag AddTag(string name, string value)
+        public HtmlTag AddTag(HtmlTag tag)
         {
-            HtmlTag tag = new HtmlTag(name, value);
             _tags.Add(tag);
             return tag;
         }
@@ -76,7 +75,7 @@ namespace Routing.Pages.Helpers
             //=============================================
             foreach (var tag in _tags)
             {
-                begin.Append(tag.GetTag(_errors));
+                begin.Append(tag.GetTag());
             }
             //==============================================
             begin.Append(Environment.NewLine);
