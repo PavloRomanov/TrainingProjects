@@ -38,7 +38,7 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<th>Surname</th>");
                 body.Append(Environment.NewLine);
-               // body.Append("<th>Work</th>");
+                body.Append("<th>Work</th>");
                 body.Append(Environment.NewLine);
                 body.Append("<th>Address</th>");
                 body.Append(Environment.NewLine);
@@ -60,7 +60,7 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(man.Value.Surname).Append("</td>");
                     body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(man.Value.Address).Append("</td>");
                     body.Append(Environment.NewLine);

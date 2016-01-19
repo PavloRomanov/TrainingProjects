@@ -19,7 +19,7 @@ namespace Routing.Pages.Helpers
             _action = action;
             _errors = errors;
             _inputs = new List<HtmlInput>();
-            _tags = new List<HtmlTag>();//--------------
+            _tags = new List<HtmlTag>();
         }
 
         //---------------------------------------------------------------------
