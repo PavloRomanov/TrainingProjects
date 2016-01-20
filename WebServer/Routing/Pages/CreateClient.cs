@@ -39,10 +39,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");        
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Client</h1>");
-            body.Append(Environment.NewLine);
-            body.Append("<p style='text-align:right'><a href='index.html'><h3>Home</h3></a></p>");
-            body.Append(Environment.NewLine);
-
+            body.Append(Environment.NewLine);           
             body.Append(htmlForm.ToString());
 
             body.Append(Environment.NewLine);                    

@@ -10,6 +10,7 @@ namespace Routing.Pages.Helpers
         public readonly RequestMethod _method;
         public readonly string _action;
         public readonly List<HtmlInput> _inputs;
+        public readonly List<HtmlTag> _tags;//-----------------
         public readonly MyHashTable<string, string> _errors;
 
         public HtmlForm(RequestMethod method, string action, MyHashTable<string, string> errors = null)
@@ -18,8 +19,16 @@ namespace Routing.Pages.Helpers
             _action = action;
             _errors = errors;
             _inputs = new List<HtmlInput>();
+            _tags = new List<HtmlTag>();
         }
 
+        //---------------------------------------------------------------------
+        public HtmlTag AddTag(HtmlTag tag)
+        {
+            _tags.Add(tag);
+            return tag;
+        }
+        //----------------------------------------------------------------------
         public HtmlInput AddInput(string name, string value, InputType type)
         {
             HtmlInput input;
@@ -63,7 +72,12 @@ namespace Routing.Pages.Helpers
             {
                 begin.Append(input.GetTag(_errors));
             }
-
+            //=============================================
+            foreach (var tag in _tags)
+            {
+                begin.Append(tag.GetTag());
+            }
+            //==============================================
             begin.Append(Environment.NewLine);
             begin.Append(new HtmlInputReset("", "clear").GetTag());
             begin.Append(new HtmlInputButton("", "submit").GetTag());

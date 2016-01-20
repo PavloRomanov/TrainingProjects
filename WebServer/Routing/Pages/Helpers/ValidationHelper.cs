@@ -35,14 +35,8 @@ namespace Routing.Pages.Helpers
 
         public bool LikeAddress(string address)
         {
-           if(String.IsNullOrEmpty(address) || address.Length > 50)
-            {
-                return false;
-            }
-           else
-            {
-                return true;
-            }            
+            return !(String.IsNullOrEmpty(address) || address.Length > 50);
         }
     }
+}
 }
