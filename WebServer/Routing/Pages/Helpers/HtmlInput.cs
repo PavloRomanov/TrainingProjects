@@ -15,10 +15,10 @@ namespace Routing.Pages.Helpers
         {
         }
 
-        public HtmlInput(string name, string value = null)
+        public HtmlInput(string name, string value2 = null)
         {
             _name = name;
-            _value = value;
+            _value = value2;
             _additionalAttributes = new MyHashTable<string, string>();
 
         }
