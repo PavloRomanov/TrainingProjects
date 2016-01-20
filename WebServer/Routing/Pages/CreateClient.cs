@@ -67,11 +67,11 @@ namespace Routing.Pages
             ValidationHelper vh = new ValidationHelper();
             MyHashTable<string, string> errors = new MyHashTable<string, string>();
 
-            if (String.IsNullOrWhiteSpace(form["name"]))
+            if (!vh.LikeName(form["name"]))
             {
                errors.Add("name", "Invalid name!");                
             }
-            if (String.IsNullOrWhiteSpace(form["surname"]))
+            if (!vh.LikeName(form["surname"]))
             {
                 errors.Add("surname", "Invalid surname!");
             }

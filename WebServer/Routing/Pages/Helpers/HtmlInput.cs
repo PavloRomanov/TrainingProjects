@@ -15,7 +15,7 @@ namespace Routing.Pages.Helpers
         {
         }
 
-        public HtmlInput(string name, string value)
+        public HtmlInput(string name, string value = null)
         {
             _name = name;
             _value = value;

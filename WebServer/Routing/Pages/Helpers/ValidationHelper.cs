@@ -35,9 +35,14 @@ namespace Routing.Pages.Helpers
 
         public bool LikeAddress(string address)
         {
-            //Regex rgx = new Regex(@"^[a-zA-Zа-яА-Я,-;:]+$");           
-            //return rgx.IsMatch(address);
-            return true;
+           if(String.IsNullOrEmpty(address) || address.Length > 50)
+            {
+                return false;
+            }
+           else
+            {
+                return true;
+            }            
         }
     }
 }
