@@ -15,12 +15,12 @@ namespace Routing.Pages.Helpers
         public HtmlTag(string tagName, string text)
         {
             _tagName = tagName;
+            
             _text = text;
         }
 
         /*
-        private string _name;
-        private string _value;
+        
         private MyHashTable<string, string> _additionalAttributes;
 
         public HtmlTag(string name)
@@ -34,37 +34,43 @@ namespace Routing.Pages.Helpers
             _value = value;
             _additionalAttributes = new MyHashTable<string, string>();
 
-        }
-        protected string Name { get { return _name; } }
+        }*/
+        protected string Name { get { return _tagName; } }
 
-        protected string Value { get { return _value; } }
+        protected string Text { get { return _text; } }
 
-        public HtmlTag SetAdditionalAttributes(string name, string value)
-        {
-            _additionalAttributes.Add(name, value);
-            return this;
-        }
-        protected string GetAdditionalAttributes()
-        {
-            if (_additionalAttributes != null)
-            {
-                StringBuilder attributes = new StringBuilder();
+        /* public HtmlTag SetAdditionalAttributes(string name, string value)
+         {
+             _additionalAttributes.Add(name, value);
+             return this;
+         }
+         protected string GetAdditionalAttributes()
+         {
+             if (_additionalAttributes != null)
+             {
+                 StringBuilder attributes = new StringBuilder();
 
-                foreach (var atr in _additionalAttributes)
-                {
-                    attributes.Append(atr.Key).Append("='").Append(atr.Value).Append("' ");
-                }
-                return attributes.ToString();
-            }
-            else
-            {
-                return "";
-            }
-        }
-        */
-        public string GetTag()
+                 foreach (var atr in _additionalAttributes)
+                 {
+                     attributes.Append(atr.Key).Append("='").Append(atr.Value).Append("' ");
+                 }
+                 return attributes.ToString();
+             }
+             else
+             {
+                 return "";
+             }
+         }
+         */
+        public virtual string GetTag()
         {
-            return "<" + _tagName + ">" + _text + "</" + _tagName + ">";//return "<select name='" + _name + "'><option value='samle'>option 1</option></select>";
+
+            StringBuilder bodyTag = new StringBuilder();
+            bodyTag.Append(Environment.NewLine);
+            bodyTag.Append("<").Append(Name).Append(">").Append(Text).Append("</").Append(Name).Append(">");
+            bodyTag.Append(Environment.NewLine);
+            return bodyTag.ToString();
+
         }
         /*
             StringBuilder tag = new StringBuilder(Environment.NewLine);

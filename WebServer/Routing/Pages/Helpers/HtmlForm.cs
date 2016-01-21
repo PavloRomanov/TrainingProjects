@@ -10,7 +10,7 @@ namespace Routing.Pages.Helpers
         public readonly RequestMethod _method;
         public readonly string _action;
         public readonly List<HtmlInput> _inputs;
-        public readonly List<HtmlTag> _tags;//-----------------
+        public readonly List<HtmlTag> _tags;
         public readonly MyHashTable<string, string> _errors;
 
         public HtmlForm(RequestMethod method, string action, MyHashTable<string, string> errors = null)
@@ -47,9 +47,11 @@ namespace Routing.Pages.Helpers
                     input = new HtmlInputReset(name, value);
                     break;
                 case InputType.hidden:
-                    input = new HtmlInputReset(name, value);
+                    input = new HtmlInputHidden(name, value);
                     break;
-
+                case InputType.radio:
+                    input = new HtmlInputRadio(name, value);
+                    break;
                 default:
                     input = new HtmlInputText(name, value); 
                     break;
