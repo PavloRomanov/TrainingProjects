@@ -20,7 +20,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder();
             try
             {
-                ManagerServise ms = new ManagerServise("manager.txt");
+                ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
 
                 body.Append("<body bgcolor='#FFFF40\'>");

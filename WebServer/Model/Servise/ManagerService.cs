@@ -4,9 +4,9 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public class ManagerServise : BaseService<Manager>
+    public class ManagerService : BaseService<Manager>
     {
-        public ManagerServise(string path)
+        public ManagerService(string path)
             : base(path)
         {
         }

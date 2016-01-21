@@ -17,7 +17,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<body bgcolor='#EE8c00'>");
             try
             {
-                ManagerServise ms = new ManagerServise("manager.txt");
+                ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
 
                 Manager manager = ms.GetElement(id);
@@ -27,7 +27,7 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<p><b>Surname:</b>").Append(manager.Surname).Append("</p>");
                 body.Append(Environment.NewLine);
-               // body.Append("<p><b>Work:</b>").Append(manager.Work).Append("</p>");
+                body.Append("<p><b>Work:</b>").Append(manager.Work).Append("</p>");
                 body.Append(Environment.NewLine);
                 body.Append("<p><b>Address:</b>").Append(manager.Address).Append("</p>");
                 body.Append(Environment.NewLine);

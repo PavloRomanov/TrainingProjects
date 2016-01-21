@@ -14,7 +14,15 @@ namespace Routing.Pages
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
-          
+
+            MyList<string> options = new MyList<string>();
+            options.Add("1 years");
+            options.Add("3 years");
+            options.Add("5 years");
+            options.Add("more 5 years");
+
+
+
             if (errors != null && errors.Count > 0)
             {
                 htmlForm.AddInput("Name", form["name"], InputType.text);
@@ -23,7 +31,7 @@ namespace Routing.Pages
                 htmlForm.AddInput("Phone", form["phone"], InputType.text);
                 htmlForm.AddInput("Login", form["login"], InputType.text);
                 htmlForm.AddInput("Password", form["password"], InputType.text);
-               // htmlForm.AddTag(new TagSelect ("","", form["experience"]));
+                htmlForm.AddTag(new TagSelect ("","", options));//?
 
             }
             else
@@ -34,15 +42,8 @@ namespace Routing.Pages
                 htmlForm.AddInput("Phone", "", InputType.text);
                 htmlForm.AddInput("Login", "", InputType.text);
                 htmlForm.AddInput("Password", "", InputType.text);
-                htmlForm.AddTag(new HtmlTag("p", "WorkExperience:"));
-                MyList<string> options = new MyList<string>();
-                options.Add("1 years");
-                options.Add("3 years");
-                options.Add("5 years");
-                options.Add("more 5 years");
+                htmlForm.AddTag(new HtmlTag("p", "WorkExperience:")).SetAdditionalAttributes("style", "color: green");
                 htmlForm.AddTag(new TagSelect( "", "experience", options));
-
-                //.SetAdditionalAttributes("style", "color: green");
 
             }
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
@@ -61,7 +62,7 @@ namespace Routing.Pages
             try
             {
                 Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                ManagerServise ms = new ManagerServise("manager.txt");
+                ManagerService ms = new ManagerService("manager.txt");
                 manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Add(manager);
             }

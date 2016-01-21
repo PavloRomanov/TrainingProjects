@@ -145,7 +145,7 @@ namespace Routing.Pages
             body.Append(Environment.NewLine);
             body.Append("<td><p><select name='managerId' size='1'>");
             body.Append(Environment.NewLine);
-            ManagerServise ms = new ManagerServise("manager.txt");
+            ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
 
             foreach (var man in managers)

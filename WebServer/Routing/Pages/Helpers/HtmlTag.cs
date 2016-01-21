@@ -8,38 +8,22 @@ namespace Routing.Pages.Helpers
 {
     public class HtmlTag
     {
-
         private string _tagName;
         private string _text;
-
+        private MyHashTable<string, string> _additionalAttributes;
         public HtmlTag(string tagName, string text)
         {
-            _tagName = tagName;
-            
+            _tagName = tagName;           
             _text = text;
-        }
-
-        /*
-        
-        private MyHashTable<string, string> _additionalAttributes;
-
-        public HtmlTag(string name)
-            : this(name, null)
-        {
-        }
-
-        public HtmlTag(string name, string value)
-        {
-            _name = name;
-            _value = value;
             _additionalAttributes = new MyHashTable<string, string>();
+        }
 
-        }*/
+      
         protected string Name { get { return _tagName; } }
 
         protected string Text { get { return _text; } }
 
-        /* public HtmlTag SetAdditionalAttributes(string name, string value)
+         public HtmlTag SetAdditionalAttributes(string name, string value)
          {
              _additionalAttributes.Add(name, value);
              return this;
@@ -61,7 +45,7 @@ namespace Routing.Pages.Helpers
                  return "";
              }
          }
-         */
+         
         public virtual string GetTag()
         {
 

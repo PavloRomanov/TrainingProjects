@@ -15,7 +15,7 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ManagerServise ms = new ManagerServise("manager.txt");
+                ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
                 ms.Delete(id);
             }
