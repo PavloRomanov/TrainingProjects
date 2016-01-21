@@ -116,7 +116,7 @@ namespace Routing.Pages
             {
                 string key = cookies[" sessionId"];
                 User user = Session.registerSessions[key];                
-                greeting.Append("<div><h3>Hello ").Append(user.login).Append("</h3></div>");
+                greeting.Append("<div><h3>Hello ").Append(user.name).Append("</h3></div>");
                 return greeting.ToString();
             }            
             return "";

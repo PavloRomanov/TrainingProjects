@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlInputRadio.cs" />
     <Compile Include="Pages\Helpers\HtmlBaseTag.cs" />
+    <Compile Include="Pages\Helpers\HtmlInputRadio.cs" />
     <Compile Include="Pages\Helpers\HtmlTag.cs" />
     <Compile Include="Pages\CreateForm.cs" />
     <Compile Include="Pages\CreateAppeal.cs" />
