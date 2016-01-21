@@ -14,27 +14,34 @@ namespace Routing.Pages
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
-            
+          
             if (errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("name", form["name"], InputType.text);
-                htmlForm.AddInput("surname", form["surname"], InputType.text);
-                htmlForm.AddInput("address", form["address"], InputType.text);
-                htmlForm.AddInput("phone", form["phone"], InputType.text);
-                htmlForm.AddInput("login", form["login"], InputType.text);
-                htmlForm.AddInput("password", form["password"], InputType.text);
-               // htmlForm.AddTag("",form["h1"]);
-                
+                htmlForm.AddInput("Name", form["name"], InputType.text);
+                htmlForm.AddInput("Surname", form["surname"], InputType.text);
+                htmlForm.AddInput("Address", form["address"], InputType.text);
+                htmlForm.AddInput("Phone", form["phone"], InputType.text);
+                htmlForm.AddInput("Login", form["login"], InputType.text);
+                htmlForm.AddInput("Password", form["password"], InputType.text);
+               // htmlForm.AddTag(new TagSelect ("","", form["experience"]));
+
             }
             else
             {
-                htmlForm.AddInput("name", "", InputType.text);
-                htmlForm.AddInput("surname", "", InputType.text);
-                htmlForm.AddInput("address", "", InputType.text);
-                htmlForm.AddInput("phone", "", InputType.text);
-                htmlForm.AddInput("login", "", InputType.text);
-                htmlForm.AddInput("password", "", InputType.text);
-                htmlForm.AddTag(new HtmlTag("h1", "hello"));//-----------
+                htmlForm.AddInput("Name", "", InputType.text);
+                htmlForm.AddInput("Surname", "", InputType.text);              
+                htmlForm.AddInput("Address", "", InputType.text);
+                htmlForm.AddInput("Phone", "", InputType.text);
+                htmlForm.AddInput("Login", "", InputType.text);
+                htmlForm.AddInput("Password", "", InputType.text);
+                htmlForm.AddTag(new HtmlTag("p", "WorkExperience:"));
+                MyList<string> options = new MyList<string>();
+                options.Add("1 years");
+                options.Add("3 years");
+                options.Add("5 years");
+                options.Add("more 5 years");
+                htmlForm.AddTag(new TagSelect( "", "experience", options));
+
                 //.SetAdditionalAttributes("style", "color: green");
 
             }
@@ -43,7 +50,6 @@ namespace Routing.Pages
             body.Append("<h1>Create Manager</h1>");
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
-
             body.Append(Environment.NewLine);
 
             return body.ToString();
@@ -55,7 +61,8 @@ namespace Routing.Pages
             try
             {
                 Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                ManagerServise ms = new ManagerServise("manager.txt");                
+                ManagerServise ms = new ManagerServise("manager.txt");
+                manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Add(manager);
             }
             catch (Exception ex)

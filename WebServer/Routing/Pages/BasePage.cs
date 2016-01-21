@@ -57,7 +57,7 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<head>");
             header.Append(Environment.NewLine);
-            header.Append("<link rel='stylesheet' href='/TabStyle.css' type='text/css'/>");
+            header.Append("<link rel='stylesheet' href='/TabStyle1.css' type='text/css'/>");
             header.Append(Environment.NewLine);
             header.Append("</head>");
             header.Append(Environment.NewLine);
@@ -76,7 +76,7 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<ul>");
             header.Append(Environment.NewLine);
-            header.Append("<li><a href='Index.html'>Home</a></li>");
+            header.Append("<li><a href='Index'>Home</a></li>");
             header.Append(Environment.NewLine);
             header.Append("<li><a href='ClientsList'>ClientsList</a></li>");
             header.Append(Environment.NewLine);
@@ -125,9 +125,10 @@ namespace Routing.Pages
 
         //protected abstract string AddForm();
 
-        protected virtual string AddFooter(/*"<footer><p style='text-align:center; color:red;'> Svetlana&Serg Corporation<br>Kiev 2015</p></footer>"*/)
+        protected virtual string AddFooter()
         {
             StringBuilder footer = new StringBuilder();
+           // "<footer><p style='text-align:center; color:red;'> Svetlana&Serg Corporation<br>Kiev 2015</p></footer>"
             footer.Append(Environment.NewLine);
             footer.Append("<script");
             footer.Append(" src='Scripts/").Append(Script).Append("'>");
