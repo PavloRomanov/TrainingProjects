@@ -96,9 +96,9 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<li><a href='Contact.html'>Contacts</a></li>");
             header.Append(Environment.NewLine);
-            header.Append("<li><a href='LoginPage'><b>Entrance</b></a></li>");
+            header.Append("<li><a href='LogOut'><b>Entrance</b></a></li>");
             header.Append(Environment.NewLine);
-            header.Append(" </ul>").Append("</div>");
+            header.Append(" </ul>").Append("</div>");            
             header.Append(Environment.NewLine);
             header.Append("</header>");
             header.Append(Environment.NewLine);
@@ -109,15 +109,16 @@ namespace Routing.Pages
             return header.ToString();
         }
 
-        protected virtual string AddGreeting(MyHashTable<string, string> cookies)
+       protected string AddGreeting(MyHashTable<string, string> cookies)
         {
             StringBuilder greeting = new StringBuilder();
-            if(cookies.ContainsKey("sessionId"))
+            if (cookies != null && cookies.ContainsKey(" sessionId"))
             {
-                User user = Session.registerSessions[new Guid(cookies["sessionId"])];
-                greeting.Append("<h2>Hello ").Append(user.login).Append("</h2>");
+                string key = cookies[" sessionId"];
+                User user = Session.registerSessions[key];                
+                greeting.Append("<div><h3>Hello ").Append(user.name).Append("</h3></div>");
                 return greeting.ToString();
-            }
+            }            
             return "";
         }
 

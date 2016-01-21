@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlInputRadio.cs" />
     <Compile Include="Pages\Helpers\HtmlBaseTag.cs" />
+    <Compile Include="Pages\Helpers\HtmlInputRadio.cs" />
     <Compile Include="Pages\Helpers\HtmlTag.cs" />
     <Compile Include="Pages\CreateForm.cs" />
     <Compile Include="Pages\CreateAppeal.cs" />
@@ -51,6 +51,7 @@
     <Compile Include="Pages\Helpers\HtmlInputReset.cs" />
     <Compile Include="Pages\Helpers\HtmlInputText.cs" />
     <Compile Include="Pages\Helpers\IHtmlControl.cs" />
+    <Compile Include="Pages\LogOut.cs" />
     <Compile Include="Pages\ManagersList.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CreateClient.cs" />

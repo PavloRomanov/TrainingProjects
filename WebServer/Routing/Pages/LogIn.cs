@@ -65,11 +65,9 @@ namespace Routing.Pages
                 {
                     response = new Response("", TypeOfAnswer.Redirection, "Index");
                     response.Cookie = new MyHashTable<string, string>();
-                    User user = new User(manager.Id.ToString(), manager.Name, manager.Surname);
-                    Guid sessionId = Guid.NewGuid();
-                    Session.Add(sessionId, user);
-                    MyHashTable<Guid, User> register = Session.registerSessions;
-                    response.Cookie.Add("sessionId", sessionId.ToString());                   
+                    User user = new User(manager.Id.ToString(), manager.Name, manager.Surname);                    
+                    Session.Add(user);                    
+                    response.Cookie.Add(" sessionId", Session.sessionId);                   
                 }
                 
             }

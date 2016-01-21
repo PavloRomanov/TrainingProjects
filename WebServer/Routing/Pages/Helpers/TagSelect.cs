@@ -1,9 +1,7 @@
 ﻿using CollectionLibrary;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Routing.Pages.Helpers
 {
@@ -19,7 +17,7 @@ namespace Routing.Pages.Helpers
         }
       
         public TagSelect(string text, string name, MyList<string> options)
-            : base(getName, text)
+           : base(getName, text)
         {
             _name = name;// name select
             _options = options;
@@ -30,7 +28,7 @@ namespace Routing.Pages.Helpers
         {
             StringBuilder bodySelect = new StringBuilder();
             bodySelect.Append(Environment.NewLine);
-            bodySelect.Append("<").Append(Name).Append("  name='").Append(_name).Append("'>");
+            bodySelect.Append("<").Append(_name).Append("  name='").Append(_name).Append("'>");
          
             foreach (var option in _options)
             {
@@ -39,7 +37,7 @@ namespace Routing.Pages.Helpers
                 bodySelect.Append(Environment.NewLine);
                 bodySelect.Append("</option>");
             }
-            bodySelect.Append("</").Append(Name).Append(">");
+            bodySelect.Append("</").Append(_name).Append(">");
             bodySelect.Append(Environment.NewLine);
             return bodySelect.ToString();
         }
