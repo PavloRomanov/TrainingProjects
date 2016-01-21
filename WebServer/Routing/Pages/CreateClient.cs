@@ -12,7 +12,7 @@ namespace Routing.Pages
         protected override string Title { get { return "Create Client"; } }
 
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
-        {
+        {          
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             if(errors != null && errors.Count > 0)
             {
@@ -36,7 +36,10 @@ namespace Routing.Pages
             }
             
 
-            StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");        
+            StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
+
+            body.Append(AddGreeting(cookies));
+
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Client</h1>");
             body.Append(Environment.NewLine);           
@@ -47,17 +50,6 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        /*protected override string AddGreeting(MyHashTable<string, string> cookies)
-        {
-            StringBuilder greeting = new StringBuilder();
-            if (cookies.ContainsKey("sessionId"))
-            {
-                User user = Session.registerSessions[new Guid(cookies["sessionId"])];
-                greeting.Append("<h2>Hello ").Append(user.login).Append("</h2>");
-                return greeting.ToString();
-            }
-            return "";
-        }*/
 
         public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
         {

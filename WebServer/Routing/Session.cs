@@ -5,10 +5,14 @@ namespace Routing
 {
     public static class Session
     {
-        public static MyHashTable<Guid, User> registerSessions = new MyHashTable<Guid, User>();
+        private static int count = 0;
+        public static string sessionId;
+        public static MyHashTable<string, User> registerSessions = new MyHashTable<string, User>();
 
-        public static void Add(Guid sessionId, User user)
+        public static void Add(User user)
         {
+            count++;
+            sessionId = count.ToString();
             registerSessions.Add(sessionId, user);
         }
 

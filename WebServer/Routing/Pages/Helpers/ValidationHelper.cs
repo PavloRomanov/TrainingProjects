@@ -14,16 +14,8 @@ namespace Routing.Pages.Helpers
         }
 
         public bool LikeName(string name)
-        {
-            if(String.IsNullOrWhiteSpace(name) || name.Length > 15)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-            
+        {           
+            return !(String.IsNullOrWhiteSpace(name) || name.Length > 15);
         }
 
         public bool LikePhoneNumber(string phoneNumber)
@@ -39,4 +31,4 @@ namespace Routing.Pages.Helpers
         }
     }
 }
-}
+

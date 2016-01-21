@@ -3,8 +3,8 @@
     public class User
     {
         private string userId;
-        public string login;
-        private string password;
+        public string name;
+        private string surname;
         private bool authorized;
 
         public User()
@@ -13,11 +13,11 @@
             authorized = false;
         }
 
-        public User(string userId, string login, string password)
+        public User(string userId, string name, string surname)
         {
             this.userId = userId;
-            this.login = login;
-            this.password = password;
+            this.name = name;
+            this.surname = surname;
             authorized = true;
         }
     }

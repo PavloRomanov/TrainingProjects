@@ -23,7 +23,7 @@ namespace Routing.Pages
                 htmlForm.AddInput("phone", form["phone"], InputType.text);
                 htmlForm.AddInput("login", form["login"], InputType.text);
                 htmlForm.AddInput("password", form["password"], InputType.text);
-               // htmlForm.AddTag("",form["h1"]);
+                //htmlForm.AddTag(form["h1"]);
                 
             }
             else

@@ -1,9 +1,7 @@
 ﻿using CollectionLibrary;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Routing.Pages.Helpers
 {
@@ -34,11 +32,11 @@ namespace Routing.Pages.Helpers
             _options.Add(_value);
             return this ;
         }
-        public override string GetTag()
+        public string GetTag()
         {
             StringBuilder bodySelect = new StringBuilder();
             bodySelect.Append(Environment.NewLine);
-            bodySelect.Append("<").Append(Name).Append("  name='").Append(_name).Append("'>");
+            bodySelect.Append("<").Append(_name).Append("  name='").Append(_name).Append("'>");
          
             foreach (var option in _options)
             {
@@ -47,7 +45,7 @@ namespace Routing.Pages.Helpers
                 bodySelect.Append(Environment.NewLine);
                 bodySelect.Append("</option>");
             }
-            bodySelect.Append("</").Append(Name).Append(">");
+            bodySelect.Append("</").Append(_name).Append(">");
             bodySelect.Append(Environment.NewLine);
             return bodySelect.ToString();
         }
