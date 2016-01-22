@@ -62,8 +62,8 @@ namespace Routing.Pages
                 htmlForm.AddTag(new HtmlTag("textarea", ""));
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag(new HtmlTag("p", "The problem is solved?"));
-                htmlForm.AddInput("Yes", "", InputType.radio);
-                htmlForm.AddInput("No", "", InputType.radio);
+                htmlForm.AddInput("Yes", "", InputType.Radio);
+                htmlForm.AddInput("No", "", InputType.Radio);
                 //-----------------------------------------------------------------------------
                 htmlForm.AddTag(new HtmlTag("p", "Serviced manager:"));
                 ManagerService ms = new ManagerService(".txt");
@@ -75,6 +75,10 @@ namespace Routing.Pages
                     optionsmanager.Add(temp3);
                 }
                 htmlForm.AddTag(new TagSelect("", "namemanager", optionsmanager));
+                
+
+
+
             }
 
             StringBuilder body = new StringBuilder("<body bgcolor='#07FFFF'>");
@@ -100,7 +104,7 @@ namespace Routing.Pages
             body.Append(Environment.NewLine);
             body.Append("<input type='radio'name='solve' value='no'>No<Br>");
             body.Append(Environment.NewLine);*/
-            
+
             body.Append("</form>");
             body.Append(Environment.NewLine);
             body.Append("</body>");

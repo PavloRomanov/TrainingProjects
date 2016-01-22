@@ -18,14 +18,14 @@ namespace Routing.Pages
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
             if (errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("login", form["login"], InputType.text);
-                htmlForm.AddInput("password", form["password"], InputType.password);
+                htmlForm.AddInput("login", form["login"], InputType.Text);
+                htmlForm.AddInput("password", form["password"], InputType.Password);
                                 
             }
             else
             {
-                htmlForm.AddInput("login", "", InputType.text);
-                htmlForm.AddInput("password", "", InputType.password);
+                htmlForm.AddInput("login", "", InputType.Text);
+                htmlForm.AddInput("password", "", InputType.Password);
             }
 
             StringBuilder body = new StringBuilder("<body bgcolor='#5DCFC3'>");

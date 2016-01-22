@@ -31,31 +31,7 @@ namespace Routing.Pages.Helpers
         //----------------------------------------------------------------------
         public HtmlInput AddInput(string name, string value, InputType type)
         {
-            HtmlInput input;
-
-            switch (type)
-            {
-                case InputType.text :
-                    input = new HtmlInputText(name, value);
-                    break;
-
-                case InputType.button:
-                    input = new HtmlInputButton(name, value);
-                    break;
-
-                case InputType.reset:
-                    input = new HtmlInputReset(name, value);
-                    break;
-                case InputType.hidden:
-                    input = new HtmlInputHidden(name, value);
-                    break;
-                case InputType.radio:
-                    input = new HtmlInputRadio(name, value);
-                    break;
-                default:
-                    input = new HtmlInputText(name, value); 
-                    break;
-            }
+            HtmlInput input = new HtmlInput(type.ToString(), name, value);           
 
             _inputs.Add(input);
 
@@ -81,8 +57,8 @@ namespace Routing.Pages.Helpers
             }
             //==============================================
             begin.Append(Environment.NewLine);
-            begin.Append(new HtmlInputReset("", "clear").GetTag());
-            begin.Append(new HtmlInputButton("", "submit").GetTag());
+            begin.Append(new HtmlInput(InputType.Reset.ToString(), "", "clear").GetTag());
+            begin.Append(new HtmlInput(InputType.Submit.ToString(), "", "submit").GetTag());
             begin.Append(Environment.NewLine);
             begin.Append("</form>");
             begin.Append(Environment.NewLine);
@@ -99,15 +75,15 @@ namespace Routing.Pages.Helpers
 
     public enum InputType
     {
-        button,
-        checkbox,
-        file,
-        hidden,
-        image,
-        password,
-        radio,
-        reset,
-        submit,
-        text
+        Button,
+        Checkbox,
+        File,
+        Hidden,
+        Image,
+        Password,
+        Radio,
+        Reset,
+        Submit,
+        Text
     }
 }

@@ -14,7 +14,7 @@ namespace Routing.Pages
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
-
+            
             MyList<string> options = new MyList<string>();
             options.Add("1 years");
             options.Add("3 years");
@@ -25,25 +25,25 @@ namespace Routing.Pages
 
             if (errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("Name", form["name"], InputType.text);
-                htmlForm.AddInput("Surname", form["surname"], InputType.text);
-                htmlForm.AddInput("Address", form["address"], InputType.text);
-                htmlForm.AddInput("Phone", form["phone"], InputType.text);
-                htmlForm.AddInput("Login", form["login"], InputType.text);
-                htmlForm.AddInput("Password", form["password"], InputType.text);
-                htmlForm.AddTag(new TagSelect ("","", options));//?
+                htmlForm.AddInput("name", form["name"], InputType.Text);
+                htmlForm.AddInput("surname", form["surname"], InputType.Text);
+                htmlForm.AddInput("address", form["address"], InputType.Text);
+                htmlForm.AddInput("phone", form["phone"], InputType.Text);
+                htmlForm.AddInput("login", form["login"], InputType.Text);
+                htmlForm.AddInput("password", form["password"], InputType.Text);
+                htmlForm.AddTag(new TagSelect("", "", options));//?
 
             }
             else
             {
-                htmlForm.AddInput("Name", "", InputType.text);
-                htmlForm.AddInput("Surname", "", InputType.text);              
-                htmlForm.AddInput("Address", "", InputType.text);
-                htmlForm.AddInput("Phone", "", InputType.text);
-                htmlForm.AddInput("Login", "", InputType.text);
-                htmlForm.AddInput("Password", "", InputType.text);
+                htmlForm.AddInput("Name", "", InputType.Text);
+                htmlForm.AddInput("Surname", "", InputType.Text);              
+                htmlForm.AddInput("Address", "", InputType.Text);
+                htmlForm.AddInput("Phone", "", InputType.Text);
+                htmlForm.AddInput("Login", "", InputType.Text);
+                htmlForm.AddInput("Password", "", InputType.Text);
                 htmlForm.AddTag(new HtmlTag("p", "WorkExperience:")).SetAdditionalAttributes("style", "color: green");
-                htmlForm.AddTag(new TagSelect( "", "experience", options));
+                htmlForm.AddTag(new TagSelect("", "experience", options));
 
             }
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
