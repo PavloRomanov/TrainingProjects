@@ -17,23 +17,23 @@ namespace Routing.Pages
             
             if (errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("name", form["name"], InputType.text);
-                htmlForm.AddInput("surname", form["surname"], InputType.text);
-                htmlForm.AddInput("address", form["address"], InputType.text);
-                htmlForm.AddInput("phone", form["phone"], InputType.text);
-                htmlForm.AddInput("login", form["login"], InputType.text);
-                htmlForm.AddInput("password", form["password"], InputType.text);
+                htmlForm.AddInput("name", form["name"], InputType.Text);
+                htmlForm.AddInput("surname", form["surname"], InputType.Text);
+                htmlForm.AddInput("address", form["address"], InputType.Text);
+                htmlForm.AddInput("phone", form["phone"], InputType.Text);
+                htmlForm.AddInput("login", form["login"], InputType.Text);
+                htmlForm.AddInput("password", form["password"], InputType.Text);
                 //htmlForm.AddTag(form["h1"]);
                 
             }
             else
             {
-                htmlForm.AddInput("Name", "", InputType.text);
-                htmlForm.AddInput("Surname", "", InputType.text);              
-                htmlForm.AddInput("Address", "", InputType.text);
-                htmlForm.AddInput("Phone", "", InputType.text);
-                htmlForm.AddInput("Login", "", InputType.text);
-                htmlForm.AddInput("Password", "", InputType.text);
+                htmlForm.AddInput("Name", "", InputType.Text);
+                htmlForm.AddInput("Surname", "", InputType.Text);              
+                htmlForm.AddInput("Address", "", InputType.Text);
+                htmlForm.AddInput("Phone", "", InputType.Text);
+                htmlForm.AddInput("Login", "", InputType.Text);
+                htmlForm.AddInput("Password", "", InputType.Text);
                 htmlForm.AddTag(new HtmlTag("p", "WorkExperience:"));
                 MyList<string> options = new MyList<string>();
                 options.Add("1 years");

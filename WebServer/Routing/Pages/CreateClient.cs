@@ -16,23 +16,23 @@ namespace Routing.Pages
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             if(errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("name", form["name"], InputType.text).SetAdditionalAttributes("maxlength", "5");
-                htmlForm.AddInput("surname", form["surname"], InputType.text);
-                htmlForm.AddInput("address", form["address"], InputType.text);
-                htmlForm.AddInput("phone", form["phone"], InputType.text).SetAdditionalAttributes("placeholder", "000-000-00-00");
+                htmlForm.AddInput("name", form["name"], InputType.Text).SetAttribut("maxlength", "5");
+                htmlForm.AddInput("surname", form["surname"], InputType.Text);
+                htmlForm.AddInput("address", form["address"], InputType.Text);
+                htmlForm.AddInput("phone", form["phone"], InputType.Text).SetAttribut("placeholder", "000-000-00-00");
             }
             else
             {
-                htmlForm.AddInput("name", "", InputType.text)
-                    .SetAdditionalAttributes("maxlength", "15")
-                    .SetAdditionalAttributes("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("surname", "", InputType.text)
-                    .SetAdditionalAttributes("maxlength", "15")
-                    .SetAdditionalAttributes("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("address", "", InputType.text)
-                    .SetAdditionalAttributes("maxlength", "50")
-                    .SetAdditionalAttributes("placeholder", "max length of 50 characters"); ;
-                htmlForm.AddInput("phone", "", InputType.text).SetAdditionalAttributes("placeholder", "000-000-00-00");
+                htmlForm.AddInput("name", "", InputType.Text)
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("placeholder", "max length of 15 characters");
+                htmlForm.AddInput("surname", "", InputType.Text)
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("placeholder", "max length of 15 characters");
+                htmlForm.AddInput("address", "", InputType.Text)
+                    .SetAttribut("maxlength", "50")
+                    .SetAttribut("placeholder", "max length of 50 characters"); ;
+                htmlForm.AddInput("phone", "", InputType.Text).SetAttribut("placeholder", "000-000-00-00");
             }
             
 

@@ -45,11 +45,11 @@ namespace Routing.Pages
                 Client client = cs.GetElement(id);
 
                 HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "UpdateClient", errors);
-                htmlForm.AddInput("id", client.Id.ToString(), InputType.hidden);
-                htmlForm.AddInput("name", "", InputType.text);
-                htmlForm.AddInput("surname", "", InputType.text);
-                htmlForm.AddInput("address", "", InputType.text);
-                htmlForm.AddInput("phone", "", InputType.text);
+                htmlForm.AddInput("id", client.Id.ToString(), InputType.Hidden);
+                htmlForm.AddInput("name", "", InputType.Text);
+                htmlForm.AddInput("surname", "", InputType.Text);
+                htmlForm.AddInput("address", "", InputType.Text);
+                htmlForm.AddInput("phone", "", InputType.Text);
 
                 StringBuilder body = new StringBuilder("<body>");
                 body.Append("<form method='POST' action='UpdateClient'>");

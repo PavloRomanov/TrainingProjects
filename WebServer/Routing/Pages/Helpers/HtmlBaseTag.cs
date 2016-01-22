@@ -8,7 +8,7 @@ namespace Routing.Pages.Helpers
     {
         private string _tagName;
         private string _tagContent;
-        private MyHashTable<string, string> _attributes;
+        protected MyHashTable<string, string> _attributes;
 
         public HtmlBaseTag(string tagName)
             : this(tagName, null)
@@ -23,12 +23,11 @@ namespace Routing.Pages.Helpers
             _attributes = new MyHashTable<string, string>();
 
         }
-        
-        protected abstract string GetLable { get; }
+           
 
         protected string TagName { get { return _tagName; } }
 
-        protected string TagContent { get { return _tagContent; } }
+        
 
         public HtmlBaseTag SetAttribut(string attributName, string attributValue)
         {
@@ -56,43 +55,34 @@ namespace Routing.Pages.Helpers
 
         public string GetTag(MyHashTable<string, string> errors = null)
         {
-            StringBuilder tag = new StringBuilder(Environment.NewLine);
-            tag.Append(GetLable);            
-            tag.Append(Environment.NewLine);
-            tag.Append("<").Append(TagName).Append(">");
-            tag.Append(TagContent);
-            tag.Append("</").Append(TagName).Append(">");
+            StringBuilder tag = new StringBuilder(Environment.NewLine);           
+            tag.Append("<").Append(TagName).Append(" ");
 
             tag.Append(GetAttribut());
+            tag.Append(ProcessingError(errors));
 
-           /* if (errors != null)
-            {
-                if (errors.ContainsKey(Name))
-                {
-                    tag.Append("style='border-color:red'/>");
-                    string message = errors[Name];
-                    tag.Append("<span style = 'color:red'>").Append(message).Append("</span>");
-
-                }
-                else
-                {
-                    tag.Append("/>");
-                    tag.Append(Environment.NewLine);
-                    tag.Append("<br/>");
-                }
-            }
-            else
-            {
-                tag.Append("/>");
-                tag.Append(Environment.NewLine);
-                tag.Append("<br/>");
-            }*/
-
+            tag.Append(">");
+            tag.Append(GetTagContent());
+            tag.Append(GetTagEnd());
 
             tag.Append(Environment.NewLine);
-
             return tag.ToString();
         }
+
+        protected virtual string GetTagEnd()
+        {
+            StringBuilder tag = new StringBuilder();
+            tag.Append("</").Append(TagName).Append(">");
+            return tag.ToString();
+        }
+
+        protected virtual string GetTagContent()
+        {
+            return _tagContent;
+        }
+
+        protected abstract string ProcessingError(MyHashTable<string, string> errors);
+        
 
     }
 }

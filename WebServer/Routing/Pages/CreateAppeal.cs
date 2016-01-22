@@ -57,8 +57,8 @@ namespace Routing.Pages
                 htmlForm.AddTag(new HtmlTag("textarea", ""));
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag(new HtmlTag("p", "The problem is solved?"));
-                htmlForm.AddInput("Yes", "", InputType.radio);
-                htmlForm.AddInput("No", "", InputType.radio);
+                htmlForm.AddInput("Yes", "", InputType.Radio);
+                htmlForm.AddInput("No", "", InputType.Radio);
 
 
 
