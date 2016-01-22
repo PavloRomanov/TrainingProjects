@@ -15,6 +15,14 @@ namespace Routing.Pages
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
             
+            MyList<string> options = new MyList<string>();
+            options.Add("1 years");
+            options.Add("3 years");
+            options.Add("5 years");
+            options.Add("more 5 years");
+
+
+
             if (errors != null && errors.Count > 0)
             {
                 htmlForm.AddInput("name", form["name"], InputType.Text);
@@ -23,8 +31,8 @@ namespace Routing.Pages
                 htmlForm.AddInput("phone", form["phone"], InputType.Text);
                 htmlForm.AddInput("login", form["login"], InputType.Text);
                 htmlForm.AddInput("password", form["password"], InputType.Text);
-                //htmlForm.AddTag(form["h1"]);
-                
+                htmlForm.AddTag(new TagSelect("", "", options));//?
+
             }
             else
             {
@@ -34,15 +42,8 @@ namespace Routing.Pages
                 htmlForm.AddInput("Phone", "", InputType.Text);
                 htmlForm.AddInput("Login", "", InputType.Text);
                 htmlForm.AddInput("Password", "", InputType.Text);
-                htmlForm.AddTag(new HtmlTag("p", "WorkExperience:"));
-                MyList<string> options = new MyList<string>();
-                options.Add("1 years");
-                options.Add("3 years");
-                options.Add("5 years");
-                options.Add("more 5 years");
-                htmlForm.AddTag(new TagSelect( "", "experience", options));
-
-                //.SetAdditionalAttributes("style", "color: green");
+                htmlForm.AddTag(new HtmlTag("p", "WorkExperience:")).SetAdditionalAttributes("style", "color: green");
+                htmlForm.AddTag(new TagSelect("", "experience", options));
 
             }
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
@@ -61,7 +62,7 @@ namespace Routing.Pages
             try
             {
                 Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                ManagerServise ms = new ManagerServise("manager.txt");                
+                ManagerService ms = new ManagerService("manager.txt");
                 manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Add(manager);
             }

@@ -24,41 +24,58 @@ namespace Routing.Pages
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
 
             if (errors != null && errors.Count > 0)
-            { }
+            {
+//---?
+
+            }
             else
             {
                 
                 htmlForm.AddTag(new HtmlTag("p", "Client:"));
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 HashDictionary<Guid, Client> clients = cs.GetAll();
-                MyList<string> options1 = new MyList<string>();
+                MyList<string> optionsclient = new MyList<string>();
                 foreach (var c in clients)
                 {
                     var temp1 = c.Value.Name + " " + c.Value.Surname;
-                    options1.Add(temp1);
+                    optionsclient.Add(temp1);
                 }
-                htmlForm.AddTag(new TagSelect("", "nameclient", options1));
+                htmlForm.AddTag(new TagSelect("", "nameclient", optionsclient));
                 //--------------------------------------------------------------
 
                 htmlForm.AddTag(new HtmlTag("p", "The reason for petition:"));
-                MyList<string> options2 = new MyList<string>();
+                MyList<string> optionsappeal = new MyList<string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
 
                 foreach (var v in appeals )
                 {
                    var temp2 = (string.Format("{0} {1}", (int)v, Enum.GetName(typeof(ClientAppeal), v)));
-                   options2.Add(temp2);
+                   optionsappeal.Add(temp2);
                 }
-                htmlForm.AddTag(new TagSelect("", "reason", options2));
+                htmlForm.AddTag(new TagSelect("", "reason", optionsappeal));
                 //-------------------------------------------------------------------------------------
                 htmlForm.AddTag(new HtmlTag("p", "Comment:"));
-                htmlForm.AddTag(new HtmlTag("textarea", ""));
+                htmlForm.AddTag(new HtmlTag("textarea", "")).SetAdditionalAttributes("name", "'comment'")//?
+                    .SetAdditionalAttributes("cols", "'70'")
+                    .SetAdditionalAttributes("rows", "'3'");
                 htmlForm.AddTag(new HtmlTag("p", "References:"));
                 htmlForm.AddTag(new HtmlTag("textarea", ""));
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag(new HtmlTag("p", "The problem is solved?"));
                 htmlForm.AddInput("Yes", "", InputType.Radio);
                 htmlForm.AddInput("No", "", InputType.Radio);
+                //-----------------------------------------------------------------------------
+                htmlForm.AddTag(new HtmlTag("p", "Serviced manager:"));
+                ManagerService ms = new ManagerService(".txt");
+                HashDictionary<Guid, Manager> managers = ms.GetAll();
+                MyList<string> optionsmanager = new MyList<string>();
+                foreach (var man in managers)
+                {
+                    var temp3 = man.Value.Name + " " + man.Value.Surname;
+                    optionsmanager.Add(temp3);
+                }
+                htmlForm.AddTag(new TagSelect("", "namemanager", optionsmanager));
+                
 
 
 
@@ -70,13 +87,7 @@ namespace Routing.Pages
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
             body.Append(Environment.NewLine);
-            //========================================================================================================
-
-          
-
-           
-
-          
+            //=======================================================================================================        
 
            /* body.Append("<p><b>Comment</b><Br>");
             body.Append(Environment.NewLine);
@@ -94,33 +105,8 @@ namespace Routing.Pages
             body.Append("<input type='radio'name='solve' value='no'>No<Br>");
             body.Append(Environment.NewLine);*/
 
-
-            body.Append("<p><b>Serviced manager:</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><select name='namemanager' size='1'>");
-            body.Append(Environment.NewLine);
-            ManagerServise ms = new ManagerServise("manager.txt");
-            HashDictionary<Guid, Manager> managers = ms.GetAll();
-
-            foreach (var man in managers)
-            {
-                body.Append("<option value='").Append(man.Key).Append("'>").Append(man.Value.Name + " " + man.Value.Surname).Append("</option>");
-                body.Append(Environment.NewLine);
-            }
-
-            body.Append("</select></p></br>");
-
-
-            body.Append(Environment.NewLine);
-            body.Append("<p><input type='reset' value='Clear'></p>");
-            body.Append(Environment.NewLine);
-            body.Append(Environment.NewLine);
-
-            body.Append("<p><input type='submit' value='Sand'></p>");
-            body.Append(Environment.NewLine);
             body.Append("</form>");
             body.Append(Environment.NewLine);
-
             body.Append("</body>");
             body.Append(Environment.NewLine);
 

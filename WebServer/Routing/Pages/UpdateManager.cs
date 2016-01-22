@@ -17,10 +17,10 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ManagerServise ms = new ManagerServise("manager.txt");
+                ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                //manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Update(manager);
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<body bgcolor='#ad5f2f'>");
             try
             {
-                ManagerServise ms = new ManagerServise("manager.txt");
+                ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
 
                 Manager manager = ms.GetElement(id);
@@ -61,7 +61,7 @@ namespace Routing.Pages
                 
 
 //-----------------------------------------------------------------------------
-               /* body.Append("<p>WorkExperience:</p>");
+                body.Append("<p>WorkExperience:</p>");
                 body.Append(Environment.NewLine);
                 body.Append("<p><select name='experience' size='1'>");
                 body.Append(Environment.NewLine);
@@ -73,7 +73,7 @@ namespace Routing.Pages
                     body.Append(option);
                     body.Append(Environment.NewLine);
                 }
-                body.Append("</select></p></br>");*/
+                body.Append("</select></p></br>");
 
 
 

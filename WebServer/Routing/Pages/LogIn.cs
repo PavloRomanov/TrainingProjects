@@ -48,7 +48,7 @@ namespace Routing.Pages
             try
             {
                 MyHashTable<string, string> errors = new MyHashTable<string, string>();
-                ManagerServise ms = new ManagerServise("manager.txt");
+                ManagerService ms = new ManagerService("manager.txt");
                 Manager manager = ms.GetElementByLogin(form["login"]);
 
                 if(manager == null)
