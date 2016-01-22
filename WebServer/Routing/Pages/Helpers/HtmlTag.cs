@@ -53,6 +53,8 @@ namespace Routing.Pages.Helpers
             bodyTag.Append(Environment.NewLine);
             bodyTag.Append("<").Append(Name).Append(">").Append(Text).Append("</").Append(Name).Append(">");
             bodyTag.Append(Environment.NewLine);
+            bodyTag.Append(GetAdditionalAttributes());
+
             return bodyTag.ToString();
 
         }
