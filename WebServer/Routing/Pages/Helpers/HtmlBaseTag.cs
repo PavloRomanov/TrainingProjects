@@ -57,7 +57,6 @@ namespace Routing.Pages.Helpers
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);
 
-           // tag.Append("<").Append(_attributes["name"]).Append(" ");
             tag.Append(Environment.NewLine);
             tag.Append("<").Append(TagName).Append(" ");
             tag.Append(GetAttribut());

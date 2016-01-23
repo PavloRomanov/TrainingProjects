@@ -25,7 +25,7 @@ namespace Model.Entity
         public string Surname { get; set; }
 
         [DataMember]
-        public WorkExperience? Work { get; set; }
+        public WorkExperience ? Work { get; set; }
 
         [DataMember]
         public string Address { get; set; }

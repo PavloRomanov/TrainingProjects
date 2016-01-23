@@ -9,7 +9,6 @@ namespace Routing.Pages.Helpers
     {
         public readonly RequestMethod _method;
         public readonly string _action;
-        public readonly List<HtmlInput> _inputs;
         public readonly List<HtmlBaseTag> _tags;
         public readonly MyHashTable<string, string> _errors;
 
@@ -56,10 +55,12 @@ namespace Routing.Pages.Helpers
             foreach (var tag in _tags)
             {
                 begin.Append(tag.GetTag(_errors));
+                begin.Append(Environment.NewLine);//////////////////////////////////////////////////////////////////
             }
             
             begin.Append(Environment.NewLine);
             begin.Append(new HtmlInput(InputType.Reset.ToString(), "", "clear").GetTag());
+            begin.Append(Environment.NewLine);
             begin.Append(Environment.NewLine);
             begin.Append(new HtmlInput(InputType.Submit.ToString(), "", "submit").GetTag());
             begin.Append(Environment.NewLine);

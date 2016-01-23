@@ -36,14 +36,22 @@ namespace Routing.Pages
             }
             else
             {
-                htmlForm.AddInput("name", "", InputType.Text);
-                htmlForm.AddInput("surname", "", InputType.Text);
-                htmlForm.AddInput("address", "", InputType.Text);
-                htmlForm.AddInput("phone", "", InputType.Text);
+                htmlForm.AddInput("name", "", InputType.Text)
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("placeholder", "max length of 15 characters");
+                htmlForm.AddInput("surname", "", InputType.Text)
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("placeholder", "max length of 15 characters");
+                htmlForm.AddInput("address", "", InputType.Text)
+                    .SetAttribut("maxlength", "50")
+                    .SetAttribut("placeholder", "max length of 50 characters");
+                htmlForm.AddInput("phone", "", InputType.Text)
+                    .SetAttribut("placeholder", "000-000-00-00");
                 htmlForm.AddInput("login", "", InputType.Text);
-                htmlForm.AddInput("password", "", InputType.Text);
-                htmlForm.AddTag("p", "workExperience:")
-                    .SetAttribut("style", "color: green");
+                htmlForm.AddInput("password", "", InputType.Text)
+                    .SetAttribut("minlength", "7")
+                    .SetAttribut("placeholder", "min length of 7 characters");
+                htmlForm.AddTag("p", "workExperience:");
                 htmlForm.AddSelect("experience", options)
                     .SetAttribut("size", "1");
             }
@@ -95,13 +103,13 @@ namespace Routing.Pages
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                     ManagerService ms = new ManagerService("manager.txt");
-                    manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                   // manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                     ms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Console.WriteLine(ex.Message);
                     return new Response("", TypeOfAnswer.ServerError, "");
                 }
 

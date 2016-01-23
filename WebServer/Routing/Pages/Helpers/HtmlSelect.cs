@@ -18,8 +18,22 @@ namespace Routing.Pages.Helpers
             _attributes.Add(_name, "");
           
         }
+        protected override string GetTagContent()
+        {
+            StringBuilder bodyoption = new StringBuilder();
+            bodyoption.Append(Environment.NewLine);
+            foreach (var opin in _options)
+            {
+                bodyoption.Append("<").Append("option").Append(">");
+                bodyoption.Append(opin);
+                bodyoption.Append(Environment.NewLine);
+                bodyoption.Append("</").Append("option").Append(">");
+             
+            }
+            bodyoption.Append(Environment.NewLine);
+            return bodyoption.ToString();
+        }
 
-     
         /*  public override string GetTag()
           {
               StringBuilder bodySelect = new StringBuilder();

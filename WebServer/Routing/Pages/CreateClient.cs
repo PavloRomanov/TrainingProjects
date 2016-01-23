@@ -31,7 +31,7 @@ namespace Routing.Pages
                     .SetAttribut("placeholder", "max length of 15 characters");
                 htmlForm.AddInput("address", "", InputType.Text)
                     .SetAttribut("maxlength", "50")
-                    .SetAttribut("placeholder", "max length of 50 characters"); ;
+                    .SetAttribut("placeholder", "max length of 50 characters"); 
                 htmlForm.AddInput("phone", "", InputType.Text).SetAttribut("placeholder", "000-000-00-00");
             }
             
