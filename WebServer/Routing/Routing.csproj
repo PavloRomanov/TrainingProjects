@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\Helpers\HtmlBaseTag.cs" />
-    <Compile Include="Pages\Helpers\HtmlTag.cs" />
     <Compile Include="Pages\CreateForm.cs" />
     <Compile Include="Pages\CreateAppeal.cs" />
     <Compile Include="Pages\DeleteManager.cs" />
@@ -67,7 +66,7 @@
     <Compile Include="Pages\ClientsList.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Pages\UpdateManager.cs" />
-    <Compile Include="Pages\Helpers\TagSelect.cs" />
+    <Compile Include="Pages\Helpers\HtmlSelect.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Pages\ViewManager.cs" />
   </ItemGroup>

@@ -83,7 +83,7 @@ namespace Routing.Pages
                     
                     return new Response("", TypeOfAnswer.Redirection, "ClientsList");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return new Response("", TypeOfAnswer.ServerError, "");
                 }
@@ -93,7 +93,6 @@ namespace Routing.Pages
                 return this.Get(form, cookies, errors);
             } 
         }
-
         
     }
 }

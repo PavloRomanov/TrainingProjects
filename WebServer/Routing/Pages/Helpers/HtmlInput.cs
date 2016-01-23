@@ -6,19 +6,7 @@ namespace Routing.Pages.Helpers
 {
     public class HtmlInput : HtmlBaseTag
     {
-        /* public HtmlInput(string tagName)
-             : base("input", null)
-         {
-         }
-
-         public HtmlInput(string tagName = "input", string tagContent = null) 
-             : base(tagName, tagContent)          
-         { 
-
-         }*/
-
-        /*public HtmlInput(string type, string name, string value, string tagName = "input", string tagContent = null)
-            : this(tagName, tagContent)*/
+       
         public HtmlInput(string type, string name, string value)
         : base("input")
         {

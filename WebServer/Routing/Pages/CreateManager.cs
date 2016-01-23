@@ -14,7 +14,7 @@ namespace Routing.Pages
         protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
-            
+
             MyList<string> options = new MyList<string>();
             options.Add("1 years");
             options.Add("3 years");
@@ -31,20 +31,21 @@ namespace Routing.Pages
                 htmlForm.AddInput("phone", form["phone"], InputType.Text);
                 htmlForm.AddInput("login", form["login"], InputType.Text);
                 htmlForm.AddInput("password", form["password"], InputType.Text);
-                htmlForm.AddTag(new TagSelect("", "", options));//?
+                htmlForm.AddSelect("experience", options);//?
 
             }
             else
             {
-                htmlForm.AddInput("Name", "", InputType.Text);
-                htmlForm.AddInput("Surname", "", InputType.Text);              
-                htmlForm.AddInput("Address", "", InputType.Text);
-                htmlForm.AddInput("Phone", "", InputType.Text);
-                htmlForm.AddInput("Login", "", InputType.Text);
-                htmlForm.AddInput("Password", "", InputType.Text);
-                htmlForm.AddTag(new HtmlTag("p", "WorkExperience:")).SetAdditionalAttributes("style", "color: green");
-                htmlForm.AddTag(new TagSelect("", "experience", options));
-
+                htmlForm.AddInput("name", "", InputType.Text);
+                htmlForm.AddInput("surname", "", InputType.Text);
+                htmlForm.AddInput("address", "", InputType.Text);
+                htmlForm.AddInput("phone", "", InputType.Text);
+                htmlForm.AddInput("login", "", InputType.Text);
+                htmlForm.AddInput("password", "", InputType.Text);
+                htmlForm.AddTag("p", "workExperience:")
+                    .SetAttribut("style", "color: green");
+                htmlForm.AddSelect("experience", options)
+                    .SetAttribut("size", "1");
             }
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
             body.Append(Environment.NewLine);
@@ -52,30 +53,64 @@ namespace Routing.Pages
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
             body.Append(Environment.NewLine);
-           
+
             return body.ToString();
         }
 
         public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
         {
-            Response response;
-            try
+            ValidationHelper vh = new ValidationHelper();
+            MyHashTable<string, string> errors = new MyHashTable<string, string>();
+
+            if (!vh.LikeName(form["name"]))
             {
-                Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                ManagerService ms = new ManagerService("manager.txt");
-                manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
-                ms.Add(manager);
+                errors.Add("name", "Invalid name!");
             }
-            catch (Exception ex)
+            if (!vh.LikeName(form["surname"]))
             {
-                response = new Response("", TypeOfAnswer.ServerError, "");
-                Console.WriteLine(ex.Message);
-                return response;
+                errors.Add("surname", "Invalid surname!");
+            }
+            if (!vh.LikeAddress(form["address"]))
+            {
+                errors.Add("address", "Invalid address!");
+            }
+            if (!vh.LikePhoneNumber(form["phone"]))
+            {
+                errors.Add("phone", "Invalid phone!");
+            }
+            if (!vh.LikeAddress(form["login"]))
+            {
+                errors.Add("login", "Invalid login!");
+            }
+            if (!vh.LikeAddress(form["password"]))
+            {
+                errors.Add("password", "Invalid password!");
             }
 
-            response = new Response("", TypeOfAnswer.Redirection, "ManagersList");
 
-            return response;
+            if (errors.Count == 0)
+            {
+
+                try
+                {
+                    Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
+                    ManagerService ms = new ManagerService("manager.txt");
+                    manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                    ms.Add(manager);
+                    return new Response("", TypeOfAnswer.Redirection, "ManagersList");
+                }
+                catch (Exception)
+                {
+
+                    return new Response("", TypeOfAnswer.ServerError, "");
+                }
+
+            }
+            else
+            {
+                return this.Get(form, cookies, errors);
+            }
+
         }
     }
 }
