@@ -81,7 +81,10 @@ namespace Routing.Pages.Helpers
             return _tagContent;
         }
 
-        protected abstract string ProcessingError(MyHashTable<string, string> errors);
+        protected virtual string ProcessingError(MyHashTable<string, string> errors)
+        {
+            return "";
+        }
         
 
     }

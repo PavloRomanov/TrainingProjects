@@ -14,7 +14,7 @@ namespace Routing.Pages
             if (cookies != null && cookies.ContainsKey(" sessionId"))
             {
                 string key = cookies[" sessionId"];
-                Session.registerSessions.Remove(key);                
+                Session.Instance.Remove(key);                
             }
 
             return new Response("", TypeOfAnswer.Redirection, "Index");

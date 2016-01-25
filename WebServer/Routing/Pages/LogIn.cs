@@ -6,6 +6,8 @@ using Routing.Pages.Helpers;
 using Model.Servise;
 using Model.Entity;
 
+
+
 namespace Routing.Pages
 {
     public class LogIn : BasePage
@@ -65,9 +67,9 @@ namespace Routing.Pages
                 {
                     response = new Response("", TypeOfAnswer.Redirection, "Index");
                     response.Cookie = new MyHashTable<string, string>();
-                    User user = new User(manager.Id.ToString(), manager.Name, manager.Surname);                    
-                    Session.Add(user);                    
-                    response.Cookie.Add(" sessionId", Session.sessionId);                   
+                    User user = new User(manager.Id.ToString(), manager.Name, manager.Surname);
+                    Session.Instance.Add(user);                    
+                    response.Cookie.Add(" sessionId", Session.Instance.SessionId.ToString());                   
                 }
                 
             }

@@ -3,31 +3,22 @@ using CollectionLibrary;
 
 namespace Routing
 {
-    public static class Session
-    {
-        private static int count = 0;
-        public static string sessionId;
-        public static MyHashTable<string, User> registerSessions = new MyHashTable<string, User>();
-
-        public static void Add(User user)
-        {
-            count++;
-            sessionId = count.ToString();
-            registerSessions.Add(sessionId, user);
-        }
-
-    }
-
-
-    /*public  class Session
+    public class Session
     {
         private static readonly Session instance = new Session();
 
-        public MyHashTable<Guid, User> registerSessions;
+        private uint _sessionId;        
+        private  MyHashTable<uint, User> _registerSessions;
 
         private Session()
         {
-            registerSessions = new MyHashTable<Guid, User>();
+            _sessionId = 0;
+            _registerSessions = new MyHashTable<uint, User>();
+        }
+
+        public uint SessionId
+        {
+            get { return _sessionId; }
         }
 
         public static Session Instance
@@ -35,16 +26,33 @@ namespace Routing
             get { return instance; }
         }
 
-        public void Add(Guid sessionId, User user)
+        public void Add(User user)
         {
-            registerSessions.Add(sessionId, user);    
+            _sessionId++;
+            _registerSessions.Add(_sessionId, user);
+        }
+
+        public void Remove (string key)
+        {
+            uint sessionId = Convert.ToUInt32(key);
+            _registerSessions.Remove(sessionId);
+        }
+
+        public User this[uint sessionId]
+        {
+            get
+            {
+                if(_registerSessions.ContainsKey(sessionId))
+                {
+                    return _registerSessions[sessionId];
+                }
+                return null;
+            }           
         }
 
 
-        public static void Add(MyHashTable<string, string> cookies, User user)
-        {
-           
-        }
 
-    }*/
+    }
+
+
 }
