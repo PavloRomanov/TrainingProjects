@@ -12,7 +12,7 @@ namespace Routing
     {
         private static readonly PageCreater instance = new PageCreater();
         public MyHashTable<string, IBasePage> pages;
-        private string extension;
+        
 
         private PageCreater()
         {
@@ -57,22 +57,30 @@ namespace Routing
             
             return page;  
         }       
-      
-
-        private string GetExtension(string path)
-        {
-            return path.Substring(path.LastIndexOf('.'));
-        }
-
-        //public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> coocies)
+    
         public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> cookies)
         {
-            IBasePage page = FindPage(path);
+            IBasePage page;
+            Response response;
 
-            Response response = (method == "GET") ? page.Get(param, cookies) : page.Post(param, cookies);
-            //response.Cookie = coocies;
-                       
-            return response;
+
+            if (path == "Index")
+            {
+                page = FindPage("Index");
+                response = page.Get(param, cookies);
+            }
+            else if(cookies == null || !cookies.ContainsKey(" sessionId"))
+            {
+                page = FindPage("LogIn");
+                response = page.Get(param, cookies);
+            }
+            else
+            {
+                page = FindPage(path);
+                response = (method == "GET") ? page.Get(param, cookies) : page.Post(param, cookies);
+            }
+
+            return response; 
         }
 
     }
