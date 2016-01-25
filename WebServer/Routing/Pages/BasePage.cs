@@ -114,7 +114,7 @@ namespace Routing.Pages
             StringBuilder greeting = new StringBuilder();
             if (cookies != null && cookies.ContainsKey(" sessionId"))
             {
-                uint sessionId = Convert.ToUInt32(cookies[" sessionId"]);
+                string sessionId = cookies[" sessionId"];
 
                 User user = Session.Instance[sessionId];                
                 greeting.Append("<div><h3>Hello ").Append(user.name).Append("</h3></div>");

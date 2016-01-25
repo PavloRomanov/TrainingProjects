@@ -6,39 +6,31 @@ namespace Routing
     public class Session
     {
         private static readonly Session instance = new Session();
-
-        private uint _sessionId;        
-        private  MyHashTable<uint, User> _registerSessions;
+ 
+        private  MyHashTable<string, User> _registerSessions;
 
         private Session()
         {
-            _sessionId = 0;
-            _registerSessions = new MyHashTable<uint, User>();
+            _registerSessions = new MyHashTable<string, User>();
         }
-
-        public uint SessionId
-        {
-            get { return _sessionId; }
-        }
+        
 
         public static Session Instance
         {
             get { return instance; }
         }
 
-        public void Add(User user)
+        public void Add(string sessionId, User user)
         {
-            _sessionId++;
-            _registerSessions.Add(_sessionId, user);
+            _registerSessions.Add(sessionId, user);
         }
 
-        public void Remove (string key)
-        {
-            uint sessionId = Convert.ToUInt32(key);
+        public void Remove (string sessionId)
+        {            
             _registerSessions.Remove(sessionId);
         }
 
-        public User this[uint sessionId]
+        public User this[string sessionId]
         {
             get
             {

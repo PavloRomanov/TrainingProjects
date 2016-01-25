@@ -13,8 +13,8 @@ namespace Routing.Pages
         {
             if (cookies != null && cookies.ContainsKey(" sessionId"))
             {
-                string key = cookies[" sessionId"];
-                Session.Instance.Remove(key);                
+                string sessionId = cookies[" sessionId"];
+                Session.Instance.Remove(sessionId);                
             }
 
             return new Response("", TypeOfAnswer.Redirection, "Index");
