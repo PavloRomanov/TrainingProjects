@@ -35,9 +35,9 @@ namespace Model.Entity
         public string Answer { get; set; }
         [DataMember]
         public FormsClient F1 { get; set; }
-        /* [DataMember]
-         public FormsClient F2 { get; set; }
          [DataMember]
+         public FormsClient F2 { get; set; }
+         /*[DataMember]
          public FormsClient F3 { get; set; }
 
          [DataMember]

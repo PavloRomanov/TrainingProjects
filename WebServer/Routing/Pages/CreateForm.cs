@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.Servise;
 using Model.Entity;
+using Routing.Pages.Helpers;
 
 namespace Routing.Pages
 {
@@ -15,6 +16,116 @@ namespace Routing.Pages
         {
 
         }
+        protected override string Title { get { return "Form client's"; } }
+        protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+        {
+            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateForm", errors);
+            htmlForm.AddTag("p", "Name client:");
+            ClientServiсe cs = new ClientServiсe("client.txt");
+            HashDictionary<Guid, Client> clients = cs.GetAll();
+            MyList<string> formclient = new MyList<string>();
+            foreach (var c in clients)
+            {
+                var temp1 = c.Value.Name + " " + c.Value.Surname;
+                formclient.Add(temp1);
+            }
+            htmlForm.AddSelect("clientId", formclient)
+                .SetAttribut("size", "1");
+//----------------------------------------------------------------------------------           
+            htmlForm.AddTag("p", "Are you satisfied with the service?");
+            htmlForm.AddInput("form1", "yes", InputType.Radio);
+            htmlForm.AddInput("form2", "no", InputType.Radio);
+//----------------------------------------------------------------
+            htmlForm.AddTag("p", "Comment:");
+            htmlForm.AddTag("textarea", "")
+                .SetAttribut("name", "comment1")
+                .SetAttribut("cols", "70")
+                .SetAttribut("rows", "3");
+            //-------------------------------------------------------
+            htmlForm.AddTag("p", "Are you satisfied with the speed of the Internet?");
+            htmlForm.AddInput("form3", "yes", InputType.Radio);
+            htmlForm.AddInput("form4", "no", InputType.Radio);
+
+
+            htmlForm.AddTag("p", "Comment:");
+            htmlForm.AddTag("textarea", "")
+                .SetAttribut("name", "comment2")
+                .SetAttribut("cols", "70")
+                .SetAttribut("rows", "3");
+
+            //---------------------------------------------------------------------------------------------------
+            /* body.Append("<p><b>Are you satisfied with the speed of the Internet?</b><br>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f2' value='yes'> Yes</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f2' value='no'>> No</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<p><b>Comment</b><br/>");
+             body.Append(Environment.NewLine);
+             body.Append("<textarea name='comment2' cols='70' rows='3'></textarea></p>");
+             body.Append(Environment.NewLine);
+
+             body.Append("<p><b>Do you like the service?</b><br/>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f3' value='yes'>> Yes</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f3' value='no'>> No</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<p><b>Comment</b><br/>");
+             body.Append(Environment.NewLine);
+             body.Append("<textarea name='comment3' cols='70' rows='3'></textarea></p>");
+             body.Append(Environment.NewLine);
+
+
+             body.Append("<p><b>Do you use the Internet and TV?</b><br/>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f4' value='yes'>> Yes</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f4' value='no'>> No</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<p><b>Comment</b><br/>");
+             body.Append(Environment.NewLine);
+             body.Append("<textarea name='comment4' cols='70' rows='3'></textarea></p>");
+             body.Append(Environment.NewLine);
+
+
+             body.Append("<p><b>Do you want to participate in the loyalty program?</b><br/>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f5' value='yes'>> Yes</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<input type='radio' name='f5' value='no'>> No</br>");
+             body.Append(Environment.NewLine);
+             body.Append("<p><b>Comment</b><br/>");
+             body.Append(Environment.NewLine);
+             body.Append("<textarea name='comment5' cols='70' rows='3'></textarea></p>");
+             body.Append(Environment.NewLine);*/
+
+
+            htmlForm.AddTag("p", "Filled manager:");
+            ManagerService ms = new ManagerService("manager.txt");
+            HashDictionary<Guid, Manager> managers = ms.GetAll();
+            MyList<string> formmanager = new MyList<string>();
+            foreach (var man in managers)
+            {
+                var temp3 = man.Value.Name + " " + man.Value.Surname;
+                formmanager.Add(temp3);
+            }
+            htmlForm.AddSelect("managerId ", formmanager)
+                .SetAttribut("size", "1");
+
+            StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");
+            body.Append(Environment.NewLine);
+            body.Append("<form method='POST'>");
+            body.Append(Environment.NewLine);
+            body.Append(htmlForm.ToString());
+            body.Append(Environment.NewLine);
+            body.Append("</form>");
+            body.Append(Environment.NewLine);
+            body.Append("</body>");
+            body.Append(Environment.NewLine);
+
+            return body.ToString();
+        }
 
         public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
         {
@@ -22,25 +133,33 @@ namespace Routing.Pages
             try
             {
 
-                Form formclient = new Form(Guid.NewGuid(),new Guid(form["clientId"]), new Guid(form["managerId"]));
+                Form formclient = new Form(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
                 formclient.F1 = FormsClient.Are_you_satisfied_with_the_service;
                 formclient.Comment = form["comment1"];
-                /*formclient.F2 = FormsClient.Are_you_satisfied_with_the_speed_of_the_Internet;
+                formclient.F2 = FormsClient.Are_you_satisfied_with_the_speed_of_the_Internet;
                 formclient.Comment = form["comment2"];
-                formclient.F3 = FormsClient.Do_you_like_the_service_manager;
+                /*formclient.F3 = FormsClient.Do_you_like_the_service_manager;
                 formclient.Comment = form["comment3"];
                 formclient.F4 = FormsClient.Do_you_use_the_Internet_and_TV;
                 formclient.Comment = form["comment4"];
                 formclient.F5 = FormsClient.Do_you_want_to_participate_in_the_loyalty_program;
                 formclient.Comment = form["comment5"];*/
-                      
-                if (form["f1"] == "yes")
+
+                if (form["form1"] == "yes")
                 {
-                   formclient.Answer = "Yes";
+                    formclient.Answer = "yes";
                 }
                 else
                 {
-                    formclient.Answer = "No";
+                    formclient.Answer = "no";
+                }
+                if (form["form3"] == "yes")
+                {
+                    formclient.Answer = "yes";
+                }
+                else
+                {
+                    formclient.Answer = "no";
                 }
 
                 FormServiсe formser = new FormServiсe("forms.txt");
@@ -57,118 +176,5 @@ namespace Routing.Pages
 
             return response;
         }
-        protected override string Title { get { return "Form client's"; } }
-        protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
-        {
-            StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");
-            body.Append(Environment.NewLine);
-            body.Append("<form method='POST'>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><b>Name client:</b></p>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><select name='clientId' size='1'>");
-            body.Append(Environment.NewLine);
-
-            ClientServiсe cs = new ClientServiсe("client.txt");
-            HashDictionary<Guid, Client> clients = cs.GetAll();
-
-            foreach (var c in clients)
-            {
-                body.Append("<option value='").Append(c.Key).Append("'>").Append(c.Value.Name + " " + c.Value.Surname).Append("</option>");
-                body.Append(Environment.NewLine);
-            }
-
-            body.Append("</select></p></br>");
-            body.Append(Environment.NewLine);
-
-            body.Append("<p><b>Are you satisfied with the service?</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f1' value='yes'>> Yes</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f1' value='no'>> No</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><b>Comment</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<textarea name='comment1' cols='70' rows='3'></textarea></p>");
-            body.Append(Environment.NewLine);
-
-
-
-           /* body.Append("<p><b>Are you satisfied with the speed of the Internet?</b><br>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f2' value='yes'> Yes</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f2' value='no'>> No</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><b>Comment</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<textarea name='comment2' cols='70' rows='3'></textarea></p>");
-            body.Append(Environment.NewLine);
-
-            body.Append("<p><b>Do you like the service?</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f3' value='yes'>> Yes</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f3' value='no'>> No</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><b>Comment</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<textarea name='comment3' cols='70' rows='3'></textarea></p>");
-            body.Append(Environment.NewLine);
-
-
-            body.Append("<p><b>Do you use the Internet and TV?</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f4' value='yes'>> Yes</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f4' value='no'>> No</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><b>Comment</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<textarea name='comment4' cols='70' rows='3'></textarea></p>");
-            body.Append(Environment.NewLine);
-
-
-            body.Append("<p><b>Do you want to participate in the loyalty program?</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f5' value='yes'>> Yes</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio' name='f5' value='no'>> No</br>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><b>Comment</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<textarea name='comment5' cols='70' rows='3'></textarea></p>");
-            body.Append(Environment.NewLine);*/
-
-
-            body.Append("<p><b>Filled manager:</b><br/>");
-            body.Append(Environment.NewLine);
-            body.Append("<td><p><select name='managerId' size='1'>");
-            body.Append(Environment.NewLine);
-            ManagerService ms = new ManagerService("manager.txt");
-            HashDictionary<Guid, Manager> managers = ms.GetAll();
-
-            foreach (var man in managers)
-            {
-                body.Append("<option value='").Append(man.Key).Append("'>").Append(man.Value.Name + " " + man.Value.Surname).Append("</option>");
-                body.Append(Environment.NewLine);
-            }
-
-            body.Append("</select></p></br>");
-
-            body.Append("<p><input type='reset' value='Clear'></p>");
-            body.Append(Environment.NewLine);
-            body.Append(Environment.NewLine);
-            body.Append("<p><input type='submit' value='Sand'></p>");
-            body.Append(Environment.NewLine);
-            body.Append("</form>");
-            body.Append(Environment.NewLine);
-            body.Append("</body>");
-            body.Append(Environment.NewLine);
-
-            return body.ToString();
-        }
-
-  
     }
 }

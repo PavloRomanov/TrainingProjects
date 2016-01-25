@@ -9,8 +9,7 @@ namespace Routing.Pages.Helpers
     {
         public readonly RequestMethod _method;
         public readonly string _action;
-        public readonly List<HtmlInput> _inputs;
-        public readonly List<HtmlTag> _tags;
+        public readonly List<HtmlBaseTag> _tags;
         public readonly MyHashTable<string, string> _errors;
 
         public HtmlForm(RequestMethod method, string action, MyHashTable<string, string> errors = null)
@@ -18,25 +17,33 @@ namespace Routing.Pages.Helpers
             _method = method;
             _action = action;
             _errors = errors;
-            _inputs = new List<HtmlInput>();
-            _tags = new List<HtmlTag>();
+            _tags = new List<HtmlBaseTag>();
         }
 
-        //---------------------------------------------------------------------
-        public HtmlTag AddTag(HtmlTag tag)
+        
+        public HtmlBaseTag AddTag(string name, string value = null)
         {
+            HtmlBaseTag tag = new HtmlBaseTag(name, value);
             _tags.Add(tag);
             return tag;
         }
-        //----------------------------------------------------------------------
+     
         public HtmlInput AddInput(string name, string value, InputType type)
         {
             HtmlInput input = new HtmlInput(type.ToString(), name, value);           
 
-            _inputs.Add(input);
+            _tags.Add(input);
 
             return input;
-        }        
+        }
+        public HtmlSelect AddSelect(string name, MyList<string> options)
+        {
+            HtmlSelect select = new HtmlSelect(name, options);
+
+            _tags.Add(select);
+
+            return select;
+        }
 
         public override string ToString()
         {
@@ -44,20 +51,17 @@ namespace Routing.Pages.Helpers
             begin.Append("<form method='").Append(_method.ToString()).Append("' ");
             begin.Append("action ='").Append(_action).Append("'>");
             begin.Append(Environment.NewLine);
-
-
-            foreach(var input in _inputs)
-            {
-                begin.Append(input.GetTag(_errors));
-            }
-            //=============================================
+           
             foreach (var tag in _tags)
             {
-                begin.Append(tag.GetTag());
+                begin.Append(tag.GetTag(_errors));
+                begin.Append(Environment.NewLine);//////////////////////////////////////////////////////////////////
             }
-            //==============================================
+            
             begin.Append(Environment.NewLine);
             begin.Append(new HtmlInput(InputType.Reset.ToString(), "", "clear").GetTag());
+            begin.Append(Environment.NewLine);
+            begin.Append(Environment.NewLine);
             begin.Append(new HtmlInput(InputType.Submit.ToString(), "", "submit").GetTag());
             begin.Append(Environment.NewLine);
             begin.Append("</form>");

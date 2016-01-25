@@ -4,7 +4,7 @@ using CollectionLibrary;
 
 namespace Routing.Pages.Helpers
 {
-    public abstract class HtmlBaseTag
+    public  class HtmlBaseTag
     {
         private string _tagName;
         private string _tagContent;
@@ -26,9 +26,9 @@ namespace Routing.Pages.Helpers
            
 
         protected string TagName { get { return _tagName; } }
+        protected string TagContent { get { return _tagContent; } }
 
         
-
         public HtmlBaseTag SetAttribut(string attributName, string attributValue)
         {
             _attributes.Add(attributName, attributValue);
@@ -56,8 +56,9 @@ namespace Routing.Pages.Helpers
         public string GetTag(MyHashTable<string, string> errors = null)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);           
-            tag.Append("<").Append(TagName).Append(" ");
 
+            tag.Append(Environment.NewLine);
+            tag.Append("<").Append(TagName).Append(" ");
             tag.Append(GetAttribut());
             tag.Append(ProcessingError(errors));
 

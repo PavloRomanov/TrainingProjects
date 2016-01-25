@@ -31,7 +31,7 @@ namespace Routing.Pages
             else
             {
                 
-                htmlForm.AddTag(new HtmlTag("p", "Client:"));
+                htmlForm.AddTag("p", "Client:");
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 HashDictionary<Guid, Client> clients = cs.GetAll();
                 MyList<string> optionsclient = new MyList<string>();
@@ -40,10 +40,11 @@ namespace Routing.Pages
                     var temp1 = c.Value.Name + " " + c.Value.Surname;
                     optionsclient.Add(temp1);
                 }
-                htmlForm.AddTag(new TagSelect("", "nameclient", optionsclient));
+                htmlForm.AddSelect("nameclient", optionsclient)
+                    .SetAttribut("size", "1");
                 //--------------------------------------------------------------
 
-                htmlForm.AddTag(new HtmlTag("p", "The reason for petition:"));
+                htmlForm.AddTag("p", "The reason for petition:");
                 MyList<string> optionsappeal = new MyList<string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
 
@@ -52,21 +53,26 @@ namespace Routing.Pages
                    var temp2 = (string.Format("{0} {1}", (int)v, Enum.GetName(typeof(ClientAppeal), v)));
                    optionsappeal.Add(temp2);
                 }
-                htmlForm.AddTag(new TagSelect("", "reason", optionsappeal));
+                htmlForm.AddSelect("reason", optionsappeal)
+                    .SetAttribut("size", "1");
                 //-------------------------------------------------------------------------------------
-                htmlForm.AddTag(new HtmlTag("p", "Comment:"));
-                htmlForm.AddTag(new HtmlTag("textarea", "")).SetAdditionalAttributes("name", "'comment'")//?
-                    .SetAdditionalAttributes("cols", "'70'")
-                    .SetAdditionalAttributes("rows", "'3'");
-                htmlForm.AddTag(new HtmlTag("p", "References:"));
-                htmlForm.AddTag(new HtmlTag("textarea", ""));
+                htmlForm.AddTag("p", "Comment:");
+                htmlForm.AddTag("textarea", "")
+                    .SetAttribut("name", "comment")
+                    .SetAttribut("cols", "70")
+                    .SetAttribut("rows", "3");
+                htmlForm.AddTag("p", "References:");
+                htmlForm.AddTag("textarea", "")
+                    .SetAttribut("name", "references")
+                    .SetAttribut("cols", "70")
+                    .SetAttribut("rows", "5");
                 //-----------------------------------------------------------------------
-                htmlForm.AddTag(new HtmlTag("p", "The problem is solved?"));
-                htmlForm.AddInput("Yes", "", InputType.Radio);
-                htmlForm.AddInput("No", "", InputType.Radio);
+                htmlForm.AddTag("p", "The problem is solved?");
+                htmlForm.AddInput("solve1", "yes", InputType.Radio);
+                htmlForm.AddInput("solve2", "no", InputType.Radio);
                 //-----------------------------------------------------------------------------
-                htmlForm.AddTag(new HtmlTag("p", "Serviced manager:"));
-                ManagerService ms = new ManagerService(".txt");
+                htmlForm.AddTag("p", "Serviced manager:");
+                ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
                 MyList<string> optionsmanager = new MyList<string>();
                 foreach (var man in managers)
@@ -74,11 +80,8 @@ namespace Routing.Pages
                     var temp3 = man.Value.Name + " " + man.Value.Surname;
                     optionsmanager.Add(temp3);
                 }
-                htmlForm.AddTag(new TagSelect("", "namemanager", optionsmanager));
-                
-
-
-
+                htmlForm.AddSelect("namemanager", optionsmanager)
+                    .SetAttribut("size", "1");
             }
 
             StringBuilder body = new StringBuilder("<body bgcolor='#07FFFF'>");
@@ -86,25 +89,7 @@ namespace Routing.Pages
             body.Append("<form method='POST'>");
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
-            body.Append(Environment.NewLine);
-            //=======================================================================================================        
-
-           /* body.Append("<p><b>Comment</b><Br>");
-            body.Append(Environment.NewLine);
-            body.Append("<textarea name='comment' cols='70' rows='3'></textarea></p>");
-            body.Append(Environment.NewLine);
-            body.Append("<p><b>References</b><Br>");
-            body.Append(Environment.NewLine);
-            body.Append("<textarea name='references' cols='70' rows='5'></textarea></p>");
-            body.Append(Environment.NewLine);
-
-            body.Append("<p><b>The problem is solved?</b></p>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio'name='solve' value='yes'>Yes<Br>");
-            body.Append(Environment.NewLine);
-            body.Append("<input type='radio'name='solve' value='no'>No<Br>");
-            body.Append(Environment.NewLine);*/
-
+            body.Append(Environment.NewLine);                         
             body.Append("</form>");
             body.Append(Environment.NewLine);
             body.Append("</body>");
@@ -126,7 +111,7 @@ namespace Routing.Pages
                 appealclient.ClientAppeal = (ClientAppeal)Convert.ToInt32(form["reason"]);
                 appealclient.Comment = form["comment"];
                 appealclient.References = form["references"];
-                if (form["solve"] == "yes")
+                if (form["solve1"] == "yes")
                 {
                     appealclient.Rez = "Problem solved";
                 }
