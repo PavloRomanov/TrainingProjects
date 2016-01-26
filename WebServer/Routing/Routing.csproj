@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\DeleteAppeal.cs" />
+    <Compile Include="Pages\AppealList.cs" />
     <Compile Include="Pages\Helpers\HtmlBaseTag.cs" />
     <Compile Include="Pages\CreateForm.cs" />
     <Compile Include="Pages\CreateAppeal.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Pages\Helpers\HtmlSelect.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Pages\ViewManager.cs" />
+    <Compile Include="Pages\ViewAppeal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CollectionLibrary\CollectionLibrary.csproj">

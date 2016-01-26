@@ -36,8 +36,10 @@ namespace Routing.Pages
 //----------------------------------------------------------------------------------           
             htmlForm.AddTag("p", "Are you satisfied with the service?");
             htmlForm.AddInput("form1", "yes", InputType.Radio);
+            htmlForm.AddTag("label", "Yes");
             htmlForm.AddInput("form2", "no", InputType.Radio);
-//----------------------------------------------------------------
+            htmlForm.AddTag("label", "No");
+            //----------------------------------------------------------------
             htmlForm.AddTag("p", "Comment:");
             htmlForm.AddTag("textarea", "")
                 .SetAttribut("name", "comment1")
@@ -46,7 +48,9 @@ namespace Routing.Pages
             //-------------------------------------------------------
             htmlForm.AddTag("p", "Are you satisfied with the speed of the Internet?");
             htmlForm.AddInput("form3", "yes", InputType.Radio);
+            htmlForm.AddTag("label", "Yes");
             htmlForm.AddInput("form4", "no", InputType.Radio);
+            htmlForm.AddTag("label", "No");
 
 
             htmlForm.AddTag("p", "Comment:");

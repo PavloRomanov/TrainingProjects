@@ -72,9 +72,9 @@ namespace Routing.Pages
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag("p", "The problem is solved?");
                 htmlForm.AddInput("solve1", "yes", InputType.Radio);
-                
-                    
+                htmlForm.AddTag("label", "Yes");
                 htmlForm.AddInput("solve2", "no", InputType.Radio);
+                htmlForm.AddTag("label", "No");
                 //-----------------------------------------------------------------------------
                 htmlForm.AddTag("p", "Serviced manager:");
                 ManagerService ms = new ManagerService("manager.txt");
@@ -111,6 +111,14 @@ namespace Routing.Pages
             Response response;
             try
             {
+               /* ClientServiсe cs = new ClientServiсe("client.txt");
+                HashDictionary<Guid, Client> clients = cs.GetAll();
+                foreach (var man in clients)
+                {
+                    if ((man.Value.Name + " " + man.Value.Surname).Equals(form["nameclient"]))
+                        new Guid ( man.Key);                  
+                }*/
+
 
                 Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["nameclient"]), new Guid(form["namemanager"]));
 

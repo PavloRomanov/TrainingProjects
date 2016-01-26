@@ -31,6 +31,9 @@ namespace Routing
             pages.Add("UpdateManager", new UpdateManager());
             pages.Add("DeleteManager", new DeleteManager());
             pages.Add("CreateAppeal", new CreateAppeal());
+            pages.Add("AppealList", new AppealList());
+            pages.Add("ViewAppeal", new ViewAppeal());
+            pages.Add("DeleteAppeal", new DeleteAppeal());
             pages.Add("CreateForm", new CreateForm());
             pages.Add("NotFoundError", new NotFoundError());
         }

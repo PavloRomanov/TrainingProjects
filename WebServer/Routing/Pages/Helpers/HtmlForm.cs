@@ -24,24 +24,26 @@ namespace Routing.Pages.Helpers
         public HtmlBaseTag AddTag(string name, string value = null)
         {
             HtmlBaseTag tag = new HtmlBaseTag(name, value);
+            HtmlBaseTag label = new HtmlBaseTag("br");
             _tags.Add(tag);
+            //_tags.Add(label);
             return tag;
         }
      
         public HtmlInput AddInput(string name, string value, InputType type)
         {
-            HtmlInput input = new HtmlInput(type.ToString(), name, value);           
-
+            HtmlInput input = new HtmlInput(type.ToString(), name, value);
+            HtmlBaseTag label = new HtmlBaseTag("br");
             _tags.Add(input);
-
+           // _tags.Add(label);
             return input;
         }
         public HtmlSelect AddSelect(string name, MyHashTable<string,string> options)
         {
             HtmlSelect select = new HtmlSelect(name, options);
-
+            HtmlBaseTag label = new HtmlBaseTag("br");
             _tags.Add(select);
-
+           // _tags.Add(label);
             return select;
         }
 
@@ -55,7 +57,6 @@ namespace Routing.Pages.Helpers
             foreach (var tag in _tags)
             {
                 begin.Append(tag.GetTag(_errors));
-                begin.Append(Environment.NewLine);//////////////////////////////////////////////////////////////////
             }
             
             begin.Append(Environment.NewLine);
