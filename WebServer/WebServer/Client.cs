@@ -19,7 +19,7 @@ namespace WebServer
         public static void Handle(TcpClient client)
         {
             var stream = client.GetStream();
-           // Session session = Session.Instance;
+            //Session session = Session.Instance;
 
             try
             {
@@ -157,7 +157,7 @@ namespace WebServer
         
         private static string GetResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> cookies)
         {         
-            PageCreater pageCreater = PageCreater.Instance;
+            PageCreater pageCreater = PageCreater.Instance;            
             Response response = pageCreater.PrepareResponse(path, method, param, cookies);
             string html;
             int cod;

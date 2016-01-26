@@ -15,11 +15,11 @@ namespace Routing.Pages
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
 
-            MyList<string> options = new MyList<string>();
-            options.Add("1 years");
-            options.Add("3 years");
-            options.Add("5 years");
-            options.Add("more 5 years");
+            MyHashTable<string,string> options = new MyHashTable<string, string>();
+            options.Add("1","1 years");
+            options.Add("3","3 years");
+            options.Add("5","5 years");
+            options.Add(">5","more 5 years");
 
 
 
@@ -103,7 +103,7 @@ namespace Routing.Pages
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                     ManagerService ms = new ManagerService("manager.txt");
-                   // manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                    manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                     ms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }

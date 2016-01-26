@@ -36,7 +36,7 @@ namespace Routing.Pages.Helpers
 
             return input;
         }
-        public HtmlSelect AddSelect(string name, MyList<string> options)
+        public HtmlSelect AddSelect(string name, MyHashTable<string,string> options)
         {
             HtmlSelect select = new HtmlSelect(name, options);
 

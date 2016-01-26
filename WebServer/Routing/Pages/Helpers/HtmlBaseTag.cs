@@ -28,7 +28,7 @@ namespace Routing.Pages.Helpers
         protected string TagName { get { return _tagName; } }
         protected string TagContent { get { return _tagContent; } }
 
-
+        
         public HtmlBaseTag SetAttribut(string attributName, string attributValue)
         {
             _attributes.Add(attributName, attributValue);
@@ -55,7 +55,7 @@ namespace Routing.Pages.Helpers
 
         public string GetTag(MyHashTable<string, string> errors = null)
         {
-            StringBuilder tag = new StringBuilder(Environment.NewLine);
+            StringBuilder tag = new StringBuilder(Environment.NewLine);           
 
             tag.Append(Environment.NewLine);
             tag.Append("<").Append(TagName).Append(" ");
@@ -83,7 +83,6 @@ namespace Routing.Pages.Helpers
         }
 
         protected virtual string ProcessingError(MyHashTable<string, string> errors)
-
         {
             return "";
         }

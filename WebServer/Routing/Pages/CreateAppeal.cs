@@ -34,24 +34,27 @@ namespace Routing.Pages
                 htmlForm.AddTag("p", "Client:");
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 HashDictionary<Guid, Client> clients = cs.GetAll();
-                MyList<string> optionsclient = new MyList<string>();
+                MyHashTable<string,string> optionsclient = new MyHashTable<string, string>();
+                int nameoption = 1;
                 foreach (var c in clients)
                 {
                     var temp1 = c.Value.Name + " " + c.Value.Surname;
-                    optionsclient.Add(temp1);
+                    optionsclient.Add(nameoption.ToString(),temp1);
+                    nameoption++;
                 }
                 htmlForm.AddSelect("nameclient", optionsclient)
                     .SetAttribut("size", "1");
                 //--------------------------------------------------------------
 
                 htmlForm.AddTag("p", "The reason for petition:");
-                MyList<string> optionsappeal = new MyList<string>();
+                MyHashTable<string, string> optionsappeal = new MyHashTable<string, string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
 
                 foreach (var v in appeals )
                 {
                    var temp2 = (string.Format("{0} {1}", (int)v, Enum.GetName(typeof(ClientAppeal), v)));
-                   optionsappeal.Add(temp2);
+                   optionsappeal.Add(nameoption.ToString(),temp2);
+                   nameoption++;
                 }
                 htmlForm.AddSelect("reason", optionsappeal)
                     .SetAttribut("size", "1");
@@ -69,16 +72,19 @@ namespace Routing.Pages
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag("p", "The problem is solved?");
                 htmlForm.AddInput("solve1", "yes", InputType.Radio);
+                
+                    
                 htmlForm.AddInput("solve2", "no", InputType.Radio);
                 //-----------------------------------------------------------------------------
                 htmlForm.AddTag("p", "Serviced manager:");
                 ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
-                MyList<string> optionsmanager = new MyList<string>();
+                MyHashTable<string, string> optionsmanager = new MyHashTable<string, string>();
                 foreach (var man in managers)
                 {
                     var temp3 = man.Value.Name + " " + man.Value.Surname;
-                    optionsmanager.Add(temp3);
+                    optionsmanager.Add(nameoption.ToString(),temp3);
+                    nameoption++;
                 }
                 htmlForm.AddSelect("namemanager", optionsmanager)
                     .SetAttribut("size", "1");

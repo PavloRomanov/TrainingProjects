@@ -23,11 +23,13 @@ namespace Routing.Pages
             htmlForm.AddTag("p", "Name client:");
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
-            MyList<string> formclient = new MyList<string>();
+            MyHashTable<string,string> formclient = new MyHashTable<string, string>();
+            int nameoption = 1;
             foreach (var c in clients)
             {
                 var temp1 = c.Value.Name + " " + c.Value.Surname;
-                formclient.Add(temp1);
+                formclient.Add(nameoption.ToString(),temp1);
+                nameoption++;
             }
             htmlForm.AddSelect("clientId", formclient)
                 .SetAttribut("size", "1");
@@ -104,11 +106,12 @@ namespace Routing.Pages
             htmlForm.AddTag("p", "Filled manager:");
             ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
-            MyList<string> formmanager = new MyList<string>();
+            MyHashTable<string,string> formmanager = new MyHashTable<string, string>();
             foreach (var man in managers)
             {
                 var temp3 = man.Value.Name + " " + man.Value.Surname;
-                formmanager.Add(temp3);
+                formmanager.Add(nameoption.ToString(),temp3);
+                nameoption++;
             }
             htmlForm.AddSelect("managerId ", formmanager)
                 .SetAttribut("size", "1");

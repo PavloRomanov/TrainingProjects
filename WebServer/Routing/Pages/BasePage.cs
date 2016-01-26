@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CollectionLibrary;
-using System.Net;
+using Routing;
 
 namespace Routing.Pages
 {
@@ -114,8 +114,9 @@ namespace Routing.Pages
             StringBuilder greeting = new StringBuilder();
             if (cookies != null && cookies.ContainsKey(" sessionId"))
             {
-                string key = cookies[" sessionId"];
-                User user = Session.registerSessions[key];                
+                string sessionId = cookies[" sessionId"];
+
+                User user = Session.Instance[sessionId];                
                 greeting.Append("<div><h3>Hello ").Append(user.name).Append("</h3></div>");
                 return greeting.ToString();
             }            
