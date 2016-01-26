@@ -24,12 +24,10 @@ namespace Routing.Pages
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
             MyHashTable<string,string> formclient = new MyHashTable<string, string>();
-            int nameoption = 1;
             foreach (var c in clients)
             {
                 var temp1 = c.Value.Name + " " + c.Value.Surname;
-                formclient.Add(nameoption.ToString(),temp1);
-                nameoption++;
+                formclient.Add(c.Value.Id.ToString(), temp1);
             }
             htmlForm.AddSelect("clientId", formclient)
                 .SetAttribut("size", "1");
@@ -111,6 +109,7 @@ namespace Routing.Pages
             ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
             MyHashTable<string,string> formmanager = new MyHashTable<string, string>();
+            var nameoption = 1;
             foreach (var man in managers)
             {
                 var temp3 = man.Value.Name + " " + man.Value.Surname;
