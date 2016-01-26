@@ -89,14 +89,14 @@ namespace Routing.Pages
 
             StringBuilder body = new StringBuilder("<body bgcolor='#07FFFF'>");
             body.Append(Environment.NewLine);
-            body.Append("<form method='POST'>");
+            //body.Append("<form method='POST'>");
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
             body.Append(Environment.NewLine);                         
-            body.Append("</form>");
+           // body.Append("</form>");
             body.Append(Environment.NewLine);
-            body.Append("</body>");
-            body.Append(Environment.NewLine);
+            //body.Append("</body>");
+            //body.Append(Environment.NewLine);
 
             return body.ToString();
         }
