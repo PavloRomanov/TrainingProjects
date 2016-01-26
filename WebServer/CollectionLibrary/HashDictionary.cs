@@ -143,7 +143,7 @@ namespace CollectionLibrary
                     if (_array[index].Key.CompareTo(key) == 0)
                     {
                         _array[index].Value = value;
-                        return;  // добавила
+                        return;  
                     }
                     else
                     {

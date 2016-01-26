@@ -90,18 +90,8 @@ namespace Routing.Pages
                     .SetAttribut("size", "1");
             }
 
-            StringBuilder body = new StringBuilder("<body bgcolor='#07FFFF'>");
-            body.Append(Environment.NewLine);
-            body.Append("<form method='POST'>");
-            body.Append(Environment.NewLine);
-            body.Append(htmlForm.ToString());
-            body.Append(Environment.NewLine);                         
-            body.Append("</form>");
-            body.Append(Environment.NewLine);
-            body.Append("</body>");
-            body.Append(Environment.NewLine);
 
-            return body.ToString();
+            return htmlForm.ToString();
         }
 
 
@@ -111,14 +101,6 @@ namespace Routing.Pages
             Response response;
             try
             {
-               /* ClientServiсe cs = new ClientServiсe("client.txt");
-                HashDictionary<Guid, Client> clients = cs.GetAll();
-                foreach (var man in clients)
-                {
-                    if ((man.Value.Name + " " + man.Value.Surname).Equals(form["nameclient"]))
-                        new Guid ( man.Key);                  
-                }*/
-
 
                 Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["nameclient"]), new Guid(form["namemanager"]));
 
