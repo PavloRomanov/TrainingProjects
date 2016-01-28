@@ -21,6 +21,11 @@ namespace Routing.Pages.Helpers
             return "";
         }
 
+        protected override string GetTagContent()
+        {
+            return  "";
+        }
+
         protected override string ProcessingError(MyHashTable<string, string> errors)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);

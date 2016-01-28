@@ -11,8 +11,8 @@ namespace Routing
     public class PageCreater
     {
         private static readonly PageCreater instance = new PageCreater();
-        public MyHashTable<string, IBasePage> pages;        
-
+        public MyHashTable<string, IBasePage> pages;
+        
         private PageCreater()
         {
             pages = new MyHashTable<string, IBasePage>();
@@ -30,6 +30,9 @@ namespace Routing
             pages.Add("UpdateManager", new UpdateManager());
             pages.Add("DeleteManager", new DeleteManager());
             pages.Add("CreateAppeal", new CreateAppeal());
+            pages.Add("AppealList", new AppealList());
+            pages.Add("ViewAppeal", new ViewAppeal());
+            pages.Add("DeleteAppeal", new DeleteAppeal());
             pages.Add("CreateForm", new CreateForm());
             pages.Add("NotFoundError", new NotFoundError());
         }
@@ -55,12 +58,12 @@ namespace Routing
                 }          
             
             return page;  
-        }
-
+        }       
+    
         public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, string sessionId)
         {
             IBasePage page;
-            Response response;           
+            Response response;
 
            /* if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
             {                
@@ -73,18 +76,18 @@ namespace Routing
                 else
                 {
                     if (path == "LogIn" || path == "Index")
-                    {
+            {
                         page = FindPage(path);
                         response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
-                    }
+            }
                     else
-                    {
-                        page = FindPage("LogIn");
+            {
+                page = FindPage("LogIn");
                         response = page.Get(param, sessionId);
-                    }
+            }
                 }
             }
-            else 
+            else
             {
                 //sessionId = Guid.NewGuid().ToString();
                 Session.Instance.Add(sessionId, new User());
@@ -96,12 +99,12 @@ namespace Routing
             if (path == "LogOut")
                 sessionId = null;
 
-            page = FindPage(path);
+                page = FindPage(path);
 
             response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
             //response.Cookie = coocies;
             response.SessionId = sessionId;
-            return response;
+            return response; 
         }
 
     }

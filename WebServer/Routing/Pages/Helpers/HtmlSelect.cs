@@ -8,40 +8,32 @@ namespace Routing.Pages.Helpers
     public class HtmlSelect : HtmlBaseTag
     {
         private string _name;
-        private MyList<string> _options;
+        private MyHashTable<string,string> _options;
      
-        public HtmlSelect( string name, MyList<string> options)
+        public HtmlSelect( string name, MyHashTable<string, string> options)
            : base("select")
         {
             _name = name;// name select
             _options = options;
-            Attributes.Add(_name, "");
+            _attributes.Add("name",_name);
           
         }
-
-       
-        public override HtmlBaseTag SetTagContent(string value, string text)
-        {
-            HtmlBaseTag tag = new HtmlBaseTag("option");
-            tag.SetTagContent("text", text);
-            tag.SetAttribut("value", value);
-            return this;
-        }
-        /*protected override string GetTagContent()
+        protected override string GetTagContent()
         {
             StringBuilder bodyoption = new StringBuilder();
             bodyoption.Append(Environment.NewLine);
             foreach (var opin in _options)
             {
-                bodyoption.Append("<").Append("option").Append(">");
-                bodyoption.Append(opin);
-                bodyoption.Append(Environment.NewLine);
+                bodyoption.Append("<").Append("option  ");
+                bodyoption.Append("value= ").Append(opin.Key);
+                bodyoption.Append(">");
+                bodyoption.Append(opin.Value);
                 bodyoption.Append("</").Append("option").Append(">");
-             
+                bodyoption.Append(Environment.NewLine);
             }
             bodyoption.Append(Environment.NewLine);
             return bodyoption.ToString();
-        }*/
+        }
 
         /*  public override string GetTag()
           {
@@ -60,15 +52,5 @@ namespace Routing.Pages.Helpers
               bodySelect.Append(Environment.NewLine);
               return bodySelect.ToString();
           }*/
-
-        private class HtmlOption : HtmlBaseTag
-        {
-            public HtmlOption(string value, string text)
-                :base("option")
-            {
-                Attributes.Add("value", value);
-                TagContent.Add(new HtmlText(text));
-            }
-        }
     }
 }

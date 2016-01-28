@@ -34,24 +34,23 @@ namespace Routing.Pages
                 htmlForm.AddTag("p", "Client:");
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 HashDictionary<Guid, Client> clients = cs.GetAll();
-                MyList<string> optionsclient = new MyList<string>();
+                MyHashTable<string,string> optionsclient = new MyHashTable<string, string>();
                 foreach (var c in clients)
                 {
                     var temp1 = c.Value.Name + " " + c.Value.Surname;
-                    optionsclient.Add(temp1);
+                    optionsclient.Add(c.Value.Id.ToString(),temp1);
                 }
                 htmlForm.AddSelect("nameclient", optionsclient)
                     .SetAttribut("size", "1");
                 //--------------------------------------------------------------
 
                 htmlForm.AddTag("p", "The reason for petition:");
-                MyList<string> optionsappeal = new MyList<string>();
+                MyHashTable<string, string> optionsappeal = new MyHashTable<string, string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
-
                 foreach (var v in appeals )
                 {
                    var temp2 = (string.Format("{0} {1}", (int)v, Enum.GetName(typeof(ClientAppeal), v)));
-                   optionsappeal.Add(temp2);
+                   optionsappeal.Add(v.ToString(),temp2);
                 }
                 htmlForm.AddSelect("reason", optionsappeal)
                     .SetAttribut("size", "1");
@@ -69,16 +68,20 @@ namespace Routing.Pages
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag("p", "The problem is solved?");
                 htmlForm.AddInput("solve1", "yes", InputType.Radio);
+                htmlForm.AddTag("label", "Yes");
                 htmlForm.AddInput("solve2", "no", InputType.Radio);
+                htmlForm.AddTag("label", "No");
                 //-----------------------------------------------------------------------------
                 htmlForm.AddTag("p", "Serviced manager:");
                 ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
-                MyList<string> optionsmanager = new MyList<string>();
+                MyHashTable<string, string> optionsmanager = new MyHashTable<string, string>();
+                var nameoption = 1;
                 foreach (var man in managers)
                 {
                     var temp3 = man.Value.Name + " " + man.Value.Surname;
-                    optionsmanager.Add(temp3);
+                    optionsmanager.Add(nameoption.ToString(),temp3);
+                    nameoption++;
                 }
                 htmlForm.AddSelect("namemanager", optionsmanager)
                     .SetAttribut("size", "1");
@@ -86,14 +89,14 @@ namespace Routing.Pages
 
             StringBuilder body = new StringBuilder("<body bgcolor='#07FFFF'>");
             body.Append(Environment.NewLine);
-            body.Append("<form method='POST'>");
+            //body.Append("<form method='POST'>");
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
             body.Append(Environment.NewLine);                         
-            body.Append("</form>");
+           // body.Append("</form>");
             body.Append(Environment.NewLine);
-            body.Append("</body>");
-            body.Append(Environment.NewLine);
+            //body.Append("</body>");
+            //body.Append(Environment.NewLine);
 
             return body.ToString();
         }
@@ -105,6 +108,14 @@ namespace Routing.Pages
             Response response;
             try
             {
+               /* ClientServiсe cs = new ClientServiсe("client.txt");
+                HashDictionary<Guid, Client> clients = cs.GetAll();
+                foreach (var man in clients)
+                {
+                    if ((man.Value.Name + " " + man.Value.Surname).Equals(form["nameclient"]))
+                        new Guid ( man.Key);                  
+                }*/
+
 
                 Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["nameclient"]), new Guid(form["namemanager"]));
 

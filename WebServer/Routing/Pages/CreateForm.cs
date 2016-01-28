@@ -23,19 +23,21 @@ namespace Routing.Pages
             htmlForm.AddTag("p", "Name client:");
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
-            MyList<string> formclient = new MyList<string>();
+            MyHashTable<string,string> formclient = new MyHashTable<string, string>();
             foreach (var c in clients)
             {
                 var temp1 = c.Value.Name + " " + c.Value.Surname;
-                formclient.Add(temp1);
+                formclient.Add(c.Value.Id.ToString(), temp1);
             }
             htmlForm.AddSelect("clientId", formclient)
                 .SetAttribut("size", "1");
 //----------------------------------------------------------------------------------           
             htmlForm.AddTag("p", "Are you satisfied with the service?");
             htmlForm.AddInput("form1", "yes", InputType.Radio);
+            htmlForm.AddTag("label", "Yes");
             htmlForm.AddInput("form2", "no", InputType.Radio);
-//----------------------------------------------------------------
+            htmlForm.AddTag("label", "No");
+            //----------------------------------------------------------------
             htmlForm.AddTag("p", "Comment:");
             htmlForm.AddTag("textarea", "")
                 .SetAttribut("name", "comment1")
@@ -44,7 +46,9 @@ namespace Routing.Pages
             //-------------------------------------------------------
             htmlForm.AddTag("p", "Are you satisfied with the speed of the Internet?");
             htmlForm.AddInput("form3", "yes", InputType.Radio);
+            htmlForm.AddTag("label", "Yes");
             htmlForm.AddInput("form4", "no", InputType.Radio);
+            htmlForm.AddTag("label", "No");
 
 
             htmlForm.AddTag("p", "Comment:");
@@ -104,11 +108,13 @@ namespace Routing.Pages
             htmlForm.AddTag("p", "Filled manager:");
             ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
-            MyList<string> formmanager = new MyList<string>();
+            MyHashTable<string,string> formmanager = new MyHashTable<string, string>();
+            var nameoption = 1;
             foreach (var man in managers)
             {
                 var temp3 = man.Value.Name + " " + man.Value.Surname;
-                formmanager.Add(temp3);
+                formmanager.Add(nameoption.ToString(),temp3);
+                nameoption++;
             }
             htmlForm.AddSelect("managerId ", formmanager)
                 .SetAttribut("size", "1");
