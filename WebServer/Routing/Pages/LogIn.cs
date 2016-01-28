@@ -5,8 +5,7 @@ using CollectionLibrary;
 using Routing.Pages.Helpers;
 using Model.Servise;
 using Model.Entity;
-
-
+using System.Configuration;
 
 namespace Routing.Pages
 {
@@ -51,9 +50,16 @@ namespace Routing.Pages
             {
                 MyHashTable<string, string> errors = new MyHashTable<string, string>();
                 ManagerService ms = new ManagerService("manager.txt");
+
+                if (form["login"] == "admin")
+                {
+                    var adminPassword = ConfigurationManager.AppSettings["adminPassword"];
+                    
+                }
+
                 Manager manager = ms.GetElementByLogin(form["login"]);
 
-                if(manager == null)
+                if (manager == null)
                 {                    
                     errors.Add("login", "User with such login does not exist!");                    
                     response = this.Get(form, sessionId, errors);

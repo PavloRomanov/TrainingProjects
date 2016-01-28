@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CollectionLibrary;
 using Model.Servise;
 namespace Routing.Pages
 {
     public class DeleteForm : IBasePage
     {
-        public Response Get(MyHashTable<string, string> form,MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
             Response response;
             try
@@ -27,8 +23,7 @@ namespace Routing.Pages
             return new Response("", TypeOfAnswer.Redirection, "FormList");
         }
 
-
-        public Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

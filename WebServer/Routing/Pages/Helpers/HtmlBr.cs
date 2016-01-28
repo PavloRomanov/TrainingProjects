@@ -11,7 +11,7 @@ namespace Routing.Pages.Helpers
     {
         public string GetTag(MyHashTable<string, string> errors = null)
         {
-            return "</br>";
+            return "<br />";
         }
     }
 }
