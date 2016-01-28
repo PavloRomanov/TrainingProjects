@@ -12,12 +12,16 @@ namespace Routing
         private Session()
         {
             _registerSessions = new MyHashTable<string, User>();
-        }
-        
+        }        
 
         public static Session Instance
         {
             get { return instance; }
+        }
+
+        public MyHashTable<string, User> RegisterSessions
+        {
+            get { return _registerSessions; }
         }
 
         public void Add(string sessionId, User user)
@@ -39,6 +43,13 @@ namespace Routing
                     return _registerSessions[sessionId];
                 }
                 return null;
+            }
+            set
+            {
+                if (_registerSessions.ContainsKey(sessionId))
+                {
+                    _registerSessions[sessionId] = value;
+                }
             }           
         }
 

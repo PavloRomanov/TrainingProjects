@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Text;
 using CollectionLibrary;
+using System.Collections.Generic;
 
 namespace Routing.Pages.Helpers
 {
-    public  class HtmlBaseTag
+    public  class HtmlBaseTag : IHtmlElement
     {
         private string _tagName;
-        private string _tagContent;
-        protected MyHashTable<string, string> _attributes;
+        private MyHashTable<string, string> _tagContent;
+        private MyHashTable<string, string> _attributes;
 
         public HtmlBaseTag(string tagName)
             : this(tagName, null)
@@ -19,15 +20,28 @@ namespace Routing.Pages.Helpers
         public HtmlBaseTag(string tagName, string tagContent = null)
         {
             _tagName = tagName;
-            _tagContent = tagContent;
+            _tagContent = new MyHashTable<string, string>();
             _attributes = new MyHashTable<string, string>();
 
         }
-           
+
+        public MyHashTable<string, string> Attributes
+        {
+            get { return _attributes; }           
+        }
+
+        public MyHashTable<string, string> TagContent
+        {
+            get { return _tagContent; }
+        }
 
         protected string TagName { get { return _tagName; } }
-        protected string TagContent { get { return _tagContent; } }
 
+
+        protected virtual string GetTagContent()
+        {            
+            return "";
+        }
         
         public HtmlBaseTag SetAttribut(string attributName, string attributValue)
         {
@@ -76,12 +90,7 @@ namespace Routing.Pages.Helpers
             tag.Append("</").Append(TagName).Append(">");
             return tag.ToString();
         }
-
-        protected virtual string GetTagContent()
-        {
-            return _tagContent;
-        }
-
+        
         protected virtual string ProcessingError(MyHashTable<string, string> errors)
         {
             return "";

@@ -48,6 +48,9 @@
     <Compile Include="Pages\CreateForm.cs" />
     <Compile Include="Pages\CreateAppeal.cs" />
     <Compile Include="Pages\DeleteManager.cs" />
+    <Compile Include="Pages\Helpers\HtmlBr.cs" />
+    <Compile Include="Pages\Helpers\HtmlText.cs" />
+    <Compile Include="Pages\Helpers\IHtmlElement.cs" />
     <Compile Include="Pages\LogOut.cs" />
     <Compile Include="Pages\ManagersList.cs" />
     <Compile Include="Pages\BasePage.cs" />

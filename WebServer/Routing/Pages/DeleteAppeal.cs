@@ -13,7 +13,7 @@ namespace Routing.Pages
     {
        
 
-        public Response Get(MyHashTable<string, string> form,MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
 
         Response response;
@@ -32,7 +32,7 @@ namespace Routing.Pages
             return new Response("", TypeOfAnswer.Redirection, "AppealList");
 
         }
-        public Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

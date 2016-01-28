@@ -13,7 +13,6 @@ namespace Routing
         private static readonly PageCreater instance = new PageCreater();
         public MyHashTable<string, IBasePage> pages;
         
-
         private PageCreater()
         {
             pages = new MyHashTable<string, IBasePage>();
@@ -57,35 +56,56 @@ namespace Routing
                 }
                 catch (KeyNotFoundException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message + "метод FindPage класса PageCreater");
                     return pages["NotFoundError"];
                 }          
             
             return page;  
         }       
     
-        public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> cookies)
+        public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, string sessionId)
         {
             IBasePage page;
             Response response;
 
-
-           /* if (path == "Index")
+            if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
+            {                
+                User user = Session.Instance[sessionId];
+                if(user.Authorized)
+                {
+                    page = FindPage(path);
+                    response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
+                }
+                else
+                {
+                    if (path == "LogIn" || path == "Index")
             {
-                page = FindPage("Index");
-                response = page.Get(param, cookies);
+                        page = FindPage(path);
+                        response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
             }
-            else if(cookies == null || !cookies.ContainsKey(" sessionId"))
+                    else
             {
                 page = FindPage("LogIn");
-                response = page.Get(param, cookies);
+                        response = page.Get(param, sessionId);
+            }
+                }
             }
             else
-            {*/
-                page = FindPage(path);
-                response = (method == "GET") ? page.Get(param, cookies) : page.Post(param, cookies);
-           //}
+            {
+                //sessionId = Guid.NewGuid().ToString();
+                Session.Instance.Add(sessionId, new User());
+                page = FindPage("Index");
+                response = page.Get(param, sessionId);
+                response.SessionId = sessionId;
+            }
 
+            /*if (path == "LogOut")
+                sessionId = null;
+
+                page = FindPage(path);
+
+            response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);*/
+            
             return response; 
         }
 

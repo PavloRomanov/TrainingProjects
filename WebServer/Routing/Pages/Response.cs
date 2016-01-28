@@ -10,6 +10,7 @@ namespace Routing.Pages
         private TypeOfAnswer statusAnswer;
         private string location = "";
         public MyHashTable<string, string> Cookie { get; set; }
+        public string SessionId { get; set; }
 
         public Response(string answer, TypeOfAnswer statuc, string location)
         {

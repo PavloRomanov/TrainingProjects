@@ -12,7 +12,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Update Manager"; } }
 
-        public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             Response response;
             try
@@ -35,7 +35,7 @@ namespace Routing.Pages
             return response;
         }
 
-        protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
             Response response;
             StringBuilder body = new StringBuilder("<body bgcolor='#ad5f2f'>");

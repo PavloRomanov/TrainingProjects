@@ -11,7 +11,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Create Manager"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+         protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
 
@@ -55,9 +55,10 @@ namespace Routing.Pages
                 htmlForm.AddSelect("experience", options)
                     .SetAttribut("size", "1");
             }
-            StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
+
+            StringBuilder body = new StringBuilder();
             body.Append(Environment.NewLine);
-            body.Append("<h1>Create Manager</h1>");
+            body.Append("<h2>Create Manager</h2>");
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
             body.Append(Environment.NewLine);
@@ -65,7 +66,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+         public override Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
             MyHashTable<string, string> errors = new MyHashTable<string, string>();
@@ -103,20 +104,20 @@ namespace Routing.Pages
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                     ManagerService ms = new ManagerService("manager.txt");
-                    manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                    //manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                     ms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message + "class  CreateManager  method POST");
                     return new Response("", TypeOfAnswer.ServerError, "");
                 }
 
             }
             else
             {
-                return this.Get(form, cookies, errors);
+                 return this.Get(form, sessionId, errors);
             }
 
         }

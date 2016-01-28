@@ -19,7 +19,7 @@ namespace Routing.Pages
 
         protected override string Title { get { return "Create Appeal"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
 
@@ -96,7 +96,7 @@ namespace Routing.Pages
 
 
 
-        public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             Response response;
             try
