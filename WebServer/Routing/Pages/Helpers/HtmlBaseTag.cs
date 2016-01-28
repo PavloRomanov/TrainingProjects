@@ -8,7 +8,7 @@ namespace Routing.Pages.Helpers
     public  class HtmlBaseTag : IHtmlElement
     {
         private string _tagName;
-        private List<IHtmlElement> _tagContent;
+        private MyHashTable<string, string> _tagContent;
         private MyHashTable<string, string> _attributes;
 
         public HtmlBaseTag(string tagName)
@@ -20,7 +20,7 @@ namespace Routing.Pages.Helpers
         public HtmlBaseTag(string tagName, string tagContent = null)
         {
             _tagName = tagName;
-            _tagContent = new List<IHtmlElement>();
+            _tagContent = new MyHashTable<string, string>();
             _attributes = new MyHashTable<string, string>();
 
         }
@@ -30,52 +30,16 @@ namespace Routing.Pages.Helpers
             get { return _attributes; }           
         }
 
-        public List<IHtmlElement> TagContent
+        public MyHashTable<string, string> TagContent
         {
             get { return _tagContent; }
         }
 
         protected string TagName { get { return _tagName; } }
 
-        public virtual HtmlBaseTag SetTagContent(string tagName, string text = null)
-        {
-            if(tagName != "text")
-            {
-                HtmlBaseTag tag = new HtmlBaseTag(tagName);
-                if(text != null)
-                {
-                    tag.SetTagContent("text", text);
-                }
-                _tagContent.Add(tag);
-            }
-            else
-            {
-                HtmlText tag = new HtmlText(text);
-                _tagContent.Add(tag);
-            }            
 
-            return this;
-        }
-
-       /* public virtual HtmlBaseTag SetTagContent(IHtmlElement tag)
+        protected virtual string GetTagContent()
         {            
-            _tagContent.Add(tag);
-            
-            return this;
-        }*/
-
-        protected string GetTagContent()
-        {
-            if(_tagContent != null)
-            {
-                StringBuilder content = new StringBuilder();
-
-                foreach (var element in _tagContent)
-                {
-                    content.Append(element.GetTag()).Append(Environment.NewLine);
-                }
-                return content.ToString();
-            }
             return "";
         }
         

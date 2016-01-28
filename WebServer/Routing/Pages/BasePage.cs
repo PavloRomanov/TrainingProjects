@@ -44,7 +44,7 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<meta charset=UTF-8/>");
              header.Append(Environment.NewLine);
-            header.Append("<link rel='stylesheet' href='/TabStyle1.css' type='text/css'/>");
+            header.Append("<link rel='stylesheet' href='TabStyle.css' type='text/css'/>");
             header.Append(Environment.NewLine);
             header.Append("<title>");
             header.Append("CMS - ").Append(Title);
@@ -95,9 +95,7 @@ namespace Routing.Pages
             header.Append("</div>");
             header.Append(Environment.NewLine);
             header.Append("</div>");
-            header.Append(Environment.NewLine);
-            //header.Append("</body>");//------------------------------------------------------------------
-            //header.Append(Environment.NewLine);
+            header.Append(Environment.NewLine);           
 
 
             return header.ToString();
@@ -108,9 +106,12 @@ namespace Routing.Pages
             StringBuilder greeting = new StringBuilder();
             if (sessionId != null)
             {
-                User user = Session.Instance[sessionId];                
-                greeting.Append("<div><h3>Hello ").Append(user.Name).Append("</h3></div>");
-                return greeting.ToString();
+                User user = Session.Instance[sessionId];
+                if(user != null)
+                {
+                    greeting.Append("<div><h3>Hello ").Append(user.Name).Append("</h3></div>");
+                    return greeting.ToString();
+                }
             }            
             return "";
         }

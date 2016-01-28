@@ -36,15 +36,13 @@ namespace Routing.Pages
             }
             
 
-            StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
+            StringBuilder body = new StringBuilder();
 
             body.Append(AddGreeting(sessionId));
-
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Client</h1>");
             body.Append(Environment.NewLine);           
             body.Append(htmlForm.ToString());
-
             body.Append(Environment.NewLine);                    
 
             return body.ToString();

@@ -8,14 +8,14 @@ namespace Routing.Pages.Helpers
     public class HtmlSelect : HtmlBaseTag
     {
         private string _name;
-        private MyHashTable<string,string> _options;
+        private MyHashTable<string, string> _options;
      
         public HtmlSelect( string name, MyHashTable<string, string> options)
            : base("select")
         {
             _name = name;// name select
             _options = options;
-            _attributes.Add("name",_name);
+            Attributes.Add("name",_name);
           
         }
         protected override string GetTagContent()

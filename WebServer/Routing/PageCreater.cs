@@ -103,7 +103,7 @@ namespace Routing
 
             response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
             //response.Cookie = coocies;
-            response.SessionId = sessionId;
+            //response.SessionId = sessionId;
             return response; 
         }
 

@@ -59,6 +59,7 @@ namespace WebServer
 
                 if (index == -1)
                 {
+
                     response = GetResponse(path, method, param, cookies);
                     WriteResponse(stream, response);
                 }
