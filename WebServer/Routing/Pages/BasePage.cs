@@ -18,17 +18,17 @@ namespace Routing.Pages
 
         protected virtual string Script { get { return string.Empty; } }
 
-        public Response Get(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors = null)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
             StringBuilder answer = new StringBuilder();
             answer.Append(AddHeader());
-            answer.Append(AddBody(form, cookies, errors));
+            answer.Append(AddBody(form, sessionId, errors));
             answer.Append(AddFooter());            
             Response response = new Response(answer.ToString(), TypeOfAnswer.Success, "");
             return response;
         }
 
-        public virtual Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public virtual Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             throw new NotSupportedException();
         } 
@@ -43,8 +43,9 @@ namespace Routing.Pages
             header.Append("<head>");
             header.Append(Environment.NewLine);
             header.Append("<meta charset=UTF-8/>");
-            
-             header.Append(Environment.NewLine);
+            header.Append(Environment.NewLine);
+            header.Append("<link rel='stylesheet' href='/TabStyle1.css' type='text/css'/>");
+            header.Append(Environment.NewLine);
             header.Append("<title>");
             header.Append("CMS - ").Append(Title);
             header.Append("</title>");
@@ -52,16 +53,7 @@ namespace Routing.Pages
             header.Append("</head>");
             header.Append(Environment.NewLine);
             header.Append("<body>");
-            //============================================================================================
-            header.Append("<header>");
             header.Append(Environment.NewLine);
-            header.Append("<head>");
-            header.Append(Environment.NewLine);
-            header.Append("<link rel='stylesheet' href='/TabStyle1.css' type='text/css'/>");
-            header.Append(Environment.NewLine);
-            header.Append("</head>");
-            header.Append(Environment.NewLine);
-            header.Append("<body>");//---------------------------------------------
             header.Append("<div class='header'>");
             header.Append(Environment.NewLine);
             header.Append("<h1><i>Welcome to S & S</i></h1>");
@@ -98,9 +90,11 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<li><a href='LogOut'><b>Entrance</b></a></li>");
             header.Append(Environment.NewLine);
-            header.Append(" </ul>").Append("</div>");            
+            header.Append(" </ul>");
             header.Append(Environment.NewLine);
-            header.Append("</header>");
+            header.Append("</div>");
+            header.Append(Environment.NewLine);
+            header.Append("</div>");
             header.Append(Environment.NewLine);
             header.Append("</body>");//------------------------------------------------------------------
             header.Append(Environment.NewLine);
@@ -109,32 +103,30 @@ namespace Routing.Pages
             return header.ToString();
         }
 
-       protected string AddGreeting(MyHashTable<string, string> cookies)
+       protected string AddGreeting(string sessionId)
         {
             StringBuilder greeting = new StringBuilder();
-            if (cookies != null && cookies.ContainsKey(" sessionId"))
+            if (sessionId != null)
             {
-                string sessionId = cookies[" sessionId"];
-
                 User user = Session.Instance[sessionId];                
-                greeting.Append("<div><h3>Hello ").Append(user.name).Append("</h3></div>");
+                greeting.Append("<div><h3>Hello ").Append(user.Name).Append("</h3></div>");
                 return greeting.ToString();
             }            
             return "";
         }
 
-        protected abstract string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors = null);
+        protected abstract string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null);
 
         //protected abstract string AddForm();
 
         protected virtual string AddFooter()
         {
             StringBuilder footer = new StringBuilder();
-           // "<footer><p style='text-align:center; color:red;'> Svetlana&Serg Corporation<br>Kiev 2015</p></footer>"
+            footer.Append("<div class='footer'>");
             footer.Append(Environment.NewLine);
-            footer.Append("<script");
-            footer.Append(" src='Scripts/").Append(Script).Append("'>");
-            footer.Append("</ script >");
+            footer.Append("<p>Svetlana&Serg Corporation <br>Kiev 2015</p>");
+            footer.Append(Environment.NewLine);
+            footer.Append("</div>");
             footer.Append(Environment.NewLine);
             footer.Append("</body>");
             footer.Append(Environment.NewLine);

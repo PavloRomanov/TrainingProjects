@@ -9,18 +9,17 @@ namespace Routing.Pages
 {
     public class LogOut : IBasePage
     {
-        public Response Get(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors = null)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
-            if (cookies != null && cookies.ContainsKey(" sessionId"))
+            if (sessionId != null )
             {
-                string sessionId = cookies[" sessionId"];
-                Session.Instance.Remove(sessionId);                
+                Session.Instance[sessionId].Authorized = false;              
             }
 
             return new Response("", TypeOfAnswer.Redirection, "Index");
         }
 
-        public Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

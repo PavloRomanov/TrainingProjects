@@ -15,10 +15,19 @@ namespace Routing.Pages.Helpers
         {
             _name = name;// name select
             _options = options;
-            _attributes.Add(_name, "");
+            Attributes.Add(_name, "");
           
         }
-        protected override string GetTagContent()
+
+       
+        public override HtmlBaseTag SetTagContent(string value, string text)
+        {
+            HtmlBaseTag tag = new HtmlBaseTag("option");
+            tag.SetTagContent("text", text);
+            tag.SetAttribut("value", value);
+            return this;
+        }
+        /*protected override string GetTagContent()
         {
             StringBuilder bodyoption = new StringBuilder();
             bodyoption.Append(Environment.NewLine);
@@ -32,7 +41,7 @@ namespace Routing.Pages.Helpers
             }
             bodyoption.Append(Environment.NewLine);
             return bodyoption.ToString();
-        }
+        }*/
 
         /*  public override string GetTag()
           {
@@ -51,5 +60,15 @@ namespace Routing.Pages.Helpers
               bodySelect.Append(Environment.NewLine);
               return bodySelect.ToString();
           }*/
+
+        private class HtmlOption : HtmlBaseTag
+        {
+            public HtmlOption(string value, string text)
+                :base("option")
+            {
+                Attributes.Add("value", value);
+                TagContent.Add(new HtmlText(text));
+            }
+        }
     }
 }

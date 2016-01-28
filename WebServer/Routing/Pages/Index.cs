@@ -9,11 +9,11 @@ namespace Routing.Pages
 {
     public class Index : IBasePage
     {
-        public Response Get(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors = null)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
             StringBuilder page = new StringBuilder("<!DOCTYPE html>");
             page.Append(Environment.NewLine);
-            page.Append("<html>");
+            page.Append("<html lang='en' xmlns='http://www.w3.org/1999/xhtml'>");
             page.Append(Environment.NewLine);
             page.Append("<head>");
             page.Append(Environment.NewLine);
@@ -21,13 +21,14 @@ namespace Routing.Pages
             page.Append(Environment.NewLine);
             page.Append("<link rel='stylesheet' href='TabStyle.css' type='text/css'/>");
             page.Append(Environment.NewLine);
-            page.Append("<title>Home Page</title>");            
+            page.Append("<title>CMS - Home Page</title>");            
             page.Append(Environment.NewLine);
             page.Append("</head>");
             page.Append(Environment.NewLine);
 
             page.Append("<body>");
             page.Append(Environment.NewLine);
+
             page.Append("<div class='header'>");
             page.Append(Environment.NewLine);
             page.Append("<h1>Welcome to S&S!</h1>");
@@ -66,6 +67,8 @@ namespace Routing.Pages
             page.Append("<li><a href='LogOut'>LogOut</a></li>");
             page.Append(Environment.NewLine);
             page.Append("</ul>");
+            page.Append(Environment.NewLine);
+            page.Append("</div>");
 
             page.Append("<div class='content'>");
             page.Append(Environment.NewLine);
@@ -79,11 +82,17 @@ namespace Routing.Pages
             page.Append(Environment.NewLine);
             page.Append("</div>");
 
+            page.Append(Environment.NewLine);
+            page.Append("</body>");
+
+            page.Append(Environment.NewLine);
+            page.Append("</html>");
+
             return new Response(page.ToString(), TypeOfAnswer.Success, "");
         }
 
        
-        public Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

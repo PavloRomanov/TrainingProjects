@@ -10,18 +10,13 @@ namespace Routing.Pages.Helpers
         public HtmlInput(string type, string name, string value)
         : base("input")
         {
-            _attributes.Add("type", type);
-            _attributes.Add("name", name);
-            _attributes.Add("value", value);            
+            Attributes.Add("type", type);
+            Attributes.Add("name", name);
+            Attributes.Add("value", value);            
         }
                
 
         protected override string GetTagEnd()
-        {
-            return "";
-        }
-
-        protected override string GetTagContent()
         {
             return "";
         }

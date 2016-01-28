@@ -11,7 +11,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Create Client"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {          
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             if(errors != null && errors.Count > 0)
@@ -38,7 +38,7 @@ namespace Routing.Pages
 
             StringBuilder body = new StringBuilder("<body bgcolor='#adff2f'>");
 
-            body.Append(AddGreeting(cookies));
+            body.Append(AddGreeting(sessionId));
 
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Client</h1>");
@@ -51,7 +51,7 @@ namespace Routing.Pages
         }
 
 
-        public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
             MyHashTable<string, string> errors = new MyHashTable<string, string>();
@@ -90,7 +90,7 @@ namespace Routing.Pages
             }
             else
             {
-                return this.Get(form, cookies, errors);
+                return this.Get(form, sessionId, errors);
             } 
         }
         

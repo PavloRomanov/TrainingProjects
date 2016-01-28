@@ -14,7 +14,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Log In"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, MyHashTable<string, string> cookies, MyHashTable<string, string> errors)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
         {
 
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
@@ -43,7 +43,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(MyHashTable<string, string> form, MyHashTable<string, string> cookies)
+        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
 
             Response response;
@@ -56,23 +56,27 @@ namespace Routing.Pages
                 if(manager == null)
                 {                    
                     errors.Add("login", "User with such login does not exist!");                    
-                    response = this.Get(form, cookies, errors);
+                    response = this.Get(form, sessionId, errors);
                 }
                 else if(manager.Password != form["password"])
                 {
                     errors.Add("password", "Password is wrong!");
-                    response = this.Get(form, cookies, errors);
+                    response = this.Get(form, sessionId, errors);
                 }                    
                 else
                 {
                     response = new Response("", TypeOfAnswer.Redirection, "Index");
-                    response.Cookie = new MyHashTable<string, string>();
-                    User user = new User(manager.Id.ToString(), manager.Name, manager.Surname);
-                   
-                    string sessionId = Guid.NewGuid().ToString();
+                    
+                    //User user = new User();
+                    //user.SetUser(manager.Id.ToString(), manager.Name, manager.Surname);
 
-                    Session.Instance.Add(sessionId, user);                    
-                    response.Cookie.Add(" sessionId", sessionId);                   
+                    if(sessionId == null)
+                        sessionId = Guid.NewGuid().ToString();
+
+                    //Session.Instance[sessionId] = user;  // ERROR!!!! 
+                    Session.Instance.RegisterSessions[sessionId].SetUser(manager.Id.ToString(), manager.Name, manager.Surname);     
+                   
+                    response.SessionId = sessionId;
                 }
                 
             }

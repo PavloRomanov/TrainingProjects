@@ -11,12 +11,14 @@ namespace Routing.Pages.Helpers
         public readonly string _action;
         public readonly List<HtmlBaseTag> _tags;
         public readonly MyHashTable<string, string> _errors;
+        private HtmlBr _br;
 
         public HtmlForm(RequestMethod method, string action, MyHashTable<string, string> errors = null)
         {
             _method = method;
             _action = action;
             _errors = errors;
+            _br = new HtmlBr();
             _tags = new List<HtmlBaseTag>();
         }
 
@@ -24,7 +26,7 @@ namespace Routing.Pages.Helpers
         public HtmlBaseTag AddTag(string name, string value = null)
         {
             HtmlBaseTag tag = new HtmlBaseTag(name, value);
-            _tags.Add(tag);
+            _tags.Add(tag);            
             return tag;
         }
      
@@ -33,7 +35,7 @@ namespace Routing.Pages.Helpers
             HtmlInput input = new HtmlInput(type.ToString(), name, value);           
 
             _tags.Add(input);
-
+            
             return input;
         }
         public HtmlSelect AddSelect(string name, MyList<string> options)
@@ -55,7 +57,8 @@ namespace Routing.Pages.Helpers
             foreach (var tag in _tags)
             {
                 begin.Append(tag.GetTag(_errors));
-                begin.Append(Environment.NewLine);//////////////////////////////////////////////////////////////////
+                begin.Append("</br>");
+                begin.Append(Environment.NewLine);
             }
             
             begin.Append(Environment.NewLine);

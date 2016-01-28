@@ -19,8 +19,7 @@ namespace WebServer
         public static void Handle(TcpClient client)
         {
             var stream = client.GetStream();
-            //Session session = Session.Instance;
-
+         
             try
             {
                 var requestString = GetRequest(stream);
@@ -28,13 +27,8 @@ namespace WebServer
                 RequestParser parser = new RequestParser(requestString);
                 MyHashTable<string, string> request = parser.Parse();
 
-               //~~~~~~~~~~~~~~~~~
                 MyHashTable<string, string> cookies = parser.Cookies;
-                /*string sessionId = Session.Add(cookies).ToString();
-                cookies.Add("sessionId", sessionId);
-
-                //~~~~~~~~~~~~~~~~*/
-
+              
                 string startLine = parser.startLine;
 
                 if (startLine == string.Empty)
@@ -55,7 +49,6 @@ namespace WebServer
 
                 if (path == string.Empty)
                 {
-                    //path += "index.html";
                     path += "Index";
                 }
 
@@ -66,7 +59,6 @@ namespace WebServer
 
                 if (index == -1)
                 {
-                    //response = GetResponse(path, method,  param, cookies);
                     response = GetResponse(path, method, param, cookies);
                     WriteResponse(stream, response);
                 }
@@ -80,7 +72,7 @@ namespace WebServer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message + "метод Handle класса Client");
                 SendError(stream, 500);   
                 return;
             }
@@ -156,9 +148,19 @@ namespace WebServer
 
         
         private static string GetResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> cookies)
-        {         
-            PageCreater pageCreater = PageCreater.Instance;            
-            Response response = pageCreater.PrepareResponse(path, method, param, cookies);
+        {
+            string sessionId;
+            PageCreater pageCreater = PageCreater.Instance;
+            if (cookies == null || !cookies.ContainsKey(" sessionId"))
+            {
+                sessionId = Guid.NewGuid().ToString();
+            }
+            else
+            {
+                sessionId = cookies[" sessionId"];
+            }            
+
+            Response response = pageCreater.PrepareResponse(path, method, param, sessionId);
             string html;
             int cod;
             string codStr;
@@ -170,13 +172,13 @@ namespace WebServer
                     html = "<html><body><h1>Continue</h1></body></html>";
                     cod = 100;
                     codStr = "Continue";
-                    return GetAnswerString(html, cod, codStr);
+                    return GetAnswerString(html, cod, codStr, sessionId);
                         
                 case TypeOfAnswer.Success:
                     html = response.Content;
                     cod = 200;
                     codStr = "Ok";
-                    return GetAnswerString(html, cod, codStr);
+                    return GetAnswerString(html, cod, codStr, sessionId);
 
                 case TypeOfAnswer.Redirection:
                     return GetRedirectionAnswerString(response);
@@ -185,13 +187,13 @@ namespace WebServer
                     html = "<html><body><h1>Not Found</h1></body></html>";
                     cod = 404;
                     codStr = "Not Found";
-                    return GetAnswerString(html, cod, codStr);
+                    return GetAnswerString(html, cod, codStr, sessionId);
                     
                 case TypeOfAnswer.ServerError:
                     html = "<html><body><h1>Internal Server Error</h1></body></html>";
                     cod = 500;
                     codStr = "Internal Server Error";
-                    return GetAnswerString(html, cod, codStr);                                     
+                    return GetAnswerString(html, cod, codStr, sessionId);                                     
                        
             }          
 
@@ -199,7 +201,7 @@ namespace WebServer
         }
 
 
-        private static string GetAnswerString(string html, int cod, string codStr)
+        private static string GetAnswerString(string html, int cod, string codStr, string sessionId)
         {
             StringBuilder answerString = new StringBuilder();
             answerString.Append("HTTP/1.1").Append(cod).Append(codStr);
@@ -208,6 +210,9 @@ namespace WebServer
             answerString.Append(Environment.NewLine);
             answerString.Append("Content-Length: ");
             answerString.Append(html.Length.ToString());
+            answerString.Append(Environment.NewLine);
+            answerString.Append("Set-Cookie: ");
+            answerString.Append("sessionId=").Append(sessionId);
             answerString.Append(Environment.NewLine);
             answerString.Append(Environment.NewLine);
             answerString.Append(html);
@@ -235,95 +240,6 @@ namespace WebServer
 
             return answerString.ToString();
         }
-
-
-        /* private static string GetInformationalResponse()
-         {
-             StringBuilder answerString = new StringBuilder();
-             string html = "<html><body><h1>Continue</h1></body></html>";
-             answerString.Append("HTTP/1.1 100 Continue");
-             answerString.Append(Environment.NewLine);
-             answerString.Append("Content-type: text/html");
-             answerString.Append(Environment.NewLine);
-             answerString.Append("Content-Length: ");
-             answerString.Append(html.Length.ToString());
-             answerString.Append(Environment.NewLine);
-             answerString.Append(Environment.NewLine);
-             answerString.Append(html);
-
-             return answerString.ToString();
-         }
-
-        private static string GetSuccessResponse(Response rsp)
-        {
-            StringBuilder answerString = new StringBuilder();
-            answerString.Append("HTTP/1.1 200 OK");
-            answerString.Append(Environment.NewLine);
-            answerString.Append("Content-type: text/html");
-            answerString.Append(Environment.NewLine);
-            answerString.Append("Content-Length: ");
-            answerString.Append(rsp.Content.Length.ToString());
-            answerString.Append(Environment.NewLine);
-            answerString.Append(Environment.NewLine);
-            answerString.Append(rsp.Content);
-
-            return answerString.ToString();
-        }
-
-        private static string GetRedirectionResponse(Response rsp)
-        {
-            StringBuilder answerString = new StringBuilder();
-            answerString.Append("HTTP/1.1  303 See Other ");
-            answerString.Append(Environment.NewLine);
-            answerString.Append("Location: ").Append(rsp.Location);
-            answerString.Append(Environment.NewLine);
-
-            if (rsp.Cookie != null)
-            {
-                foreach (var item in rsp.Cookie)
-                {
-                    answerString.Append("Set-Cookie: ");
-                    answerString.Append(item.Key).Append("=").Append(item.Value);
-                    answerString.Append(Environment.NewLine);
-                }
-            }                
-
-            return answerString.ToString();
-        }
-
-        private static string GetClientErrorResponse(Response rsp)
-        {
-            StringBuilder answerString = new StringBuilder();
-            string html = "<html><body><h1>Not Found</h1></body></html>";
-            answerString.Append("HTTP/1.1 404 Not Found");
-            answerString.Append(Environment.NewLine);
-            answerString.Append("Content-type: text/html");
-            answerString.Append(Environment.NewLine);
-            answerString.Append("Content-Length: ");
-            answerString.Append(html.Length.ToString());
-            answerString.Append(Environment.NewLine);           
-            answerString.Append(Environment.NewLine);
-            answerString.Append(html);
-
-            return answerString.ToString();
-        }
-
-        private static string GetServerErrorResponse()
-        {
-            StringBuilder answerString = new StringBuilder();
-            string html = "<html><body><h1>Internal Server Error</h1></body></html>";
-            answerString.Append("HTTP/1.1 500  Internal Server Error");
-            answerString.Append(Environment.NewLine);
-            answerString.Append("Content-type: text/html");
-            answerString.Append(Environment.NewLine);
-            answerString.Append("Content - Length: ");
-            answerString.Append(html.Length.ToString());
-            answerString.Append(Environment.NewLine);
-            answerString.Append(Environment.NewLine);
-            answerString.Append(html);
-
-            return answerString.ToString();
-        }*/
 
         private static string GetContentType(string extension)
         {
