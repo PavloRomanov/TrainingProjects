@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\DeleteForm.cs" />
+    <Compile Include="Pages\FormList.cs" />
     <Compile Include="Pages\DeleteAppeal.cs" />
     <Compile Include="Pages\AppealList.cs" />
     <Compile Include="Pages\Helpers\HtmlBaseTag.cs" />

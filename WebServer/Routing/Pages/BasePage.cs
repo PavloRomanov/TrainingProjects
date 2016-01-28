@@ -102,8 +102,8 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("</header>");
             header.Append(Environment.NewLine);
-            header.Append("</body>");//------------------------------------------------------------------
-            header.Append(Environment.NewLine);
+            //header.Append("</body>");//------------------------------------------------------------------
+            //header.Append(Environment.NewLine);
 
 
             return header.ToString();
@@ -134,7 +134,7 @@ namespace Routing.Pages
             footer.Append(Environment.NewLine);
             footer.Append("<script");
             footer.Append(" src='Scripts/").Append(Script).Append("'>");
-            footer.Append("</ script >");
+            footer.Append("</script>");
             footer.Append(Environment.NewLine);
             footer.Append("</body>");
             footer.Append(Environment.NewLine);

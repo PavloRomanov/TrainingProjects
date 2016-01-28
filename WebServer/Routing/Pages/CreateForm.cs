@@ -24,12 +24,10 @@ namespace Routing.Pages
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
             MyHashTable<string,string> formclient = new MyHashTable<string, string>();
-            int nameoption = 1;
             foreach (var c in clients)
             {
                 var temp1 = c.Value.Name + " " + c.Value.Surname;
-                formclient.Add(nameoption.ToString(),temp1);
-                nameoption++;
+                formclient.Add(c.Value.Id.ToString(), temp1);
             }
             htmlForm.AddSelect("clientId", formclient)
                 .SetAttribut("size", "1");
@@ -111,26 +109,18 @@ namespace Routing.Pages
             ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
             MyHashTable<string,string> formmanager = new MyHashTable<string, string>();
+           
             foreach (var man in managers)
             {
                 var temp3 = man.Value.Name + " " + man.Value.Surname;
-                formmanager.Add(nameoption.ToString(),temp3);
-                nameoption++;
+                formmanager.Add(man.Value.Id.ToString(),temp3);
             }
-            htmlForm.AddSelect("managerId ", formmanager)
+            htmlForm.AddSelect("managerId", formmanager)
                 .SetAttribut("size", "1");
 
-            StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");
-            body.Append(Environment.NewLine);
-            body.Append("<form method='POST'>");
+            StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");          
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString());
-            body.Append(Environment.NewLine);
-            body.Append("</form>");
-            body.Append(Environment.NewLine);
-            body.Append("</body>");
-            body.Append(Environment.NewLine);
-
             return body.ToString();
         }
 
@@ -152,23 +142,23 @@ namespace Routing.Pages
                 formclient.F5 = FormsClient.Do_you_want_to_participate_in_the_loyalty_program;
                 formclient.Comment = form["comment5"];*/
 
-                if (form["form1"] == "yes")
+                if (form.ContainsKey("form1"))
                 {
-                    formclient.Answer = "yes";
+                    formclient.Answer1 = form["form1"];
                 }
                 else
                 {
-                    formclient.Answer = "no";
-                }
-                if (form["form3"] == "yes")
-                {
-                    formclient.Answer = "yes";
-                }
-                else
-                {
-                    formclient.Answer = "no";
+                    formclient.Answer1 = form["form2"];
                 }
 
+                if (form.ContainsKey("form3"))
+                {
+                    formclient.Answer2 = form["form3"];
+                }
+                else
+                {
+                    formclient.Answer2 = form["form4"];
+                }
                 FormServiсe formser = new FormServiсe("forms.txt");
                 formser.Add(formclient);
             }

@@ -32,7 +32,9 @@ namespace Model.Entity
         [DataMember]
         public string Comment { get; set; }
         [DataMember]
-        public string Answer { get; set; }
+        public string Answer1 { get; set; }
+        [DataMember]
+        public string Answer2 { get; set; }
         [DataMember]
         public FormsClient F1 { get; set; }
          [DataMember]
