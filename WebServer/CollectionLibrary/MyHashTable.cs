@@ -102,8 +102,8 @@ namespace CollectionLibrary
 
                 for (int i = hash; i < _length; i++)
                 {
-                    /*if (_hashTableArray[i] == null)
-                        throw new KeyNotFoundException();*/
+                    if (_hashTableArray[i] == null)
+                        throw new KeyNotFoundException();
                     if (_hashTableArray[i]._Key.CompareTo(key) == 0)
                         _hashTableArray[i]._Key = key;
                     _hashTableArray[i]._Value = value;

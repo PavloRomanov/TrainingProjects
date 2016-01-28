@@ -6,7 +6,7 @@ namespace Routing
     public class RequestParser
     {
         private string requestString;
-        public string startLine;
+        private string startLine;
         private string requestURI;
         private string method;
         private string path;
@@ -14,7 +14,17 @@ namespace Routing
         private string[] AllRequestLine;
         private MyHashTable<string, string> cookies;
         private MyHashTable<string, string> requeste;
-        private MyHashTable<string, string> form;        
+        private MyHashTable<string, string> form;
+
+        public string StartLine { get { return startLine; } }
+
+        public string Path { get { return path; } }
+
+        public string Method { get { return method; } }
+
+        public MyHashTable<string, string> Form { get { return form; } }
+
+        public MyHashTable<string, string> Cookies { get { return cookies; } }
 
         public RequestParser(string requestString)
         {
@@ -188,25 +198,7 @@ namespace Routing
         #endregion
 
 
-        public string Path
-        {
-            get { return path; }            
-        }
-
-        public string Method
-        {
-            get  { return method; }
-        }
-
-        public MyHashTable<string, string> Form
-        {
-            get { return form; }
-        }
-
-        public MyHashTable<string, string> Cookies
-        {
-            get { return cookies; }
-        }
+       
 
 
         public void ShouAllRequestLine()

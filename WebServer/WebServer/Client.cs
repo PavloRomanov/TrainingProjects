@@ -28,18 +28,20 @@ namespace WebServer
                 MyHashTable<string, string> request = parser.Parse();
 
                 MyHashTable<string, string> cookies = parser.Cookies;
-              
-                string startLine = parser.startLine;
+
+                MyHashTable<string, string> param = parser.Form;
+
+                string startLine = parser.StartLine;
 
                 if (startLine == string.Empty)
                 {
                     SendError(stream, 400);
                     return;
                 }
-               
-                string method = request["method"];
-                MyHashTable<string, string> param = parser.Form;
-                string path = request["path"];               
+
+                string method = parser.Method;
+
+                string path = parser.Path;  
 
                 if (path.IndexOf("..") >= 0)
                 {
