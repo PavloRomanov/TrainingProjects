@@ -8,7 +8,7 @@ namespace Routing.Pages.Helpers
     public  class HtmlBaseTag : IHtmlElement
     {
         private string _tagName;
-        private MyHashTable<string, string> _tagContent;
+        private string _tagContent;
         private MyHashTable<string, string> _attributes;
 
         public HtmlBaseTag(string tagName)
@@ -20,27 +20,16 @@ namespace Routing.Pages.Helpers
         public HtmlBaseTag(string tagName, string tagContent = null)
         {
             _tagName = tagName;
-            _tagContent = new MyHashTable<string, string>();
+            _tagContent = tagContent;
             _attributes = new MyHashTable<string, string>();
-
-        }
-
-        public MyHashTable<string, string> Attributes
-        {
-            get { return _attributes; }           
-        }
-
-        public MyHashTable<string, string> TagContent
-        {
-            get { return _tagContent; }
-        }
+        }      
 
         protected string TagName { get { return _tagName; } }
 
 
         protected virtual string GetTagContent()
-        {            
-            return "";
+        { 
+            return _tagContent;
         }
         
         public HtmlBaseTag SetAttribut(string attributName, string attributValue)

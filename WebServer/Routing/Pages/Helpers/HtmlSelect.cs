@@ -15,7 +15,7 @@ namespace Routing.Pages.Helpers
         {
             _name = name;// name select
             _options = options;
-            Attributes.Add("name",_name);
+            SetAttribut("name",_name);
           
         }
         protected override string GetTagContent()

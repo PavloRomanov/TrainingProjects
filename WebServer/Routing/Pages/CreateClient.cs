@@ -16,23 +16,23 @@ namespace Routing.Pages
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             if(errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("name", form["name"], InputType.Text).SetAttribut("maxlength", "5");
-                htmlForm.AddInput("surname", form["surname"], InputType.Text);
-                htmlForm.AddInput("address", form["address"], InputType.Text);
-                htmlForm.AddInput("phone", form["phone"], InputType.Text).SetAttribut("placeholder", "000-000-00-00");
+                htmlForm.AddInput("name", form["name"], InputType.Text, "Name :");
+                htmlForm.AddInput("surname", form["surname"], InputType.Text, "Surname :");
+                htmlForm.AddInput("address", form["address"], InputType.Text, "Address :");
+                htmlForm.AddInput("phone", form["phone"], InputType.Text, "Phone :").SetAttribut("placeholder", "000-000-00-00");
             }
             else
             {
-                htmlForm.AddInput("name", "", InputType.Text)
+                htmlForm.AddInput("name", "", InputType.Text, "Name :")
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("surname", "", InputType.Text)
+                htmlForm.AddInput("surname", "", InputType.Text, "Surname :")
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("address", "", InputType.Text)
+                htmlForm.AddInput("address", "", InputType.Text, "Address :")
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters"); 
-                htmlForm.AddInput("phone", "", InputType.Text).SetAttribut("placeholder", "000-000-00-00");
+                htmlForm.AddInput("phone", "", InputType.Text, "Phone :").SetAttribut("placeholder", "000-000-00-00");
             }
             
 

@@ -28,14 +28,16 @@ namespace Routing.Pages.Helpers
                         return tag;
         }
      
-        public HtmlInput AddInput(string name, string value, InputType type)
+        public HtmlInput AddInput(string name, string value, InputType type, string text = null)
         {
-            HtmlInput input = new HtmlInput(type.ToString(), name, value);           
-
+            HtmlLable lable = new HtmlLable(text);
+            _tags.Add(lable);
+            HtmlInput input = new HtmlInput(type.ToString(), name, value); 
             _tags.Add(input);
-           
+
             return input;
         }
+
         public HtmlSelect AddSelect(string name, MyHashTable<string,string> options)
         {
             HtmlSelect select = new HtmlSelect(name, options);
@@ -59,6 +61,7 @@ namespace Routing.Pages.Helpers
                 begin.Append(Environment.NewLine);
             }
             
+            begin.Append("</br>");
             begin.Append(Environment.NewLine);
             begin.Append(new HtmlInput(InputType.Reset.ToString(), "", "clear").GetTag());
             begin.Append(Environment.NewLine);

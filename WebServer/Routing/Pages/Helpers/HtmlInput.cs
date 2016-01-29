@@ -10,22 +10,11 @@ namespace Routing.Pages.Helpers
         public HtmlInput(string type, string name, string value)
         : base("input")
         {
-            Attributes.Add("type", type);
-            Attributes.Add("name", name);
-            Attributes.Add("value", value);            
+            SetAttribut("type", type);
+            SetAttribut("name", name);
+            SetAttribut("value", value);            
         }
-               
-
-        protected override string GetTagEnd()
-        {
-            return "";
-        }
-
-        protected override string GetTagContent()
-        {
-            return  "";
-        }
-
+     
         protected override string ProcessingError(MyHashTable<string, string> errors)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);

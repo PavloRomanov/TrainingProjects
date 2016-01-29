@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using CollectionLibrary;
 using Routing.Pages.Helpers;
 using Model.Servise;
 using Model.Entity;
+using System.Configuration;
 
 
 
@@ -20,14 +20,14 @@ namespace Routing.Pages
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
             if (errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("login", form["login"], InputType.Text);
-                htmlForm.AddInput("password", form["password"], InputType.Password);
+                htmlForm.AddInput("login", form["login"], InputType.Text, "Enter login :");
+                htmlForm.AddInput("password", form["password"], InputType.Password, "Enter password :");
                                 
             }
             else
             {
-                htmlForm.AddInput("login", "", InputType.Text);
-                htmlForm.AddInput("password", "", InputType.Password);
+                htmlForm.AddInput("login", "", InputType.Text, "Enter login :");
+                htmlForm.AddInput("password", "", InputType.Password, "Enter password :");
             }
 
             StringBuilder body = new StringBuilder("<body bgcolor='#5DCFC3'>");
@@ -51,33 +51,43 @@ namespace Routing.Pages
             {
                 MyHashTable<string, string> errors = new MyHashTable<string, string>();
                 ManagerService ms = new ManagerService("manager.txt");
-                Manager manager = ms.GetElementByLogin(form["login"]);
+                Manager manager;
 
-                if(manager == null)
-                {                    
-                    errors.Add("login", "User with such login does not exist!");                    
-                    response = this.Get(form, sessionId, errors);
-                }
-                else if(manager.Password != form["password"])
+                string value = ConfigurationManager.AppSettings["admin"];
+                Guid guid = new Guid("c32f3d67-26da-4cba-9595-8a9f0efa0e5b");
+
+                if (form["password"] == value)
                 {
-                    errors.Add("password", "Password is wrong!");
-                    response = this.Get(form, sessionId, errors);
-                }                    
+                    manager = new Manager(guid, "admin", "admin", "", "911", "admin", "admin");
+                }
                 else
                 {
-                    response = new Response("", TypeOfAnswer.Redirection, "Index");
-                    
-                    //User user = new User();
-                    //user.SetUser(manager.Id.ToString(), manager.Name, manager.Surname);
-
-                    if(sessionId == null)
-                        sessionId = Guid.NewGuid().ToString();
-
-                    //Session.Instance[sessionId] = user;  // ERROR!!!! 
-                    Session.Instance.RegisterSessions[sessionId].SetUser(manager.Id.ToString(), manager.Name, manager.Surname);     
-                   
-                    response.SessionId = sessionId;
+                    manager = ms.GetElementByLogin(form["login"]);
                 }
+                    
+
+                    if (manager == null)
+                    {
+                        errors.Add("login", "User with such login does not exist!");
+                        response = this.Get(form, sessionId, errors);
+                    }
+                    else if (manager.Password != form["password"])
+                    {
+                        errors.Add("password", "Password is wrong!");
+                        response = this.Get(form, sessionId, errors);
+                    }
+                    else
+                    {
+                        response = new Response("", TypeOfAnswer.Redirection, "Index");
+                    
+                        if (sessionId == null)
+                            sessionId = Guid.NewGuid().ToString();
+ 
+                        Session.Instance.RegisterSessions[sessionId].SetUser(manager.Id.ToString(), manager.Name, manager.Surname);
+
+                        response.SessionId = sessionId;
+                    }
+               
                 
             }
             catch(Exception ex)
