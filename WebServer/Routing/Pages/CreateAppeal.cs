@@ -37,10 +37,10 @@ namespace Routing.Pages
                 MyHashTable<string,string> optionsclient = new MyHashTable<string, string>();
                 foreach (var c in clients)
                 {
-                    var temp1 = c.Value.Name + " " + c.Value.Surname;
-                    optionsclient.Add(c.Value.Id.ToString(),temp1);
+                    var fullnameclient = c.Value.Name + " " + c.Value.Surname;
+                    optionsclient.Add(c.Value.Id.ToString(), fullnameclient);
                 }
-                htmlForm.AddSelect("nameclient", optionsclient)
+                htmlForm.AddSelect("clientId", optionsclient)
                     .SetAttribut("size", "1");
                 //--------------------------------------------------------------
 
@@ -49,8 +49,8 @@ namespace Routing.Pages
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
                 foreach (var v in appeals )
                 {
-                   var temp2 = (string.Format("{0} {1}", (int)v, Enum.GetName(typeof(ClientAppeal), v)));
-                   optionsappeal.Add(v.ToString(),temp2);
+                   var appealclient = (string.Format("{0}"/*,Enum.GetName(typeof(ClientAppeal),*/, v));
+                   optionsappeal.Add(v.ToString(), appealclient);
                 }
                 htmlForm.AddSelect("reason", optionsappeal)
                     .SetAttribut("size", "1");
@@ -76,28 +76,21 @@ namespace Routing.Pages
                 ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
                 MyHashTable<string, string> optionsmanager = new MyHashTable<string, string>();
-                var nameoption = 1;
+               
                 foreach (var man in managers)
                 {
-                    var temp3 = man.Value.Name + " " + man.Value.Surname;
-                    optionsmanager.Add(nameoption.ToString(),temp3);
-                    nameoption++;
+                    var fullnamemanager = man.Value.Name + " " + man.Value.Surname;
+                    optionsmanager.Add(man.Value.Id.ToString(), fullnamemanager);
+                
                 }
-                htmlForm.AddSelect("namemanager", optionsmanager)
+                htmlForm.AddSelect("managerId", optionsmanager)
                     .SetAttribut("size", "1");
             }
-
-            StringBuilder body = new StringBuilder("<body bgcolor='#07FFFF'>");
+            StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");
             body.Append(Environment.NewLine);
-            //body.Append("<form method='POST'>");
-            body.Append(Environment.NewLine);
+            body.Append("<h1>Create Appeal</h1>");
             body.Append(htmlForm.ToString());
-            body.Append(Environment.NewLine);                         
-           // body.Append("</form>");
-            body.Append(Environment.NewLine);
-            //body.Append("</body>");
-            //body.Append(Environment.NewLine);
-
+         
             return body.ToString();
         }
 
@@ -108,29 +101,21 @@ namespace Routing.Pages
             Response response;
             try
             {
-               /* ClientServiсe cs = new ClientServiсe("client.txt");
-                HashDictionary<Guid, Client> clients = cs.GetAll();
-                foreach (var man in clients)
-                {
-                    if ((man.Value.Name + " " + man.Value.Surname).Equals(form["nameclient"]))
-                        new Guid ( man.Key);                  
-                }*/
-
-
-                Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["nameclient"]), new Guid(form["namemanager"]));
+               
+                Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
 
                 appealclient.ClientAppeal = (ClientAppeal)Convert.ToInt32(form["reason"]);
                 appealclient.Comment = form["comment"];
-                appealclient.References = form["references"];
-                if (form["solve1"] == "yes")
+                appealclient.References = form["references"];               
+
+                if (form.ContainsKey("solve1"))
                 {
-                    appealclient.Rez = "Problem solved";
+                    appealclient.Rez = form["solve1"];
                 }
                 else
                 {
-                    appealclient.Rez = "Problem  not solved";
+                    appealclient.Rez = form["solve2"];
                 }
-
                 AppealServiсe aser = new AppealServiсe("appealclient.txt");
                 aser.Add(appealclient);
             }
@@ -138,7 +123,6 @@ namespace Routing.Pages
             {
                 Console.WriteLine(ex.Message);
                 response = new Response("", TypeOfAnswer.ServerError, "");
-                Console.WriteLine(ex.Message);
                 return response;
             }
 

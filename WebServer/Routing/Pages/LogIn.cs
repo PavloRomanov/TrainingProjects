@@ -6,8 +6,6 @@ using Model.Servise;
 using Model.Entity;
 using System.Configuration;
 
-
-
 namespace Routing.Pages
 {
     public class LogIn : BasePage
@@ -53,7 +51,7 @@ namespace Routing.Pages
                 ManagerService ms = new ManagerService("manager.txt");
                 Manager manager;
 
-                string value = ConfigurationManager.AppSettings["admin"];
+                string value = ConfigurationManager.AppSettings["Admin"];
                 Guid guid = new Guid("c32f3d67-26da-4cba-9595-8a9f0efa0e5b");
 
                 if (form["password"] == value)
@@ -66,28 +64,28 @@ namespace Routing.Pages
                 }
                     
 
-                    if (manager == null)
-                    {
-                        errors.Add("login", "User with such login does not exist!");
-                        response = this.Get(form, sessionId, errors);
-                    }
+                if (manager == null)
+                {                    
+                    errors.Add("login", "User with such login does not exist!");                    
+                    response = this.Get(form, sessionId, errors);
+                }
                     else if (manager.Password != form["password"])
-                    {
-                        errors.Add("password", "Password is wrong!");
-                        response = this.Get(form, sessionId, errors);
-                    }
-                    else
-                    {
-                        response = new Response("", TypeOfAnswer.Redirection, "Index");
+                {
+                    errors.Add("password", "Password is wrong!");
+                    response = this.Get(form, sessionId, errors);
+                }                    
+                else
+                {
+                    response = new Response("", TypeOfAnswer.Redirection, "Index");
                     
                         if (sessionId == null)
-                            sessionId = Guid.NewGuid().ToString();
- 
-                        Session.Instance.RegisterSessions[sessionId].SetUser(manager.Id.ToString(), manager.Name, manager.Surname);
+                        sessionId = Guid.NewGuid().ToString();
 
-                        response.SessionId = sessionId;
-                    }
-               
+                    Session.Instance.RegisterSessions[sessionId].SetUser(manager.Id.ToString(), manager.Name, manager.Surname);     
+                   
+                    response.SessionId = sessionId;
+                }
+                
                 
             }
             catch(Exception ex)

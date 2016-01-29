@@ -31,7 +31,7 @@ namespace Routing.Pages
                 htmlForm.AddInput("phone", form["phone"], InputType.Text);
                 htmlForm.AddInput("login", form["login"], InputType.Text);
                 htmlForm.AddInput("password", form["password"], InputType.Text);
-                htmlForm.AddSelect("experience", options);//?
+                htmlForm.AddSelect("experience", options);
 
             }
             else

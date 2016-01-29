@@ -14,7 +14,7 @@ namespace Routing.Pages.Helpers
         }
 
         protected override string GetTagEnd()
-        {            
+        {
             return "</lable>";
         }
     }
