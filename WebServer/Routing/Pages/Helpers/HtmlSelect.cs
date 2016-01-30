@@ -35,6 +35,25 @@ namespace Routing.Pages.Helpers
             return bodyoption.ToString();
         }
 
+        /*
+        public HtmlSelect(string name, MyHashTable<string, string> options)
+           : base("select")
+        {
+            _name = name;// name select
+            //_options = options;
+            SetAttribut("name", _name);
+
+            foreach (var opin in options)
+            {
+                var o = new HtmlBaseTag("option");
+                o.SetAttribut("value", opin.Key);
+                o.AddHtmlElement(new HtmlText(opin.Value));
+                AddHtmlElement(o);
+            }
+
+        }
+        */
+
         /*  public override string GetTag()
           {
               StringBuilder bodySelect = new StringBuilder();
