@@ -152,7 +152,7 @@ namespace WebServer
         
         private static string GetResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> cookies)
         {
-            string sessionId;
+            string sessionId ;
             PageCreater pageCreater = PageCreater.Instance;
             if (cookies == null || !cookies.ContainsKey(" sessionId"))
             {

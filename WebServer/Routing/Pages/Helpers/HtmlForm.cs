@@ -21,8 +21,13 @@ namespace Routing.Pages.Helpers
         }
 
         
-        public HtmlBaseTag AddTag(string name, string value = null)
+        public HtmlBaseTag AddTag(string name, string value = null, string text = null)
         {
+            if (text != null)
+            {
+                HtmlLable lable = new HtmlLable(text);
+                _tags.Add(lable);
+            }
             HtmlBaseTag tag = new HtmlBaseTag(name, value);
             _tags.Add(tag);
                         return tag;
@@ -30,20 +35,26 @@ namespace Routing.Pages.Helpers
      
         public HtmlInput AddInput(string name, string value, InputType type, string text = null)
         {
-            HtmlLable lable = new HtmlLable(text);
-            _tags.Add(lable);
+            if (text != null)
+            {
+                HtmlLable lable = new HtmlLable(text);
+                _tags.Add(lable);
+            }
             HtmlInput input = new HtmlInput(type.ToString(), name, value); 
             _tags.Add(input);
 
             return input;
         }
 
-        public HtmlSelect AddSelect(string name, MyHashTable<string,string> options)
+        public HtmlSelect AddSelect(string name, MyHashTable<string,string> options, string text = null)
         {
+            if (text != null)
+            {
+                HtmlLable lable = new HtmlLable(text);
+                _tags.Add(lable);
+            }
             HtmlSelect select = new HtmlSelect(name, options);
-
-            _tags.Add(select);
-            
+            _tags.Add(select);           
             return select;
         }
 

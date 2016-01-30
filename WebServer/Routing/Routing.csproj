@@ -78,6 +78,7 @@
     <Compile Include="User.cs" />
     <Compile Include="Pages\ViewManager.cs" />
     <Compile Include="Pages\ViewAppeal.cs" />
+    <Compile Include="Pages\ViewForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CollectionLibrary\CollectionLibrary.csproj">

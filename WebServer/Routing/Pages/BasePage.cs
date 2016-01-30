@@ -118,7 +118,7 @@ namespace Routing.Pages
 
         protected abstract string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null);
 
-        //protected abstract string AddForm();
+       
 
         protected virtual string AddFooter()
         {

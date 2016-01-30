@@ -25,34 +25,33 @@ namespace Routing.Pages
 
             if (errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("name", form["name"], InputType.Text);
-                htmlForm.AddInput("surname", form["surname"], InputType.Text);
-                htmlForm.AddInput("address", form["address"], InputType.Text);
-                htmlForm.AddInput("phone", form["phone"], InputType.Text);
-                htmlForm.AddInput("login", form["login"], InputType.Text);
-                htmlForm.AddInput("password", form["password"], InputType.Text);
-                htmlForm.AddSelect("experience", options);
+                htmlForm.AddInput("name", form["name"], InputType.Text,"Name: ");
+                htmlForm.AddInput("surname", form["surname"], InputType.Text, "Surname: ");
+                htmlForm.AddInput("address", form["address"], InputType.Text, "Address: ");
+                htmlForm.AddInput("phone", form["phone"], InputType.Text, "Phone: ");
+                htmlForm.AddInput("login", form["login"], InputType.Text, "Login: ");
+                htmlForm.AddInput("password", form["password"], InputType.Text, "Password: ");
+                htmlForm.AddSelect("experience", options, "WorkExperience: ");
 
             }
             else
             {
-                htmlForm.AddInput("name", "", InputType.Text)
+                htmlForm.AddInput("name", "", InputType.Text, "Name: ")
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("surname", "", InputType.Text)
+                htmlForm.AddInput("surname", "", InputType.Text, "Surname: ")
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("address", "", InputType.Text)
+                htmlForm.AddInput("address", "", InputType.Text, "Address: ")
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
-                htmlForm.AddInput("phone", "", InputType.Text)
+                htmlForm.AddInput("phone", "", InputType.Text, "Phone: ")
                     .SetAttribut("placeholder", "000-000-00-00");
-                htmlForm.AddInput("login", "", InputType.Text);
-                htmlForm.AddInput("password", "", InputType.Text)
+                htmlForm.AddInput("login", "", InputType.Text, "Login: ");
+                htmlForm.AddInput("password", "", InputType.Text, "Password: ")
                     .SetAttribut("minlength", "7")
                     .SetAttribut("placeholder", "min length of 7 characters");
-                htmlForm.AddTag("p", "workExperience:");
-                htmlForm.AddSelect("experience", options)
+                htmlForm.AddSelect("experience", options, "WorkExperience: ")
                     .SetAttribut("size", "1");
             }
 
@@ -104,7 +103,7 @@ namespace Routing.Pages
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                     ManagerService ms = new ManagerService("manager.txt");
-                    //manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                    manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
                     ms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }
@@ -113,7 +112,6 @@ namespace Routing.Pages
                     Console.WriteLine(ex.Message + "class  CreateManager  method POST");
                     return new Response("", TypeOfAnswer.ServerError, "");
                 }
-
             }
             else
             {

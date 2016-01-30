@@ -66,7 +66,7 @@ namespace Routing.Pages
                     body.Append("<a href='DeleteClient?id=").Append(client.Key).Append("'>Delete</a>");
                     body.Append("</td>");
                     body.Append(Environment.NewLine);                    
-                    body.Append("<tr>");                   
+                    body.Append("</tr>");                   
                     n++;
                 }
 
