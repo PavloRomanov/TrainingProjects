@@ -54,6 +54,7 @@ namespace CollectionLibrary
                 AddToArray(temp, _hashTableArray[i]);
             }
             _hashTableArray = temp;
+            _length = newLength;
         }
 
         private void AddToArray(MyKeyValuePair[] array, MyKeyValuePair pair)
@@ -179,6 +180,24 @@ namespace CollectionLibrary
                     return;
                 }
             }
+
+            /*
+            var index = hash;
+            while (true)
+            {
+                if (_hashTableArray[index] == null)
+                {
+                    _hashTableArray[index] = pair;
+                    _count++;
+                    return;
+                }
+
+                index++;
+
+                if (index >= _length)
+                    index = 0;
+            }
+            */
         }
 
         public void Clear()
