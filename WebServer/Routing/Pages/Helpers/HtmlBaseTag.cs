@@ -8,8 +8,8 @@ namespace Routing.Pages.Helpers
     public  class HtmlBaseTag : IHtmlElement
     {
         private string _tagName;
-        private string _tagContent;
         private MyHashTable<string, string> _attributes;
+        private List<IHtmlElement> _htmlElements;
 
         public HtmlBaseTag(string tagName)
             : this(tagName, null)
@@ -20,18 +20,32 @@ namespace Routing.Pages.Helpers
         public HtmlBaseTag(string tagName, string tagContent = null)
         {
             _tagName = tagName;
-            _tagContent = tagContent;
             _attributes = new MyHashTable<string, string>();
-        }      
+            _htmlElements = new List<IHtmlElement>();
+            if(tagContent != null) _htmlElements.Add(new HtmlText(tagContent));
+        }       
 
         protected string TagName { get { return _tagName; } }
 
 
         protected virtual string GetTagContent()
-        { 
-            return _tagContent;
+        {
+            StringBuilder tag = new StringBuilder();
+            
+            foreach(var element in _htmlElements)
+            {
+                tag.Append(element.GetTag());
+            }
+
+            return tag.ToString();
         }
-        
+
+        public HtmlBaseTag AddHtmlElement(IHtmlElement element)
+        {
+            _htmlElements.Add(element);
+            return this;
+        }
+
         public HtmlBaseTag SetAttribut(string attributName, string attributValue)
         {
             _attributes.Add(attributName, attributValue);

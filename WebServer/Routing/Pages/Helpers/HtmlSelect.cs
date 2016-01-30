@@ -10,7 +10,7 @@ namespace Routing.Pages.Helpers
         private string _name;
         private MyHashTable<string, string> _options;
      
-        public HtmlSelect( string name, MyHashTable<string, string> options, string text = null)
+        public HtmlSelect( string name, MyHashTable<string, string> options)
            : base("select")
         {
             _name = name;// name select
@@ -20,7 +20,8 @@ namespace Routing.Pages.Helpers
         }
         protected override string GetTagContent()
         {
-            StringBuilder bodyoption = new StringBuilder(Environment.NewLine);
+            StringBuilder bodyoption = new StringBuilder();
+            bodyoption.Append(Environment.NewLine);
             foreach (var opin in _options)
             {
                 bodyoption.Append("<").Append("option  ");
@@ -33,5 +34,42 @@ namespace Routing.Pages.Helpers
             bodyoption.Append(Environment.NewLine);
             return bodyoption.ToString();
         }
+
+        /*
+        public HtmlSelect(string name, MyHashTable<string, string> options)
+           : base("select")
+        {
+            _name = name;// name select
+            //_options = options;
+            SetAttribut("name", _name);
+
+            foreach (var opin in options)
+            {
+                var o = new HtmlBaseTag("option");
+                o.SetAttribut("value", opin.Key);
+                o.AddHtmlElement(new HtmlText(opin.Value));
+                AddHtmlElement(o);
+            }
+
+        }
+        */
+
+        /*  public override string GetTag()
+          {
+              StringBuilder bodySelect = new StringBuilder();
+              bodySelect.Append(Environment.NewLine);
+              bodySelect.Append("<").Append(_name).Append("  name='").Append(_name).Append("'>");
+
+              foreach (var option in _options)
+              {
+                  bodySelect.Append("<option>");
+                  bodySelect.Append(option);
+                  bodySelect.Append(Environment.NewLine);
+                  bodySelect.Append("</option>");
+              }
+              bodySelect.Append("</").Append(_name).Append(">");
+              bodySelect.Append(Environment.NewLine);
+              return bodySelect.ToString();
+          }*/
     }
 }
