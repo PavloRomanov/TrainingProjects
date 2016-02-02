@@ -86,9 +86,9 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<li><a href='CreateManager'>CreateManager</a></li>");
             header.Append(Environment.NewLine);
-            header.Append("<li><a href='Contact.html'>Contacts</a></li>");
+            header.Append("<li><a href='Contact'>Contacts</a></li>");
             header.Append(Environment.NewLine);
-            header.Append("<li><a href='LogOut'><b>Entrance</b></a></li>");
+            header.Append("<li><a href='LogIn'><b>Entrance</b></a></li>");
             header.Append(Environment.NewLine);
             header.Append(" </ul>");
             header.Append(Environment.NewLine);
@@ -125,7 +125,7 @@ namespace Routing.Pages
             StringBuilder footer = new StringBuilder();
             footer.Append("<div class='footer'>");
             footer.Append(Environment.NewLine);
-            footer.Append("<p>Svetlana&Serg Corporation <br>Kiev 2015</p>");
+            footer.Append("<p id='footerSSC'>Svetlana&Serg Corporation <br>Kiev 2015</p>");
             footer.Append(Environment.NewLine);
             footer.Append("</div>");
             footer.Append(Environment.NewLine);
