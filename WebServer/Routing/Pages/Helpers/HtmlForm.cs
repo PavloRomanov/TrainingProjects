@@ -7,91 +7,55 @@ namespace Routing.Pages.Helpers
 {
     public class HtmlForm : HtmlBaseTag
     {
-        //public readonly RequestMethod _method;
-        //public readonly string _action;
         //public readonly List<HtmlBaseTag> _tags;
-        public readonly MyHashTable<string, string> _errors;
+        public readonly IDictionary<string, string> _errors;
 
-        public HtmlForm(RequestMethod method, string action, MyHashTable<string, string> errors = null)
-            : base("form")
+        public HtmlForm(RequestMethod method, string action, IDictionary<string, string> errors = null)
+            :base("form", null)
         {
             SetAttribut("method", method.ToString());
-            SetAttribut("action", action);
-            //_method = method;
-            //_action = action;
-            _errors = errors;
-            // _tags = new List<HtmlBaseTag>();
-
-            AddHtmlElement(new HtmlInput(InputType.Reset.ToString(), "", "clear"));
-            AddHtmlElement(new HtmlInput(InputType.Submit.ToString(), "", "submit"));
-            AddHtmlElement(new HtmlBaseTag("br"));
+            SetAttribut("action", action);            
+            _errors = errors;            
         }
 
-
-        public HtmlBaseTag AddTag(string name, string value = null, string text = null)
+        
+        public override HtmlBaseTag AddTag(string name, string text = null, string textlable  = null)
         {
-            HtmlLable lable = new HtmlLable(text);
-            AddHtmlElement(lable);
-            HtmlBaseTag tag = new HtmlBaseTag(name, value);
-            AddHtmlElement(tag);
-            return tag;
+            HtmlLable lable = new HtmlLable(textlable);
+            TagContent.Add(lable);
+            HtmlBaseTag tag = new HtmlBaseTag(name, text);
+            TagContent.Add(tag);
+             return this;
         }
 
-        public HtmlInput AddInput(string name, string value, InputType type, string text = null)
+       //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+        public HtmlInput AddInput(string name, string value, InputType type, string textlable = null)
         {
-            HtmlLable lable = new HtmlLable(text);
-            AddHtmlElement(lable);
-            HtmlInput input = new HtmlInput(type.ToString(), name, value);
-            AddHtmlElement(input);
+            HtmlLable lable = new HtmlLable(textlable);
+            TagContent.Add(lable);
+            HtmlInput input = new HtmlInput(type, name, value); 
+            TagContent.Add(input);
 
             return input;
         }
 
-        public HtmlSelect AddSelect(string name, MyHashTable<string, string> options, string text = null)
+        //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+        public HtmlSelect AddSelect(string name, IDictionary<string,string> options, string textlable = null)
         {
 
-            HtmlLable lable = new HtmlLable(text);
-            AddHtmlElement(lable);
+            HtmlLable lable = new HtmlLable(textlable);
+            TagContent.Add(lable);
             HtmlSelect select = new HtmlSelect(name, options);
 
-            AddHtmlElement(select);
-
+            TagContent.Add(select);
+            
             return select;
         }
 
-        public override string ToString()
-        {
-            return GetTag();
+        public string ToString(IDictionary<string, string> errors)
+        {            
+            return GetTag(errors);
         }
-
-        /*
-        public override string ToString()
-        {
-            StringBuilder begin = new StringBuilder(Environment.NewLine);
-            begin.Append("<form method='").Append(_method.ToString()).Append("' ");
-            begin.Append("action ='").Append(_action).Append("'>");
-            begin.Append(Environment.NewLine);
-
-            foreach (var tag in _tags)
-            {
-                begin.Append(tag.GetTag(_errors));
-                begin.Append("</br>");
-                begin.Append(Environment.NewLine);
-            }
-
-            begin.Append("</br>");
-            begin.Append(Environment.NewLine);
-            begin.Append(new HtmlInput(InputType.Reset.ToString(), "", "clear").GetTag());
-            begin.Append(Environment.NewLine);
-            begin.Append(Environment.NewLine);
-            begin.Append(new HtmlInput(InputType.Submit.ToString(), "", "submit").GetTag());
-            begin.Append(Environment.NewLine);
-            begin.Append("</form>");
-            begin.Append(Environment.NewLine);
-
-            return begin.ToString();
-        }
-        */
     }
 
     public enum RequestMethod

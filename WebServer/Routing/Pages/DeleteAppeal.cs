@@ -13,7 +13,7 @@ namespace Routing.Pages
     {
        
 
-        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
 
         Response response;

@@ -12,7 +12,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Client's List"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
 
             StringBuilder body = new StringBuilder();

@@ -1,6 +1,8 @@
 ﻿using CollectionLibrary;
 using System;
 using System.Text;
+using System.Collections.Generic;
+
 
 
 namespace Routing.Pages.Helpers
@@ -8,9 +10,9 @@ namespace Routing.Pages.Helpers
     public class HtmlSelect : HtmlBaseTag
     {
         private string _name;
-        private MyHashTable<string, string> _options;
+        private IDictionary<string, string> _options;
      
-        public HtmlSelect( string name, MyHashTable<string, string> options)
+        public HtmlSelect( string name, IDictionary<string, string> options)
            : base("select")
         {
             _name = name;// name select
@@ -18,7 +20,7 @@ namespace Routing.Pages.Helpers
             SetAttribut("name",_name);
           
         }
-        protected override string GetTagContent()
+        public override string GetTagContent()
         {
             StringBuilder bodyoption = new StringBuilder();
             bodyoption.Append(Environment.NewLine);

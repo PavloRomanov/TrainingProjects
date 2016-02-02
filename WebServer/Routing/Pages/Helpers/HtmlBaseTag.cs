@@ -8,44 +8,53 @@ namespace Routing.Pages.Helpers
     public  class HtmlBaseTag : IHtmlElement
     {
         private string _tagName;
+        private string _text = "";
+        private string _message = "";
         private MyHashTable<string, string> _attributes;
-        private List<IHtmlElement> _htmlElements;
+        private List<IHtmlElement> _tagContent;
 
-        public HtmlBaseTag(string tagName)
-            : this(tagName, null)
-        {
-
-        }
-
-        public HtmlBaseTag(string tagName, string tagContent = null)
+        public HtmlBaseTag(string tagName, string text = null)
         {
             _tagName = tagName;
+            if (text != null) _text = text;           
             _attributes = new MyHashTable<string, string>();
-            _htmlElements = new List<IHtmlElement>();
-            if(tagContent != null) _htmlElements.Add(new HtmlText(tagContent));
-        }       
+            _tagContent = new List<IHtmlElement>();
+        }      
 
         protected string TagName { get { return _tagName; } }
+        protected List<IHtmlElement> TagContent { get { return _tagContent; } }
 
-
-        protected virtual string GetTagContent()
+        public virtual HtmlBaseTag AddTag(HtmlBaseTag inerTag)
         {
-            StringBuilder tag = new StringBuilder();
-            
-            foreach(var element in _htmlElements)
+            _tagContent.Add(inerTag);
+            return inerTag;
+        }
+
+        public virtual HtmlBaseTag AddTag(string name, string text = null, string textlable = null)
+        {
+            HtmlBaseTag inerTag = new HtmlBaseTag(name, text);            
+            _tagContent.Add(inerTag);
+
+            return inerTag; 
+        }
+
+        public virtual string GetTagContent()
+        { 
+            if(_tagContent != null)
             {
-                tag.Append(element.GetTag());
+                StringBuilder content = new StringBuilder(Environment.NewLine);
+                foreach(var c in _tagContent)
+                {
+                    content.Append(c.GetTag()).Append(Environment.NewLine);
+                }
+                return content.ToString();
             }
-
-            return tag.ToString();
+            else
+        { 
+                return "";
+            }            
         }
-
-        public HtmlBaseTag AddHtmlElement(IHtmlElement element)
-        {
-            _htmlElements.Add(element);
-            return this;
-        }
-
+        
         public HtmlBaseTag SetAttribut(string attributName, string attributValue)
         {
             _attributes.Add(attributName, attributValue);
@@ -70,18 +79,23 @@ namespace Routing.Pages.Helpers
             }
         }
 
-        public string GetTag(MyHashTable<string, string> errors = null)
+        public string GetTag(IDictionary<string, string> errors = null)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);           
 
             tag.Append(Environment.NewLine);
             tag.Append("<").Append(TagName).Append(" ");
-            tag.Append(GetAttribut());
+
             tag.Append(ProcessingError(errors));
 
+            tag.Append(GetAttribut());
+
             tag.Append(">");
+            tag.Append(_text);
             tag.Append(GetTagContent());
             tag.Append(GetTagEnd());
+
+            tag.Append("<span style = 'color:red'>").Append(_message).Append("</span>");
 
             tag.Append(Environment.NewLine);
             return tag.ToString();
@@ -94,8 +108,13 @@ namespace Routing.Pages.Helpers
             return tag.ToString();
         }
         
-        protected virtual string ProcessingError(MyHashTable<string, string> errors)
+        protected virtual string ProcessingError(IDictionary<string, string> errors)
         {
+            if(errors != null && errors.ContainsKey(_tagName))
+        {
+                SetAttribut("style", "border-color:red");
+                _message = errors[_tagName];
+            }
             return "";
         }
         

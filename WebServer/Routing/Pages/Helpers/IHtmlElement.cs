@@ -1,9 +1,11 @@
 ﻿using CollectionLibrary;
+using System.Collections.Generic;
+
 
 namespace Routing.Pages.Helpers
 {
     public interface IHtmlElement
     {
-        string GetTag(MyHashTable<string, string> errors = null);
+        string GetTag(IDictionary<string, string> errors = null);
     }
 }

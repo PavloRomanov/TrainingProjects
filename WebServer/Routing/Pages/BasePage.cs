@@ -18,7 +18,7 @@ namespace Routing.Pages
 
         protected virtual string Script { get { return string.Empty; } }
 
-        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             StringBuilder answer = new StringBuilder();
             answer.Append(AddHeader());
@@ -116,7 +116,7 @@ namespace Routing.Pages
             return "";
         }
 
-        protected abstract string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null);
+        protected abstract string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null);
 
        
 

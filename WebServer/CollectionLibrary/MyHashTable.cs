@@ -5,7 +5,8 @@ using System.Collections.Generic;
 namespace CollectionLibrary
 {
     [Serializable]
-    public class MyHashTable<TKey, TValue> : IDictionary<TKey, TValue> where TKey : IComparable<TKey>
+    public class MyHashTable<TKey, TValue> : IDictionary<TKey, TValue>
+        where TKey : IComparable<TKey>
     {
         private MyKeyValuePair[] _hashTableArray;
         private int _count;
@@ -163,38 +164,32 @@ namespace CollectionLibrary
                 throw new NotSupportedException();
             if (key == null)
                 throw new ArgumentNullException();
-            if (ContainsKey(key))
-                throw new AggregateException();
+            
             if (_length < _count * 2)
                 Resize();
 
+            int hash = key.GetHashCode();
             MyKeyValuePair pair = new MyKeyValuePair(key, value);
-            int hash = Math.Abs(pair._Key.GetHashCode() % _length);
+            int index = Math.Abs(hash % _length);
             
-            /*for (int i = hash; i < _length; i++)
+            while(true)
             {
-                if (_hashTableArray[i] == null)
-                {
-                    _hashTableArray[i] = pair;
-                    _count++;
-                    return;
-                }
-            }*/           
-            var index = hash;
-            while (true)
-            {
-                if (_hashTableArray[index] == null)
+                if(_hashTableArray[index] == null)
                 {
                     _hashTableArray[index] = pair;
                     _count++;
-                    return;
+                    _version++;
+                   return;
                 }
-
-                index++;
-
+                else
+                {
+                    index++;
+                }
                 if (index >= _length)
-                    index = 0;
+                    index = 0;               
             }
+
+           
         }
 
         public void Clear()

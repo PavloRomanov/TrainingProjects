@@ -4,6 +4,7 @@ using Model.Servise;
 using System.Text;
 using CollectionLibrary;
 using Routing.Pages.Helpers;
+using System.Collections.Generic;
 
 namespace Routing.Pages
 {
@@ -11,7 +12,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Create Manager"; } }
 
-         protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+         protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
 
@@ -59,7 +60,7 @@ namespace Routing.Pages
             body.Append(Environment.NewLine);
             body.Append("<h2>Create Manager</h2>");
             body.Append(Environment.NewLine);
-            body.Append(htmlForm.ToString());
+            body.Append(htmlForm.ToString(errors));
             body.Append(Environment.NewLine);
 
             return body.ToString();

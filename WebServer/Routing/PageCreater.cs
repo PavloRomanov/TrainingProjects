@@ -11,7 +11,7 @@ namespace Routing
     public class PageCreater
     {
         private static readonly PageCreater instance = new PageCreater();
-        public IDictionary<string, IBasePage> pages;
+        public MyHashTable<string, IBasePage> pages;
         
         private PageCreater()
         {
@@ -36,9 +36,7 @@ namespace Routing
             pages.Add("CreateForm", new CreateForm());
             pages.Add("FormList", new FormList());
             pages.Add("DeleteForm", new DeleteForm());
-            pages.Add("ViewForm", new ViewForm());
             pages.Add("NotFoundError", new NotFoundError());
-
         }
 
         public static PageCreater Instance
@@ -64,12 +62,12 @@ namespace Routing
             return page;  
         }       
     
-        public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, string sessionId)/////////////////////////////3
+        public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, string sessionId)
         {
             IBasePage page;
             Response response;
 
-            /*if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
+            if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
             {                
                 User user = Session.Instance[sessionId];
                 if(user.Authorized)
@@ -93,19 +91,18 @@ namespace Routing
             }
             else
             {
-                //sessionId = Guid.NewGuid().ToString();
                 Session.Instance.Add(sessionId, new User());
                 page = FindPage("Index");
                 response = page.Get(param, sessionId);
                 response.SessionId = sessionId;
             }
 
-            if (path == "LogOut")
-                sessionId = null;*/
+            /*if (path == "LogOut")
+                sessionId = null;
 
                 page = FindPage(path);
 
-            response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
+            response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);*/
             
             return response; 
         }
