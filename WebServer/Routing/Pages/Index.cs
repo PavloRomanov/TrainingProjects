@@ -9,7 +9,7 @@ namespace Routing.Pages
 {
     public class Index : IBasePage
     {
-        public Response Get(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        public Response Get(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             StringBuilder page = new StringBuilder("<!DOCTYPE html>");
             page.Append(Environment.NewLine);

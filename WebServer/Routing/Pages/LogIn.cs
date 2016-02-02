@@ -5,6 +5,8 @@ using Routing.Pages.Helpers;
 using Model.Servise;
 using Model.Entity;
 using System.Configuration;
+using System.Collections.Generic;
+
 
 namespace Routing.Pages
 {
@@ -12,7 +14,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Log In"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
 
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
@@ -20,12 +22,16 @@ namespace Routing.Pages
             {
                 htmlForm.AddInput("login", form["login"], InputType.Text, "Enter login :");
                 htmlForm.AddInput("password", form["password"], InputType.Password, "Enter password :");
-                                
+                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Clean", "Clean"));
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+
             }
             else
             {
                 htmlForm.AddInput("login", "", InputType.Text, "Enter login :");
                 htmlForm.AddInput("password", "", InputType.Password, "Enter password :");
+                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Clean", "Clean"));
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
             }
 
             StringBuilder body = new StringBuilder("<body bgcolor='#5DCFC3'>");
@@ -34,7 +40,7 @@ namespace Routing.Pages
             body.Append(Environment.NewLine);
             body.Append(Environment.NewLine);
 
-            body.Append(htmlForm.ToString());
+            body.Append(htmlForm.ToString(errors));
 
             body.Append(Environment.NewLine);
 

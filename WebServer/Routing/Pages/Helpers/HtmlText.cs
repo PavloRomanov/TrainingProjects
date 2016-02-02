@@ -16,7 +16,7 @@ namespace Routing.Pages.Helpers
             _text = text;
         }
 
-        public string GetTag(MyHashTable<string, string> errors = null)
+        public string GetTag(IDictionary<string, string> errors = null)
         {
             return _text;
         }

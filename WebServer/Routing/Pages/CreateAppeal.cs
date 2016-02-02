@@ -19,7 +19,7 @@ namespace Routing.Pages
 
         protected override string Title { get { return "Create Appeal"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
 
@@ -89,7 +89,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Appeal</h1>");
-            body.Append(htmlForm.ToString());
+            body.Append(htmlForm.ToString(errors));
          
             return body.ToString();
         }

@@ -4,6 +4,8 @@ using Routing.Pages.Helpers;
 using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
+using System.Collections.Generic;
+
 
 namespace Routing.Pages
 {
@@ -33,7 +35,7 @@ namespace Routing.Pages
             return response;
         }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             

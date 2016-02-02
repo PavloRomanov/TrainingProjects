@@ -4,6 +4,7 @@ using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
 using Routing.Pages.Helpers;
+using System.Collections.Generic;
 
 namespace Routing.Pages
 {
@@ -11,29 +12,54 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Create Client"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {          
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             if(errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("name", form["name"], InputType.Text, "Name :");
-                htmlForm.AddInput("surname", form["surname"], InputType.Text, "Surname :");
-                htmlForm.AddInput("address", form["address"], InputType.Text, "Address :");
-                htmlForm.AddInput("phone", form["phone"], InputType.Text, "Phone :").SetAttribut("placeholder", "000-000-00-00");
+                htmlForm.AddTag("lable", "Name :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "name", form["name"]))
+                    .SetAttribut("maxlength", "15");
+
+                htmlForm.AddTag("lable", "Surname :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", form["surname"]))
+                    .SetAttribut("maxlength", "15");
+
+                htmlForm.AddTag("lable", "Address :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "address", form["address"]))
+                    .SetAttribut("maxlength", "50");
+
+                htmlForm.AddTag("lable", "Phone :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", form["phone"]))
+                    .SetAttribut("placeholder", "000-000-00-00");
+
+                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Сlean"));
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
             }
             else
             {
-                htmlForm.AddInput("name", "", InputType.Text, "Name :")
+                htmlForm.AddTag("lable", "Name :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "name", "" ))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("surname", "", InputType.Text, "Surname :")
+
+                htmlForm.AddTag("lable", "Surname :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
-                htmlForm.AddInput("address", "", InputType.Text, "Address :")
+
+                htmlForm.AddTag("lable", "Address :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "address", ""))
                     .SetAttribut("maxlength", "50")
-                    .SetAttribut("placeholder", "max length of 50 characters"); 
-                htmlForm.AddInput("phone", "", InputType.Text, "Phone :").SetAttribut("placeholder", "000-000-00-00");
-            }
+                    .SetAttribut("placeholder", "max length of 50 characters");
+
+                htmlForm.AddTag("lable", "Phone :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", ""))
+                    .SetAttribut("placeholder", "000-000-00-00");
+
+            htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Сlean"));
+            htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+           }
             
 
             StringBuilder body = new StringBuilder();
@@ -42,7 +68,7 @@ namespace Routing.Pages
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Client</h1>");
             body.Append(Environment.NewLine);           
-            body.Append(htmlForm.ToString());
+            body.Append(htmlForm.ToString(errors));
             body.Append(Environment.NewLine);                    
 
             return body.ToString();
@@ -52,7 +78,7 @@ namespace Routing.Pages
         public override Response Post(MyHashTable<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
-            MyHashTable<string, string> errors = new MyHashTable<string, string>();
+            IDictionary<string, string> errors = new Dictionary<string, string>();
 
             if (!vh.LikeName(form["name"]))
             {

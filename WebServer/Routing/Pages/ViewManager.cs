@@ -11,7 +11,7 @@ namespace Routing.Pages
 {
     public class ViewManager : BasePage
     {
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             StringBuilder body = new StringBuilder("<body bgcolor='#EE8c00'>");

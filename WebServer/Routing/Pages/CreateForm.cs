@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
 using CollectionLibrary;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,20 +10,16 @@ using Routing.Pages.Helpers;
 namespace Routing.Pages
 {
    public class CreateForm : BasePage
-    {
-        public CreateForm()
-            : base()
-        {
-
-        }
+    {      
         protected override string Title { get { return "Form client's"; } }
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, MyHashTable<string, string> errors = null)
+
+        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateForm", errors);
             htmlForm.AddTag("p", "Name client:");
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
-            MyHashTable<string,string> formclient = new MyHashTable<string, string>();
+            IDictionary<string,string> formclient = new MyHashTable<string, string>();
             foreach (var c in clients)
             {
                 var temp1 = c.Value.Name + " " + c.Value.Surname;
@@ -120,7 +116,7 @@ namespace Routing.Pages
 
             StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");          
             body.Append(Environment.NewLine);
-            body.Append(htmlForm.ToString());
+            body.Append(htmlForm.ToString(errors));
             return body.ToString();
         }
 
@@ -161,15 +157,16 @@ namespace Routing.Pages
                 }
                 FormServiсe formser = new FormServiсe("forms.txt");
                 formser.Add(formclient);
+                response = new Response("", TypeOfAnswer.Redirection, "FormList");
             }
             catch (Exception ex)
             {
                 response = new Response("", TypeOfAnswer.ServerError, "");
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message );
                 return response;
             }
 
-            response = new Response("", TypeOfAnswer.Redirection, "FormList");
+           // response = new Response("", TypeOfAnswer.Redirection, "FormList");
 
             return response;
         }

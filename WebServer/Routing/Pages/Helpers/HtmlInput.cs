@@ -7,15 +7,15 @@ namespace Routing.Pages.Helpers
     public class HtmlInput : HtmlBaseTag
     {
        
-        public HtmlInput(string type, string name, string value)
+        public HtmlInput(InputType type, string name, string value)
         : base("input")
         {
-            SetAttribut("type", type);
+            SetAttribut("type", type.ToString());
             SetAttribut("name", name);
             SetAttribut("value", value);            
         }
      
-        protected override string ProcessingError(MyHashTable<string, string> errors)
+        /*protected override string ProcessingError(MyHashTable<string, string> errors)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);
             if (errors != null)
@@ -30,7 +30,7 @@ namespace Routing.Pages.Helpers
                 return tag.ToString();
             }
                 return "";
-        }
+        }*/
 
 
     }
