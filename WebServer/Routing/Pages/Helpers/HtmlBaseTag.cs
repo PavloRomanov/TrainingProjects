@@ -12,7 +12,7 @@ namespace Routing.Pages.Helpers
         private string _message = "";
         private MyHashTable<string, string> _attributes;
         private List<IHtmlElement> _tagContent;
-        
+
         public HtmlBaseTag(string tagName, string text = null)
         {
             _tagName = tagName;
@@ -50,7 +50,7 @@ namespace Routing.Pages.Helpers
                 return content.ToString();
             }
             else
-            {
+        { 
                 return "";
             }            
         }
@@ -88,7 +88,7 @@ namespace Routing.Pages.Helpers
 
             tag.Append(ProcessingError(errors));
 
-            tag.Append(GetAttribut());           
+            tag.Append(GetAttribut());
 
             tag.Append(">");
             tag.Append(_text);
@@ -111,7 +111,7 @@ namespace Routing.Pages.Helpers
         protected virtual string ProcessingError(IDictionary<string, string> errors)
         {
             if(errors != null && errors.ContainsKey(_tagName))
-            {
+        {
                 SetAttribut("style", "border-color:red");
                 _message = errors[_tagName];
             }

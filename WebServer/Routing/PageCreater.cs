@@ -35,7 +35,7 @@ namespace Routing
             pages.Add("DeleteAppeal", new DeleteAppeal());
             pages.Add("CreateForm", new CreateForm());
             pages.Add("FormList", new FormList());
-            pages.Add("DeleteForm", new DeleteForm());            
+            pages.Add("DeleteForm", new DeleteForm());
             pages.Add("NotFoundError", new NotFoundError());
         }
 
@@ -91,7 +91,6 @@ namespace Routing
             }
             else
             {
-                //sessionId = Guid.NewGuid().ToString();
                 Session.Instance.Add(sessionId, new User());
                 page = FindPage("Index");
                 response = page.Get(param, sessionId);

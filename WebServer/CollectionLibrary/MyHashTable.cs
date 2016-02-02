@@ -179,15 +179,17 @@ namespace CollectionLibrary
                     _hashTableArray[index] = pair;
                     _count++;
                     _version++;
-                    break;
+                   return;
                 }
                 else
                 {
                     index++;
                 }
-                if (index >= _hashTableArray.Length)
+                if (index >= _length)
                     index = 0;               
-            }          
+            }
+
+           
         }
 
         public void Clear()
