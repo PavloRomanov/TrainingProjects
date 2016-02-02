@@ -19,7 +19,7 @@ namespace Routing.Pages
 
         protected override string Title { get { return "Create Appeal"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
 
@@ -34,7 +34,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("p", "Client:");
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 HashDictionary<Guid, Client> clients = cs.GetAll();
-                MyHashTable<string,string> optionsclient = new MyHashTable<string, string>();
+                CollectionLibrary.IDictionary<string,string> optionsclient = new CollectionLibrary.IDictionary<string, string>();
                 foreach (var c in clients)
                 {
                     var fullnameclient = c.Value.Name + " " + c.Value.Surname;
@@ -45,7 +45,7 @@ namespace Routing.Pages
                 //--------------------------------------------------------------
 
                 htmlForm.AddTag("p", "The reason for petition:");
-                MyHashTable<string, string> optionsappeal = new MyHashTable<string, string>();
+                CollectionLibrary.IDictionary<string, string> optionsappeal = new CollectionLibrary.IDictionary<string, string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
                 foreach (var v in appeals )
                 {
@@ -75,7 +75,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("p", "Serviced manager:");
                 ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
-                MyHashTable<string, string> optionsmanager = new MyHashTable<string, string>();
+                CollectionLibrary.IDictionary<string, string> optionsmanager = new CollectionLibrary.IDictionary<string, string>();
                
                 foreach (var man in managers)
                 {
@@ -96,7 +96,7 @@ namespace Routing.Pages
 
 
 
-        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try

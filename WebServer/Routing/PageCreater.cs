@@ -11,11 +11,11 @@ namespace Routing
     public class PageCreater
     {
         private static readonly PageCreater instance = new PageCreater();
-        public MyHashTable<string, IBasePage> pages;
+        public CollectionLibrary.IDictionary<string, IBasePage> pages;
         
         private PageCreater()
         {
-            pages = new MyHashTable<string, IBasePage>();
+            pages = new CollectionLibrary.IDictionary<string, IBasePage>();
             pages.Add("Index", new Index());
             pages.Add("CreateClient", new CreateClient());
             pages.Add("DeleteClient", new DeleteClient());
@@ -62,7 +62,7 @@ namespace Routing
             return page;  
         }       
     
-        public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, string sessionId)
+        public Response PrepareResponse(string path, string method, System.Collections.Generic.IDictionary<string, string> param, string sessionId)
         {
             IBasePage page;
             Response response;

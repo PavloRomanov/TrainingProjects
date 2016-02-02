@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CollectionLibrary;
+
 
 namespace Routing.Pages
 {
@@ -9,7 +9,7 @@ namespace Routing.Pages
         private string content;
         private TypeOfAnswer statusAnswer;
         private string location = "";
-        public MyHashTable<string, string> Cookie { get; set; }
+        public IDictionary<string, string> Cookie { get; set; }
         public string SessionId { get; set; }
 
         public Response(string answer, TypeOfAnswer statuc, string location)

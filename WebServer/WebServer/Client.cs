@@ -4,12 +4,8 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
 using Routing;
 using Routing.Pages;
-using CollectionLibrary;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
 
 namespace WebServer
@@ -25,11 +21,11 @@ namespace WebServer
                 var requestString = GetRequest(stream);
 
                 RequestParser parser = new RequestParser(requestString);
-                MyHashTable<string, string> request = parser.Parse();
+                System.Collections.Generic.IDictionary<string, string> request = parser.Parse();
 
-                MyHashTable<string, string> cookies = parser.Cookies;
+                System.Collections.Generic.IDictionary<string, string> cookies = parser.Cookies;
 
-                MyHashTable<string, string> param = parser.Form;
+                System.Collections.Generic.IDictionary<string, string> param = parser.Form;
 
                 string startLine = parser.StartLine;
 
@@ -150,7 +146,7 @@ namespace WebServer
         }
 
         
-        private static string GetResponse(string path, string method, MyHashTable<string, string> param, MyHashTable<string, string> cookies)
+        private static string GetResponse(string path, string method, System.Collections.Generic.IDictionary<string, string> param, System.Collections.Generic.IDictionary<string, string> cookies)
         {
             string sessionId;
             PageCreater pageCreater = PageCreater.Instance;

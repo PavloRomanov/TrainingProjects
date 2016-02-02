@@ -13,7 +13,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Appeal's List"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             StringBuilder body = new StringBuilder();
             try
@@ -81,7 +81,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }     
