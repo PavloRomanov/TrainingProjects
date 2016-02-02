@@ -171,7 +171,7 @@ namespace CollectionLibrary
             MyKeyValuePair pair = new MyKeyValuePair(key, value);
             int hash = Math.Abs(pair._Key.GetHashCode() % _length);
             
-            for (int i = hash; i < _length; i++)
+            /*for (int i = hash; i < _length; i++)
             {
                 if (_hashTableArray[i] == null)
                 {
@@ -179,9 +179,7 @@ namespace CollectionLibrary
                     _count++;
                     return;
                 }
-            }
-
-            /*
+            }*/           
             var index = hash;
             while (true)
             {
@@ -197,7 +195,6 @@ namespace CollectionLibrary
                 if (index >= _length)
                     index = 0;
             }
-            */
         }
 
         public void Clear()

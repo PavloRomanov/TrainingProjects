@@ -11,7 +11,7 @@ namespace Routing
     public class PageCreater
     {
         private static readonly PageCreater instance = new PageCreater();
-        public MyHashTable<string, IBasePage> pages;
+        public IDictionary<string, IBasePage> pages;
         
         private PageCreater()
         {
@@ -64,12 +64,12 @@ namespace Routing
             return page;  
         }       
     
-        public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, string sessionId)
+        public Response PrepareResponse(string path, string method, MyHashTable<string, string> param, string sessionId)/////////////////////////////3
         {
             IBasePage page;
             Response response;
 
-            if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
+            /*if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
             {                
                 User user = Session.Instance[sessionId];
                 if(user.Authorized)
@@ -100,12 +100,12 @@ namespace Routing
                 response.SessionId = sessionId;
             }
 
-            /*if (path == "LogOut")
-                sessionId = null;
+            if (path == "LogOut")
+                sessionId = null;*/
 
                 page = FindPage(path);
 
-            response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);*/
+            response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
             
             return response; 
         }

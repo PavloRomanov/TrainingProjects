@@ -28,9 +28,10 @@ namespace Routing.Pages.Helpers
         }
 
 
-        public HtmlBaseTag AddTag(string name, string value = null)
+        public HtmlBaseTag AddTag(string name, string value = null, string text = null)
         {
-
+            HtmlLable lable = new HtmlLable(text);
+            AddHtmlElement(lable);
             HtmlBaseTag tag = new HtmlBaseTag(name, value);
             AddHtmlElement(tag);
             return tag;
@@ -46,8 +47,11 @@ namespace Routing.Pages.Helpers
             return input;
         }
 
-        public HtmlSelect AddSelect(string name, MyHashTable<string, string> options)
+        public HtmlSelect AddSelect(string name, MyHashTable<string, string> options, string text = null)
         {
+
+            HtmlLable lable = new HtmlLable(text);
+            AddHtmlElement(lable);
             HtmlSelect select = new HtmlSelect(name, options);
 
             AddHtmlElement(select);
