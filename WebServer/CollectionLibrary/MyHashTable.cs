@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace CollectionLibrary
 {
     [Serializable]
-    public class IDictionary<TKey, TValue> : System.Collections.Generic.IDictionary<TKey, TValue>
+    public class MyHashTable<TKey, TValue> : IDictionary<TKey, TValue>
         where TKey : IComparable<TKey>
     {
         private MyKeyValuePair[] _hashTableArray;
@@ -35,7 +35,7 @@ namespace CollectionLibrary
             }
         }
 
-        public IDictionary()
+        public MyHashTable()
         {
             _hashTableArray = new MyKeyValuePair[40];
             _count = 0;
@@ -279,13 +279,13 @@ namespace CollectionLibrary
 
         private class HashTableEnumerator : IEnumerator<KeyValuePair<TKey, TValue>>
         {
-            private IDictionary<TKey, TValue> _hashTable;
+            private MyHashTable<TKey, TValue> _hashTable;
             private int _versionEnumerator;
             private KeyValuePair<TKey, TValue> _currentPair;
             private int _currentIndex;
             private bool _moveNext;
 
-            public HashTableEnumerator(IDictionary<TKey, TValue> hashTable)
+            public HashTableEnumerator(MyHashTable<TKey, TValue> hashTable)
             {
                 _hashTable = hashTable;
                 _versionEnumerator = hashTable._version;

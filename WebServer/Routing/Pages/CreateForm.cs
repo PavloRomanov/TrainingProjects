@@ -19,7 +19,7 @@ namespace Routing.Pages
             htmlForm.AddTag("lable", "Name client:");
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
-            System.Collections.Generic.IDictionary<string,string> formclient = new CollectionLibrary.IDictionary<string, string>();
+            System.Collections.Generic.IDictionary<string,string> formclient = new CollectionLibrary.MyHashTable<string, string>();
             foreach (var c in clients)
             {
                 var temp1 = c.Value.Name + " " + c.Value.Surname;
@@ -111,7 +111,7 @@ namespace Routing.Pages
             htmlForm.AddTag("p", "Filled manager:");
             ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
-            CollectionLibrary.IDictionary<string,string> formmanager = new CollectionLibrary.IDictionary<string, string>();
+            CollectionLibrary.MyHashTable<string,string> formmanager = new CollectionLibrary.MyHashTable<string, string>();
            
             foreach (var man in managers)
             {

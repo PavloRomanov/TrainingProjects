@@ -35,7 +35,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 HashDictionary<Guid, Client> clients = cs.GetAll();
-                CollectionLibrary.IDictionary<string,string> optionsclient = new CollectionLibrary.IDictionary<string, string>();
+                CollectionLibrary.MyHashTable<string,string> optionsclient = new CollectionLibrary.MyHashTable<string, string>();
                 foreach (var c in clients)
                 {
                     var fullnameclient = c.Value.Name + " " + c.Value.Surname;
@@ -48,7 +48,7 @@ namespace Routing.Pages
 
                 htmlForm.AddTag("lable", "The reason for petition:");
 
-                CollectionLibrary.IDictionary<string, string> optionsappeal = new CollectionLibrary.IDictionary<string, string>();
+                CollectionLibrary.MyHashTable<string, string> optionsappeal = new CollectionLibrary.MyHashTable<string, string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
                 foreach (var v in appeals )
                 {
@@ -85,7 +85,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("lable", "Serviced manager:");
                 ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
-                CollectionLibrary.IDictionary<string, string> optionsmanager = new CollectionLibrary.IDictionary<string, string>();
+                CollectionLibrary.MyHashTable<string, string> optionsmanager = new CollectionLibrary.MyHashTable<string, string>();
                
                 foreach (var man in managers)
                 {

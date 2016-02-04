@@ -1,5 +1,6 @@
 ﻿using System;
 using CollectionLibrary;
+using System.Collections.Generic;
 
 namespace Routing
 {
@@ -11,7 +12,7 @@ namespace Routing
 
         private Session()
         {
-            _registerSessions = new IDictionary<string, User>();
+            _registerSessions = new Dictionary<string, User>();
         }        
 
         public static Session Instance

@@ -11,11 +11,11 @@ namespace Routing
     public class PageCreater
     {
         private static readonly PageCreater instance = new PageCreater();
-        public CollectionLibrary.IDictionary<string, IBasePage> pages;
+        public CollectionLibrary.MyHashTable<string, IBasePage> pages;
         
         private PageCreater()
         {
-            pages = new CollectionLibrary.IDictionary<string, IBasePage>();
+            pages = new CollectionLibrary.MyHashTable<string, IBasePage>();
             pages.Add("Index", new Index());
             pages.Add("CreateClient", new CreateClient());
             pages.Add("DeleteClient", new DeleteClient());

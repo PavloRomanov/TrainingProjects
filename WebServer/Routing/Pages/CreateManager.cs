@@ -16,7 +16,7 @@ namespace Routing.Pages
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
 
-            CollectionLibrary.IDictionary<string, string> options = new CollectionLibrary.IDictionary<string, string>();
+            CollectionLibrary.MyHashTable<string, string> options = new CollectionLibrary.MyHashTable<string, string>();
             options.Add("1", "1 years");
             options.Add("3", "3 years");
             options.Add("5", "5 years");
@@ -111,7 +111,7 @@ namespace Routing.Pages
         public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
-            CollectionLibrary.IDictionary<string, string> errors = new CollectionLibrary.IDictionary<string, string>();
+            CollectionLibrary.MyHashTable<string, string> errors = new CollectionLibrary.MyHashTable<string, string>();
 
             if (!vh.LikeName(form["name"]))
             {

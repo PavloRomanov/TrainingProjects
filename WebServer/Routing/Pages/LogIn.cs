@@ -64,7 +64,7 @@ namespace Routing.Pages
             Response response;
             try
             {
-                CollectionLibrary.IDictionary<string, string> errors = new CollectionLibrary.IDictionary<string, string>();
+                CollectionLibrary.MyHashTable<string, string> errors = new CollectionLibrary.MyHashTable<string, string>();
                 ManagerService ms = new ManagerService("manager.txt");
                 Manager manager;
 
@@ -86,7 +86,7 @@ namespace Routing.Pages
                     errors.Add("login", "User with such login does not exist!");                    
                     response = this.Get(form, sessionId, errors);
                 }
-                    else if (manager.Password != form["password"])
+                else if (manager.Password != form["password"])
                 {
                     errors.Add("password", "Password is wrong!");
                     response = this.Get(form, sessionId, errors);
