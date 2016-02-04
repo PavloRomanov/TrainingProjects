@@ -49,6 +49,10 @@ div.footer{
  background-color:yellow;
 }
 
+input.error {
+    border: 1px solid red;
+}
+
 h3{
     color: blue;
 }

@@ -22,9 +22,8 @@ namespace Routing.Pages
         {
             StringBuilder answer = new StringBuilder();
             answer.Append(AddHeader());
-            answer.Append(AddBody(form, sessionId, errors));
-            answer.Append(AddFooter());
-            answer.Append(AddScript());            
+            answer.Append(AddBody(form, sessionId, errors));            
+            answer.Append(AddFooter());            
             Response response = new Response(answer.ToString(), TypeOfAnswer.Success, "");
             return response;
         }
@@ -130,6 +129,8 @@ namespace Routing.Pages
             footer.Append(Environment.NewLine);
             footer.Append("</div>");
             footer.Append(Environment.NewLine);
+            footer.Append(AddScript());
+            footer.Append(Environment.NewLine);
             footer.Append("</body>");
             footer.Append(Environment.NewLine);
             footer.Append("</html>");
@@ -137,7 +138,7 @@ namespace Routing.Pages
         }
 
         protected virtual string AddScript()
-        {
+        {            
             return "";
         }
 

@@ -64,6 +64,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\JavaScriptForClient.js" />
     <Content Include="files\Provider.jpg" />
     <Content Include="files\TabStyle.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

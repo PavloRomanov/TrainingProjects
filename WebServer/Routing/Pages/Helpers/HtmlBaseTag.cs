@@ -10,14 +10,14 @@ namespace Routing.Pages.Helpers
         private string _tagName;
         private string _text = "";
         private string _message = "";
-        private IDictionary<string, string> _attributes;
+        private Dictionary<string, string> _attributes;
         private List<HtmlBaseTag> _tagContent;
 
         public HtmlBaseTag(string tagName, string text = null)
         {
             _tagName = tagName;
             if (text != null) _text = text;
-            _attributes = new CollectionLibrary.IDictionary<string, string>();
+            _attributes = new Dictionary<string, string>();
             _tagContent = new List<HtmlBaseTag>();
         }      
 
