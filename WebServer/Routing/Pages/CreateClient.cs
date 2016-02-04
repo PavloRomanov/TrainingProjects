@@ -14,7 +14,7 @@ namespace Routing.Pages
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {          
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
-           // htmlForm.SetAttribut("novalidate", "novalidate");
+            htmlForm.SetAttribut("novalidate", "novalidate");
             if(errors != null && errors.Count > 0)
             {
                 HtmlBaseTag div1 = htmlForm.AddTag("div");
@@ -80,7 +80,7 @@ namespace Routing.Pages
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required");
-                div1.AddTag("span").SetAttribut("id", "1");
+                div1.AddTag("span").SetAttribut("id", "s1");
                 div1.AddTag("br");
 
                 HtmlBaseTag div2 = htmlForm.AddTag("div");
@@ -90,7 +90,7 @@ namespace Routing.Pages
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required");
-                div2.AddTag("span").SetAttribut("id", "2");
+                div2.AddTag("span").SetAttribut("id", "s2");
                 div2.AddTag("br");
 
                 HtmlBaseTag div3 = htmlForm.AddTag("div");
@@ -99,7 +99,7 @@ namespace Routing.Pages
                 div3.AddTag(new HtmlInput(InputType.Text, "address", ""))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
-                div3.AddTag("span").SetAttribut("id", "3");
+                div3.AddTag("span").SetAttribut("id", "s3");
                 div3.AddTag("br");
 
                 HtmlBaseTag div4 = htmlForm.AddTag("div");
@@ -108,12 +108,14 @@ namespace Routing.Pages
                 div4.AddTag(new HtmlInput(InputType.Text, "phone", ""))
                     .SetAttribut("placeholder", "000-000-00-00")
                     .SetAttribut("required", "required");
-                div4.AddTag("span").SetAttribut("id", "4");
+                div4.AddTag("span").SetAttribut("id", "s4");
                 div4.AddTag("br");
 
                 HtmlBaseTag div5 = htmlForm.AddTag("div");
                 div5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-                div5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));                
+                div5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+                div5.AddTag(new HtmlInput(InputType.Button, "Click", "Click"))
+                    .SetAttribut("onclick", "writeText()");
             }
             
 

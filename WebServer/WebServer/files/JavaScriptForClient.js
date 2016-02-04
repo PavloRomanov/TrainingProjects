@@ -1,12 +1,16 @@
 ﻿
 window.onload = function Func() {
 
-    document.getElementById("ppp").innerHTML = "It works!!!!";   
+    //document.getElementById("ppp").innerHTML = "It works!!!!";   
    
 }
 
+function writeText() {
+    document.getElementById("ppp").innerHTML = "It works!!!!";
+}
+
 function FormIsValid() {
-    var elements = document.getElementsByTagName(name);
+    var elements = document.getElementsByTagName("input");
 
     var inputs = [];
 
@@ -21,7 +25,8 @@ function FormIsValid() {
                 inputs[i].setAttribute("style", "border: 1px solid red;");
                 // inputs[i].setAttribute("class", "error");
                 //inputs[i].class = "error";
-                document.getElementById(i).innerHTML = "This input is required";
+
+                document.getElementById("s" + (i + 1)).innerHTML = "This input is required";
             }
         }
         return false
@@ -78,3 +83,4 @@ function btnClick() {
         case4 = true;
     }
     return (case1 && case2 && case3 && case4);*/
+
