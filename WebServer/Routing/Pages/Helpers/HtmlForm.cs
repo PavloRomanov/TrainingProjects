@@ -21,32 +21,18 @@ namespace Routing.Pages.Helpers
         }
 
         
-        public override HtmlBaseTag AddTag(string name, string text = null, string textlable  = null)
+        public override HtmlBaseTag AddTag(string name, string text = null)
         {
-            HtmlLable lable = new HtmlLable(textlable);
-            TagContent.Add(lable);
+           
             HtmlBaseTag tag = new HtmlBaseTag(name, text);
             TagContent.Add(tag);
              return tag;
         }
 
-       //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-        public HtmlInput AddInput(string name, string value, InputType type, string textlable = null)
-        {
-            HtmlLable lable = new HtmlLable(textlable);
-            TagContent.Add(lable);
-            HtmlInput input = new HtmlInput(type, name, value); 
-            TagContent.Add(input);
-
-            return input;
-        }
-
         //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-        public HtmlSelect AddSelect(string name, IDictionary<string,string> options, string textlable = null)
+        public HtmlSelect AddSelect(string name, IDictionary<string,string> options)
         {
 
-            HtmlLable lable = new HtmlLable(textlable);
-            TagContent.Add(lable);
             HtmlSelect select = new HtmlSelect(name, options);
 
             TagContent.Add(select);

@@ -31,7 +31,7 @@ namespace Routing.Pages.Helpers
             return inerTag;
         }
 
-        public virtual HtmlBaseTag AddTag(string name, string text = null, string textlable = null)
+        public virtual HtmlBaseTag AddTag(string name, string text = null)
         {
             HtmlBaseTag inerTag = new HtmlBaseTag(name, text);            
             _tagContent.Add(inerTag);
@@ -118,7 +118,10 @@ namespace Routing.Pages.Helpers
             }
             return "";
         }
-        
+        protected virtual string AddScript()
+        {
+            return "";
+        }
 
     }
 }

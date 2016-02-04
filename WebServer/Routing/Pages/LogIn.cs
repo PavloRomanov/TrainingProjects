@@ -20,16 +20,27 @@ namespace Routing.Pages
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
             if (errors != null && errors.Count > 0)
             {
-                htmlForm.AddInput("login", form["login"], InputType.Text, "Enter login :");
-                htmlForm.AddInput("password", form["password"], InputType.Password, "Enter password :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Enter login :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "login", form["login"]));
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Enter password :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(InputType.Password, "password", form["password"]));
+                htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Reset, "Clean", "Clean"));
                 htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
-
+                htmlForm.AddTag("br");
             }
             else
             {
-                htmlForm.AddInput("login", "admin", InputType.Text, "Enter login :");
-                htmlForm.AddInput("password", "admin", InputType.Password, "Enter password :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Enter login :");
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "login", "admin"));
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Enter password :");
+                htmlForm.AddTag(new HtmlInput(InputType.Password, "password", "admin"));
+                htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Reset, "Clean", "Clean"));
                 htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
             }

@@ -47,6 +47,8 @@ namespace Routing.Pages
              header.Append(Environment.NewLine);
             header.Append("<link rel='stylesheet' href='TabStyle.css' type='text/css'/>");
             header.Append(Environment.NewLine);
+            header.Append("<script src='Scriptfooter.js'>").Append("</script>");//=====================
+            header.Append(Environment.NewLine);
             header.Append("<title>");
             header.Append("CMS - ").Append(Title);
             header.Append("</title>");

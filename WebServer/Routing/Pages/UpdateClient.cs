@@ -47,13 +47,13 @@ namespace Routing.Pages
                 Client client = cs.GetElement(id);
 
                 HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "UpdateClient", errors);
-                htmlForm.AddInput("id", client.Id.ToString(), InputType.Hidden);
-                htmlForm.AddInput("name", "", InputType.Text);
-                htmlForm.AddInput("surname", "", InputType.Text);
-                htmlForm.AddInput("address", "", InputType.Text);
-                htmlForm.AddInput("phone", "", InputType.Text);
+                htmlForm.AddTag(new HtmlInput(InputType.Hidden, "id", client.Id.ToString()));
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "name", ""));
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", ""));
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "address", ""));
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", ""));
 
-                StringBuilder body = new StringBuilder("<body>");
+                StringBuilder body = new StringBuilder();
                 body.Append("<form method='POST' action='UpdateClient'>");
                 body.Append(Environment.NewLine);
 
