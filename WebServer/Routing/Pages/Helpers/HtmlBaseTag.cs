@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using CollectionLibrary;
+
 using System.Collections.Generic;
 
 namespace Routing.Pages.Helpers
@@ -10,19 +10,20 @@ namespace Routing.Pages.Helpers
         private string _tagName;
         private string _text = "";
         private string _message = "";
-        private MyHashTable<string, string> _attributes;
-        private List<IHtmlElement> _tagContent;
+        private IDictionary<string, string> _attributes;
+        private List<HtmlBaseTag> _tagContent;
 
         public HtmlBaseTag(string tagName, string text = null)
         {
             _tagName = tagName;
-            if (text != null) _text = text;           
-            _attributes = new MyHashTable<string, string>();
-            _tagContent = new List<IHtmlElement>();
+            if (text != null) _text = text;
+            _attributes = new CollectionLibrary.IDictionary<string, string>();
+            _tagContent = new List<HtmlBaseTag>();
         }      
 
         protected string TagName { get { return _tagName; } }
-        protected List<IHtmlElement> TagContent { get { return _tagContent; } }
+        protected List<HtmlBaseTag> TagContent { get { return _tagContent; } }
+
 
         public virtual HtmlBaseTag AddTag(HtmlBaseTag inerTag)
         {
@@ -79,14 +80,14 @@ namespace Routing.Pages.Helpers
             }
         }
 
-        public string GetTag(IDictionary<string, string> errors = null)
+        public string GetTag(System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);           
 
             tag.Append(Environment.NewLine);
             tag.Append("<").Append(TagName).Append(" ");
 
-            tag.Append(ProcessingError(errors));
+            //tag.Append(ProcessingError(errors));
 
             tag.Append(GetAttribut());
 
@@ -95,7 +96,7 @@ namespace Routing.Pages.Helpers
             tag.Append(GetTagContent());
             tag.Append(GetTagEnd());
 
-            tag.Append("<span style = 'color:red'>").Append(_message).Append("</span>");
+            //tag.Append("<span style = 'color:red'>").Append(_message).Append("</span>");
 
             tag.Append(Environment.NewLine);
             return tag.ToString();
@@ -108,7 +109,7 @@ namespace Routing.Pages.Helpers
             return tag.ToString();
         }
         
-        protected virtual string ProcessingError(IDictionary<string, string> errors)
+        protected virtual string ProcessingError(System.Collections.Generic.IDictionary<string, string> errors)
         {
             if(errors != null && errors.ContainsKey(_tagName))
         {

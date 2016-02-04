@@ -1,5 +1,6 @@
 ﻿using System;
-using CollectionLibrary;
+using System.Collections.Generic;
+//using CollectionLibrary;
 
 namespace Routing
 {
@@ -12,9 +13,9 @@ namespace Routing
         private string path;
         private string formParameters;        
         private string[] AllRequestLine;
-        private MyHashTable<string, string> cookies;
-        private MyHashTable<string, string> requeste;
-        private MyHashTable<string, string> form;
+        private Dictionary<string, string> cookies;
+        private Dictionary<string, string> requeste;
+        private Dictionary<string, string> form;
 
         public string StartLine { get { return startLine; } }
 
@@ -22,9 +23,9 @@ namespace Routing
 
         public string Method { get { return method; } }
 
-        public MyHashTable<string, string> Form { get { return form; } }
+        public Dictionary<string, string> Form { get { return form; } }
 
-        public MyHashTable<string, string> Cookies { get { return cookies; } }
+        public Dictionary<string, string> Cookies { get { return cookies; } }
 
         public RequestParser(string requestString)
         {
@@ -33,9 +34,9 @@ namespace Routing
             startLine = AllRequestLine[0];            
         }      
 
-        public MyHashTable<string, string> Parse()
+        public Dictionary<string, string> Parse()
         {
-            requeste = new MyHashTable<string, string>();
+            requeste = new Dictionary<string, string>();
 
             method = startLine.Substring(0, AllRequestLine[0].IndexOf(' '));
             requeste.Add("method", method);
@@ -111,7 +112,7 @@ namespace Routing
 
         private void SplitCookies()
         {
-            cookies = new MyHashTable<string, string>();
+            cookies = new Dictionary<string, string>();
             string cookiesString;
             if (requeste.ContainsKey("Cookie"))
             {
@@ -138,7 +139,7 @@ namespace Routing
 
         private void GetForm()
         {
-            form = new MyHashTable<string, string>();
+            form = new Dictionary<string, string>();
             formParameters = FetchFormParameters();
             if (formParameters != "")
             {
@@ -156,11 +157,11 @@ namespace Routing
             }
         }
 
-        private MyHashTable<string, string> SplitFormParameters()
+        private Dictionary<string, string> SplitFormParameters()
         {
             if (formParameters != "" || formParameters != null)
             {
-                form = new MyHashTable<string, string>();
+                form = new Dictionary<string, string>();
                 string[] parameters = formParameters.Split('&');
                 string[] temp;
                 foreach (var param in parameters)

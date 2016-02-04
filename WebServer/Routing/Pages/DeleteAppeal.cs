@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CollectionLibrary;
+//using CollectionLibrary;
 using Model.Servise;
 using Routing.Pages;
 
@@ -13,7 +13,7 @@ namespace Routing.Pages
     {
        
 
-        public Response Get(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        public Response Get(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
 
         Response response;
@@ -32,7 +32,7 @@ namespace Routing.Pages
             return new Response("", TypeOfAnswer.Redirection, "AppealList");
 
         }
-        public Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

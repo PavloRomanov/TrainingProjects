@@ -12,11 +12,11 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Create Manager"; } }
 
-         protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
 
-            MyHashTable<string,string> options = new MyHashTable<string, string>();
+            CollectionLibrary.IDictionary<string,string> options = new CollectionLibrary.IDictionary<string, string>();
             options.Add("1","1 years");
             options.Add("3","3 years");
             options.Add("5","5 years");
@@ -66,10 +66,10 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-         public override Response Post(MyHashTable<string, string> form, string sessionId = null)
+         public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
-            MyHashTable<string, string> errors = new MyHashTable<string, string>();
+            CollectionLibrary.IDictionary<string, string> errors = new CollectionLibrary.IDictionary<string, string>();
 
             if (!vh.LikeName(form["name"]))
             {

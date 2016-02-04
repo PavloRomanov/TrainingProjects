@@ -9,7 +9,7 @@ namespace Routing.Pages
 {
     public class LogOut : IBasePage
     {
-        public Response Get(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        public Response Get(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             if (sessionId != null )
             {
@@ -19,7 +19,7 @@ namespace Routing.Pages
             return new Response("", TypeOfAnswer.Redirection, "Index");
         }
 
-        public Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

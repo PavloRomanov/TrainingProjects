@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CollectionLibrary;
+//using CollectionLibrary;
 using Routing;
 
 namespace Routing.Pages
@@ -18,17 +18,18 @@ namespace Routing.Pages
 
         protected virtual string Script { get { return string.Empty; } }
 
-        public Response Get(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        public Response Get(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             StringBuilder answer = new StringBuilder();
             answer.Append(AddHeader());
             answer.Append(AddBody(form, sessionId, errors));
-            answer.Append(AddFooter());            
+            answer.Append(AddFooter());
+            answer.Append(AddScript());            
             Response response = new Response(answer.ToString(), TypeOfAnswer.Success, "");
             return response;
         }
 
-        public virtual Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public virtual Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotSupportedException();
         } 
@@ -116,7 +117,7 @@ namespace Routing.Pages
             return "";
         }
 
-        protected abstract string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null);
+        protected abstract string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null);
 
        
 
@@ -133,7 +134,12 @@ namespace Routing.Pages
             footer.Append(Environment.NewLine);
             footer.Append("</html>");
             return footer.ToString();
-        }       
- 
+        }
+
+        protected virtual string AddScript()
+        {
+            return "";
+        }
+
     }
 }

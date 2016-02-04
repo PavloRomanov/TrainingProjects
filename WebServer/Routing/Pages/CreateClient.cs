@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using CollectionLibrary;
+//using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
 using Routing.Pages.Helpers;
@@ -12,52 +12,74 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Create Client"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {          
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             if(errors != null && errors.Count > 0)
-            {
-                htmlForm.AddTag("lable", "Name :");
+            {                
+               /* htmlForm.AddTag("lable", "Name :");
+                htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Text, "name", form["name"]))
                     .SetAttribut("maxlength", "15");
+                htmlForm.AddTag("span").SetAttribut("id", "1");
+                htmlForm.AddTag("br");
 
                 htmlForm.AddTag("lable", "Surname :");
                 htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", form["surname"]))
                     .SetAttribut("maxlength", "15");
+                htmlForm.AddTag("span").SetAttribut("id", "2");
+                htmlForm.AddTag("br");
 
                 htmlForm.AddTag("lable", "Address :");
                 htmlForm.AddTag(new HtmlInput(InputType.Text, "address", form["address"]))
                     .SetAttribut("maxlength", "50");
+                htmlForm.AddTag("span").SetAttribut("id", "3");
+                htmlForm.AddTag("br");
 
                 htmlForm.AddTag("lable", "Phone :");
                 htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", form["phone"]))
                     .SetAttribut("placeholder", "000-000-00-00");
+                htmlForm.AddTag("span").SetAttribut("id", "4");
+                htmlForm.AddTag("br");
 
                 htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Сlean"));
-                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));*/
             }
             else
             {
-                htmlForm.AddTag("lable", "Name :");
-                htmlForm.AddTag(new HtmlInput(InputType.Text, "name", "" ))
+                HtmlBaseTag div = htmlForm.AddTag("div");
+                div.AddTag("lable", "Name :");
+                div.AddTag("br");
+                div.AddTag(new HtmlInput(InputType.Text, "name", "" ))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
+                div.AddTag("span").SetAttribut("id", "1");
+                div.AddTag("br");
 
                 htmlForm.AddTag("lable", "Surname :");
+                htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters");
+                htmlForm.AddTag("span").SetAttribut("id", "2");
+                htmlForm.AddTag("br");
 
                 htmlForm.AddTag("lable", "Address :");
+                htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Text, "address", ""))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
+                htmlForm.AddTag("span").SetAttribut("id", "3");
+                htmlForm.AddTag("br");
 
                 htmlForm.AddTag("lable", "Phone :");
+                htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", ""))
                     .SetAttribut("placeholder", "000-000-00-00");
+                htmlForm.AddTag("span").SetAttribut("id", "4");
+                htmlForm.AddTag("br");
 
-            htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Сlean"));
+                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
             htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
            }
             
@@ -75,10 +97,10 @@ namespace Routing.Pages
         }
 
 
-        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
-            IDictionary<string, string> errors = new Dictionary<string, string>();
+            System.Collections.Generic.IDictionary<string, string> errors = new Dictionary<string, string>();
 
             if (!vh.LikeName(form["name"]))
             {
@@ -117,6 +139,38 @@ namespace Routing.Pages
                 return this.Get(form, sessionId, errors);
             } 
         }
-        
+
+        protected override string AddScript()
+        {
+            StringBuilder func = new StringBuilder("<script>function validateForm() {")
+                .Append("var name = document.forms['form']['name'].value;")
+                .Append(Environment.NewLine)
+                .Append("var surname = document.forms['form']['surname'].value;")
+                .Append(Environment.NewLine)
+                .Append("var address = document.forms['form']['address'].value;")
+                .Append(Environment.NewLine)
+                .Append("var phone = document.forms['form']['phone'].value;")
+                .Append(Environment.NewLine)
+                .Append("if (name == null || name == '')")
+                .Append(Environment.NewLine)
+                .Append("{document.getElementById('1').innerHTML = 'Name must be filled out ';}")
+                .Append(Environment.NewLine)
+                .Append("if (surname == null || surname == '')")
+                .Append(Environment.NewLine)
+                .Append("{document.getElementById('2').innerHTML = 'SurName must be filled out ';}")
+                .Append(Environment.NewLine)
+                .Append("if (address == null || address == '')")
+                .Append(Environment.NewLine)
+                .Append("{document.getElementById('3').innerHTML = 'Address must be filled out ';}")
+                .Append(Environment.NewLine)
+                .Append("if (phone == null || phone == '')")
+                .Append(Environment.NewLine)
+                .Append("{document.getElementById('4').innerHTML = 'Phone must be filled out ';}")
+                .Append(Environment.NewLine)
+                //.Append("alert('Name must be filled out ');")
+                .Append("return false;").Append("}</script>");
+
+            return func.ToString();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using CollectionLibrary;
+﻿//using CollectionLibrary;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,8 +13,10 @@ namespace Routing.Pages.Helpers
         public HtmlForm(RequestMethod method, string action, IDictionary<string, string> errors = null)
             :base("form", null)
         {
+            SetAttribut("name", "form");
             SetAttribut("method", method.ToString());
-            SetAttribut("action", action);            
+            SetAttribut("action", action);
+            SetAttribut("onsubmit", "return validateForm()");            
             _errors = errors;            
         }
 
@@ -25,7 +27,7 @@ namespace Routing.Pages.Helpers
             TagContent.Add(lable);
             HtmlBaseTag tag = new HtmlBaseTag(name, text);
             TagContent.Add(tag);
-             return this;
+             return tag;
         }
 
        //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 

@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using CollectionLibrary;
 
 namespace Routing.Pages
 {
     public class Index : IBasePage
     {
-        public Response Get(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        public Response Get(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             StringBuilder page = new StringBuilder("<!DOCTYPE html>");
             page.Append(Environment.NewLine);
@@ -92,7 +88,7 @@ namespace Routing.Pages
         }
 
        
-        public Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

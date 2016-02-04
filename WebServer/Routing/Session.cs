@@ -7,11 +7,11 @@ namespace Routing
     {
         private static readonly Session instance = new Session();
  
-        private  MyHashTable<string, User> _registerSessions;
+        private  IDictionary<string, User> _registerSessions;
 
         private Session()
         {
-            _registerSessions = new MyHashTable<string, User>();
+            _registerSessions = new IDictionary<string, User>();
         }        
 
         public static Session Instance
@@ -19,7 +19,7 @@ namespace Routing
             get { return instance; }
         }
 
-        public MyHashTable<string, User> RegisterSessions
+        public IDictionary<string, User> RegisterSessions
         {
             get { return _registerSessions; }
         }

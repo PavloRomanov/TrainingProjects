@@ -13,13 +13,13 @@ namespace Routing.Pages
     {      
         protected override string Title { get { return "Form client's"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateForm", errors);
             htmlForm.AddTag("p", "Name client:");
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
-            IDictionary<string,string> formclient = new MyHashTable<string, string>();
+            System.Collections.Generic.IDictionary<string,string> formclient = new CollectionLibrary.IDictionary<string, string>();
             foreach (var c in clients)
             {
                 var temp1 = c.Value.Name + " " + c.Value.Surname;
@@ -104,7 +104,7 @@ namespace Routing.Pages
             htmlForm.AddTag("p", "Filled manager:");
             ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
-            MyHashTable<string,string> formmanager = new MyHashTable<string, string>();
+            CollectionLibrary.IDictionary<string,string> formmanager = new CollectionLibrary.IDictionary<string, string>();
            
             foreach (var man in managers)
             {
@@ -120,7 +120,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try

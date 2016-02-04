@@ -14,7 +14,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Log In"; } }
 
-        protected override string AddBody(MyHashTable<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
 
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
@@ -28,8 +28,8 @@ namespace Routing.Pages
             }
             else
             {
-                htmlForm.AddInput("login", "", InputType.Text, "Enter login :");
-                htmlForm.AddInput("password", "", InputType.Password, "Enter password :");
+                htmlForm.AddInput("login", "admin", InputType.Text, "Enter login :");
+                htmlForm.AddInput("password", "admin", InputType.Password, "Enter password :");
                 htmlForm.AddTag(new HtmlInput(InputType.Reset, "Clean", "Clean"));
                 htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
             }
@@ -47,13 +47,13 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(MyHashTable<string, string> form, string sessionId = null)
+        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
         {
 
             Response response;
             try
             {
-                MyHashTable<string, string> errors = new MyHashTable<string, string>();
+                CollectionLibrary.IDictionary<string, string> errors = new CollectionLibrary.IDictionary<string, string>();
                 ManagerService ms = new ManagerService("manager.txt");
                 Manager manager;
 
