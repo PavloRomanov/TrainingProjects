@@ -16,7 +16,7 @@ namespace Routing.Pages
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateForm", errors);
-            htmlForm.AddTag("p", "Name client:");
+            htmlForm.AddTag("lable", "Name client:");
             ClientServiсe cs = new ClientServiсe("client.txt");
             HashDictionary<Guid, Client> clients = cs.GetAll();
             System.Collections.Generic.IDictionary<string,string> formclient = new CollectionLibrary.IDictionary<string, string>();
@@ -27,27 +27,34 @@ namespace Routing.Pages
             }
             htmlForm.AddSelect("clientId", formclient)
                 .SetAttribut("size", "1");
-//----------------------------------------------------------------------------------           
-            htmlForm.AddTag("p", "Are you satisfied with the service?");
-            htmlForm.AddInput("form1", "yes", InputType.Radio);
-            htmlForm.AddTag("label", "Yes");
-            htmlForm.AddInput("form2", "no", InputType.Radio);
-            htmlForm.AddTag("label", "No");
+            htmlForm.AddTag("br");
+            //----------------------------------------------------------------------------------           
+            htmlForm.AddTag("lable", "Are you satisfied with the service?");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form1", "yes"));
+            htmlForm.AddTag("lable", "Yes");
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form2", "no"));
+            htmlForm.AddTag("lable", "No");
             //----------------------------------------------------------------
-            htmlForm.AddTag("p", "Comment:");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Comment:");
+            htmlForm.AddTag("br");
             htmlForm.AddTag("textarea", "")
                 .SetAttribut("name", "comment1")
                 .SetAttribut("cols", "70")
                 .SetAttribut("rows", "3");
             //-------------------------------------------------------
-            htmlForm.AddTag("p", "Are you satisfied with the speed of the Internet?");
-            htmlForm.AddInput("form3", "yes", InputType.Radio);
-            htmlForm.AddTag("label", "Yes");
-            htmlForm.AddInput("form4", "no", InputType.Radio);
-            htmlForm.AddTag("label", "No");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Are you satisfied with the speed of the Internet?");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form3", "yes"));
+            htmlForm.AddTag("lable", "Yes");
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form4", "no"));
+            htmlForm.AddTag("lable", "No");
+            htmlForm.AddTag("br");
 
-
-            htmlForm.AddTag("p", "Comment:");
+            htmlForm.AddTag("lable", "Comment:");
+            htmlForm.AddTag("br");
             htmlForm.AddTag("textarea", "")
                 .SetAttribut("name", "comment2")
                 .SetAttribut("cols", "70")
@@ -100,7 +107,7 @@ namespace Routing.Pages
              body.Append("<textarea name='comment5' cols='70' rows='3'></textarea></p>");
              body.Append(Environment.NewLine);*/
 
-
+            htmlForm.AddTag("br");
             htmlForm.AddTag("p", "Filled manager:");
             ManagerService ms = new ManagerService("manager.txt");
             HashDictionary<Guid, Manager> managers = ms.GetAll();
@@ -113,8 +120,10 @@ namespace Routing.Pages
             }
             htmlForm.AddSelect("managerId", formmanager)
                 .SetAttribut("size", "1");
-
-            StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");          
+            htmlForm.AddTag("br");
+            htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
+            htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+            StringBuilder body = new StringBuilder();          
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString(errors));
             return body.ToString();

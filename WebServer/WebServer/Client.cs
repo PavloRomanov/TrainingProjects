@@ -58,7 +58,7 @@ namespace WebServer
                 if (index == -1)
                 {
 
-                    response = GetResponse(path, method, param, cookies);
+                    response = GetResponse(path, method, param, cookies);///////////////1
                     WriteResponse(stream, response);
                 }
                 else
@@ -148,7 +148,7 @@ namespace WebServer
         
         private static string GetResponse(string path, string method, System.Collections.Generic.IDictionary<string, string> param, System.Collections.Generic.IDictionary<string, string> cookies)
         {
-            string sessionId;
+            string sessionId ;
             PageCreater pageCreater = PageCreater.Instance;
             if (cookies == null || !cookies.ContainsKey(" sessionId"))
             {
@@ -157,9 +157,8 @@ namespace WebServer
             else
             {
                 sessionId = cookies[" sessionId"];
-            }            
-
-            Response response = pageCreater.PrepareResponse(path, method, param, sessionId);
+            }
+            Response response = pageCreater.PrepareResponse(path, method, param, sessionId);/////////////////////////////////2
             string html;
             int cod;
             string codStr;

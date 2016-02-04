@@ -36,6 +36,7 @@ namespace Routing
             pages.Add("CreateForm", new CreateForm());
             pages.Add("FormList", new FormList());
             pages.Add("DeleteForm", new DeleteForm());
+            pages.Add("Contact", new Contact());
             pages.Add("NotFoundError", new NotFoundError());
         }
 
@@ -67,7 +68,7 @@ namespace Routing
             IBasePage page;
             Response response;
 
-            if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
+           /* if (Session.Instance.RegisterSessions.ContainsKey(sessionId))               
             {                
                 User user = Session.Instance[sessionId];
                 if(user.Authorized)
@@ -95,14 +96,14 @@ namespace Routing
                 page = FindPage("Index");
                 response = page.Get(param, sessionId);
                 response.SessionId = sessionId;
-            }
+            }*/
 
-            /*if (path == "LogOut")
+            if (path == "LogOut")
                 sessionId = null;
 
                 page = FindPage(path);
 
-            response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);*/
+            response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
             
             return response; 
         }

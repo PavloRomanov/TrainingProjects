@@ -42,7 +42,7 @@ namespace Routing.Pages
             page.Append(Environment.NewLine);
             page.Append("<ul>");
             page.Append(Environment.NewLine);
-            page.Append("<li><a href='IndexPage'>Home</a></li>");
+            page.Append("<li><a href='Index'>Home</a></li>");
             page.Append(Environment.NewLine);
             page.Append("<li><a href='ClientsList'>Clients</a></li>");
             page.Append(Environment.NewLine);
@@ -56,7 +56,7 @@ namespace Routing.Pages
             page.Append(Environment.NewLine);
             page.Append("<li><a href='CreateForm'>Create Form</a></li>");
             page.Append(Environment.NewLine);
-            page.Append("<li><a href='Contact.html'>Contacts</a></li>");
+            page.Append("<li><a href='Contact'>Contacts</a></li>");
             page.Append(Environment.NewLine);
             page.Append("<li><a href='LogIn'>LogIn</a></li>");
             page.Append(Environment.NewLine);

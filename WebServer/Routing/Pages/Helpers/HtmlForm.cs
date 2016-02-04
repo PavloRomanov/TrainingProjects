@@ -23,25 +23,16 @@ namespace Routing.Pages.Helpers
         
         public override HtmlBaseTag AddTag(string name, string text = null)
         {
+           
             HtmlBaseTag tag = new HtmlBaseTag(name, text);
             TagContent.Add(tag);
              return tag;
         }
 
-       //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-        public HtmlInput AddInput(string name, string value, InputType type, string text = null)
-        {
-            HtmlLable lable = new HtmlLable(text);
-            TagContent.Add(lable);
-            HtmlInput input = new HtmlInput(type, name, value); 
-            TagContent.Add(input);
-
-            return input;
-        }
-
         //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
         public HtmlSelect AddSelect(string name, IDictionary<string,string> options)
         {
+
             HtmlSelect select = new HtmlSelect(name, options);
 
             TagContent.Add(select);

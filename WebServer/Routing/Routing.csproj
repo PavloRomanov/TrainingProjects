@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Contact.cs" />
     <Compile Include="Pages\DeleteForm.cs" />
     <Compile Include="Pages\FormList.cs" />
     <Compile Include="Pages\DeleteAppeal.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="User.cs" />
     <Compile Include="Pages\ViewManager.cs" />
     <Compile Include="Pages\ViewAppeal.cs" />
+    <Compile Include="Pages\ViewForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CollectionLibrary\CollectionLibrary.csproj">
@@ -93,7 +95,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <Content Include="Scripts\Scriptfooter.js" />
+    <Content Include="Scripts\Scriptmanager.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

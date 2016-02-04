@@ -31,7 +31,8 @@ namespace Routing.Pages
             else
             {
                 
-                htmlForm.AddTag("p", "Client:");
+                htmlForm.AddTag("lable", "Client:");
+                htmlForm.AddTag("br");
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 HashDictionary<Guid, Client> clients = cs.GetAll();
                 CollectionLibrary.IDictionary<string,string> optionsclient = new CollectionLibrary.IDictionary<string, string>();
@@ -42,9 +43,11 @@ namespace Routing.Pages
                 }
                 htmlForm.AddSelect("clientId", optionsclient)
                     .SetAttribut("size", "1");
+                htmlForm.AddTag("br");
                 //--------------------------------------------------------------
 
-                htmlForm.AddTag("p", "The reason for petition:");
+                htmlForm.AddTag("lable", "The reason for petition:");
+
                 CollectionLibrary.IDictionary<string, string> optionsappeal = new CollectionLibrary.IDictionary<string, string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
                 foreach (var v in appeals )
@@ -54,25 +57,32 @@ namespace Routing.Pages
                 }
                 htmlForm.AddSelect("reason", optionsappeal)
                     .SetAttribut("size", "1");
+                htmlForm.AddTag("br");
                 //-------------------------------------------------------------------------------------
-                htmlForm.AddTag("p", "Comment:");
+                htmlForm.AddTag("lable", "Comment:");
+                htmlForm.AddTag("br");
                 htmlForm.AddTag("textarea", "")
                     .SetAttribut("name", "comment")
                     .SetAttribut("cols", "70")
                     .SetAttribut("rows", "3");
-                htmlForm.AddTag("p", "References:");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "References:");
+                htmlForm.AddTag("br");
                 htmlForm.AddTag("textarea", "")
                     .SetAttribut("name", "references")
                     .SetAttribut("cols", "70")
                     .SetAttribut("rows", "5");
+                htmlForm.AddTag("br");
                 //-----------------------------------------------------------------------
-                htmlForm.AddTag("p", "The problem is solved?");
-                htmlForm.AddInput("solve1", "yes", InputType.Radio);
-                htmlForm.AddTag("label", "Yes");
-                htmlForm.AddInput("solve2", "no", InputType.Radio);
-                htmlForm.AddTag("label", "No");
+                htmlForm.AddTag("lable", "The problem is solved?");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve1", "yes"));
+                htmlForm.AddTag("lable", "Yes");
+                htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve2", "no"));
+                htmlForm.AddTag("lable", "No");
+                htmlForm.AddTag("br");
                 //-----------------------------------------------------------------------------
-                htmlForm.AddTag("p", "Serviced manager:");
+                htmlForm.AddTag("lable", "Serviced manager:");
                 ManagerService ms = new ManagerService("manager.txt");
                 HashDictionary<Guid, Manager> managers = ms.GetAll();
                 CollectionLibrary.IDictionary<string, string> optionsmanager = new CollectionLibrary.IDictionary<string, string>();
@@ -85,8 +95,12 @@ namespace Routing.Pages
                 }
                 htmlForm.AddSelect("managerId", optionsmanager)
                     .SetAttribut("size", "1");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
             }
-            StringBuilder body = new StringBuilder("<body bgcolor='#ff6347'>");
+
+            StringBuilder body = new StringBuilder();
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Appeal</h1>");
             body.Append(htmlForm.ToString(errors));

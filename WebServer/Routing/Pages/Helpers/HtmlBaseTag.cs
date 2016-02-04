@@ -118,7 +118,10 @@ namespace Routing.Pages.Helpers
             }
             return "";
         }
-        
+        protected virtual string AddScript()
+        {
+            return "";
+        }
 
     }
 }

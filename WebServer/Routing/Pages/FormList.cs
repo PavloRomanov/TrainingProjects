@@ -37,9 +37,9 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<th>Name client</th>");
                 body.Append(Environment.NewLine);
-                body.Append("<th>Form of client</th>");
+                //body.Append("<th>Form of client</th>");
                 body.Append(Environment.NewLine);
-                body.Append("<th>Answer of client</th>");
+               // body.Append("<th>Answer of client</th>");
                 body.Append(Environment.NewLine);
                 body.Append("<th>Controls</th>");
                 body.Append(Environment.NewLine);
@@ -56,7 +56,7 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(cs.GetElement(element.Value.IdClient).Name +" "+ cs.GetElement(element.Value.IdClient).Surname).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(element.Value.F1.ToString()).Append("</td>"); ;
+                   // body.Append("<td>").Append(element.Value.F1.ToString()).Append("</td>"); ;
                     body.Append(Environment.NewLine);
                     //body.Append("<td>").Append(element.Value.F2.ToString()).Append("</td>"); ;
                     body.Append("<br>");
@@ -68,7 +68,7 @@ namespace Routing.Pages
                     body.Append("<br>").Append(element.Value.F5.ToString()).Append("</td>");*/
                     body.Append(Environment.NewLine);
 
-                    body.Append("<td>").Append(element.Value.Answer1.ToString()).Append("</td>");
+                   // body.Append("<td>").Append(element.Value.Answer1.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);
                    // body.Append("<td>").Append(element.Value.Answer2.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);
