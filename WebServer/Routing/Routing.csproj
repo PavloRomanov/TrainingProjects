@@ -95,8 +95,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Scriptfooter.js" />
-    <Content Include="Scripts\Scriptmanager.js" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

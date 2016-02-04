@@ -59,7 +59,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("lable", "Name: ");
                 htmlForm.AddTag( (new HtmlInput(InputType.Text, "name", ""))                          
                     .SetAttribut("maxlength", "15")
-                    .SetAttribut("placeholder", "max length of 15 characters");
+                    .SetAttribut("placeholder", "max length of 15 characters"));
                 htmlForm.AddTag("span").SetAttribut("id", "1");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Surname: ");
