@@ -159,7 +159,7 @@ namespace Routing.Pages
                     .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit")).SetAttribut("onclick", " FormIsValidManager");
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit")).SetAttribut("onclick", " FormIsValid()");
             }
 
             StringBuilder body = new StringBuilder();
