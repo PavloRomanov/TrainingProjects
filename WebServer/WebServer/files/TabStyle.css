@@ -36,14 +36,14 @@ div.logo{
   width:10%;
 }
 div.content{
-	 width:all;
+	 width:100%;
 height:590px;
 
 }
 
 div.footer{
  clear:both;
- width:all;
+ width:100%;
  height:40px;
  text-align:center;
  background-color:yellow;

@@ -52,9 +52,10 @@ namespace Routing.Pages
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
                  foreach (var v in appeals )
                  {
-                    var appealclient = Enum.Parse(typeof(ClientAppeal), v.ToString()).ToString();//////////////////////////?????????
-                     optionsappeal.Add(v.ToString(), appealclient);
-                 }
+                    //var appealclient = Enum.Parse(typeof(ClientAppeal), v.ToString()).ToString();//////////////////////////?????????
+                    //optionsappeal.Add(v.ToString(), appealclient);
+                    optionsappeal.Add(((int)v).ToString(), v.ToString());
+                }
                 htmlForm.AddTag(new HtmlSelect("reason", optionsappeal))
                     .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
