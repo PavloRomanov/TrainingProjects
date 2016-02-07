@@ -21,11 +21,11 @@ namespace WebServer
                 var requestString = GetRequest(stream);
 
                 RequestParser parser = new RequestParser(requestString);
-                System.Collections.Generic.IDictionary<string, string> request = parser.Parse();
+                Dictionary<string, string> request = parser.Parse();
 
-                System.Collections.Generic.IDictionary<string, string> cookies = parser.Cookies;
+                Dictionary<string, string> cookies = parser.Cookies;
 
-                System.Collections.Generic.IDictionary<string, string> param = parser.Form;
+                Dictionary<string, string> param = parser.Form;
 
                 string startLine = parser.StartLine;
 

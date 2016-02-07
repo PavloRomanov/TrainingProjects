@@ -64,12 +64,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="files\JavaScriptForClient.js" />
+    <Content Include="files\JavaScriptForManager.js" />
     <Content Include="files\Provider.jpg" />
-    <Content Include="files\TabStyle.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="files\TabStyle1.css" />
+    <Content Include="files\TabStyle.css" />
     <Content Include="files\telephone.jpg" />
     <Content Include="files\SSC.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

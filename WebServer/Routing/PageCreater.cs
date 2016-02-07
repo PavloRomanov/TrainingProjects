@@ -35,6 +35,7 @@ namespace Routing
             pages.Add("DeleteAppeal", new DeleteAppeal());
             pages.Add("CreateForm", new CreateForm());
             pages.Add("FormList", new FormList());
+            pages.Add("ViewForm", new ViewForm());
             pages.Add("DeleteForm", new DeleteForm());
             pages.Add("Contact", new Contact());
             pages.Add("NotFoundError", new NotFoundError());

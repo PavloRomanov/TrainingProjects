@@ -27,7 +27,7 @@ namespace Routing.Pages
 
             page.Append("<div class='header'>");
             page.Append(Environment.NewLine);
-            page.Append("<h1>Welcome to S&S!</h1>");
+            page.Append("<h1><b>Welcome to S&S!<b></h1>");
             page.Append(Environment.NewLine);
             page.Append("<div class='logo'>");
             page.Append(Environment.NewLine);
@@ -55,6 +55,8 @@ namespace Routing.Pages
             page.Append("<li><a href='CreateAppeal'>Create Appeal</a></li>");
             page.Append(Environment.NewLine);
             page.Append("<li><a href='CreateForm'>Create Form</a></li>");
+            page.Append(Environment.NewLine);
+            page.Append("<li><a href='FormList'>FormList</a></li>");
             page.Append(Environment.NewLine);
             page.Append("<li><a href='Contact'>Contacts</a></li>");
             page.Append(Environment.NewLine);

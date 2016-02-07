@@ -34,28 +34,28 @@ namespace Routing.Pages
                 htmlForm.AddTag("lable", "Client:");
                 htmlForm.AddTag("br");
                 ClientServiсe cs = new ClientServiсe("client.txt");
-                HashDictionary<Guid, Client> clients = cs.GetAll();
-                CollectionLibrary.MyHashTable<string,string> optionsclient = new CollectionLibrary.MyHashTable<string, string>();
+                Dictionary<Guid, Client> clients = cs.GetAll();
+                Dictionary<string,string> optionsclient = new Dictionary<string, string>();
                 foreach (var c in clients)
                 {
                     var fullnameclient = c.Value.Name + " " + c.Value.Surname;
                     optionsclient.Add(c.Value.Id.ToString(), fullnameclient);
                 }
-                htmlForm.AddSelect("clientId", optionsclient)
+                htmlForm.AddTag(new HtmlSelect("clientId", optionsclient))
                     .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
                 //--------------------------------------------------------------
 
                 htmlForm.AddTag("lable", "The reason for petition:");
 
-                CollectionLibrary.MyHashTable<string, string> optionsappeal = new CollectionLibrary.MyHashTable<string, string>();
+                Dictionary<string, string> optionsappeal = new Dictionary<string, string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
-                foreach (var v in appeals )
-                {
-                   var appealclient = (string.Format("{0}"/*,Enum.GetName(typeof(ClientAppeal),*/, v));
-                   optionsappeal.Add(v.ToString(), appealclient);
-                }
-                htmlForm.AddSelect("reason", optionsappeal)
+                 foreach (var v in appeals )
+                 {
+                    var appealclient = Enum.Parse(typeof(ClientAppeal), v.ToString()).ToString();//////////////////////////?????????
+                     optionsappeal.Add(v.ToString(), appealclient);
+                 }
+                htmlForm.AddTag(new HtmlSelect("reason", optionsappeal))
                     .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
                 //-------------------------------------------------------------------------------------
@@ -84,8 +84,8 @@ namespace Routing.Pages
                 //-----------------------------------------------------------------------------
                 htmlForm.AddTag("lable", "Serviced manager:");
                 ManagerService ms = new ManagerService("manager.txt");
-                HashDictionary<Guid, Manager> managers = ms.GetAll();
-                CollectionLibrary.MyHashTable<string, string> optionsmanager = new CollectionLibrary.MyHashTable<string, string>();
+                Dictionary<Guid, Manager> managers = ms.GetAll();
+                Dictionary<string, string> optionsmanager = new Dictionary<string, string>();
                
                 foreach (var man in managers)
                 {
@@ -93,7 +93,7 @@ namespace Routing.Pages
                     optionsmanager.Add(man.Value.Id.ToString(), fullnamemanager);
                 
                 }
-                htmlForm.AddSelect("managerId", optionsmanager)
+                htmlForm.AddTag(new HtmlSelect("managerId", optionsmanager))
                     .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
@@ -114,21 +114,27 @@ namespace Routing.Pages
         {
             Response response;
             try
-            {
-               
+            {              
                 Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
 
                 appealclient.ClientAppeal = (ClientAppeal)Convert.ToInt32(form["reason"]);
                 appealclient.Comment = form["comment"];
-                appealclient.References = form["references"];               
+                appealclient.References = form["references"];
 
-                if (form.ContainsKey("solve1"))
+                if (form.ContainsKey("solve1") == form.ContainsKey("solve2"))
                 {
-                    appealclient.Rez = form["solve1"];
+                    appealclient.Rez = "no";
                 }
                 else
                 {
-                    appealclient.Rez = form["solve2"];
+                    if (form.ContainsKey("solve1"))
+                    {
+                        appealclient.Rez = form["solve1"];
+                    }
+                    else
+                    {
+                        appealclient.Rez = form["solve2"];
+                    }
                 }
                 AppealServiсe aser = new AppealServiсe("appealclient.txt");
                 aser.Add(appealclient);

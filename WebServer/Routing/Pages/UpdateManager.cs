@@ -38,7 +38,7 @@ namespace Routing.Pages
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             Response response;
-            StringBuilder body = new StringBuilder("<body bgcolor='#ad5f2f'>");
+            StringBuilder body = new StringBuilder("<h1>UpdateManager</h1>");
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
@@ -50,18 +50,18 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<input type = 'hidden' name = 'id' value ='").Append(manager.Id).Append("'/>");
                 body.Append(Environment.NewLine);
-                body.Append("<p>Name:</p>");
+                body.Append("<p>Name:   </p>");
                 body.Append(Environment.NewLine);
                 body.Append("<input type = 'text' name = 'name' value = '").Append(manager.Name).Append("'/>");
                 body.Append(Environment.NewLine);
-                body.Append("<p>Surname:</p>");
+                body.Append("<p>Surname:   </p>");
                 body.Append(Environment.NewLine);
                 body.Append("<input type = 'text' name = 'surname' value = '").Append(manager.Surname).Append("'/>");
                 body.Append(Environment.NewLine);
                 
 
 //-----------------------------------------------------------------------------
-                body.Append("<p>WorkExperience:</p>");
+                body.Append("<p>WorkExperience:  </p>");
                 body.Append(Environment.NewLine);
                 body.Append("<p><select name='experience' size='1'>");
                 body.Append(Environment.NewLine);
@@ -80,19 +80,19 @@ namespace Routing.Pages
 
               
                 body.Append(Environment.NewLine);
-                body.Append("<p>Address:</p>");
+                body.Append("<p>Address:   </p>");
                 body.Append(Environment.NewLine);
                 body.Append("<input type = 'text' name = 'address' value = '").Append(manager.Address).Append("'/>");
                 body.Append(Environment.NewLine);
-                body.Append("<p>Phone:</p>");
+                body.Append("<p>Phone:   </p>");
                 body.Append(Environment.NewLine);
                 body.Append("<input type = 'text' name = 'phone'  value = '").Append(manager.Phone).Append("'/>");
                 body.Append(Environment.NewLine);
-                body.Append("<p>Login:</p>");
+                body.Append("<p>Login:   </p>");
                 body.Append(Environment.NewLine);
                 body.Append("<input type = 'text' name = 'login' value = '").Append(manager.Login).Append("'/>");
                 body.Append(Environment.NewLine);
-                body.Append("<p>Pasword:</p>");
+                body.Append("<p>Password:   </p>");
                 body.Append(Environment.NewLine);
                 body.Append("<input type = 'text' name = 'password' value = '").Append(manager.Password).Append("'/>");
                 body.Append(Environment.NewLine);
