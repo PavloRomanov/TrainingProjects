@@ -7,7 +7,6 @@ namespace Routing.Pages.Helpers
 {
     public class HtmlForm : HtmlBaseTag
     {
-        //public readonly List<HtmlBaseTag> _tags;
         public readonly IDictionary<string, string> _errors;
 
         public HtmlForm(RequestMethod method, string action, IDictionary<string, string> errors = null)
@@ -16,7 +15,8 @@ namespace Routing.Pages.Helpers
             SetAttribut("name", "form");
             SetAttribut("method", method.ToString());
             SetAttribut("action", action);
-            SetAttribut("onsubmit", "return FormIsValid()");            
+            SetAttribut("onsubmit", "return FormIsValidManager()"); 
+           // SetAttribut("onsubmit", "return FormIsValid()");            
             _errors = errors;            
         }
 
@@ -28,18 +28,6 @@ namespace Routing.Pages.Helpers
             TagContent.Add(tag);
              return tag;
         }
-
-        //удалить метод!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-        public HtmlSelect AddSelect(string name, IDictionary<string,string> options)
-        {
-
-            HtmlSelect select = new HtmlSelect(name, options);
-
-            TagContent.Add(select);
-            
-            return select;
-        }
-
         public string ToString(IDictionary<string, string> errors)
         {            
             return GetTag(errors);

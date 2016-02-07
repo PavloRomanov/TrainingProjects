@@ -4,13 +4,13 @@ using System.IO;
 using Model.Entity;
 using CollectionLibrary;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using System.Collections.Generic;
 
 namespace Model.Servise
 {
     public class BaseService<T> where T : ModelBase
     {
-        protected HashDictionary<Guid, T> hashElement;
+        protected Dictionary<Guid, T> hashElement;
         protected Object access;
         private string fileName;
 
@@ -18,7 +18,7 @@ namespace Model.Servise
         {
             if (path == "")
                 throw new ArgumentException("No way !!!");
-            hashElement = new HashDictionary<Guid, T>();
+            hashElement = new Dictionary<Guid, T>();
             access = new Object();
             fileName = path;
         }
@@ -35,7 +35,6 @@ namespace Model.Servise
                 else
                 {
                     rez = hashElement[key];
-                    //SerialContract();
                 }
             }
             return rez;
@@ -51,23 +50,6 @@ namespace Model.Servise
             }
         }
 
-       /* public void Delete(T model)  // можно передать просто ID
-        {
-            lock (access)
-            {
-                DeSerialContract();
-                if (hashElement.Remove(model.Id))
-                {
-                    SerialContract();
-                }
-                else
-                {
-                    SerialContract();
-                    throw new ArgumentException("Object not found");
-                }
-            }
-        }*/
-
        public void Delete(Guid id)  
         {
             lock (access)
@@ -79,7 +61,6 @@ namespace Model.Servise
                 }
                 else
                 {
-                    //SerialContract();
                     throw new ArgumentException("Object not found");
                 }
             }
@@ -95,7 +76,7 @@ namespace Model.Servise
 
                 foreach (var element in hashElement)
                 {                   
-                    if (element.Key == model.Id)  //здесь изменение
+                    if (element.Key == model.Id) 
                     {
                         hashElement[element.Key] = model;                                    
                         break;
@@ -113,8 +94,7 @@ namespace Model.Servise
         {
             using (FileStream writing = new FileStream(fileName, FileMode.Create))
             {
-                DataContractSerializer serial = new DataContractSerializer(typeof(HashDictionary<Guid, T>));
-
+                DataContractSerializer serial = new DataContractSerializer(typeof(Dictionary<Guid, T>));
                 serial.WriteObject(writing, hashElement);
                 Console.WriteLine("Object serialized !!!");
             }
@@ -124,7 +104,7 @@ namespace Model.Servise
         {
             if (!File.Exists(fileName))
             {
-                hashElement = new HashDictionary<Guid, T>();
+                hashElement = new Dictionary<Guid, T>();
                 return;
             }
 
@@ -132,8 +112,8 @@ namespace Model.Servise
             {
                 using (FileStream reading = new FileStream(fileName, FileMode.Open))
                 {
-                    DataContractSerializer deserial = new DataContractSerializer(typeof(HashDictionary<Guid, T>));
-                    hashElement = (HashDictionary<Guid, T>)deserial.ReadObject(reading);
+                    DataContractSerializer deserial = new DataContractSerializer(typeof(Dictionary<Guid, T>));
+                    hashElement = (Dictionary<Guid, T>)deserial.ReadObject(reading);
                     Console.WriteLine("DeSerialContract() pass ");
                 }
             }
@@ -143,7 +123,7 @@ namespace Model.Servise
             }
         }
  
-        public HashDictionary<Guid, T> GetAll()
+        public Dictionary<Guid, T> GetAll()
         {
             this.DeSerialContract();
             return hashElement;

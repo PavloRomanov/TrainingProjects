@@ -14,7 +14,7 @@ namespace Routing.Pages
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             Response response;
-            StringBuilder body = new StringBuilder("<body bgcolor='#EE8c00'>");
+            StringBuilder body = new StringBuilder("<h1>View Manager</h1>");
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
@@ -23,19 +23,19 @@ namespace Routing.Pages
                 Manager manager = ms.GetElement(id);
 
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Name:</b>").Append(manager.Name).Append("</p>");
+                body.Append("<p><b>Name:   </b>").Append(manager.Name).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Surname:</b>").Append(manager.Surname).Append("</p>");
+                body.Append("<p><b>Surname:   </b>").Append(manager.Surname).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Work:</b>").Append(manager.Work).Append("</p>");
+                body.Append("<p><b>Work:   </b>").Append(manager.Work).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Address:</b>").Append(manager.Address).Append("</p>");
+                body.Append("<p><b>Address:   </b>").Append(manager.Address).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Phone number:</b>").Append(manager.Phone).Append("</p>");
+                body.Append("<p><b>Phone number:   </b>").Append(manager.Phone).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Login:</b>").Append(manager.Login).Append("</p>");
+                body.Append("<p><b>Login:   </b>").Append(manager.Login).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Password:</b>").Append(manager.Password).Append("</p>");
+                body.Append("<p><b>Password:   </b>").Append(manager.Password).Append("</p>");
                 body.Append(Environment.NewLine);
                 body.Append(Environment.NewLine);
                 body.Append("<a href='UpdateManager?id=").Append(id).Append("'>Update Manager</a>");

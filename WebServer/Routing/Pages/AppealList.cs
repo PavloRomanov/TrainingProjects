@@ -13,16 +13,14 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Appeal's List"; } }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             StringBuilder body = new StringBuilder();
             try
             {
 
                 AppealServiсe aps = new AppealServiсe("appealclient.txt");
-                HashDictionary<Guid, Appeal> appealclients = aps.GetAll();
-
-                body.Append("<body bgcolor='#FFFF40\'>");
+                Dictionary<Guid, Appeal> appealclients = aps.GetAll();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Appeals</h1>");
                 body.Append(Environment.NewLine);
@@ -58,7 +56,8 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(element.Value.Rez).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td><a href='DeleteAppeal?id=").Append(element.Key).Append("'>Delete</a></td>");
+                    body.Append("<td><a href='ViewAppeal?id=").Append(element.Key).Append("'>View</a>");
+                    body.Append("<a href='DeleteAppeal?id=").Append(element.Key).Append("'>Delete</a></td>");
                     body.Append(Environment.NewLine);
                     body.Append("<tr>");
                     n++;

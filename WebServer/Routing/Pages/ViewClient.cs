@@ -14,7 +14,7 @@ namespace Routing.Pages
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             Response response;
-            StringBuilder body = new StringBuilder("<body bgcolor='#ff8c00'>");
+            StringBuilder body = new StringBuilder("<h1>ViewClient</h1>");
             try
             {
                 ClientServiсe cs = new ClientServiсe("client.txt");

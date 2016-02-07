@@ -21,7 +21,7 @@ namespace Routing.Pages
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
-                HashDictionary<Guid, Manager> managers = ms.GetAll();
+                Dictionary<Guid, Manager> managers = ms.GetAll();
 
                 body.Append("<body bgcolor='#FFFF40\'>");
                 body.Append(Environment.NewLine);

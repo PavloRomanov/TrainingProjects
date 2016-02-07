@@ -22,13 +22,14 @@ namespace Routing.Pages
         {
             StringBuilder answer = new StringBuilder();
             answer.Append(AddHeader());
-            answer.Append(AddBody(form, sessionId, errors));            
+            answer.Append(AddBody(form, sessionId, errors));
+            answer.Append(AddScript());
             answer.Append(AddFooter());            
             Response response = new Response(answer.ToString(), TypeOfAnswer.Success, "");
             return response;
         }
 
-        public virtual Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public virtual Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotSupportedException();
         } 
@@ -46,8 +47,6 @@ namespace Routing.Pages
              header.Append(Environment.NewLine);
             header.Append("<link rel='stylesheet' href='TabStyle.css' type='text/css'/>");
             header.Append(Environment.NewLine);
-            header.Append("<script src='Scriptfooter.js'>").Append("</script>");//=====================
-            header.Append(Environment.NewLine);
             header.Append("<title>");
             header.Append("CMS - ").Append(Title);
             header.Append("</title>");
@@ -58,7 +57,7 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<div class='header'>");
             header.Append(Environment.NewLine);
-            header.Append("<h1><i>Welcome to S & S</i></h1>");
+            header.Append("<h1><i><b>Welcome to S&S</b></i></h1>");
             header.Append(Environment.NewLine);
             header.Append("<div class='logo'>");
             header.Append(Environment.NewLine);
@@ -90,16 +89,18 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<li><a href='Contact'>Contacts</a></li>");
             header.Append(Environment.NewLine);
-            header.Append("<li><a href='LogIn'><b>Entrance</b></a></li>");
+            header.Append("<li><a href='LogIn'>LogIn</a></li>");
+            header.Append(Environment.NewLine);
+            header.Append("<li><a href='LogOut'>LogOut</a></li>");
             header.Append(Environment.NewLine);
             header.Append(" </ul>");
             header.Append(Environment.NewLine);
             header.Append("</div>");
             header.Append(Environment.NewLine);
             header.Append("</div>");
-            header.Append(Environment.NewLine);           
-
-
+            header.Append(Environment.NewLine);
+            header.Append("<div class='content'>");
+            header.Append(Environment.NewLine);
             return header.ToString();
         }
 
@@ -125,13 +126,12 @@ namespace Routing.Pages
         protected virtual string AddFooter()
         {
             StringBuilder footer = new StringBuilder();
+            footer.Append("</div>");
             footer.Append("<div class='footer'>");
             footer.Append(Environment.NewLine);
-            footer.Append("<p id='footerSSC'>Svetlana&Serg Corporation <br>Kiev 2015</p>");
+            footer.Append("<p>Svetlana&Serg Corporation <br>Kiev 2015</p>");
             footer.Append(Environment.NewLine);
             footer.Append("</div>");
-            footer.Append(Environment.NewLine);
-            footer.Append(AddScript());
             footer.Append(Environment.NewLine);
             footer.Append("</body>");
             footer.Append(Environment.NewLine);

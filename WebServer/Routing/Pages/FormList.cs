@@ -22,10 +22,8 @@ namespace Routing.Pages
             {
 
                 FormServiсe aps = new FormServiсe("forms.txt");
-                HashDictionary<Guid, Form> formclients = aps.GetAll();
+                Dictionary<Guid, Form> formclients = aps.GetAll();
               
-
-                body.Append("<body bgcolor='#FFFF40\'>");
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Forms</h1>");
                 body.Append(Environment.NewLine);
