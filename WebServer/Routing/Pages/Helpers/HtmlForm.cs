@@ -41,8 +41,16 @@ namespace Routing.Pages.Helpers
         }
 
         public string ToString(IDictionary<string, string> errors)
-        {            
-            return GetTag(errors);
+        {
+            StringBuilder form = new StringBuilder(Environment.NewLine);
+            form.Append(Environment.NewLine);
+            form.Append("<div class='form'>");
+            form.Append(Environment.NewLine);
+            form.Append(GetTag(errors));
+            form.Append(Environment.NewLine);
+            form.Append("</div>");
+                        
+            return form.ToString();
         }
     }
 

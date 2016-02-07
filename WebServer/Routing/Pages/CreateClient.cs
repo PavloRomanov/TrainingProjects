@@ -17,16 +17,19 @@ namespace Routing.Pages
             htmlForm.SetAttribut("novalidate", "novalidate");
             if(errors != null && errors.Count > 0)
             {
-                HtmlBaseTag div1 = htmlForm.AddTag("div");
-                div1.AddTag("lable", "Name :");
-                div1.AddTag("br");
+                HtmlBaseTag div1 = htmlForm.AddTag("div").SetAttribut("class", "row");
+                HtmlBaseTag divLabel1 = div1.AddTag("div").SetAttribut("class", "forlabel");
+                HtmlBaseTag divInput1 = div1.AddTag("div").SetAttribut("class", "forinput");
+                divLabel1.AddTag("lable", "Name :");
+                
                 div1.AddTag(new HtmlInput(InputType.Text, "name", form["name"]))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
-                    .SetAttribut("required", "required");
+                    .SetAttribut("required", "required")
+                    .SetAttribut("onblur", "InputIsValid('name')");
 
                 if (errors.ContainsKey("name")) div1.AddTag("span", errors["name"]).SetAttribut("id", "1");
-                else div1.AddTag("span").SetAttribut("id", "1");
+                else div1.AddTag("span").SetAttribut("id", "forname");
 
                 div1.AddTag("br");
 
@@ -36,10 +39,11 @@ namespace Routing.Pages
                 div2.AddTag(new HtmlInput(InputType.Text, "surname", form["surname"]))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
-                    .SetAttribut("required", "required");
+                    .SetAttribut("required", "required")
+                    .SetAttribut("onblur", "InputIsValid('surname')");
                 
                 if (errors.ContainsKey("surname")) div2.AddTag("span", errors["surname"]).SetAttribut("id", "2");
-                else div2.AddTag("span").SetAttribut("id", "2");
+                else div2.AddTag("span").SetAttribut("id", "forsurname");
 
                 div2.AddTag("br");
 
@@ -51,7 +55,7 @@ namespace Routing.Pages
                     .SetAttribut("placeholder", "max length of 50 characters");
 
                 if (errors.ContainsKey("address")) div3.AddTag("span", errors["address"]).SetAttribut("id", "3");                
-                else div3.AddTag("span").SetAttribut("id", "3");
+                else div3.AddTag("span").SetAttribut("id", "foraddress");
 
                 div3.AddTag("br");
 
@@ -60,10 +64,11 @@ namespace Routing.Pages
                 div4.AddTag("br");
                 div4.AddTag(new HtmlInput(InputType.Text, "phone", form["phone"]))
                     .SetAttribut("placeholder", "000-000-00-00")
-                    .SetAttribut("required", "required");
+                    .SetAttribut("required", "required")
+                    .SetAttribut("onblur", "InputIsValid('phone')");
 
                 if (errors.ContainsKey("phone")) div4.AddTag("span", errors["phone"]).SetAttribut("id", "4");
-                else div4.AddTag("span").SetAttribut("id", "4");
+                else div4.AddTag("span").SetAttribut("id", "forphone");
 
                 div4.AddTag("br");
 
@@ -79,8 +84,9 @@ namespace Routing.Pages
                 div1.AddTag(new HtmlInput(InputType.Text, "name", "" ))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
-                    .SetAttribut("required", "required");
-                div1.AddTag("span").SetAttribut("id", "s1");
+                    .SetAttribut("required", "required")
+                    .SetAttribut("onblur", "InputIsValid(this)");
+                div1.AddTag("span").SetAttribut("id", "forname");
                 div1.AddTag("br");
 
                 HtmlBaseTag div2 = htmlForm.AddTag("div");
@@ -89,8 +95,9 @@ namespace Routing.Pages
                 div2.AddTag(new HtmlInput(InputType.Text, "surname", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
-                    .SetAttribut("required", "required");
-                div2.AddTag("span").SetAttribut("id", "s2");
+                    .SetAttribut("required", "required")
+                    .SetAttribut("onblur", "InputIsValid(this)");
+                div2.AddTag("span").SetAttribut("id", "forsurname");
                 div2.AddTag("br");
 
                 HtmlBaseTag div3 = htmlForm.AddTag("div");
@@ -99,7 +106,7 @@ namespace Routing.Pages
                 div3.AddTag(new HtmlInput(InputType.Text, "address", ""))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
-                div3.AddTag("span").SetAttribut("id", "s3");
+                div3.AddTag("span").SetAttribut("id", "foraddress");
                 div3.AddTag("br");
 
                 HtmlBaseTag div4 = htmlForm.AddTag("div");
@@ -107,8 +114,9 @@ namespace Routing.Pages
                 div4.AddTag("br");
                 div4.AddTag(new HtmlInput(InputType.Text, "phone", ""))
                     .SetAttribut("placeholder", "000-000-00-00")
-                    .SetAttribut("required", "required");
-                div4.AddTag("span").SetAttribut("id", "s4");
+                    .SetAttribut("required", "required")
+                    .SetAttribut("onblur", "InputIsValid(this)");
+                div4.AddTag("span").SetAttribut("id", "forphone");
                 div4.AddTag("br");
 
                 HtmlBaseTag div5 = htmlForm.AddTag("div");

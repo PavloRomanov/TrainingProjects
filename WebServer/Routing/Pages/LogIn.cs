@@ -45,12 +45,8 @@ namespace Routing.Pages
                 htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
             }
 
-            StringBuilder body = new StringBuilder("<body bgcolor='#5DCFC3'>");
-            body.Append(Environment.NewLine);
-            body.Append("<h1>Log In</h1>");
-            body.Append(Environment.NewLine);
-            body.Append(Environment.NewLine);
-
+            StringBuilder body = new StringBuilder("<br/>");
+         
             body.Append(htmlForm.ToString(errors));
 
             body.Append(Environment.NewLine);
