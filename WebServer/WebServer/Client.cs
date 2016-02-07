@@ -202,7 +202,7 @@ namespace WebServer
         private static string GetAnswerString(string html, int cod, string codStr, string sessionId)
         {
             StringBuilder answerString = new StringBuilder();
-            answerString.Append("HTTP/1.1").Append(cod).Append(codStr);
+            answerString.Append("HTTP/1.1 ").Append(cod).Append(codStr);
             answerString.Append(Environment.NewLine);            
             answerString.Append("Content-type: text/html");
             answerString.Append(Environment.NewLine);
