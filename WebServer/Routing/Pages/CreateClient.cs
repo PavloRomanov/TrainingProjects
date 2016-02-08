@@ -15,6 +15,8 @@ namespace Routing.Pages
         {          
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             htmlForm.SetAttribut("novalidate", "novalidate");
+
+
             if(errors != null && errors.Count > 0)
             {
                 HtmlBaseTag div1 = htmlForm.AddTag("div").SetAttribut("class", "row");
@@ -29,7 +31,7 @@ namespace Routing.Pages
                     .SetAttribut("onblur", "InputIsValid('name')");
 
                 if (errors.ContainsKey("name")) div1.AddTag("span", errors["name"]).SetAttribut("id", "1");
-                else div1.AddTag("span").SetAttribut("id", "forname");
+                else div1.AddTag("span").SetAttribut("id", "1");
 
                 div1.AddTag("br");
 

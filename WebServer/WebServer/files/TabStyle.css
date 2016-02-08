@@ -1,19 +1,23 @@
 
-body{
+body
+{
 	color: red;
 	background-image: url(Provider.jpg);
  background-repeat: no-repeat;
+    height:100%; 
+	padding: 0; 
+
 
 }
 div.header{
- width:100%;
- height:200px;
+ width:all;
+ height:120px;
 }
  div.header h1{
  text-align:center;}
  
 div.menu {
-width:100%;
+width:all;
  height:70px;
   background-color:blue;
 }
@@ -30,14 +34,15 @@ div.menu li a b{background-color:red;}
 div.menu li a:visited{background-color:black;}
 div.menu li a:hover {background-color:red;text-decoration:underline;}
 
-div.logo{
+div.logo
+{
   float:right;
   margin-left:25px;
   width:10%;
 }
 div.content{
 	 width:all;
-height:590px;
+    height:650px;
 
 }
 
@@ -45,14 +50,24 @@ div.footer{
  clear:both;
  width:all;
  height:40px;
+    margin-top:-40px;
  text-align:center;
  background-color:yellow;
+    color:black;
 }
 
-input.error {
-    border: 1px solid red;
-}
-
-h3{
+h3
+{
     color: blue;
 }
+input, select {
+    width: 120px;
+    float: left;
+    margin-top: 0.4em;
+ }
+lable {
+    float: left;
+    padding-top: 0.4em;
+    width: 5em;
+    margin-right: 1em;
+ }
