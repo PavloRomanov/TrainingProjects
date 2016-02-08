@@ -53,14 +53,4 @@ div.footer{
 h3{
     color: blue;
 }
-input, select {
-    width: 120px;
-    float: left;
-    margin-top: 0.4em;
- }
-lable {
-    float: left;
-    padding-top: 0.4em;
-    width: 5em;
-    margin-right: 1em;
- }
+
