@@ -15,7 +15,6 @@ namespace Routing.Pages.Helpers
             SetAttribut("name", "form");
             SetAttribut("method", method.ToString());
             SetAttribut("action", action);
-            //SetAttribut("onsubmit", "return FormIsValidManager()"); 
             SetAttribut("onsubmit", "return FormIsValid()");            
             _errors = errors;            
         }
