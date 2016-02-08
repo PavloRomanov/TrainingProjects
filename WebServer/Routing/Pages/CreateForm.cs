@@ -44,7 +44,7 @@ namespace Routing.Pages
                 .SetAttribut("cols", "70")
                 .SetAttribut("rows", "3");
             //-------------------------------------------------------
-           /* htmlForm.AddTag("br");
+            htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Are you satisfied with the speed of the Internet?");
             htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlInput(InputType.Radio, "form3", "yes"));
@@ -62,7 +62,7 @@ namespace Routing.Pages
 
             //---------------------------------------------------------------------------------------------------
 
-            /* htmlForm.AddTag("br");
+             htmlForm.AddTag("br");
              htmlForm.AddTag("lable", " Do you like the service manager?");
              htmlForm.AddTag("br");
              htmlForm.AddTag(new HtmlInput(InputType.Radio, "form5", "yes"));
@@ -109,10 +109,10 @@ namespace Routing.Pages
              htmlForm.AddTag("lable", "Comment:");
              htmlForm.AddTag("br");
              htmlForm.AddTag("textarea", "")
-                 .SetAttribut("name", "comment4")
+                 .SetAttribut("name", "comment5")
                  .SetAttribut("cols", "70")
                  .SetAttribut("rows", "3");
-             htmlForm.AddTag("br");*/
+             htmlForm.AddTag("br");
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Filled manager: ");
             ManagerService ms = new ManagerService("manager.txt");
@@ -145,14 +145,14 @@ namespace Routing.Pages
                 Form formclient = new Form(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
                 formclient.F1 = FormsClient.Are_you_satisfied_with_the_service;
                 formclient.Comment1 = form["comment1"];
-                /*formclient.F2 = FormsClient.Are_you_satisfied_with_the_speed_of_the_Internet;
+                formclient.F2 = FormsClient.Are_you_satisfied_with_the_speed_of_the_Internet;
                 formclient.Comment2 = form["comment2"];
-                /* formclient.F3 = FormsClient.Do_you_like_the_service_manager;
+                 formclient.F3 = FormsClient.Do_you_like_the_service_manager;
                  formclient.Comment3 = form["comment3"];
                  formclient.F4 = FormsClient.Do_you_use_the_Internet_and_TV;
                  formclient.Comment4 = form["comment4"];
                  formclient.F5 = FormsClient.Do_you_want_to_participate_in_the_loyalty_program;
-                 formclient.Comment5 = form["comment5"];*/
+                 formclient.Comment5 = form["comment5"];
                 if (form.ContainsKey("form1") == form.ContainsKey("form2"))
                 {
                     formclient.Answer1 = "yes";
@@ -169,7 +169,7 @@ namespace Routing.Pages
                     }
                 }
                 //----------------------------------------------
-               /* if (form.ContainsKey("form3") == form.ContainsKey("form4"))
+                if (form.ContainsKey("form3") == form.ContainsKey("form4"))
                 {
                     formclient.Answer2 = "yes";
                 }
@@ -185,7 +185,7 @@ namespace Routing.Pages
                     }
                 }
                 //----------------------------------------------
-                /* if (form.ContainsKey("form5") == form.ContainsKey("form6"))
+                 if (form.ContainsKey("form5") == form.ContainsKey("form6"))
                  {
                      formclient.Answer3 = "yes";
                  }
@@ -231,7 +231,7 @@ namespace Routing.Pages
                  {
                      formclient.Answer1 = form["form10"];
                  }
-                 }*/
+                 }
                 FormServiсe formser = new FormServiсe("forms.txt");
                 formser.Add(formclient);
             }

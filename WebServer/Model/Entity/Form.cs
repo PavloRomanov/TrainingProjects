@@ -29,36 +29,36 @@ namespace Model.Entity
         public Guid IdManager { get; set; }
 
         [DataMember]
-        public string  Comment1 { get; set; }
-       /* [DataMember]
+        public string Comment1 { get; set; }
+        [DataMember]
         public string Comment2 { get; set; }
-        /*[DataMember]
+        [DataMember]
         public string Comment3 { get; set; }
         [DataMember]
         public string Comment4 { get; set; }
         [DataMember]
-        public string Comment5 { get; set; }*/
-       
+        public string Comment5 { get; set; }
+
         [DataMember]
         public string Answer1 { get; set; }
-       /* [DataMember]
+       [DataMember]
         public string Answer2 { get; set; }
-        /*[DataMember]
+        [DataMember]
         public string Answer3 { get; set; }
         [DataMember]
         public string Answer4 { get; set; }
         [DataMember]
-        public string Answer5 { get; set; }*/
+        public string Answer5 { get; set; }
         [DataMember]
         public FormsClient F1 { get; set; }
-       /* [DataMember]
+       [DataMember]
         public FormsClient F2 { get; set; }
-        /* [DataMember]
+         [DataMember]
          public FormsClient F3 { get; set; }
          [DataMember]
          public FormsClient F4 { get; set; }
          [DataMember]
-         public FormsClient F5 { get; set; }*/
+         public FormsClient F5 { get; set; }
 
 
     }

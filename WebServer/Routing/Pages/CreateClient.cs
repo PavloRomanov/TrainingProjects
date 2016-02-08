@@ -190,7 +190,7 @@ namespace Routing.Pages
         protected override string AddScript()
         {
             StringBuilder script = new StringBuilder("<script src=")
-                .Append("JavaScriptForClient.js").Append("></script>");
+                .Append("client.js").Append("></script>");
 
             return script.ToString();           
         }
