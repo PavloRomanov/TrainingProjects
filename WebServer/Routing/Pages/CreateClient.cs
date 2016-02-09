@@ -73,8 +73,12 @@ namespace Routing.Pages
 
 
                 HtmlBaseTag div5 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
-                div5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-                div5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));                
+                HtmlBaseTag divLabel5 = div5.AddTag("div", null).SetAttribut("class", "forlabel");
+                HtmlBaseTag divInput5 = div5.AddTag("div", null).SetAttribut("class", "forinput");
+                divLabel5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
+                divInput5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+                divInput5.AddTag(new HtmlInput(InputType.Button, "Click", "Click"))
+                    .SetAttribut("onclick", "writeText()");
             }
             else
             {
