@@ -17,32 +17,35 @@ namespace Routing.Pages
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
 
-            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "LogIn", errors);
+            HtmlForm htmlForm = new HtmlForm(MethodsRequest.RequestMethod.POST, "LogIn", errors);
             if (errors != null && errors.Count > 0)
             {
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Enter login :");
-                htmlForm.AddTag(new HtmlInput(InputType.Text, "login", form["login"]));
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "login", form["login"]));
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Enter password :");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(InputType.Password, "password", form["password"]));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Password, "password", form["password"]));
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Clean", "Clean"));
-                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Reset, "Clean", "Clean"));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Submit, "Submit", "Submit"));
                 htmlForm.AddTag("br");
             }
             else
             {
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Enter login :");
-                htmlForm.AddTag(new HtmlInput(InputType.Text, "login", "admin"));
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "login", "admin"));
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Enter password :");
-                htmlForm.AddTag(new HtmlInput(InputType.Password, "password", "admin"));
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Clean", "Clean"));
-                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Password, "password", "admin"));
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Reset, "Clean", "Clean"));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Submit, "Submit", "Submit"));
             }
 
             StringBuilder body = new StringBuilder("<br/>");

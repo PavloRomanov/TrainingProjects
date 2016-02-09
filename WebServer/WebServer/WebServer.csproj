@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="files\client.js" />
+    <Content Include="files\manager.js" />
     <Content Include="files\Provider.jpg" />
     <Content Include="files\TabStyle.css" />
     <Content Include="files\telephone.jpg" />

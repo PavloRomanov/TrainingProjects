@@ -15,15 +15,16 @@ namespace Routing.Pages
 
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateForm", errors);
+            HtmlForm htmlForm = new HtmlForm(MethodsRequest.RequestMethod.POST, "CreateForm", errors);
             htmlForm.AddTag("lable", "Name client: ");
+            htmlForm.AddTag("br");
             ClientServiсe cs = new ClientServiсe("client.txt");
             Dictionary<Guid, Client> clients = cs.GetAll();
             Dictionary<string,string> formclient = new Dictionary<string, string>();
             foreach (var c in clients)
             {
-                var temp1 = c.Value.Name + " " + c.Value.Surname;
-                formclient.Add(c.Value.Id.ToString(), temp1);
+                var allnameclient = c.Value.Name + " " + c.Value.Surname;
+                formclient.Add(c.Value.Id.ToString(), allnameclient);
             }
             htmlForm.AddTag(new HtmlSelect("clientId", formclient))
                 .SetAttribut("size", "1");
@@ -31,9 +32,10 @@ namespace Routing.Pages
             //----------------------------------------------------------------------------------           
             htmlForm.AddTag("lable", "Are you satisfied with the service?");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form1", "yes"));
+            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form1", "yes"));
             htmlForm.AddTag("lable", "Yes");
-            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form2", "no"));
+            htmlForm.AddTag("br");
+            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form2", "no"));
             htmlForm.AddTag("lable", "No");
             //----------------------------------------------------------------
             htmlForm.AddTag("br");
@@ -47,9 +49,10 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Are you satisfied with the speed of the Internet?");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form3", "yes"));
+            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form3", "yes"));
             htmlForm.AddTag("lable", "Yes");
-            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form4", "no"));
+            htmlForm.AddTag("br");
+            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form4", "no"));
             htmlForm.AddTag("lable", "No");
             htmlForm.AddTag("br");
 
@@ -65,9 +68,10 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
              htmlForm.AddTag("lable", " Do you like the service manager?");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(InputType.Radio, "form5", "yes"));
+             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form5", "yes"));
              htmlForm.AddTag("lable", "Yes");
-             htmlForm.AddTag(new HtmlInput(InputType.Radio, "form6", "no"));
+             htmlForm.AddTag("br");
+             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form6", "no"));
              htmlForm.AddTag("lable", "No");
              htmlForm.AddTag("br");
 
@@ -83,9 +87,10 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
              htmlForm.AddTag("lable", "Do you use the Internet and TV?");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(InputType.Radio, "form7", "yes"));
+             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form7", "yes"));
              htmlForm.AddTag("lable", "Yes");
-             htmlForm.AddTag(new HtmlInput(InputType.Radio, "form8", "no"));
+             htmlForm.AddTag("br");
+             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form8", "no"));
              htmlForm.AddTag("lable", "No");
              htmlForm.AddTag("br");
 
@@ -100,38 +105,38 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
              htmlForm.AddTag("lable", "Do you want to participate in the loyalty program?");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(InputType.Radio, "form9", "yes"));
+             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form9", "yes"));
              htmlForm.AddTag("lable", "Yes");
-             htmlForm.AddTag(new HtmlInput(InputType.Radio, "form10", "no"));
+             htmlForm.AddTag("br");
+             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form10", "no"));
              htmlForm.AddTag("lable", "No");
              htmlForm.AddTag("br");
-
              htmlForm.AddTag("lable", "Comment:");
              htmlForm.AddTag("br");
              htmlForm.AddTag("textarea", "")
                  .SetAttribut("name", "comment5")
                  .SetAttribut("cols", "70")
                  .SetAttribut("rows", "3");
-             htmlForm.AddTag("br");
+            htmlForm.AddTag("br");
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Filled manager: ");
+            htmlForm.AddTag("br");
             ManagerService ms = new ManagerService("manager.txt");
             Dictionary<Guid, Manager> managers = ms.GetAll();
             Dictionary<string,string> formmanager = new Dictionary<string, string>();
            
             foreach (var man in managers)
             {
-                var temp3 = man.Value.Name + " " + man.Value.Surname;
-                formmanager.Add(man.Value.Id.ToString(),temp3);
+                var allnamemanager = man.Value.Name + " " + man.Value.Surname;
+                formmanager.Add(man.Value.Id.ToString(), allnamemanager);
             }
             htmlForm.AddTag(new HtmlSelect("managerId", formmanager))
                 .SetAttribut("size", "1");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-            htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Reset, "Reset", "Clin"));
+            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Submit, "Submit", "Submit"));
             StringBuilder body = new StringBuilder();          
             body.Append(Environment.NewLine);
-            body.Append("<h1>Create Form</h1>");
             body.Append(htmlForm.ToString(errors));
             return body.ToString();
         }

@@ -13,7 +13,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Update Client"; } }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try
@@ -35,7 +35,7 @@ namespace Routing.Pages
             return response;
         }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             
@@ -46,12 +46,12 @@ namespace Routing.Pages
 
                 Client client = cs.GetElement(id);
 
-                HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "UpdateClient", errors);
-                htmlForm.AddTag(new HtmlInput(InputType.Hidden, "id", client.Id.ToString()));
-                htmlForm.AddTag(new HtmlInput(InputType.Text, "name", ""));
-                htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", ""));
-                htmlForm.AddTag(new HtmlInput(InputType.Text, "address", ""));
-                htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", ""));
+                HtmlForm htmlForm = new HtmlForm(MethodsRequest.RequestMethod.POST, "UpdateClient", errors);
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Hidden, "id", client.Id.ToString()));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "name", ""));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "surname", ""));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "address", ""));
+                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "phone", ""));
 
                 StringBuilder body = new StringBuilder();
                 body.Append("<form method='POST' action='UpdateClient'>");

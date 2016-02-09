@@ -27,7 +27,7 @@ div.logo{
  
 div.menu {
     float: left;
-    width:85%;
+    width:95%;
     height:70px;
     background-color:blue;
 }
@@ -35,7 +35,7 @@ div.menu li  {display:inline;}
 div.menu  li a{
     background-color:grey;
     color:yellow;
-    padding:10px 15px;
+    padding:10px 10px;
     text-decoration: none;
     border-radius:10px 10px 0 0;
     outline:none;
@@ -46,7 +46,7 @@ div.menu li a:hover {background-color:red;text-decoration:underline;}
 
 
 div.content{
-    /*clear: both;*/
+    
 	width:100%;
     height:590px;
 
@@ -65,3 +65,22 @@ h3{
     color: blue;
 }
 
+input[type="text"],select {
+    width: 160px;
+    float: left;
+    margin-top: 0.4em;
+ }
+lable {
+    float: left;
+    width: 30em;
+    margin-right: 1em;
+ }
+input[type=textarea] {
+    width: 120px;
+    font: 1em Arial, sans-serif;
+    padding: 3px 4px;
+ }
+input[type=radio] {
+    float: left;
+    width: 3em;     
+ }

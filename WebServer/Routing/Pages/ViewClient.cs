@@ -11,7 +11,7 @@ namespace Routing.Pages
 {
     public class ViewClient : BasePage
     {
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             StringBuilder body = new StringBuilder("<h1>ViewClient</h1>");

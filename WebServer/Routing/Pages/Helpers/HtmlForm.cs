@@ -9,7 +9,7 @@ namespace Routing.Pages.Helpers
     {
         public readonly IDictionary<string, string> _errors;
 
-        public HtmlForm(RequestMethod method, string action, IDictionary<string, string> errors = null)
+        public HtmlForm(MethodsRequest.RequestMethod method, string action, IDictionary<string, string> errors = null)
             :base("form", null)
         {
             SetAttribut("name", "form");
@@ -39,25 +39,5 @@ namespace Routing.Pages.Helpers
                         
             return form.ToString();
         }
-    }
-
-    public enum RequestMethod
-    {
-        GET,
-        POST
-    }
-
-    public enum InputType
-    {
-        Button,
-        Checkbox,
-        File,
-        Hidden,
-        Image,
-        Password,
-        Radio,
-        Reset,
-        Submit,
-        Text
     }
 }

@@ -13,7 +13,7 @@ namespace Routing.Pages
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {          
-            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
+            HtmlForm htmlForm = new HtmlForm(MethodsRequest.RequestMethod.POST, "CreateClient", errors);
             htmlForm.SetAttribut("novalidate", "novalidate");
 
 
@@ -24,7 +24,7 @@ namespace Routing.Pages
                 HtmlBaseTag divInput1 = div1.AddTag("div").SetAttribut("class", "forinput");
                 divLabel1.AddTag("lable", "Name :");
                 
-                div1.AddTag(new HtmlInput(InputType.Text, "name", form["name"]))
+                div1.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "name", form["name"]))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -38,7 +38,7 @@ namespace Routing.Pages
                 HtmlBaseTag div2 = htmlForm.AddTag("div");
                 div2.AddTag("lable", "Surname :");
                 div2.AddTag("br");
-                div2.AddTag(new HtmlInput(InputType.Text, "surname", form["surname"]))
+                div2.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "surname", form["surname"]))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -52,7 +52,7 @@ namespace Routing.Pages
                 HtmlBaseTag div3 = htmlForm.AddTag("div");
                 div3.AddTag("lable", "Address :");
                 div3.AddTag("br");
-                div3.AddTag(new HtmlInput(InputType.Text, "address", form["address"]))
+                div3.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "address", form["address"]))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
 
@@ -64,7 +64,7 @@ namespace Routing.Pages
                 HtmlBaseTag div4 = htmlForm.AddTag("div");
                 div4.AddTag("lable", "Phone :");
                 div4.AddTag("br");
-                div4.AddTag(new HtmlInput(InputType.Text, "phone", form["phone"]))
+                div4.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "phone", form["phone"]))
                     .SetAttribut("placeholder", "000-000-00-00")
                     .SetAttribut("required", "required")
                     .SetAttribut("onblur", "InputIsValid('phone')");
@@ -75,15 +75,15 @@ namespace Routing.Pages
                 div4.AddTag("br");
 
                 HtmlBaseTag div5 = htmlForm.AddTag("div");
-                div5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-                div5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));                
+                div5.AddTag(new HtmlInput(TypeInputcs.InputType.Reset, "Reset", "Clin"));
+                div5.AddTag(new HtmlInput(TypeInputcs.InputType.Submit, "Submit", "Submit"));                
             }
             else
             {
                 HtmlBaseTag div1 = htmlForm.AddTag("div");
                 div1.AddTag("lable", "Name :");
                 div1.AddTag("br");
-                div1.AddTag(new HtmlInput(InputType.Text, "name", "" ))
+                div1.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "name", "" ))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -94,7 +94,7 @@ namespace Routing.Pages
                 HtmlBaseTag div2 = htmlForm.AddTag("div");
                 div2.AddTag("lable", "Surname :");
                 div2.AddTag("br");
-                div2.AddTag(new HtmlInput(InputType.Text, "surname", ""))
+                div2.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "surname", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -105,7 +105,7 @@ namespace Routing.Pages
                 HtmlBaseTag div3 = htmlForm.AddTag("div");
                 div3.AddTag("lable", "Address :");
                 div3.AddTag("br");
-                div3.AddTag(new HtmlInput(InputType.Text, "address", ""))
+                div3.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "address", ""))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
                 div3.AddTag("span").SetAttribut("id", "foraddress");
@@ -114,7 +114,7 @@ namespace Routing.Pages
                 HtmlBaseTag div4 = htmlForm.AddTag("div");
                 div4.AddTag("lable", "Phone :");
                 div4.AddTag("br");
-                div4.AddTag(new HtmlInput(InputType.Text, "phone", ""))
+                div4.AddTag(new HtmlInput(TypeInputcs.InputType.Text, "phone", ""))
                     .SetAttribut("placeholder", "000-000-00-00")
                     .SetAttribut("required", "required")
                     .SetAttribut("onblur", "InputIsValid(this)");
@@ -122,10 +122,10 @@ namespace Routing.Pages
                 div4.AddTag("br");
 
                 HtmlBaseTag div5 = htmlForm.AddTag("div");
-                div5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-                div5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
-                div5.AddTag(new HtmlInput(InputType.Button, "Click", "Click"))
-                    .SetAttribut("onclick", "writeText()");
+                div5.AddTag(new HtmlInput(TypeInputcs.InputType.Reset, "Reset", "Clin"));
+                div5.AddTag(new HtmlInput(TypeInputcs.InputType.Submit, "Submit", "Submit"));
+                //div5.AddTag(new HtmlInput(InputType.Button, "Click", "Click"))
+                    //.SetAttribut("onclick", "writeText()");
             }
             
 
@@ -146,7 +146,7 @@ namespace Routing.Pages
         public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
-            IDictionary<string, string> errors = new Dictionary<string, string>();
+            Dictionary<string, string> errors = new Dictionary<string, string>();
 
             if (!vh.LikeName(form["name"]))
             {
