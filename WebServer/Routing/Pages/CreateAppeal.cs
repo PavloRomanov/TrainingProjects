@@ -19,9 +19,9 @@ namespace Routing.Pages
 
         protected override string Title { get { return "Create Appeal"; } }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
+            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateAppeal", errors);
 
             if (errors != null && errors.Count > 0)
             {
@@ -47,14 +47,13 @@ namespace Routing.Pages
                 //--------------------------------------------------------------
 
                 htmlForm.AddTag("lable", "The reason for petition:");
-
+                htmlForm.AddTag("br");
                 Dictionary<string, string> optionsappeal = new Dictionary<string, string>();
                 var appeals = Enum.GetValues(typeof(ClientAppeal));
                  foreach (var v in appeals )
                  {
-                    //var appealclient = Enum.Parse(typeof(ClientAppeal), v.ToString()).ToString();//////////////////////////?????????
-                    //optionsappeal.Add(v.ToString(), appealclient);
-                    optionsappeal.Add(((int)v).ToString(), v.ToString());
+                    var appealclient =  v.ToString();
+                    optionsappeal.Add(((int)v).ToString(), appealclient);
                 }
                 htmlForm.AddTag(new HtmlSelect("reason", optionsappeal))
                     .SetAttribut("size", "1");
@@ -77,13 +76,14 @@ namespace Routing.Pages
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag("lable", "The problem is solved?");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve1", "yes"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve1", "yes"));
                 htmlForm.AddTag("lable", "Yes");
-                htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve2", "no"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve2", "no"));
                 htmlForm.AddTag("lable", "No");
                 htmlForm.AddTag("br");
                 //-----------------------------------------------------------------------------
                 htmlForm.AddTag("lable", "Serviced manager:");
+                htmlForm.AddTag("br");
                 ManagerService ms = new ManagerService("manager.txt");
                 Dictionary<Guid, Manager> managers = ms.GetAll();
                 Dictionary<string, string> optionsmanager = new Dictionary<string, string>();
@@ -97,13 +97,12 @@ namespace Routing.Pages
                 htmlForm.AddTag(new HtmlSelect("managerId", optionsmanager))
                     .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
             }
 
             StringBuilder body = new StringBuilder();
             body.Append(Environment.NewLine);
-            body.Append("<h1>Create Appeal</h1>");
             body.Append(htmlForm.ToString(errors));
          
             return body.ToString();

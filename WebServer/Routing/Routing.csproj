@@ -53,6 +53,8 @@
     <Compile Include="Pages\Helpers\HtmlLable.cs" />
     <Compile Include="Pages\Helpers\HtmlText.cs" />
     <Compile Include="Pages\Helpers\IHtmlElement.cs" />
+    <Compile Include="Pages\Helpers\AllRequestMethods .cs" />
+    <Compile Include="Pages\Helpers\AllTypeInputcs.cs" />
     <Compile Include="Pages\LogOut.cs" />
     <Compile Include="Pages\ManagersList.cs" />
     <Compile Include="Pages\BasePage.cs" />

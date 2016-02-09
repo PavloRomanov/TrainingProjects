@@ -2,26 +2,39 @@
 body{
 	color: red;
 	background-image: url(Provider.jpg);
- background-repeat: no-repeat;
-
+    background-repeat: no-repeat;
 }
-div.header{
- width:100%;
- height:200px;
+div.header{    
+    width:100%;
+    height:200px;
 }
  div.header h1{
  text-align:center;}
+
+ div.row1{
+    position: relative;       
+    height:90px;
+    width:100%;    
+    
+}
+
+div.logo{
+    float: left;    
+    margin-left:25px;
+    width:10%;
+}
  
 div.menu {
-width:100%;
- height:70px;
-  background-color:blue;
+    float: left;
+    width:90%;
+    height:70px;
+    background-color:blue;
 }
 div.menu li  {display:inline;}
 div.menu  li a{
     background-color:grey;
     color:yellow;
-    padding:10px 15px;
+    padding:10px 10px;
     text-decoration: none;
     border-radius:10px 10px 0 0;
     outline:none;
@@ -30,29 +43,68 @@ div.menu li a b{background-color:red;}
 div.menu li a:visited{background-color:black;}
 div.menu li a:hover {background-color:red;text-decoration:underline;}
 
-div.logo{
-  float:right;
-  margin-left:25px;
-  width:10%;
-}
+
 div.content{
-	 width:100%;
-height:590px;
+    /*clear: both;*/
+	width:100%;
+    /*height:570px;*/
 
 }
 
 div.footer{
- clear:both;
- width:100%;
- height:40px;
- text-align:center;
- background-color:yellow;
-}
-
-input.error {
-    border: 1px solid red;
+     clear:both;
+     position: fixed;
+     bottom: 0;
+     padding: 10px;
+     width:100%;
+     height:40px;
+     text-align:center;
+     background-color:yellow;
+     color:black;
 }
 
 h3{
     color: blue;
 }
+
+
+
+div.row{
+    position: relative;
+    height:50px; 
+}
+
+div.forlabel{
+    float: left;
+    text-align:right;
+    color:black;
+    width:30%;
+}
+
+div.forinput{
+    float: left;
+    text-align:left;
+    color:black;
+    width:70%;
+}
+div.forinput span{color: red}
+
+input[type="text"],input[type="password"],select {
+    width: 160px;
+    float: left;
+    margin-top: 0.4em;
+ }
+lable {
+    float: left;
+    width: 30em;
+    margin-right: 1em;
+ }
+input[type=textarea] {
+    width: 120px;
+    font: 1em Arial, sans-serif;
+    padding: 3px 4px;
+ }
+input[type=radio] {
+    float: left;
+    width: 3em;     
+ }

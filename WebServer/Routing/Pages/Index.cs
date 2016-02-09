@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Routing.Pages
 {
-    public class Index : IBasePage
+    public class Index : BasePage
     {
-        public Response Get(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string Title { get { return "Home Page"; } }
+
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
+        {
+            StringBuilder page = new StringBuilder(Environment.NewLine);
+            page.Append("<h3 style=text-align:center>Here can be your advertising</h3>");
+
+            return page.ToString();
+        }
+
+        /*public Response Get(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             StringBuilder page = new StringBuilder("<!DOCTYPE html>");
             page.Append(Environment.NewLine);
@@ -87,12 +98,14 @@ namespace Routing.Pages
             page.Append("</html>");
 
             return new Response(page.ToString(), TypeOfAnswer.Success, "");
-        }
+        }*/
 
        
-        public Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

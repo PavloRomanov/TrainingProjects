@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
+using Routing.Pages.Helpers;
+
 namespace Routing.Pages
 {
   public  class UpdateManager : BasePage
     {
         protected override string Title { get { return "Update Manager"; } }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try
@@ -35,80 +37,82 @@ namespace Routing.Pages
             return response;
         }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             Response response;
-            StringBuilder body = new StringBuilder("<h1>UpdateManager</h1>");
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
-
                 Manager manager = ms.GetElement(id);
-
-                body.Append("<form method='POST' action='UpdateManager'>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'hidden' name = 'id' value ='").Append(manager.Id).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Name:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'name' value = '").Append(manager.Name).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Surname:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'surname' value = '").Append(manager.Surname).Append("'/>");
-                body.Append(Environment.NewLine);
-                
-
-//-----------------------------------------------------------------------------
-                body.Append("<p>WorkExperience:  </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<p><select name='experience' size='1'>");
-                body.Append(Environment.NewLine);
-
-                var values = Enum.GetValues(typeof(WorkExperience));
-                foreach (var v in values)
-                {
-                    var option = string.Format("<option value='{0}'>{1}</option>", (int)v, Enum.GetName(typeof(WorkExperience), v));
-                    body.Append(option);
-                    body.Append(Environment.NewLine);
-                }
-                body.Append("</select></p></br>");
+                HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateManager", errors);
+                htmlForm.SetAttribut("novalidate", "novalidate");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Hidden, "id", manager.Id.ToString()));
+                htmlForm.AddTag("lable", "Name :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "name", manager.Name))
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forname");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Surname :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", manager.Surname))
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("placeholder", "max length of 15 characters");
+                htmlForm.AddTag("span").SetAttribut("id", "forsurname");
 
 
+                //-----------------------------------------------------------------------------
+                //var ew = form["experience"];  
+                var ew = new Dictionary<string,string>();            
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "WorkExperience: ");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlSelect("experience",ew));//?????????????
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Address :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", manager.Address))
+                    .SetAttribut("maxlength", "50")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "foraddress");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Phone :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", manager.Phone))
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forphone");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Login :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", manager.Login))
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forlogin");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Password :");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "password", manager.Password))
+                    .SetAttribut("maxlength", "15")
+                   .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forpassword");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
+                StringBuilder body = new StringBuilder(Environment.NewLine);
+                body.Append(AddGreeting(sessionId));
+                body.Append(Environment.NewLine);
+                body.Append(htmlForm.ToString(errors));
+                body.Append(Environment.NewLine);
 
-
-              
-                body.Append(Environment.NewLine);
-                body.Append("<p>Address:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'address' value = '").Append(manager.Address).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Phone:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'phone'  value = '").Append(manager.Phone).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Login:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'login' value = '").Append(manager.Login).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Password:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'password' value = '").Append(manager.Password).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p><br></p>");
-                body.Append("<input type = 'submit' value = 'Submit'/>");
-                body.Append(Environment.NewLine);
-                body.Append("</form>");
-
+                return body.ToString();
             }
             catch (Exception)
             {
                 response = new Response("", TypeOfAnswer.ServerError, "");
                 return "";
             }
-
-            return body.ToString();
         }
 
     }

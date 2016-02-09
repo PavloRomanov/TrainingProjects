@@ -9,25 +9,24 @@ namespace Routing.Pages.Helpers
     {
         public readonly IDictionary<string, string> _errors;
 
-        public HtmlForm(RequestMethod method, string action, IDictionary<string, string> errors = null)
+        public HtmlForm(AllRequestMethods.RequestMethod method, string action, IDictionary<string, string> errors = null)
             :base("form", null)
         {
             SetAttribut("name", "form");
             SetAttribut("method", method.ToString());
             SetAttribut("action", action);
-            //SetAttribut("onsubmit", "return FormIsValidManager()"); 
             SetAttribut("onsubmit", "return FormIsValid()");            
             _errors = errors;            
         }
 
         
-        public override HtmlBaseTag AddTag(string name, string text = null)
-        {
-           
+       /* public override HtmlBaseTag AddTag(string name, string text = null)
+        {           
             HtmlBaseTag tag = new HtmlBaseTag(name, text);
             TagContent.Add(tag);
              return tag;
-        }
+        }*/
+
         public string ToString(IDictionary<string, string> errors)
         {
             StringBuilder form = new StringBuilder(Environment.NewLine);
@@ -40,25 +39,5 @@ namespace Routing.Pages.Helpers
                         
             return form.ToString();
         }
-    }
-
-    public enum RequestMethod
-    {
-        GET,
-        POST
-    }
-
-    public enum InputType
-    {
-        Button,
-        Checkbox,
-        File,
-        Hidden,
-        Image,
-        Password,
-        Radio,
-        Reset,
-        Submit,
-        Text
     }
 }

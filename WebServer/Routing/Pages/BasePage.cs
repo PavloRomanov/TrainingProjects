@@ -21,20 +21,20 @@ namespace Routing.Pages
         public Response Get(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             StringBuilder answer = new StringBuilder();
-            answer.Append(AddHeader());
-            answer.Append(AddBody(form, sessionId, errors));            
+            answer.Append(AddHeader(sessionId));
+            answer.Append(AddBody(form, sessionId, errors)); 
             answer.Append(AddFooter());            
             Response response = new Response(answer.ToString(), TypeOfAnswer.Success, "");
             return response;
         }
 
-        public virtual Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public virtual Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotSupportedException();
         } 
   
-        protected virtual string AddHeader()
-        {            
+        protected virtual string AddHeader(string sessionId = null)
+        {
             StringBuilder header = new StringBuilder("<!DOCTYPE html>");            
             header.Append(Environment.NewLine);
             header.Append("<html lang='en' xmlns='http://www.w3.org/1999/xhtml'>");
@@ -44,8 +44,6 @@ namespace Routing.Pages
             header.Append("<meta charset=UTF-8/>");
              header.Append(Environment.NewLine);
             header.Append("<link rel='stylesheet' href='TabStyle.css' type='text/css'/>");
-            header.Append(Environment.NewLine);
-            header.Append("<script src='Scriptfooter.js'>").Append("</script>");//=====================
             header.Append(Environment.NewLine);
             header.Append("<title>");
             header.Append("CMS - ").Append(Title);
@@ -59,21 +57,28 @@ namespace Routing.Pages
             header.Append(Environment.NewLine);
             header.Append("<div class='header'>");
             header.Append(Environment.NewLine);
-            header.Append("<h1><i>Welcome to S & S</i></h1>");
+            header.Append("<h1>Welcome to S&S</h1>");
+            header.Append(Environment.NewLine);
+            header.Append("<div class='row1'>");
             header.Append(Environment.NewLine);
             header.Append("<div class='logo'>");
             header.Append(Environment.NewLine);
             header.Append("<img src ='SSC.jpg' style='width: 100px; height; 100px; border: 0'>");
             header.Append("</div>");  //  logo is closed            
             header.Append(Environment.NewLine);
-            header.Append(AddMenu());           
+            header.Append(AddMenu(sessionId));           
             header.Append(Environment.NewLine);
-            header.Append("<div><h2>").Append(Title).Append("</h2></div>");
-            header.Append("<br/>");
+            header.Append("</div>");  // row1 is closed  
+            header.Append(Environment.NewLine);
+            header.Append("<div style=clear:both>");
+            header.Append(Environment.NewLine);
+            header.Append("<h2 style=text-align:center>").Append(Title).Append("</h2>");
+            header.Append(Environment.NewLine);
+            header.Append("</div>");
             header.Append(Environment.NewLine);
             header.Append("</div>");  //  header is closed
             header.Append(Environment.NewLine);
-            header.Append("<div class='content'>");
+            header.Append("<div class='content'>");  
 
             return header.ToString();
         }
@@ -86,7 +91,11 @@ namespace Routing.Pages
                 User user = Session.Instance[sessionId];
                 if(user != null)
                 {
-                    greeting.Append("<div><h3>Hello ").Append(user.Name).Append("</h3></div>");
+                    greeting.Append("<div>");
+                    greeting.Append(Environment.NewLine);
+                    greeting.Append("<h3 id='hello'>Hello ").Append(user.Name).Append("</h3>");
+                    greeting.Append(Environment.NewLine);
+                    greeting.Append("</div>");
                     return greeting.ToString();
                 }
             }            
@@ -99,18 +108,19 @@ namespace Routing.Pages
 
         protected virtual string AddFooter()
         {
-            StringBuilder footer = new StringBuilder("</div>"); //DIV content is closed
+            StringBuilder footer = new StringBuilder(Environment.NewLine);
+            footer.Append("</div>");  //  content is closed
+            footer.Append(Environment.NewLine);
             footer.Append("<div class='footer'>");
             footer.Append(Environment.NewLine);
-            footer.Append("<p id='footerSSC'>Svetlana&Serg Corporation <br>Kiev 2015</p>");
+            footer.Append("<p>Svetlana&Serg Corporation <br>Kiev 2015</p>");
             footer.Append(Environment.NewLine);
-            footer.Append("</div>");
+            footer.Append("</div>");  //  footer is closed
             footer.Append(Environment.NewLine);
-            footer.Append("</div>"); // container is closed
+            footer.Append("</div>"); //  container is closed
             footer.Append(Environment.NewLine);
             footer.Append(AddScript());
-            footer.Append(Environment.NewLine);
-            footer.Append("</body>");  // body is closed
+            footer.Append("</body>");
             footer.Append(Environment.NewLine);
             footer.Append("</html>");
             return footer.ToString();
@@ -121,37 +131,47 @@ namespace Routing.Pages
             return "";
         }
 
-        protected string AddMenu()
+        protected string AddMenu(string sessionId = null)
         {
+
             StringBuilder menu = new StringBuilder("<div class='menu'>");            
             menu.Append(Environment.NewLine);
             menu.Append("<ul>");
             menu.Append(Environment.NewLine);
             menu.Append("<li><a href='Index'>Home</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='ClientsList'>ClientsList</a></li>");
+            menu.Append("<li><a href='ClientsList'>Clients List</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='CreateClient'>CreateClient</a></li>");
+            menu.Append("<li><a href='CreateClient'>Create Client</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='FormList'>FormList</a></li>");
+            menu.Append("<li><a href='FormList'>Form List</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='CreateForm'>CreateForm</a></li>");
+            menu.Append("<li><a href='CreateForm'>Create Form</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href ='AppealList'>AppealList</a></li>");
+            menu.Append("<li><a href ='AppealList'>Appea lList</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='CreateAppeal'>CreateAppeal</a></li>");
+            menu.Append("<li><a href='CreateAppeal'>Create Appeal</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href ='ManagersList'>ManagerList</a></li>");
+            menu.Append("<li><a href ='ManagersList'>Manager List</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='CreateManager'>CreateManager</a></li>");
+            menu.Append("<li><a href='CreateManager'>Create Manager</a></li>");
             menu.Append(Environment.NewLine);
             menu.Append("<li><a href='Contact'>Contacts</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='LogIn'><b>Entrance</b></a></li>");
-            menu.Append(Environment.NewLine);
+            if(Session.Instance[sessionId].Authorized)
+            {
+                menu.Append("<li><a href='LogOut'>LogOut</a></li>");
+                menu.Append(Environment.NewLine);
+            }
+            else
+            {
+                menu.Append("<li><a href='LogIn'>LogIn</a></li>");
+                menu.Append(Environment.NewLine);
+            }            
             menu.Append(" </ul>");
             menu.Append(Environment.NewLine);
             menu.Append("</div>");
+            menu.Append(Environment.NewLine);
 
             return menu.ToString();
         }
