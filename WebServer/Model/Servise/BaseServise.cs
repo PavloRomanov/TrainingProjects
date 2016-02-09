@@ -75,11 +75,14 @@ namespace Model.Servise
                 DeSerialContract();
 
                 foreach (var element in hashElement)
-                {                   
-                    if (element.Key == model.Id) 
+                { 
+                    if(hashElement.ContainsKey(model.Id))
                     {
-                        hashElement[element.Key] = model;                                    
-                        break;
+                        if (element.Key == model.Id)
+                        {
+                            hashElement[element.Key] = model;
+                            break;
+                        }
                     }
                     else
                     {
