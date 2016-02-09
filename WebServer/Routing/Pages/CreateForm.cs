@@ -15,7 +15,7 @@ namespace Routing.Pages
 
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(MethodsRequest.RequestMethod.POST, "CreateForm", errors);
+            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateForm", errors);
             htmlForm.AddTag("lable", "Name client: ");
             htmlForm.AddTag("br");
             ClientServiсe cs = new ClientServiсe("client.txt");
@@ -32,10 +32,10 @@ namespace Routing.Pages
             //----------------------------------------------------------------------------------           
             htmlForm.AddTag("lable", "Are you satisfied with the service?");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form1", "yes"));
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form1", "yes"));
             htmlForm.AddTag("lable", "Yes");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form2", "no"));
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form2", "no"));
             htmlForm.AddTag("lable", "No");
             //----------------------------------------------------------------
             htmlForm.AddTag("br");
@@ -49,10 +49,10 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Are you satisfied with the speed of the Internet?");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form3", "yes"));
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form3", "yes"));
             htmlForm.AddTag("lable", "Yes");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form4", "no"));
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form4", "no"));
             htmlForm.AddTag("lable", "No");
             htmlForm.AddTag("br");
 
@@ -68,10 +68,10 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
              htmlForm.AddTag("lable", " Do you like the service manager?");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form5", "yes"));
+             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form5", "yes"));
              htmlForm.AddTag("lable", "Yes");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form6", "no"));
+             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form6", "no"));
              htmlForm.AddTag("lable", "No");
              htmlForm.AddTag("br");
 
@@ -87,10 +87,10 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
              htmlForm.AddTag("lable", "Do you use the Internet and TV?");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form7", "yes"));
+             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form7", "yes"));
              htmlForm.AddTag("lable", "Yes");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form8", "no"));
+             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form8", "no"));
              htmlForm.AddTag("lable", "No");
              htmlForm.AddTag("br");
 
@@ -105,10 +105,10 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
              htmlForm.AddTag("lable", "Do you want to participate in the loyalty program?");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form9", "yes"));
+             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form9", "yes"));
              htmlForm.AddTag("lable", "Yes");
              htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "form10", "no"));
+             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form10", "no"));
              htmlForm.AddTag("lable", "No");
              htmlForm.AddTag("br");
              htmlForm.AddTag("lable", "Comment:");
@@ -133,8 +133,8 @@ namespace Routing.Pages
             htmlForm.AddTag(new HtmlSelect("managerId", formmanager))
                 .SetAttribut("size", "1");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Reset, "Reset", "Clin"));
-            htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Submit, "Submit", "Submit"));
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
             StringBuilder body = new StringBuilder();          
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString(errors));

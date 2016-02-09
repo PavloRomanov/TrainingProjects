@@ -9,7 +9,7 @@ namespace Routing.Pages.Helpers
     {
         public readonly IDictionary<string, string> _errors;
 
-        public HtmlForm(MethodsRequest.RequestMethod method, string action, IDictionary<string, string> errors = null)
+        public HtmlForm(AllRequestMethods.RequestMethod method, string action, IDictionary<string, string> errors = null)
             :base("form", null)
         {
             SetAttribut("name", "form");
@@ -20,13 +20,13 @@ namespace Routing.Pages.Helpers
         }
 
         
-        public override HtmlBaseTag AddTag(string name, string text = null)
-        {
-           
+       /* public override HtmlBaseTag AddTag(string name, string text = null)
+        {           
             HtmlBaseTag tag = new HtmlBaseTag(name, text);
             TagContent.Add(tag);
              return tag;
-        }
+        }*/
+
         public string ToString(IDictionary<string, string> errors)
         {
             StringBuilder form = new StringBuilder(Environment.NewLine);

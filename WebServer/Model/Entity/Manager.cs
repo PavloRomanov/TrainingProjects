@@ -50,29 +50,4 @@ namespace Model.Entity
             Password = password;         
         }
     }
-
-    /*[DataContract]
-    public class Manager : ModelBase
-    {
-        [DataMember]
-        public string Name { get; set; }
-
-        [DataMember]
-        public string Surname { get; set; }
-
-        [DataMember]
-        public string Login { get; set; }
-
-        [DataMember]
-        public string Password { get; set; }
-
-        public Manager(Guid id, string name, string surname, string login, string password)
-            : base(id)
-        {
-            Name = name;
-            Surname = surname;           
-            Login = login;
-            Password = password;
-        }
-    }*/
 }

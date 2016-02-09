@@ -75,11 +75,14 @@ namespace Model.Servise
                 DeSerialContract();
 
                 foreach (var element in allhashmodels)
-                {                   
-                    if (element.Key == model.Id) 
-                    {
-                        allhashmodels[element.Key] = model;                                    
-                        break;
+                {
+                    if (allhashmodels.ContainsKey(model.Id))
+                        {
+                        if (element.Key == model.Id)
+                        {
+                            allhashmodels[element.Key] = model;
+                            break;
+                        }
                     }
                     else
                     {

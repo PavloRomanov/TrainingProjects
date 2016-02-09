@@ -64,7 +64,7 @@ namespace Routing
             return page;  
         }       
     
-        public Response PrepareResponse(string path, string method, System.Collections.Generic.IDictionary<string, string> param, string sessionId)
+        public Response PrepareResponse(string path, string method, IDictionary<string, string> param, string sessionId)
         {
             IBasePage page;
             Response response;
@@ -80,15 +80,15 @@ namespace Routing
                 else
                 {
                     if (path == "LogIn" || path == "Index")
-            {
+                    {
                         page = FindPage(path);
                         response = (method == "GET") ? page.Get(param, sessionId) : page.Post(param, sessionId);
-            }
+                    }
                     else
-            {
-                page = FindPage("LogIn");
+                    {
+                        page = FindPage("LogIn");
                         response = page.Get(param, sessionId);
-            }
+                    }
                 }
             }
             else

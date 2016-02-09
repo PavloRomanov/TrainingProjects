@@ -21,7 +21,7 @@ namespace Routing.Pages
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(MethodsRequest.RequestMethod.POST, "CreateAppeal", errors);
+            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateAppeal", errors);
 
             if (errors != null && errors.Count > 0)
             {
@@ -76,9 +76,9 @@ namespace Routing.Pages
                 //-----------------------------------------------------------------------
                 htmlForm.AddTag("lable", "The problem is solved?");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "solve1", "yes"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve1", "yes"));
                 htmlForm.AddTag("lable", "Yes");
-                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Radio, "solve2", "no"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve2", "no"));
                 htmlForm.AddTag("lable", "No");
                 htmlForm.AddTag("br");
                 //-----------------------------------------------------------------------------
@@ -97,8 +97,8 @@ namespace Routing.Pages
                 htmlForm.AddTag(new HtmlSelect("managerId", optionsmanager))
                     .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Reset, "Reset", "Clin"));
-                htmlForm.AddTag(new HtmlInput(TypeInputcs.InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
             }
 
             StringBuilder body = new StringBuilder();

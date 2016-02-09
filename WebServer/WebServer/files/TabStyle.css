@@ -27,7 +27,7 @@ div.logo{
  
 div.menu {
     float: left;
-    width:95%;
+    width:90%;
     height:70px;
     background-color:blue;
 }
@@ -65,7 +65,29 @@ h3{
     color: blue;
 }
 
-input[type="text"],select {
+
+
+div.row{
+    position: relative;
+    height:50px; 
+}
+
+div.forlabel{
+    float: left;
+    text-align:right;
+    color:black;
+    width:30%;
+}
+
+div.forinput{
+    float: left;
+    text-align:left;
+    color:black;
+    width:70%;
+}
+div.forinput span{color: red}
+
+input[type="text"],input[type="password"],select {
     width: 160px;
     float: left;
     margin-top: 0.4em;

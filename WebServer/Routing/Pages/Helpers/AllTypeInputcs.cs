@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Routing.Pages.Helpers
 {
-    public struct TypeInputcs
+    public struct AllTypeInputcs
     {       
         public enum InputType
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Routing.Pages.Helpers
 {
-   public struct MethodsRequest
+   public struct AllRequestMethods
     {
         public enum RequestMethod
         {

@@ -21,7 +21,7 @@ namespace Routing.Pages
         public Response Get(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             StringBuilder answer = new StringBuilder();
-            answer.Append(AddHeader());
+            answer.Append(AddHeader(sessionId));
             answer.Append(AddBody(form, sessionId, errors)); 
             answer.Append(AddFooter());            
             Response response = new Response(answer.ToString(), TypeOfAnswer.Success, "");
@@ -33,7 +33,7 @@ namespace Routing.Pages
             throw new NotSupportedException();
         } 
   
-        protected virtual string AddHeader()
+        protected virtual string AddHeader(string sessionId = null)
         {
             StringBuilder header = new StringBuilder("<!DOCTYPE html>");            
             header.Append(Environment.NewLine);
@@ -66,7 +66,7 @@ namespace Routing.Pages
             header.Append("<img src ='SSC.jpg' style='width: 100px; height; 100px; border: 0'>");
             header.Append("</div>");  //  logo is closed            
             header.Append(Environment.NewLine);
-            header.Append(AddMenu());           
+            header.Append(AddMenu(sessionId));           
             header.Append(Environment.NewLine);
             header.Append("</div>");  // row1 is closed  
             header.Append(Environment.NewLine);
@@ -91,7 +91,11 @@ namespace Routing.Pages
                 User user = Session.Instance[sessionId];
                 if(user != null)
                 {
-                    greeting.Append("<div><h3>Hello ").Append(user.Name).Append("</h3></div>");
+                    greeting.Append("<div>");
+                    greeting.Append(Environment.NewLine);
+                    greeting.Append("<h3 id='hello'>Hello ").Append(user.Name).Append("</h3>");
+                    greeting.Append(Environment.NewLine);
+                    greeting.Append("</div>");
                     return greeting.ToString();
                 }
             }            
@@ -127,8 +131,9 @@ namespace Routing.Pages
             return "";
         }
 
-        protected string AddMenu()
+        protected string AddMenu(string sessionId = null)
         {
+
             StringBuilder menu = new StringBuilder("<div class='menu'>");            
             menu.Append(Environment.NewLine);
             menu.Append("<ul>");
@@ -153,10 +158,16 @@ namespace Routing.Pages
             menu.Append(Environment.NewLine);
             menu.Append("<li><a href='Contact'>Contacts</a></li>");
             menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='LogIn'>LogIn</a></li>");
-            menu.Append(Environment.NewLine);
-            menu.Append("<li><a href='LogOut'>LogOut</a></li>");
-            menu.Append(Environment.NewLine);
+            if(Session.Instance[sessionId].Authorized)
+            {
+                menu.Append("<li><a href='LogOut'>LogOut</a></li>");
+                menu.Append(Environment.NewLine);
+            }
+            else
+            {
+                menu.Append("<li><a href='LogIn'>LogIn</a></li>");
+                menu.Append(Environment.NewLine);
+            }            
             menu.Append(" </ul>");
             menu.Append(Environment.NewLine);
             menu.Append("</div>");
