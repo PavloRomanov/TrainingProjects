@@ -77,12 +77,11 @@ namespace Model.Servise
                 foreach (var element in allhashmodels)
                 {
                     if (allhashmodels.ContainsKey(model.Id))
-                        {
-                        if (element.Key == model.Id)
-                        {
+                {                   
+                    if (element.Key == model.Id) 
+                    {
                             allhashmodels[element.Key] = model;
-                            break;
-                        }
+                        break;
                     }
                     else
                     {
