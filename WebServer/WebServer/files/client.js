@@ -1,12 +1,7 @@
 ﻿
-window.onload = function Func() {
-
-    //document.getElementById("ppp").innerHTML = "It works!!!!";   
-
-}
 
 function writeText() {
-    document.getElementById("ppp").innerHTML = "It works!!!!";
+    document.getElementById("hello").innerHTML = "It works!!!!";
 }
 
 function FormIsValid() {

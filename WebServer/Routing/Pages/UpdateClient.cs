@@ -13,7 +13,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Update Client"; } }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try
@@ -35,7 +35,7 @@ namespace Routing.Pages
             return response;
         }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             Response response;
             

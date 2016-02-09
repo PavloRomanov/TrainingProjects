@@ -20,13 +20,13 @@ namespace Routing.Pages.Helpers
         }
 
         
-        public override HtmlBaseTag AddTag(string name, string text = null)
-        {
-           
+       /* public override HtmlBaseTag AddTag(string name, string text = null)
+        {           
             HtmlBaseTag tag = new HtmlBaseTag(name, text);
             TagContent.Add(tag);
              return tag;
-        }
+        }*/
+
         public string ToString(IDictionary<string, string> errors)
         {
             StringBuilder form = new StringBuilder(Environment.NewLine);

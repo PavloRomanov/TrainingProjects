@@ -15,8 +15,7 @@ div.header{
  div.row1{
     position: relative;       
     height:90px;
-    width:100%;
-    
+    width:100%;    
 }
 
 div.logo{
@@ -53,15 +52,36 @@ div.content{
 }
 
 div.footer{
- clear:both;
- width:100%;
- height:40px;
- text-align:center;
- background-color:yellow;
-    color:black;
+     clear:both;
+     width:100%;
+     height:40px;
+     text-align:center;
+     background-color:yellow;
+     color:black;
 }
 
 h3{
     color: blue;
 }
 
+
+
+div.row{
+    position: relative;
+    height:50px; 
+}
+
+div.forlabel{
+    float: left;
+    text-align:right;
+    color:black;
+    width:30%;
+}
+
+div.forinput{
+    float: left;
+    text-align:left;
+    color:black;
+    width:70%;
+}
+div.forinput span{color: red}
