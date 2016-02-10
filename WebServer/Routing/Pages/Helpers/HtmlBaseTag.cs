@@ -81,7 +81,7 @@ namespace Routing.Pages.Helpers
             }
         }
 
-        public string GetTag(System.Collections.Generic.IDictionary<string, string> errors = null)
+        public string GetTag(IDictionary<string, string> errors = null)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);           
 
@@ -110,7 +110,7 @@ namespace Routing.Pages.Helpers
             return tag.ToString();
         }
         
-        protected virtual string ProcessingError(System.Collections.Generic.IDictionary<string, string> errors)
+        protected virtual string ProcessingError(IDictionary<string, string> errors)
         {
             if(errors != null && errors.ContainsKey(_tagName))
         {

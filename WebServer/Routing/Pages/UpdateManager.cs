@@ -40,6 +40,11 @@ namespace Routing.Pages
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             Response response;
+            Dictionary<string, string> options = new Dictionary<string, string>();
+            options.Add("1", "1 years");
+            options.Add("3", "3 years");
+            options.Add("4", "5 years");
+            options.Add("5", "more 5 years");
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
@@ -47,59 +52,72 @@ namespace Routing.Pages
                 Manager manager = ms.GetElement(id);
                 HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateManager", errors);
                 htmlForm.SetAttribut("novalidate", "novalidate");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Hidden, "id", manager.Id.ToString()));
-                htmlForm.AddTag("lable", "Name :");
                 htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Hidden, "id", manager.Id.ToString()));
+                htmlForm.AddTag("lable", "Name :")
+                    .SetAttribut("class", "lable");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "name", manager.Name))
                     .SetAttribut("maxlength", "15")
+                    .SetAttribut("class","inputtext")
                     .SetAttribut("required", "required");
                 htmlForm.AddTag("span").SetAttribut("id", "forname");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Surname :");
-                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Surname :")
+                   .SetAttribut("class", "lable");               
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", manager.Surname))
                     .SetAttribut("maxlength", "15")
+                    .SetAttribut("class", "inputtext")
                     .SetAttribut("placeholder", "max length of 15 characters");
                 htmlForm.AddTag("span").SetAttribut("id", "forsurname");
 
 
                 //-----------------------------------------------------------------------------
-                //var ew = form["experience"];  
-                var ew = new Dictionary<string,string>();            
+                    
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "WorkExperience: ");
+                htmlForm.AddTag("lable", "WorkExperience: ")
+                    .SetAttribut("class", "lable");
+                htmlForm.AddTag(new HtmlSelect("experience", options))
+                    .SetAttribut("class", "select"); 
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlSelect("experience",ew));//?????????????
-                htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Address :");
-                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Address :")
+                    .SetAttribut("class", "lable");                
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", manager.Address))
                     .SetAttribut("maxlength", "50")
+                    .SetAttribut("class", "inputtext")
                     .SetAttribut("required", "required");
                 htmlForm.AddTag("span").SetAttribut("id", "foraddress");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Phone :");
-                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Phone :")
+                    .SetAttribut("class", "lable"); 
+                
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", manager.Phone))
+                    .SetAttribut("class", "inputtext")
                     .SetAttribut("required", "required");
                 htmlForm.AddTag("span").SetAttribut("id", "forphone");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Login :");
-                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Login :")
+                    .SetAttribut("class", "lable"); 
+                
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", manager.Login))
                     .SetAttribut("maxlength", "15")
+                    .SetAttribut("class", "inputtext")
                     .SetAttribut("required", "required");
                 htmlForm.AddTag("span").SetAttribut("id", "forlogin");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Password :");
-                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Password :")
+                    .SetAttribut("class", "lable"); 
+               
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "password", manager.Password))
                     .SetAttribut("maxlength", "15")
-                   .SetAttribut("required", "required");
+                    .SetAttribut("class", "inputtext")
+                    .SetAttribut("required", "required");
                 htmlForm.AddTag("span").SetAttribut("id", "forpassword");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+                     .SetAttribut("class", "inputbutton");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                     .SetAttribut("class", "inputbutton");
+                htmlForm.AddTag("br");
                 StringBuilder body = new StringBuilder(Environment.NewLine);
                 body.Append(AddGreeting(sessionId));
                 body.Append(Environment.NewLine);

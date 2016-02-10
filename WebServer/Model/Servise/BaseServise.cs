@@ -100,7 +100,7 @@ namespace Model.Servise
                 DataContractSerializer serial = new DataContractSerializer(typeof(Dictionary<Guid, T>));
                 serial.WriteObject(writing, allhashmodels);
                 Console.WriteLine("Object serialized !!!");
-                //writing.Flush();
+                writing.Flush();
             }
         }
 

@@ -45,22 +45,22 @@ div.menu li a:hover {background-color:red;text-decoration:underline;}
 
 
 div.content{
-    /*clear: both;*/
+   
 	width:100%;
-    /*height:570px;*/
+    height:600px;
 
 }
 
 div.footer{
      clear:both;
-     position: fixed;
+    // position: fixed;
      bottom: 0;
      padding: 10px;
      width:100%;
-     height:40px;
+     height:50px;
      text-align:center;
      background-color:yellow;
-     color:black;
+     color:red;
 }
 
 h3{
@@ -89,22 +89,45 @@ div.forinput{
 }
 div.forinput span{color: red}
 
-input[type="text"],input[type="password"],select {
-    width: 160px;
+.inputtext {
     float: left;
-    margin-top: 0.4em;
+    text-align:left;
+    color:black;
  }
-lable {
+.select {
+    width: 150px;
     float: left;
-    width: 30em;
-    margin-right: 1em;
+    color:green;
  }
-input[type=textarea] {
-    width: 120px;
-    font: 1em Arial, sans-serif;
-    padding: 3px 4px;
- }
-input[type=radio] {
+.lable {
     float: left;
-    width: 3em;     
+    text-align:right;
+    color:black;
+    width:30%;
  }
+.lableradio {
+    float: left;
+    text-align:right;
+    color:red;
+    width:30%;
+ }
+.inputtextarea {
+    width: 40%;
+ }
+.inputradio {
+    float: left;
+    width: 160px;   
+ }
+.inputbutton {
+    display: block;
+    width: 70px;
+    margin-left: 380px;
+    margin-top: 10px;
+}
+.lablequestion {
+    float: left;
+    text-align: right;
+    text-decoration-style: double;
+    color: black;
+    width: 30%;
+}

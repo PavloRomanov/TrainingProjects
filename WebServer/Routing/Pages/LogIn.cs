@@ -21,34 +21,40 @@ namespace Routing.Pages
             if (errors != null && errors.Count > 0)
             {
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Enter login :");
+                htmlForm.AddTag("lable", "Enter login :")
+                     .SetAttribut("class", "lable");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", form["login"]))
+                    .SetAttribut("class", "inputtext");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", form["login"]));
+                htmlForm.AddTag("lable", "Enter password :")
+                     .SetAttribut("class", "lable");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Password, "password", form["password"]))
+                    .SetAttribut("class", "inputtext");
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Enter password :");
-                htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Password, "password", form["password"]));
-                htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Clean", "Clean"));
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Clean", "Clean"))
+                    .SetAttribut("class", "inputbutton");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                    .SetAttribut("class", "inputbutton");
                 htmlForm.AddTag("br");
             }
             else
             {
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Enter login :");
-                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Enter login :")
+                    .SetAttribut("class", "lable");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", "admin"));
                 htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "Enter password :");
-                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Enter password :")
+                    .SetAttribut("class", "lable");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Password, "password", "admin"));
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Clean", "Clean"));
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Clean", "Clean"))
+                     .SetAttribut("class", "inputbutton");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                     .SetAttribut("class", "inputbutton");
             }
 
-            StringBuilder body = new StringBuilder("<br/>");
+            StringBuilder body = new StringBuilder("<br>");
          
             body.Append(htmlForm.ToString(errors));
 
@@ -100,9 +106,7 @@ namespace Routing.Pages
                     Session.Instance.RegisterSessions[sessionId].SetUser(manager.Id.ToString(), manager.Name, manager.Surname);     
                    
                     response.SessionId = sessionId;
-                }
-                
-                
+                }              
             }
             catch(Exception ex)
             {

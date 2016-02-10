@@ -1,4 +1,4 @@
-﻿//using CollectionLibrary;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,17 +15,10 @@ namespace Routing.Pages.Helpers
             SetAttribut("name", "form");
             SetAttribut("method", method.ToString());
             SetAttribut("action", action);
-            SetAttribut("onsubmit", "return FormIsValid()");            
+            SetAttribut("onsubmit", "return FormIsValid()");
+            //SetAttribut("onsubmit", "return FormIsValidManager()"); 
             _errors = errors;            
         }
-
-        
-       /* public override HtmlBaseTag AddTag(string name, string text = null)
-        {           
-            HtmlBaseTag tag = new HtmlBaseTag(name, text);
-            TagContent.Add(tag);
-             return tag;
-        }*/
 
         public string ToString(IDictionary<string, string> errors)
         {

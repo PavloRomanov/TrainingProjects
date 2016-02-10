@@ -16,126 +16,149 @@ namespace Routing.Pages
         protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateForm", errors);
-            htmlForm.AddTag("lable", "Name client: ");
             htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Name client: ")
+                .SetAttribut("class", "lable");
             ClientServiсe cs = new ClientServiсe("client.txt");
             Dictionary<Guid, Client> clients = cs.GetAll();
-            Dictionary<string,string> formclient = new Dictionary<string, string>();
+            Dictionary<string, string> formclient = new Dictionary<string, string>();
             foreach (var c in clients)
             {
                 var allnameclient = c.Value.Name + " " + c.Value.Surname;
                 formclient.Add(c.Value.Id.ToString(), allnameclient);
             }
             htmlForm.AddTag(new HtmlSelect("clientId", formclient))
+                .SetAttribut("class", "select")
                 .SetAttribut("size", "1");
             htmlForm.AddTag("br");
             //----------------------------------------------------------------------------------           
-            htmlForm.AddTag("lable", "Are you satisfied with the service?");
+            htmlForm.AddTag("lable", "Are you satisfied with the service?")
+                 .SetAttribut("class", "lablequestion");
             htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Yes")
+                 .SetAttribut("class", "lableradio");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form1", "yes"));
-            htmlForm.AddTag("lable", "Yes");
             htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "No")
+                .SetAttribut("class", "lableradio");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form2", "no"));
-            htmlForm.AddTag("lable", "No");
             //----------------------------------------------------------------
             htmlForm.AddTag("br");
-            htmlForm.AddTag("lable", "Comment:");
-            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Comment:")
+                .SetAttribut("class", "lable");
             htmlForm.AddTag("textarea", "")
+                .SetAttribut("class", "inputtextarea")
                 .SetAttribut("name", "comment1")
                 .SetAttribut("cols", "70")
                 .SetAttribut("rows", "3");
             //-------------------------------------------------------
             htmlForm.AddTag("br");
-            htmlForm.AddTag("lable", "Are you satisfied with the speed of the Internet?");
+            htmlForm.AddTag("lable", "Are you satisfied with the speed of the Internet?")
+                 .SetAttribut("class", "lablequestion");
             htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Yes")
+               .SetAttribut("class", "lableradio");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form3", "yes"));
-            htmlForm.AddTag("lable", "Yes");
             htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "No")
+                .SetAttribut("class", "lableradio");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form4", "no"));
-            htmlForm.AddTag("lable", "No");
             htmlForm.AddTag("br");
-
-            htmlForm.AddTag("lable", "Comment:");
-            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Comment:")
+                .SetAttribut("class", "lable");
             htmlForm.AddTag("textarea", "")
+                .SetAttribut("class", "inputtextarea")
                 .SetAttribut("name", "comment2")
                 .SetAttribut("cols", "70")
                 .SetAttribut("rows", "3");
 
             //---------------------------------------------------------------------------------------------------
 
-             htmlForm.AddTag("br");
-             htmlForm.AddTag("lable", " Do you like the service manager?");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form5", "yes"));
-             htmlForm.AddTag("lable", "Yes");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form6", "no"));
-             htmlForm.AddTag("lable", "No");
-             htmlForm.AddTag("br");
-
-             htmlForm.AddTag("lable", "Comment:");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag("textarea", "")
-                 .SetAttribut("name", "comment3")
-                 .SetAttribut("cols", "70")
-                 .SetAttribut("rows", "3");
-
-             //---------------------------------------------------------------------------------------------------
-
-             htmlForm.AddTag("br");
-             htmlForm.AddTag("lable", "Do you use the Internet and TV?");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form7", "yes"));
-             htmlForm.AddTag("lable", "Yes");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form8", "no"));
-             htmlForm.AddTag("lable", "No");
-             htmlForm.AddTag("br");
-
-             htmlForm.AddTag("lable", "Comment:");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag("textarea", "")
-                 .SetAttribut("name", "comment4")
-                 .SetAttribut("cols", "70")
-                 .SetAttribut("rows", "3");
-             //---------------------------------------------------------------------------------------------------
-
-             htmlForm.AddTag("br");
-             htmlForm.AddTag("lable", "Do you want to participate in the loyalty program?");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form9", "yes"));
-             htmlForm.AddTag("lable", "Yes");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form10", "no"));
-             htmlForm.AddTag("lable", "No");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag("lable", "Comment:");
-             htmlForm.AddTag("br");
-             htmlForm.AddTag("textarea", "")
-                 .SetAttribut("name", "comment5")
-                 .SetAttribut("cols", "70")
-                 .SetAttribut("rows", "3");
             htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", " Do you like the service manager?")
+                .SetAttribut("class", "lablequestion");
             htmlForm.AddTag("br");
-            htmlForm.AddTag("lable", "Filled manager: ");
+            htmlForm.AddTag("lable", "Yes")
+                      .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form5", "yes"));
             htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "No")
+               .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form6", "no"));
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Comment:")
+                .SetAttribut("class", "lable");
+            htmlForm.AddTag("textarea", "")
+                .SetAttribut("class", "inputtextarea")
+                .SetAttribut("name", "comment3")
+                .SetAttribut("cols", "70")
+                .SetAttribut("rows", "3");
+
+            //---------------------------------------------------------------------------------------------------
+
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Do you use the Internet and TV?")
+                .SetAttribut("class", "lablequestion");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Yes")
+                .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form7", "yes"));
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "No")
+                .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form8", "no"));
+            htmlForm.AddTag("br");
+
+            htmlForm.AddTag("lable", "Comment:")
+                .SetAttribut("class", "lable");
+            htmlForm.AddTag("textarea", "")
+                .SetAttribut("class", "inputtextarea")
+                .SetAttribut("name", "comment4")
+                .SetAttribut("cols", "70")
+                .SetAttribut("rows", "3");
+            //---------------------------------------------------------------------------------------------------
+
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Do you want to participate in the loyalty program?")
+                .SetAttribut("class", "lablequestion");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Yes")
+                .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form9", "yes"));
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "No")
+               .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form10", "no"));
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Comment:")
+                .SetAttribut("class", "lable");
+            htmlForm.AddTag("textarea", "")
+                .SetAttribut("class", "inputtextarea")
+                .SetAttribut("name", "comment5")
+                .SetAttribut("cols", "70")
+                .SetAttribut("rows", "3");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Filled manager: ")
+                 .SetAttribut("class", "lable");
             ManagerService ms = new ManagerService("manager.txt");
             Dictionary<Guid, Manager> managers = ms.GetAll();
-            Dictionary<string,string> formmanager = new Dictionary<string, string>();
-           
+            Dictionary<string, string> formmanager = new Dictionary<string, string>();
+
             foreach (var man in managers)
             {
                 var allnamemanager = man.Value.Name + " " + man.Value.Surname;
                 formmanager.Add(man.Value.Id.ToString(), allnamemanager);
             }
             htmlForm.AddTag(new HtmlSelect("managerId", formmanager))
+                .SetAttribut("class", "select")
                 .SetAttribut("size", "1");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
-            StringBuilder body = new StringBuilder();          
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+                .SetAttribut("class", "inputbutton");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                .SetAttribut("class", "inputbutton");
+            htmlForm.AddTag("br");
+            StringBuilder body = new StringBuilder();
             body.Append(Environment.NewLine);
             body.Append(htmlForm.ToString(errors));
             return body.ToString();

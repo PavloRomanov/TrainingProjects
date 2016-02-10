@@ -10,7 +10,7 @@ namespace Routing.Pages
 {
     public class ViewForm: BasePage   
 {
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             Response response;
             StringBuilder body = new StringBuilder("<h1>ViewForm</h1>");
@@ -22,19 +22,19 @@ namespace Routing.Pages
                 Form formclient = fs.GetElement(id);
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Name client:  </b>").Append(cs.GetElement(formclient.IdClient).Name+ " "+ cs.GetElement(formclient.IdClient).Surname).Append("</p>");
+                body.Append("<p><b id='col'>Name client:  </b>").Append(cs.GetElement(formclient.IdClient).Name + " " + cs.GetElement(formclient.IdClient).Surname).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>FormClient:</b>");
+                body.Append("<p><b id='col'>FormClient:</b>");
                 body.Append(Environment.NewLine);
                 body.Append("<table width='100%' border='1' cellspacing='0' cellpadding='4'>");
                 body.Append(Environment.NewLine);
                 body.Append("<tr>");
                 body.Append(Environment.NewLine);
-                body.Append("<th>Number</th>");
+                body.Append("<th id='col'>Number</th>");
                 body.Append(Environment.NewLine);
-                body.Append("<th>Question</th>");
+                body.Append("<th id='col'>Question</th>");
                 body.Append(Environment.NewLine);
-                body.Append("<th>Answer</th>");
+                body.Append("<th id='col'>Answer</th>");
                 body.Append(Environment.NewLine);
                 body.Append("</tr>");
                 var forms = fs.GetAll();
@@ -43,7 +43,7 @@ namespace Routing.Pages
                 {
                     body.Append("<tr>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(n).Append("</td>");              
+                    body.Append("<td>").Append(n).Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(element.Value.F1.ToString());
                     body.Append("<br>");
@@ -73,9 +73,12 @@ namespace Routing.Pages
                 body.Append("<br>");
                 ManagerService ms = new ManagerService("manager.txt");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Manager:  </b>").Append(ms.GetElement(formclient.IdManager).Name + " " + ms.GetElement(formclient.IdManager).Surname).Append("</p>");
+                body.Append("<p><b id='col'>Manager:  </b>").Append(ms.GetElement(formclient.IdManager).Name + " " + ms.GetElement(formclient.IdManager).Surname).Append("</p>");
                 body.Append(Environment.NewLine);
-
+                body.Append("<script>");
+                body.Append("function(){ document.getElementById('col').style.color ='black'; }");
+                body.Append("</script>");
+                body.Append(Environment.NewLine);
             }
             catch (Exception)
             {
