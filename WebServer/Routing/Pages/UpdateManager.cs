@@ -42,9 +42,9 @@ namespace Routing.Pages
             Response response;
             Dictionary<string, string> options = new Dictionary<string, string>();
             options.Add("1", "1 years");
-            options.Add("3", "3 years");
-            options.Add("4", "5 years");
-            options.Add("5", "more 5 years");
+            options.Add("2", "3 years");
+            options.Add("3", "5 years");
+            options.Add("4", "more 5 years");
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
@@ -114,7 +114,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("span").SetAttribut("id", "forpassword");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
-                     .SetAttribut("class", "inputbutton");
+                     .SetAttribut("class", "buttonclin");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
                      .SetAttribut("class", "inputbutton");
                 htmlForm.AddTag("br");

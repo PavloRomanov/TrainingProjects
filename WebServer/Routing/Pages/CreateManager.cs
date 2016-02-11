@@ -18,9 +18,9 @@ namespace Routing.Pages
             htmlForm.SetAttribut("novalidate", "novalidate");
             Dictionary<string, string> options = new Dictionary<string, string>();
             options.Add("1", "1 years");
-            options.Add("3", "3 years");
-            options.Add("4", "5 years");
-            options.Add("5", "more 5 years");
+            options.Add("2", "3 years");
+            options.Add("3", "5 years");
+            options.Add("4", "more 5 years");
 
             if (errors != null && errors.Count > 0)
             {
@@ -115,9 +115,9 @@ namespace Routing.Pages
                      .SetAttribut("class", "select");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
-                    .SetAttribut("class", "inputbutton");
+                    .SetAttribut("class", "buttonclin");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
-                    .SetAttribut("class", "inputbutton");
+                    .SetAttribut("class", "buttonsubmit");
                 htmlForm.AddTag("br");
             }
             else
@@ -177,9 +177,9 @@ namespace Routing.Pages
                      .SetAttribut("size", "1");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
-                    .SetAttribut("class", "inputbutton");
+                    .SetAttribut("class", "buttonclin");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
-                    .SetAttribut("class", "inputbutton");
+                    .SetAttribut("class", "buttonsubmit");
                 htmlForm.AddTag("br");
             }
 
@@ -248,7 +248,7 @@ namespace Routing.Pages
         {
             StringBuilder func = new StringBuilder();
             func.Append(Environment.NewLine);
-            func.Append("<script src='manager.js'>").Append("</script>");
+            func.Append("<script src='client.js'>").Append("</script>");
             return func.ToString();
         }
     }

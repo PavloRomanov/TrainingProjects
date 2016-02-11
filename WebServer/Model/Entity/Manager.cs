@@ -11,8 +11,8 @@ namespace Model.Entity
     public enum WorkExperience
     {
         Experience1year = 1,
-        Experience1to3year,
-        Experience3to5year,
+        Experience3year,
+        Experience5year,
         Experiencemorethan5year
     }
     [DataContract]

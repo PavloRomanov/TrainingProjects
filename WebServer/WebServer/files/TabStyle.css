@@ -118,10 +118,14 @@ div.forinput span{color: red}
     float: left;
     width: 160px;   
  }
-.inputbutton {
-    display: block;
+.buttonclin {
     width: 70px;
     margin-left: 380px;
+    margin-top: 10px;
+}
+.buttonsubmit {
+    width: 70px;
+    margin-left:0px;
     margin-top: 10px;
 }
 .lablequestion {

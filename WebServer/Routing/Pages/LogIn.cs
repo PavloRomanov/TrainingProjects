@@ -32,9 +32,9 @@ namespace Routing.Pages
                     .SetAttribut("class", "inputtext");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Clean", "Clean"))
-                    .SetAttribut("class", "inputbutton");
+                    .SetAttribut("class", "buttonclin");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
-                    .SetAttribut("class", "inputbutton");
+                    .SetAttribut("class", "buttonsubmit");
                 htmlForm.AddTag("br");
             }
             else
@@ -49,9 +49,9 @@ namespace Routing.Pages
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Password, "password", "admin"));
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Clean", "Clean"))
-                     .SetAttribut("class", "inputbutton");
+                     .SetAttribut("class", "buttonclin");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
-                     .SetAttribut("class", "inputbutton");
+                     .SetAttribut("class", "buttonsubmit");
             }
 
             StringBuilder body = new StringBuilder("<br>");
@@ -63,7 +63,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
 
             Response response;

@@ -16,7 +16,6 @@ namespace Routing.Pages
             : base()
         {
         }
-
         protected override string Title { get { return "Create Appeal"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
@@ -100,9 +99,9 @@ namespace Routing.Pages
                 .SetAttribut("size", "1");
             htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
-                .SetAttribut("class", "inputbutton");
+                .SetAttribut("class", "buttonclin");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
-                .SetAttribut("class", "inputbutton");
+                .SetAttribut("class", "buttonsubmit");
             htmlForm.AddTag("br");
 
             StringBuilder body = new StringBuilder();
@@ -114,7 +113,7 @@ namespace Routing.Pages
 
 
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try

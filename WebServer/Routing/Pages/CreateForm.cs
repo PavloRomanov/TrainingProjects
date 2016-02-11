@@ -13,7 +13,7 @@ namespace Routing.Pages
     {      
         protected override string Title { get { return "Form client's"; } }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateForm", errors);
             htmlForm.AddTag("br");
@@ -154,9 +154,9 @@ namespace Routing.Pages
                 .SetAttribut("size", "1");
             htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
-                .SetAttribut("class", "inputbutton");
+                .SetAttribut("class", "buttonclin");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
-                .SetAttribut("class", "inputbutton");
+                .SetAttribut("class", "buttonsubmit");
             htmlForm.AddTag("br");
             StringBuilder body = new StringBuilder();
             body.Append(Environment.NewLine);
@@ -221,11 +221,11 @@ namespace Routing.Pages
                  {
                 if (form.ContainsKey("form5"))
                  {
-                     formclient.Answer1 = form["form5"];
+                     formclient.Answer3 = form["form5"];
                  }
                  else
                  {
-                     formclient.Answer1 = form["form6"];
+                     formclient.Answer3 = form["form6"];
                  }
                  }
                  //----------------------------------------------
@@ -237,11 +237,11 @@ namespace Routing.Pages
                 {
                  if (form.ContainsKey("form7"))
                  {
-                     formclient.Answer1 = form["form7"];
+                     formclient.Answer4 = form["form7"];
                  }
                  else
                  {
-                     formclient.Answer1 = form["form8"];
+                     formclient.Answer4 = form["form8"];
                  }
                  }
                  //----------------------------------------------
@@ -253,11 +253,11 @@ namespace Routing.Pages
                 {
                  if (form.ContainsKey("form9"))
                  {
-                     formclient.Answer1 = form["form9"];
+                     formclient.Answer5 = form["form9"];
                  }
                  else
                  {
-                     formclient.Answer1 = form["form10"];
+                     formclient.Answer5 = form["form10"];
                  }
                  }
                 FormServiсe formser = new FormServiсe("forms.txt");
