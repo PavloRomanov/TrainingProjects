@@ -35,10 +35,6 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<th>Name client</th>");
                 body.Append(Environment.NewLine);
-                //body.Append("<th>Form of client</th>");
-                body.Append(Environment.NewLine);
-               // body.Append("<th>Answer of client</th>");
-                body.Append(Environment.NewLine);
                 body.Append("<th>Controls</th>");
                 body.Append(Environment.NewLine);
 
@@ -54,22 +50,6 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(cs.GetElement(element.Value.IdClient).Name +" "+ cs.GetElement(element.Value.IdClient).Surname).Append("</td>");
                     body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(element.Value.F1.ToString()).Append("</td>"); ;
-                    body.Append(Environment.NewLine);
-                    //body.Append("<td>").Append(element.Value.F2.ToString()).Append("</td>"); ;
-                    body.Append("<br>");
-                    body.Append(Environment.NewLine);
-                    /*body.Append("<br>").Append(element.Value.F3.ToString());
-                    body.Append(Environment.NewLine);
-                    body.Append("<br>").Append(element.Value.F4.ToString());
-                    body.Append(Environment.NewLine);
-                    body.Append("<br>").Append(element.Value.F5.ToString()).Append("</td>");*/
-                    body.Append(Environment.NewLine);
-
-                   // body.Append("<td>").Append(element.Value.Answer1.ToString()).Append("</td>");
-                    body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(element.Value.Answer2.ToString()).Append("</td>");
-                    body.Append(Environment.NewLine);
                     body.Append("<td><a href='ViewForm?id=").Append(element.Key).Append("'>View</a>");
                     body.Append("<a href='DeleteForm?id=").Append(element.Key).Append("'>Delete</a></td>");
                     body.Append(Environment.NewLine);
@@ -78,7 +58,6 @@ namespace Routing.Pages
                 }
 
                 body.Append("</table>");
-
                 body.Append(Environment.NewLine);
             }
             catch (Exception ex)
@@ -91,7 +70,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

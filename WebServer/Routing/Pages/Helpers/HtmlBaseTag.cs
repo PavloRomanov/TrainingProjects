@@ -39,7 +39,7 @@ namespace Routing.Pages.Helpers
 
             return inerTag; 
         }
-
+     
         public virtual string GetTagContent()
         { 
             if(_tagContent != null)
@@ -62,7 +62,11 @@ namespace Routing.Pages.Helpers
             _attributes.Add(attributName, attributValue);
             return this;
         }
-
+        public HtmlBaseTag SetAttribut(string attributName)
+        {
+            _attributes.Add(attributName,null);
+            return this;
+        }
         protected string GetAttribut()
         {
             if (_attributes != null)
@@ -81,7 +85,7 @@ namespace Routing.Pages.Helpers
             }
         }
 
-        public string GetTag(System.Collections.Generic.IDictionary<string, string> errors = null)
+        public string GetTag(IDictionary<string, string> errors = null)
         {
             StringBuilder tag = new StringBuilder(Environment.NewLine);           
 
@@ -110,7 +114,7 @@ namespace Routing.Pages.Helpers
             return tag.ToString();
         }
         
-        protected virtual string ProcessingError(System.Collections.Generic.IDictionary<string, string> errors)
+        protected virtual string ProcessingError(IDictionary<string, string> errors)
         {
             if(errors != null && errors.ContainsKey(_tagName))
         {

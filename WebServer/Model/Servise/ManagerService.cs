@@ -18,7 +18,7 @@ namespace Model.Servise
             {
                 DeSerialContract();
 
-                foreach(var item in hashElement)
+                foreach(var item in allhashmodels)
                 {
                     if(item.Value.Login == login)
                     {

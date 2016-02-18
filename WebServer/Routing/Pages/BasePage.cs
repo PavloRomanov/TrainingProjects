@@ -120,7 +120,6 @@ namespace Routing.Pages
             footer.Append("</div>"); //  container is closed
             footer.Append(Environment.NewLine);
             footer.Append(AddScript());
-            footer.Append(Environment.NewLine);
             footer.Append("</body>");
             footer.Append(Environment.NewLine);
             footer.Append("</html>");

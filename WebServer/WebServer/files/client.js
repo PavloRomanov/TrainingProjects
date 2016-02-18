@@ -1,9 +1,5 @@
 ﻿
 
-function writeText() {
-    document.getElementById("hello").innerHTML = "It works!!!!";
-}
-
 function FormIsValid() {
     var elements = document.getElementsByTagName("input");
 

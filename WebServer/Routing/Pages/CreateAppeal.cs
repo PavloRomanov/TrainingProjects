@@ -16,109 +16,111 @@ namespace Routing.Pages
             : base()
         {
         }
-
         protected override string Title { get { return "Create Appeal"; } }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
-
-            if (errors != null && errors.Count > 0)
+            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateAppeal", errors);
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Client:")
+                .SetAttribut("class", "lable");
+            ClientServiсe cs = new ClientServiсe("client.txt");
+            Dictionary<Guid, Client> clients = cs.GetAll();
+            HtmlBaseTag selecclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")
+                 .SetAttribut("class", "select")
+                 .SetAttribut("size", "1");
+            foreach (KeyValuePair<Guid, Client> element in clients)
             {
-//---?
+                selecclient.AddTag("option", element.Value.Name + " " + element.Value.Surname)
+                   .SetAttribut("value", element.Key.ToString());
+            }
+
+            htmlForm.AddTag("br");
+            //--------------------------------------------------------------
+
+            htmlForm.AddTag("lable", "The reason for petition:")
+                 .SetAttribut("class", "lable");         
+           
+            HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "reason")
+                   .SetAttribut("class", "select")
+                   .SetAttribut("size", "1");
+            foreach (KeyValuePair<AllAppeals.ClientAppeal, int> element in  AllAppeals.GetALL())
+            {
+                selectWork.AddTag("option", element.Key.ToString())
+                   .SetAttribut("value", element.Value.ToString());
 
             }
-            else
+
+            htmlForm.AddTag("br");
+            //-------------------------------------------------------------------------------------
+            htmlForm.AddTag("lable", "Comment:")
+                .SetAttribut("class", "lable");
+            htmlForm.AddTag("textarea", "")
+                .SetAttribut("class", "inputtextarea")
+                .SetAttribut("name", "comment")
+                .SetAttribut("cols", "50")
+                .SetAttribut("rows", "3");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "References:")
+                .SetAttribut("class", "lable");
+            htmlForm.AddTag("textarea", "")
+                .SetAttribut("class", "inputtextarea")
+                .SetAttribut("name", "references")
+                .SetAttribut("cols", "50")
+                .SetAttribut("rows", "5");
+            htmlForm.AddTag("br");
+            //-----------------------------------------------------------------------
+            htmlForm.AddTag("lable", "The problem is solved?")
+                 .SetAttribut("class", "lable");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "Yes")
+                 .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve1", "yes"))
+                .SetAttribut("class", "inrutradio");
+            htmlForm.AddTag("br");
+            htmlForm.AddTag("lable", "No")
+                .SetAttribut("class", "lableradio");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve2", "no"))
+                .SetAttribut("class", "inrutradio");
+            htmlForm.AddTag("br");
+            //-----------------------------------------------------------------------------
+            htmlForm.AddTag("lable", "Serviced manager:")
+                .SetAttribut("class", "lable");
+            ManagerService ms = new ManagerService("manager.txt");
+            Dictionary<Guid, Manager> managers = ms.GetAll();
+
+            HtmlBaseTag selectmanager = htmlForm.AddTag("select").SetAttribut("name", "managerId")
+                   .SetAttribut("class", "select")
+                   .SetAttribut("size", "1");
+            foreach (KeyValuePair<Guid, Manager> element in managers)
             {
-                
-                htmlForm.AddTag("lable", "Client:");
-                htmlForm.AddTag("br");
-                ClientServiсe cs = new ClientServiсe("client.txt");
-                Dictionary<Guid, Client> clients = cs.GetAll();
-                Dictionary<string,string> optionsclient = new Dictionary<string, string>();
-                foreach (var c in clients)
-                {
-                    var fullnameclient = c.Value.Name + " " + c.Value.Surname;
-                    optionsclient.Add(c.Value.Id.ToString(), fullnameclient);
-                }
-                htmlForm.AddTag(new HtmlSelect("clientId", optionsclient))
-                    .SetAttribut("size", "1");
-                htmlForm.AddTag("br");
-                //--------------------------------------------------------------
-
-                htmlForm.AddTag("lable", "The reason for petition:");
-
-                Dictionary<string, string> optionsappeal = new Dictionary<string, string>();
-                var appeals = Enum.GetValues(typeof(ClientAppeal));
-                 foreach (var v in appeals )
-                 {
-                    //var appealclient = Enum.Parse(typeof(ClientAppeal), v.ToString()).ToString();//////////////////////////?????????
-                    //optionsappeal.Add(v.ToString(), appealclient);
-                    optionsappeal.Add(((int)v).ToString(), v.ToString());
-                }
-                htmlForm.AddTag(new HtmlSelect("reason", optionsappeal))
-                    .SetAttribut("size", "1");
-                htmlForm.AddTag("br");
-                //-------------------------------------------------------------------------------------
-                htmlForm.AddTag("lable", "Comment:");
-                htmlForm.AddTag("br");
-                htmlForm.AddTag("textarea", "")
-                    .SetAttribut("name", "comment")
-                    .SetAttribut("cols", "70")
-                    .SetAttribut("rows", "3");
-                htmlForm.AddTag("br");
-                htmlForm.AddTag("lable", "References:");
-                htmlForm.AddTag("br");
-                htmlForm.AddTag("textarea", "")
-                    .SetAttribut("name", "references")
-                    .SetAttribut("cols", "70")
-                    .SetAttribut("rows", "5");
-                htmlForm.AddTag("br");
-                //-----------------------------------------------------------------------
-                htmlForm.AddTag("lable", "The problem is solved?");
-                htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve1", "yes"));
-                htmlForm.AddTag("lable", "Yes");
-                htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve2", "no"));
-                htmlForm.AddTag("lable", "No");
-                htmlForm.AddTag("br");
-                //-----------------------------------------------------------------------------
-                htmlForm.AddTag("lable", "Serviced manager:");
-                ManagerService ms = new ManagerService("manager.txt");
-                Dictionary<Guid, Manager> managers = ms.GetAll();
-                Dictionary<string, string> optionsmanager = new Dictionary<string, string>();
-               
-                foreach (var man in managers)
-                {
-                    var fullnamemanager = man.Value.Name + " " + man.Value.Surname;
-                    optionsmanager.Add(man.Value.Id.ToString(), fullnamemanager);
-                
-                }
-                htmlForm.AddTag(new HtmlSelect("managerId", optionsmanager))
-                    .SetAttribut("size", "1");
-                htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+                selectmanager.AddTag("option", element.Value.Name + " " + element.Value.Surname)
+                   .SetAttribut("value", element.Key.ToString());
             }
+            htmlForm.AddTag("br");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+                .SetAttribut("class", "buttonclin");
+            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                .SetAttribut("class", "buttonsubmit");
+            htmlForm.AddTag("br");
 
             StringBuilder body = new StringBuilder();
             body.Append(Environment.NewLine);
-            body.Append("<h1>Create Appeal</h1>");
             body.Append(htmlForm.ToString(errors));
-         
+
             return body.ToString();
         }
 
 
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try
             {              
                 Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
 
-                appealclient.ClientAppeal = (ClientAppeal)Convert.ToInt32(form["reason"]);
+                appealclient.ClientAppeal = (AllAppeals.ClientAppeal)Convert.ToInt32(form["reason"]);
                 appealclient.Comment = form["comment"];
                 appealclient.References = form["references"];
 

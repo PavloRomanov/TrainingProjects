@@ -27,7 +27,7 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<p><b>Surname:   </b>").Append(manager.Surname).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Work:   </b>").Append(manager.Work).Append("</p>");
+                body.Append("<p><b>Work:   </b>").Append(manager.Experience).Append("</p>");
                 body.Append(Environment.NewLine);
                 body.Append("<p><b>Address:   </b>").Append(manager.Address).Append("</p>");
                 body.Append(Environment.NewLine);

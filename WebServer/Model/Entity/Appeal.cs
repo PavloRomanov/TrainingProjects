@@ -4,20 +4,13 @@ using System.Runtime.Serialization;
 
 namespace Model.Entity
 {
-    public enum ClientAppeal
-    {
-        Low_speed_Internet = 1,
-        No_internet_connection,
-        Change_of_tariff_plan,
-        Installation_of_additional_equipment,
-        Another_question
-    }
+    
 
     [DataContract]
     public class Appeal : ModelBase
     {
         [DataMember]
-        public ClientAppeal ClientAppeal { get; set; }
+        public AllAppeals.ClientAppeal ClientAppeal { get; set; }
         [DataMember]
         public Guid IdManager { get; set; }
 

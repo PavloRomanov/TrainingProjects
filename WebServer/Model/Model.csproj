@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\AllAppeals.cs" />
+    <Compile Include="Entity\AllFormsClient .cs" />
     <Compile Include="Entity\Appeal.cs" />
     <Compile Include="Entity\Client.cs" />
+    <Compile Include="Entity\StageExperience .cs" />
     <Compile Include="Entity\Form.cs" />
     <Compile Include="Entity\Manager.cs" />
     <Compile Include="Entity\ModelBase.cs" />

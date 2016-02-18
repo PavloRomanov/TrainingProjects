@@ -10,7 +10,7 @@ namespace Model.Servise
 {
     public class BaseService<T> where T : ModelBase
     {
-        protected Dictionary<Guid, T> hashElement;
+        protected Dictionary<Guid, T> allhashmodels;
         protected Object access;
         private string fileName;
 
@@ -18,7 +18,7 @@ namespace Model.Servise
         {
             if (path == "")
                 throw new ArgumentException("No way !!!");
-            hashElement = new Dictionary<Guid, T>();
+            allhashmodels = new Dictionary<Guid, T>();
             access = new Object();
             fileName = path;
         }
@@ -30,11 +30,11 @@ namespace Model.Servise
             {
                 DeSerialContract();
 
-                if (!hashElement.ContainsKey(key))
+                if (!allhashmodels.ContainsKey(key))
                     throw new ArgumentException("Object not found");
                 else
                 {
-                    rez = hashElement[key];
+                    rez = allhashmodels[key];
                 }
             }
             return rez;
@@ -45,7 +45,7 @@ namespace Model.Servise
             lock (access)
             {
                 DeSerialContract();
-                hashElement.Add(model.Id, model);
+                allhashmodels.Add(model.Id, model);
                 SerialContract();
             }
         }
@@ -55,7 +55,7 @@ namespace Model.Servise
             lock (access)
             {
                 DeSerialContract();
-                if (hashElement.Remove(id))
+                if (allhashmodels.Remove(id))
                 {
                     SerialContract();
                 }
@@ -74,20 +74,20 @@ namespace Model.Servise
             {
                 DeSerialContract();
 
-                foreach (var element in hashElement)
-                { 
-                    if(hashElement.ContainsKey(model.Id))
+                foreach (var element in allhashmodels)
+                {
+                    if (allhashmodels.ContainsKey(model.Id))
                     {
                         if (element.Key == model.Id)
                         {
-                            hashElement[element.Key] = model;
+                            allhashmodels[element.Key] = model;
                             break;
                         }
                     }
                     else
                     {
                         throw new ArgumentException("Object not found");
-                    }
+                    }                  
                 }
                 SerialContract();
             }
@@ -98,8 +98,9 @@ namespace Model.Servise
             using (FileStream writing = new FileStream(fileName, FileMode.Create))
             {
                 DataContractSerializer serial = new DataContractSerializer(typeof(Dictionary<Guid, T>));
-                serial.WriteObject(writing, hashElement);
+                serial.WriteObject(writing, allhashmodels);
                 Console.WriteLine("Object serialized !!!");
+                writing.Flush();
             }
         }
 
@@ -107,7 +108,7 @@ namespace Model.Servise
         {
             if (!File.Exists(fileName))
             {
-                hashElement = new Dictionary<Guid, T>();
+                allhashmodels = new Dictionary<Guid, T>();
                 return;
             }
 
@@ -116,7 +117,7 @@ namespace Model.Servise
                 using (FileStream reading = new FileStream(fileName, FileMode.Open))
                 {
                     DataContractSerializer deserial = new DataContractSerializer(typeof(Dictionary<Guid, T>));
-                    hashElement = (Dictionary<Guid, T>)deserial.ReadObject(reading);
+                    allhashmodels = (Dictionary<Guid, T>)deserial.ReadObject(reading);
                     Console.WriteLine("DeSerialContract() pass ");
                 }
             }
@@ -129,7 +130,7 @@ namespace Model.Servise
         public Dictionary<Guid, T> GetAll()
         {
             this.DeSerialContract();
-            return hashElement;
+            return allhashmodels;
         }
 
        

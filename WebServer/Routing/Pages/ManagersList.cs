@@ -14,7 +14,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Manager's List"; } }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
 
             StringBuilder body = new StringBuilder();
@@ -38,7 +38,7 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<th>Surname</th>");
                 body.Append(Environment.NewLine);
-                body.Append("<th>Work</th>");
+                body.Append("<th>Experience of Work</th>");
                 body.Append(Environment.NewLine);
                 body.Append("<th>Address</th>");
                 body.Append(Environment.NewLine);
@@ -60,7 +60,7 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(man.Value.Surname).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Experience.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(man.Value.Address).Append("</td>");
                     body.Append(Environment.NewLine);
@@ -92,7 +92,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }
