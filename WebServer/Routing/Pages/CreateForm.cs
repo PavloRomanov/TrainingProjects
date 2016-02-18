@@ -129,10 +129,12 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
             htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
+            htmlForm.AddTag(new HtmlBaseTag("div")
+                .SetAttribut("class", "row1"));
             StringBuilder body = new StringBuilder();          
             body.Append(Environment.NewLine);
             body.Append("<h1>Create Form</h1>");
-            body.Append(htmlForm.ToString(errors));
+            body.Append(htmlForm.ToString(errors));            
             return body.ToString();
         }
 

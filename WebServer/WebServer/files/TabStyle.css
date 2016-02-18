@@ -54,6 +54,7 @@ div.footer{
      clear:both;
      position: fixed;
      bottom: 0;
+     left: 0;
      padding: 10px;
      width:100%;
      height:50px;
@@ -66,24 +67,35 @@ h3{
     color: blue;
 }
 
-
+input{
+    height:30px;
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 18pt; 
+    width:400px; 
+}
 
 div.row{
     position: relative;
-    height:50px; 
+    height:50px;         
 }
 
 div.forlabel{
     float: left;
     text-align:right;
     color:black;
-    width:30%;
+    width:18%;
+    height:40px;
+    padding: 5px 9px 5px 5px; 
+    font-family: 'Times New Roman', Times, serif;  
+    font-size: 18pt;    
 }
 
 div.forinput{
     float: left;
     text-align:left;
     color:black;
-    width:70%;
+    width:78%;
+    height:40px; 
+    padding: 5px 5px 5px 5px;
 }
 div.forinput span{color: red}
