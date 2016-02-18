@@ -83,13 +83,13 @@ namespace Model.Servise
                             allhashmodels[element.Key] = model;
                             break;
                         }
-                        else
-                        {
-                            throw new ArgumentException("Object not found");
-                        }
                     }
-                    SerialContract();
+                    else
+                    {
+                        throw new ArgumentException("Object not found");
+                    }                  
                 }
+                SerialContract();
             }
         }
 

@@ -158,7 +158,7 @@ namespace WebServer
             {
                 sessionId = cookies[" sessionId"];
             }
-            Response response = pageCreater.PrepareResponse(path, method, param, sessionId);/////////////////////////////////2
+            Response response = pageCreater.PrepareResponse(path, method, param, sessionId);
             string html;
             int cod;
             string codStr;

@@ -22,7 +22,7 @@ namespace Routing.Pages
                 ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                manager.Experience = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Update(manager);
             }
             catch (Exception ex)
@@ -40,11 +40,6 @@ namespace Routing.Pages
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             Response response;
-            Dictionary<string, string> options = new Dictionary<string, string>();
-            options.Add("1", "1 years");
-            options.Add("2", "3 years");
-            options.Add("3", "5 years");
-            options.Add("4", "more 5 years");
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
@@ -76,8 +71,24 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "WorkExperience: ")
                     .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlSelect("experience", options))
-                    .SetAttribut("class", "select"); 
+                HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")              
+                    .SetAttribut("size", "1");
+                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in  StageExperience.GetALL() )
+                {
+                     
+                    if (element.Key.Equals(manager.Experience))
+                    {
+                        selectWork.AddTag("option", element.Key.ToString())
+                           .SetAttribut("selected")
+                           .SetAttribut("value", element.Value.ToString());
+                    }
+                    else
+                    {
+                        selectWork.AddTag("option", element.Key.ToString())
+                           .SetAttribut("value", element.Value.ToString());
+                    }
+                }
+
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Address :")
                     .SetAttribut("class", "lable");                
@@ -126,12 +137,12 @@ namespace Routing.Pages
 
                 return body.ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 response = new Response("", TypeOfAnswer.ServerError, "");
                 return "";
             }
         }
-
     }
 }

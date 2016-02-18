@@ -16,12 +16,6 @@ namespace Routing.Pages
         {
             HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateManager", errors);
             htmlForm.SetAttribut("novalidate", "novalidate");
-            Dictionary<string, string> options = new Dictionary<string, string>();
-            options.Add("1", "1 years");
-            options.Add("2", "3 years");
-            options.Add("3", "5 years");
-            options.Add("4", "more 5 years");
-
             if (errors != null && errors.Count > 0)
             {
                 htmlForm.AddTag("br");
@@ -111,8 +105,17 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "WorkExperience: ")
                      .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlSelect("experience", options))
-                     .SetAttribut("class", "select");
+                // ------------------------------------------------------------------------------
+                HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")
+                    .SetAttribut("size", "1");
+                selectWork.AddTag("option", "Experience_1year")
+                    .SetAttribut("value", "1");
+                selectWork.AddTag("option", "Experience_3year")
+                    .SetAttribut("value", "2");
+                selectWork.AddTag("option", "Experience_5year")
+                   .SetAttribut("value", "3");
+                selectWork.AddTag("option", "Experience_more5year")
+                   .SetAttribut("value", "4");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
                     .SetAttribut("class", "buttonclin");
@@ -172,9 +175,16 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "WorkExperience: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlSelect("experience", options))
-                     .SetAttribut("class", "select")
-                     .SetAttribut("size", "1");
+
+                HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience").SetAttribut("size", "1");
+                selectWork.AddTag("option", "Experience_1year")
+                   .SetAttribut("value", "1");
+                selectWork.AddTag("option", "Experience_3year")
+                    .SetAttribut("value", "2");
+                selectWork.AddTag("option", "Experience_5year")
+                   .SetAttribut("value", "3");
+                selectWork.AddTag("option", "Experience_more5year")
+                   .SetAttribut("value", "4");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
                     .SetAttribut("class", "buttonclin");
@@ -190,7 +200,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             ValidationHelper vh = new ValidationHelper();
             Dictionary<string, string> errors = new Dictionary<string, string>();
@@ -228,7 +238,7 @@ namespace Routing.Pages
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                     ManagerService ms = new ManagerService("manager.txt");
-                    manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                    manager.Experience = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                     ms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }

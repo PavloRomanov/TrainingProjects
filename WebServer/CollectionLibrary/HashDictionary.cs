@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace CollectionLibrary
 {
     [Serializable]
-    public class HashDictionary<TKey, TValue> : System.Collections.Generic.IDictionary<TKey, TValue>
+    public class HashDictionary<TKey, TValue> : IDictionary<TKey, TValue>
         where TKey : IComparable<TKey>
     {
 

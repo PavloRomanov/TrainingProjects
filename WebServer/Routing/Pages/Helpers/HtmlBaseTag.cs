@@ -39,7 +39,7 @@ namespace Routing.Pages.Helpers
 
             return inerTag; 
         }
-
+     
         public virtual string GetTagContent()
         { 
             if(_tagContent != null)
@@ -62,7 +62,11 @@ namespace Routing.Pages.Helpers
             _attributes.Add(attributName, attributValue);
             return this;
         }
-
+        public HtmlBaseTag SetAttribut(string attributName)
+        {
+            _attributes.Add(attributName,null);
+            return this;
+        }
         protected string GetAttribut()
         {
             if (_attributes != null)

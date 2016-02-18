@@ -41,7 +41,7 @@ namespace Routing.Pages
             htmlForm.AddTag("lable", "The reason for petition:")
                  .SetAttribut("class", "lable");
             Dictionary<string, string> optionsappeal = new Dictionary<string, string>();
-            var appeals = Enum.GetValues(typeof(ClientAppeal));
+            var appeals = Enum.GetValues(typeof(AllAppeals.ClientAppeal));
             foreach (var v in appeals)
             {
                 var appealclient = v.ToString();
@@ -120,7 +120,7 @@ namespace Routing.Pages
             {              
                 Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
 
-                appealclient.ClientAppeal = (ClientAppeal)Convert.ToInt32(form["reason"]);
+                appealclient.ClientAppeal = (AllAppeals.ClientAppeal)Convert.ToInt32(form["reason"]);
                 appealclient.Comment = form["comment"];
                 appealclient.References = form["references"];
 

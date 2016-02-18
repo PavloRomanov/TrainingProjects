@@ -8,13 +8,7 @@ using System.Runtime.Serialization;
 
 namespace Model.Entity
 {
-    public enum WorkExperience
-    {
-        Experience1year = 1,
-        Experience3year,
-        Experience5year,
-        Experiencemorethan5year
-    }
+   
     [DataContract]
     public class Manager : ModelBase
     {
@@ -25,7 +19,7 @@ namespace Model.Entity
         public string Surname { get; set; }
 
         [DataMember]
-        public WorkExperience ? Work { get; set; }
+        public StageExperience.WorkExperience Experience { get; set; }
 
         [DataMember]
         public string Address { get; set; }
