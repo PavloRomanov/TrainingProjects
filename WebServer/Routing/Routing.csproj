@@ -77,7 +77,6 @@
     <Compile Include="Pages\ClientsList.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Pages\UpdateManager.cs" />
-    <Compile Include="Pages\Helpers\HtmlSelect.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Pages\ViewManager.cs" />
     <Compile Include="Pages\ViewAppeal.cs" />

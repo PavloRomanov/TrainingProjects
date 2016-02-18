@@ -106,16 +106,25 @@ namespace Routing.Pages
                 htmlForm.AddTag("lable", "WorkExperience: ")
                      .SetAttribut("class", "lable");
                 // ------------------------------------------------------------------------------
+
                 HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")
-                    .SetAttribut("size", "1");
-                selectWork.AddTag("option", "Experience_1year")
-                    .SetAttribut("value", "1");
-                selectWork.AddTag("option", "Experience_3year")
-                    .SetAttribut("value", "2");
-                selectWork.AddTag("option", "Experience_5year")
-                   .SetAttribut("value", "3");
-                selectWork.AddTag("option", "Experience_more5year")
-                   .SetAttribut("value", "4");
+                     .SetAttribut("class", "select")
+                     .SetAttribut("size", "1");
+                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in StageExperience.GetALL())
+                {
+
+                    if (element.Key.Equals(form["experience"]))
+                    {
+                        selectWork.AddTag("option", element.Key.ToString())
+                           .SetAttribut("selected")
+                           .SetAttribut("value", element.Value.ToString());
+                    }
+                    else
+                    {
+                        selectWork.AddTag("option", element.Key.ToString())
+                           .SetAttribut("value", element.Value.ToString());
+                    }
+                }
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
                     .SetAttribut("class", "buttonclin");
@@ -175,16 +184,15 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "WorkExperience: ")
                  .SetAttribut("class", "lable");
+                HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")
+                   .SetAttribut("class", "select")
+                   .SetAttribut("size", "1");
+                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in StageExperience.GetALL())//?
+                {
+                    selectWork.AddTag("option", element.Key.ToString())
+                       .SetAttribut("value", element.Value.ToString());
 
-                HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience").SetAttribut("size", "1");
-                selectWork.AddTag("option", "Experience_1year")
-                   .SetAttribut("value", "1");
-                selectWork.AddTag("option", "Experience_3year")
-                    .SetAttribut("value", "2");
-                selectWork.AddTag("option", "Experience_5year")
-                   .SetAttribut("value", "3");
-                selectWork.AddTag("option", "Experience_more5year")
-                   .SetAttribut("value", "4");
+                }
                 htmlForm.AddTag("br");
                 htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
                     .SetAttribut("class", "buttonclin");

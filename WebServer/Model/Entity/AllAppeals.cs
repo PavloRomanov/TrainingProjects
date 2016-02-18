@@ -16,5 +16,20 @@ namespace Model.Entity
             Installation_of_additional_equipment,
             Another_question
         }
+
+        public static Dictionary<ClientAppeal, int> GetALL()
+        {
+            var exp = new Dictionary<ClientAppeal, int>();
+            /*for (int i = 1; i < 6; i++)
+            {
+                exp.Add(ClientAppeal, i);
+            }*/
+            exp.Add(ClientAppeal.Another_question, 1);
+            exp.Add(ClientAppeal.Change_of_tariff_plan, 2);
+            exp.Add(ClientAppeal.Installation_of_additional_equipment, 3);
+            exp.Add(ClientAppeal.Low_speed_Internet, 4);
+            exp.Add(ClientAppeal.No_internet_connection, 5);
+            return exp;
+        }
     }
 }

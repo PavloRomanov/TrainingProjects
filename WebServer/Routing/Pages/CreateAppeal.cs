@@ -26,29 +26,31 @@ namespace Routing.Pages
                 .SetAttribut("class", "lable");
             ClientServiсe cs = new ClientServiсe("client.txt");
             Dictionary<Guid, Client> clients = cs.GetAll();
-            Dictionary<string, string> optionsclient = new Dictionary<string, string>();
-            foreach (var c in clients)
+            HtmlBaseTag selecclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")
+                 .SetAttribut("class", "select")
+                 .SetAttribut("size", "1");
+            foreach (KeyValuePair<Guid, Client> element in clients)
             {
-                var fullnameclient = c.Value.Name + " " + c.Value.Surname;
-                optionsclient.Add(c.Value.Id.ToString(), fullnameclient);
+                selecclient.AddTag("option", element.Value.Name + " " + element.Value.Surname)
+                   .SetAttribut("value", element.Key.ToString());
             }
-            htmlForm.AddTag(new HtmlSelect("clientId", optionsclient))
-                .SetAttribut("class", "select")
-                .SetAttribut("size", "1");
+
             htmlForm.AddTag("br");
             //--------------------------------------------------------------
 
             htmlForm.AddTag("lable", "The reason for petition:")
-                 .SetAttribut("class", "lable");
-            Dictionary<string, string> optionsappeal = new Dictionary<string, string>();
-            var appeals = Enum.GetValues(typeof(AllAppeals.ClientAppeal));
-            foreach (var v in appeals)
+                 .SetAttribut("class", "lable");         
+           
+            HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "reason")
+                   .SetAttribut("class", "select")
+                   .SetAttribut("size", "1");
+            foreach (KeyValuePair<AllAppeals.ClientAppeal, int> element in  AllAppeals.GetALL())
             {
-                var appealclient = v.ToString();
-                optionsappeal.Add(((int)v).ToString(), appealclient);
+                selectWork.AddTag("option", element.Key.ToString())
+                   .SetAttribut("value", element.Value.ToString());
+
             }
-            htmlForm.AddTag(new HtmlSelect("reason", optionsappeal))
-                .SetAttribut("size", "1");
+
             htmlForm.AddTag("br");
             //-------------------------------------------------------------------------------------
             htmlForm.AddTag("lable", "Comment:")
@@ -86,17 +88,15 @@ namespace Routing.Pages
                 .SetAttribut("class", "lable");
             ManagerService ms = new ManagerService("manager.txt");
             Dictionary<Guid, Manager> managers = ms.GetAll();
-            Dictionary<string, string> optionsmanager = new Dictionary<string, string>();
 
-            foreach (var man in managers)
+            HtmlBaseTag selectmanager = htmlForm.AddTag("select").SetAttribut("name", "managerId")
+                   .SetAttribut("class", "select")
+                   .SetAttribut("size", "1");
+            foreach (KeyValuePair<Guid, Manager> element in managers)
             {
-                var fullnamemanager = man.Value.Name + " " + man.Value.Surname;
-                optionsmanager.Add(man.Value.Id.ToString(), fullnamemanager);
-
+                selectmanager.AddTag("option", element.Value.Name + " " + element.Value.Surname)
+                   .SetAttribut("value", element.Key.ToString());
             }
-            htmlForm.AddTag(new HtmlSelect("managerId", optionsmanager))
-                .SetAttribut("class", "select")
-                .SetAttribut("size", "1");
             htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
                 .SetAttribut("class", "buttonclin");

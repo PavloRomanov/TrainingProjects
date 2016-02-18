@@ -21,15 +21,15 @@ namespace Routing.Pages
                 .SetAttribut("class", "lable");
             ClientServiсe cs = new ClientServiсe("client.txt");
             Dictionary<Guid, Client> clients = cs.GetAll();
-            Dictionary<string, string> formclient = new Dictionary<string, string>();
-            foreach (var c in clients)
+         
+            HtmlBaseTag selectclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")
+                  .SetAttribut("class", "select")
+                  .SetAttribut("size", "1");
+            foreach (KeyValuePair<Guid, Client> element in clients)
             {
-                var allnameclient = c.Value.Name + " " + c.Value.Surname;
-                formclient.Add(c.Value.Id.ToString(), allnameclient);
+                selectclient.AddTag("option", element.Value.Name + " " + element.Value.Surname)
+                   .SetAttribut("value", element.Key.ToString());
             }
-            htmlForm.AddTag(new HtmlSelect("clientId", formclient))
-                .SetAttribut("class", "select")
-                .SetAttribut("size", "1");
             htmlForm.AddTag("br");
             //----------------------------------------------------------------------------------           
             htmlForm.AddTag("lable", "Are you satisfied with the service?")
@@ -142,16 +142,16 @@ namespace Routing.Pages
                  .SetAttribut("class", "lable");
             ManagerService ms = new ManagerService("manager.txt");
             Dictionary<Guid, Manager> managers = ms.GetAll();
-            Dictionary<string, string> formmanager = new Dictionary<string, string>();
 
-            foreach (var man in managers)
-            {
-                var allnamemanager = man.Value.Name + " " + man.Value.Surname;
-                formmanager.Add(man.Value.Id.ToString(), allnamemanager);
+            HtmlBaseTag selectmanager = htmlForm.AddTag("select").SetAttribut("name", "managerId")
+                   .SetAttribut("class", "select")
+                   .SetAttribut("size", "1");
+            foreach (KeyValuePair<Guid, Manager> element in managers)
+            {             
+                    selectmanager.AddTag("option", element.Value.Name + " " + element.Value.Surname)
+                       .SetAttribut("value", element.Key.ToString());              
             }
-            htmlForm.AddTag(new HtmlSelect("managerId", formmanager))
-                .SetAttribut("class", "select")
-                .SetAttribut("size", "1");
+
             htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
                 .SetAttribut("class", "buttonclin");
