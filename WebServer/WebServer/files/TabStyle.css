@@ -26,7 +26,7 @@ div.logo{
  
 div.menu {
     float: left;
-    width:85%;
+    width:90%;
     height:70px;
     background-color:blue;
 }
@@ -68,11 +68,11 @@ h3{
     color: blue;
 }
 
-input{
+/*input{
     height:30px;
     font-family: 'Times New Roman', Times, serif; 
-    font-size: 18pt; 
-    width:400px; 
+    font-size: 13pt; 
+    width:400px;*/ 
 }
 
 div.row{
@@ -88,7 +88,7 @@ div.forlabel{
     height:40px;
     padding: 5px 9px 5px 5px; 
     font-family: 'Times New Roman', Times, serif;  
-    font-size: 18pt;    
+    font-size: 13pt;    
 }
 
 div.forinput{

@@ -157,7 +157,7 @@ namespace Routing.Pages
                 .SetAttribut("class", "buttonclin");
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
                 .SetAttribut("class", "buttonsubmit");
-            htmlForm.AddTag("br");           
+            htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlBaseTag("div")
                 .SetAttribut("class", "row1"));
             StringBuilder body = new StringBuilder();          

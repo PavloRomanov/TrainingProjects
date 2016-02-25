@@ -187,7 +187,7 @@ namespace Routing.Pages
                 HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")
                    .SetAttribut("class", "select")
                    .SetAttribut("size", "1");
-                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in StageExperience.GetALL())//?
+                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in StageExperience.GetALL())
                 {
                     selectWork.AddTag("option", element.Key.ToString())
                        .SetAttribut("value", element.Value.ToString());
