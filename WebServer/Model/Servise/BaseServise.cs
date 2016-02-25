@@ -12,7 +12,7 @@ namespace Model.Servise
     {
         protected Dictionary<Guid, T> allhashmodels;
         protected Object access;
-        private string fileName;
+        private string fileName;        
 
         public BaseService(string path)
         {

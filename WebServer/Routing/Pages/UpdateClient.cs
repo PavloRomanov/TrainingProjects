@@ -44,7 +44,8 @@ namespace Routing.Pages
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 Guid id = new Guid(form["id"]);
 
-                Client client = cs.GetElement(id);
+                //Client client = cs.GetElement(id);
+                Client client = cs.GetClientById(id);
 
                 HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateClient", errors);
                 htmlForm.SetAttribut("novalidate", "novalidate");
@@ -94,8 +95,10 @@ namespace Routing.Pages
                 HtmlBaseTag div5 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
                 HtmlBaseTag divLabel5 = div5.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput5 = div5.AddTag("div", null).SetAttribut("class", "forinput");
-                divLabel5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
+                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin")
+                    .SetAttribut("class", "buttonsubmit"));
+                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit")
+                    .SetAttribut("class", "buttonsubmit"));
 
                 StringBuilder body = new StringBuilder(Environment.NewLine);
                 body.Append(AddGreeting(sessionId));
@@ -105,7 +108,7 @@ namespace Routing.Pages
 
                 return body.ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 response = new Response("", TypeOfAnswer.ServerError, "");
                 return "";

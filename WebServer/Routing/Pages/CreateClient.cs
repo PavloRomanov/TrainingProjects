@@ -75,8 +75,11 @@ namespace Routing.Pages
                 HtmlBaseTag div5 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
                 HtmlBaseTag divLabel5 = div5.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput5 = div5.AddTag("div", null).SetAttribut("class", "forinput");
-                divLabel5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
+                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin")
+                     .SetAttribut("class", "buttonsubmit"));
+                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit")
+                    .SetAttribut("class", "buttonsubmit"));
+
             }
             else
             {
@@ -128,8 +131,10 @@ namespace Routing.Pages
                 HtmlBaseTag div5 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
                 HtmlBaseTag divLabel5 = div5.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput5 = div5.AddTag("div", null).SetAttribut("class", "forinput");
-                divLabel5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"));
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"));
+                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin")
+                    .SetAttribut("class", "buttonsubmit"));
+                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit")
+                    .SetAttribut("class", "buttonsubmit"));
             }
             
 
@@ -172,7 +177,8 @@ namespace Routing.Pages
                 {
                     Client client = new Client(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"]);
                     ClientServiсe cs = new ClientServiсe("client.txt");
-                    cs.Add(client);
+                    //cs.Add(client);
+                    cs.AddClient(client);
                     
                     return new Response("", TypeOfAnswer.Redirection, "ClientsList");
                 }

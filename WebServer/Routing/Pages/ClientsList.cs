@@ -19,7 +19,8 @@ namespace Routing.Pages
             try
             {
                  ClientServiсe cs = new ClientServiсe("client.txt");
-                 Dictionary<Guid, Client> clients = cs.GetAll();
+                // Dictionary<Guid, Client> clients = cs.GetAll();
+                Dictionary<Guid, Client> clients = cs.GetAllClient();
 
                 body.Append("<body bgcolor='#FFFF40\'>");
                 body.Append(Environment.NewLine);

@@ -131,12 +131,12 @@ div.forinput span{color: red}
     width: 160px;   
  }
 .buttonclin {
-    width: 70px;
+    width: 100px;
     margin-left: 30%;
     margin-top: 10px;
 }
 .buttonsubmit {
-    width: 70px;
+    width: 100px;
     margin-left:0px;
     margin-top: 10px;
 }
