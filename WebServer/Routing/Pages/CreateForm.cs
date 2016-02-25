@@ -158,8 +158,6 @@ namespace Routing.Pages
             htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
                 .SetAttribut("class", "buttonsubmit");
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"));
-            htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"));
             htmlForm.AddTag(new HtmlBaseTag("div")
                 .SetAttribut("class", "row1"));
             StringBuilder body = new StringBuilder();          
