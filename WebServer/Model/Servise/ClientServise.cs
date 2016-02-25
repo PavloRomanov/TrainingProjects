@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Data;
 using System.Collections.Generic;
 using Model.Entity;
 using System.Text;
@@ -17,12 +18,14 @@ namespace Model.Servise
 
         public Client GetClientById(Guid id)
         {
-            string queryString = "SELECT * FROM Clients WHERE ClientId = '" + id.ToString() + "'";
+            string queryString = "SELECT * FROM Clients WHERE ClientId = @ID"; // + id.ToString() + "'";
             using (SqlConnection connection = new SqlConnection(
                connectionString))
             {
                 Client client = null;
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.Add("@ID", SqlDbType.UniqueIdentifier);
+                command.Parameters["@ID"].Value = id;
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 while(reader.Read())
@@ -60,16 +63,23 @@ namespace Model.Servise
         {
             int result = 0;
             StringBuilder queryString = new StringBuilder("INSERT INTO[dbo].[Clients]");
-            queryString.Append("VALUES('").Append(client.Id.ToString()).Append("', '");
-            queryString.Append(client.Name).Append("', '");
-            queryString.Append(client.Surname).Append("', '");
-            queryString.Append(client.Address).Append("', '");
-            queryString.Append(client.Phone).Append("');");
-                        
+            queryString.Append("VALUES(@id, @name, @surname, @address, @phone)");
+
             using (SqlConnection connection = new SqlConnection(
                connectionString))
             {               
                 SqlCommand command = new SqlCommand(queryString.ToString(), connection);
+                command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
+                command.Parameters["@id"].Value = client.Id;
+                command.Parameters.Add("@name", SqlDbType.NVarChar);
+                command.Parameters["@name"].Value = client.Name;
+                command.Parameters.Add("@surname", SqlDbType.NVarChar);
+                command.Parameters["@surname"].Value = client.Surname;
+                command.Parameters.Add("@address", SqlDbType.NVarChar);
+                command.Parameters["@address"].Value = client.Address;
+                command.Parameters.Add("@phone", SqlDbType.NVarChar);
+                command.Parameters["@phone"].Value = client.Phone;
+
                 connection.Open();                
                 result = command.ExecuteNonQuery();
             }
