@@ -21,11 +21,13 @@ namespace Routing.Pages
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 Guid id = new Guid(form["id"]);
                 Client client = new Client(id, form["name"], form["surname"], form["address"], form["phone"]);
-                cs.Update(client);
+                //cs.Update(client);
+                cs.UpdateClient(client);
+
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);                
                 response = new Response("", TypeOfAnswer.ServerError, "");
                 return response;
             }
