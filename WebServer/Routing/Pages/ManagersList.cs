@@ -22,8 +22,6 @@ namespace Routing.Pages
             {
                 ManagerService ms = new ManagerService("manager.txt");
                 Dictionary<Guid, Manager> managers = ms.GetAll();
-
-                body.Append("<body bgcolor='#FFFF40\'>");
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Managers</h1>");
                 body.Append(Environment.NewLine);
@@ -60,7 +58,7 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(man.Value.Surname).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(man.Value.Experience.ToString()).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(man.Value.Address).Append("</td>");
                     body.Append(Environment.NewLine);

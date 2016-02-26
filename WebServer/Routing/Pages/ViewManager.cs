@@ -11,7 +11,7 @@ namespace Routing.Pages
 {
     public class ViewManager : BasePage
     {
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             StringBuilder body = new StringBuilder("<h1>View Manager</h1>");
@@ -27,7 +27,7 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<p><b>Surname:   </b>").Append(manager.Surname).Append("</p>");
                 body.Append(Environment.NewLine);
-                body.Append("<p><b>Work:   </b>").Append(manager.Experience).Append("</p>");
+                body.Append("<p><b>Work:   </b>").Append(manager.Work).Append("</p>");
                 body.Append(Environment.NewLine);
                 body.Append("<p><b>Address:   </b>").Append(manager.Address).Append("</p>");
                 body.Append(Environment.NewLine);

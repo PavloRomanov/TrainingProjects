@@ -19,7 +19,7 @@ namespace Model.Entity
         public string Surname { get; set; }
 
         [DataMember]
-        public StageExperience.WorkExperience Experience { get; set; }
+        public StageExperience.WorkExperience Work { get; set; }
 
         [DataMember]
         public string Address { get; set; }
