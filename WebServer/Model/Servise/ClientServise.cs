@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Data.Common;
+using System.Data.SqlClient;
 using Model.Entity;
 
 namespace Model.Servise
@@ -10,5 +12,7 @@ namespace Model.Servise
             : base(path)
         {
         }
+
+
     }
 }
