@@ -17,7 +17,8 @@ namespace Routing.Pages
             {
                 ClientServiсe cs = new ClientServiсe("client.txt");
                 Guid id = new Guid(form["id"]);
-                cs.Delete(id);               
+                //cs.Delete(id);
+                cs.DeleteClient(id);
             }
            catch(Exception)
             {
