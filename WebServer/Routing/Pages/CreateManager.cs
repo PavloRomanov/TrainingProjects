@@ -245,9 +245,11 @@ namespace Routing.Pages
                 try
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                    ManagerService ms = new ManagerService("manager.txt");
+                   // ManagerService ms = new ManagerService("manager.txt");
+                    SQLManagerServise sms = new SQLManagerServise();
                     manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
-                    ms.Add(manager);
+                   // ms.Add(manager);
+                     sms.AddManager(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }
                 catch (Exception ex)

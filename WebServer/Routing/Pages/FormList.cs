@@ -59,6 +59,8 @@ namespace Routing.Pages
 
                 body.Append("</table>");
                 body.Append(Environment.NewLine);
+                body.Append("<a href='CreateForm'>   Create new form </a>");
+                body.Append(Environment.NewLine);
             }
             catch (Exception ex)
             {

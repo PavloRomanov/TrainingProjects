@@ -21,7 +21,9 @@ namespace Routing.Pages
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
+                //SQLManagerServise sms = new SQLManagerServise();
                 Dictionary<Guid, Manager> managers = ms.GetAll();
+                //List<Manager> managers = sms.GetAllManagers();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Managers</h1>");
                 body.Append(Environment.NewLine);

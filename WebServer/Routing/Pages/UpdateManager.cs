@@ -20,10 +20,12 @@ namespace Routing.Pages
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
+               // SQLManagerServise sms = new SQLManagerServise();
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                 manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Update(manager);
+                //sms.UpdateManager(manager);
             }
             catch (Exception ex)
             {
@@ -43,8 +45,10 @@ namespace Routing.Pages
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
+                //SQLManagerServise sms = new SQLManagerServise();
                 Guid id = new Guid(form["id"]);
                 Manager manager = ms.GetElement(id);
+                //Manager manager = sms.GetManager(id);
                 HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateManager", errors);
                 htmlForm.SetAttribut("novalidate", "novalidate");
                 htmlForm.AddTag("br");
