@@ -8,13 +8,9 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public class SQLManagerServise 
-    {
-        /* public  SQLManagerServise(string connectionString)
-              : base(connectionString)
-         {
-         }*/
-         public Manager FillFieldsOfModels(SqlDataReader reader)
+    public class SQLManagerServise : SQLBaseServise<Manager>
+    {        
+         public override  Manager FillFieldsOfModels(SqlDataReader reader)
           {
           
              Manager manager = new Manager(
@@ -27,12 +23,11 @@ namespace Model.Servise
                      reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
               return manager;
           }
-        private string connectionString = "Data Source=.\\SQLEXPRESS; Initial Catalog=WebServiceDB;Integrated Security=true;";
         public Manager GetManager(Guid id)
         {
             string queryString = "SELECT * FROM Managers WHERE ManagerId = @id";
             Manager result=null;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
@@ -50,7 +45,7 @@ namespace Model.Servise
         public List<Manager> GetAllManagers()
         {
             string queryString = "SELECT * FROM Managers";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
 
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -68,7 +63,7 @@ namespace Model.Servise
         public int AddManager(Manager manager)
         {
             string queryInsert = "INSERT INTO dbo.Managerss VALUES(@id, @name, @surname,@experience, @address, @phone, @login,@password)";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
@@ -101,17 +96,21 @@ namespace Model.Servise
         }
         public int UpdateManager(Manager man)
         {
-            string queryString = "UPDATE dbo.Managers SET Name = @name, Surname = @surname, Address = @address, Phone = @phone, Login = @login, Password = @password WHERE  ManagerId = @id";
+            string queryString = "UPDATE dbo.Managers SET Name = @name, Surname = @surname,Experience = @experience , Address = @address, Phone = @phone, Login = @login, Password = @password WHERE  ManagerId = @id";
             int result = 0;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
-                SqlCommand command = new SqlCommand(queryString.ToString(), connection);
+                SqlCommand command = new SqlCommand(queryString, connection);
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
                 command.Parameters["@id"].Value = man.Id;
                 command.Parameters.Add("@name", SqlDbType.NVarChar);
                 command.Parameters["@name"].Value = man.Name;
                 command.Parameters.Add("@surname", SqlDbType.NVarChar);
                 command.Parameters["@surname"].Value = man.Surname;
+
+                command.Parameters.Add("@experience", SqlDbType.NVarChar);
+                command.Parameters["@experience"].Value = man.Work.ToString();
+
                 command.Parameters.Add("@address", SqlDbType.NVarChar);
                 command.Parameters["@address"].Value = man.Address;
                 command.Parameters.Add("@phone", SqlDbType.NVarChar);
@@ -130,7 +129,7 @@ namespace Model.Servise
         public int DeleteManager(Guid id)
         {
             string queryString = "DELETE FROM Managers WHERE ManagerId = @id";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
