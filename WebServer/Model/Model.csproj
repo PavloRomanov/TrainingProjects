@@ -55,6 +55,9 @@
     <Compile Include="Servise\AppealServise.cs" />
     <Compile Include="Servise\BaseServise.cs" />
     <Compile Include="Servise\ClientServise.cs" />
+    <Compile Include="Servise\DataStorage.cs" />
+    <Compile Include="Servise\DataFromDatabase.cs" />
+    <Compile Include="Servise\DataFromFile.cs" />
     <Compile Include="Servise\FormServise.cs" />
     <Compile Include="Servise\IService.cs" />
     <Compile Include="Servise\ManagerService.cs" />

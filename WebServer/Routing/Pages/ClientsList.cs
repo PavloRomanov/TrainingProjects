@@ -12,7 +12,7 @@ namespace Routing.Pages
     {
         protected override string Title { get { return "Client's List"; } }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
 
             StringBuilder body = new StringBuilder();

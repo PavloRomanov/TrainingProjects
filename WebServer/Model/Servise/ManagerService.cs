@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Model.Entity;
+using System.Data;
+using System.Collections.Generic;
 
 namespace Model.Servise
 {
@@ -10,6 +12,7 @@ namespace Model.Servise
             : base(path)
         {
         }
+
 
         public Manager GetElementByLogin(string login)
         {

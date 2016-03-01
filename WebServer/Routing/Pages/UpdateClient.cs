@@ -111,7 +111,7 @@ namespace Routing.Pages
 
                 return body.ToString();
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 response = new Response("", TypeOfAnswer.ServerError, "");
                 return "";

@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
+using Routing.Pages.Helpers;
+
 namespace Routing.Pages
 {
-  public  class UpdateManager : BasePage
+    public class UpdateManager : BasePage
     {
         protected override string Title { get { return "Update Manager"; } }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             Response response;
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
+               // SQLManagerServise sms = new SQLManagerServise();
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                 manager.Experience = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Update(manager);
+                //sms.UpdateManager(manager);
             }
             catch (Exception ex)
             {
@@ -35,81 +39,115 @@ namespace Routing.Pages
             return response;
         }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
-            StringBuilder body = new StringBuilder("<h1>UpdateManager</h1>");
             try
             {
                 ManagerService ms = new ManagerService("manager.txt");
+                //SQLManagerServise sms = new SQLManagerServise();
                 Guid id = new Guid(form["id"]);
-
                 Manager manager = ms.GetElement(id);
+                //Manager manager = sms.GetManager(id);
+                HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateManager", errors);
+                htmlForm.SetAttribut("novalidate", "novalidate");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Hidden, "id", manager.Id.ToString()));
+                htmlForm.AddTag("lable", "Name :")
+                    .SetAttribut("class", "lable");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "name", manager.Name))
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("class", "inputtext")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forname");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Surname :")
+                   .SetAttribut("class", "lable");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", manager.Surname))
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("class", "inputtext")
+                    .SetAttribut("placeholder", "max length of 15 characters");
+                htmlForm.AddTag("span").SetAttribut("id", "forsurname");
 
-                body.Append("<form method='POST' action='UpdateManager'>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'hidden' name = 'id' value ='").Append(manager.Id).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Name:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'name' value = '").Append(manager.Name).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Surname:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'surname' value = '").Append(manager.Surname).Append("'/>");
-                body.Append(Environment.NewLine);
                 
-
 //-----------------------------------------------------------------------------
-                body.Append("<p>WorkExperience:  </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<p><select name='experience' size='1'>");
-                body.Append(Environment.NewLine);
 
-                var values = Enum.GetValues(typeof(StageExperience.WorkExperience));
-                foreach (var v in values)
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "WorkExperience: ")
+                    .SetAttribut("class", "lable");
+                HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")
+                    .SetAttribut("class", "select")
+                    .SetAttribut("size", "1");
+                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in StageExperience.GetALL())
                 {
-                    var option = string.Format("<option value='{0}'>{1}</option>", (int)v, Enum.GetName(typeof(StageExperience.WorkExperience), v));
-                    body.Append(option);
-                    body.Append(Environment.NewLine);
+
+                    if (element.Key.Equals(manager.Work))
+                    {
+                        selectWork.AddTag("option", element.Key.ToString())
+                           .SetAttribut("selected")
+                           .SetAttribut("value", element.Value.ToString());
+                    }
+                    else
+                    {
+                        selectWork.AddTag("option", element.Key.ToString())
+                           .SetAttribut("value", element.Value.ToString());
+                    }
                 }
-                body.Append("</select></p></br>");
 
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Address :")
+                    .SetAttribut("class", "lable");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", manager.Address))
+                    .SetAttribut("maxlength", "50")
+                    .SetAttribut("class", "inputtext")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "foraddress");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Phone :")
+                    .SetAttribut("class", "lable");
 
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", manager.Phone))
+                    .SetAttribut("class", "inputtext")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forphone");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Login :")
+                    .SetAttribut("class", "lable");
 
-
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", manager.Login))
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("class", "inputtext")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forlogin");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag("lable", "Password :")
+                    .SetAttribut("class", "lable");
               
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "password", manager.Password))
+                    .SetAttribut("maxlength", "15")
+                    .SetAttribut("class", "inputtext")
+                    .SetAttribut("required", "required");
+                htmlForm.AddTag("span").SetAttribut("id", "forpassword");
+                htmlForm.AddTag("br");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+                     .SetAttribut("class", "buttonclin");
+                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                     .SetAttribut("class", "inputbutton");
+                htmlForm.AddTag("br");
+                StringBuilder body = new StringBuilder(Environment.NewLine);
+                body.Append(AddGreeting(sessionId));
                 body.Append(Environment.NewLine);
-                body.Append("<p>Address:   </p>");
+                body.Append(htmlForm.ToString(errors));
                 body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'address' value = '").Append(manager.Address).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Phone:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'phone'  value = '").Append(manager.Phone).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Login:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'login' value = '").Append(manager.Login).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p>Password:   </p>");
-                body.Append(Environment.NewLine);
-                body.Append("<input type = 'text' name = 'password' value = '").Append(manager.Password).Append("'/>");
-                body.Append(Environment.NewLine);
-                body.Append("<p><br></p>");
-                body.Append("<input type = 'submit' value = 'Submit'/>");
-                body.Append(Environment.NewLine);
-                body.Append("</form>");
 
+                return body.ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 response = new Response("", TypeOfAnswer.ServerError, "");
                 return "";
             }
-
-            return body.ToString();
         }
-
     }
 }
