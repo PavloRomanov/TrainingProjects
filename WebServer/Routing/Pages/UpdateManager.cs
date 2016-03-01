@@ -20,7 +20,7 @@ namespace Routing.Pages
                 ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                manager.Work = (WorkExperience)Convert.ToInt32(form["experience"]);
+                manager.Experience = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Update(manager);
             }
             catch (Exception ex)
@@ -66,10 +66,10 @@ namespace Routing.Pages
                 body.Append("<p><select name='experience' size='1'>");
                 body.Append(Environment.NewLine);
 
-                var values = Enum.GetValues(typeof(WorkExperience));
+                var values = Enum.GetValues(typeof(StageExperience.WorkExperience));
                 foreach (var v in values)
                 {
-                    var option = string.Format("<option value='{0}'>{1}</option>", (int)v, Enum.GetName(typeof(WorkExperience), v));
+                    var option = string.Format("<option value='{0}'>{1}</option>", (int)v, Enum.GetName(typeof(StageExperience.WorkExperience), v));
                     body.Append(option);
                     body.Append(Environment.NewLine);
                 }
