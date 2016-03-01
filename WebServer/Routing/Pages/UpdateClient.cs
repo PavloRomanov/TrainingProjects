@@ -18,11 +18,11 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ClientServiсe cs = new ClientServiсe("client.txt");
+                ClientSQLService cs = new ClientSQLService("client.txt");
                 Guid id = new Guid(form["id"]);
                 Client client = new Client(id, form["name"], form["surname"], form["address"], form["phone"]);
                 //cs.Update(client);
-                cs.UpdateClient(client);
+                cs.Update(client);
 
             }
             catch(Exception ex)
@@ -43,11 +43,12 @@ namespace Routing.Pages
             
             try
             {
-                ClientServiсe cs = new ClientServiсe("client.txt");
+                //ClientFileService cs = new ClientFileService("client.txt");
+                ClientSQLService cs = new ClientSQLService("Clients");
                 Guid id = new Guid(form["id"]);
 
                 //Client client = cs.GetElement(id);
-                Client client = cs.GetClientById(id);
+                Client client = cs.GetElement(id);
 
                 HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateClient", errors);
                 htmlForm.SetAttribut("novalidate", "novalidate");

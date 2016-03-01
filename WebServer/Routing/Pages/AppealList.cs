@@ -42,7 +42,7 @@ namespace Routing.Pages
                 body.Append("</tr>");
 
 
-                ClientServiсe cs = new ClientServiсe("client.txt");      
+                ClientFileService cs = new ClientFileService("client.txt");      
                 int n = 1;
                 foreach (var element in appealclients)
                 {

@@ -19,7 +19,7 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Name client: ")
                 .SetAttribut("class", "lable");
-            ClientServiсe cs = new ClientServiсe("client.txt");
+            ClientFileService cs = new ClientFileService("client.txt");
             Dictionary<Guid, Client> clients = cs.GetAll();
          
             HtmlBaseTag selectclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")

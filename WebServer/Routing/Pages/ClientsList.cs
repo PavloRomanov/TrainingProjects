@@ -18,9 +18,10 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder();
             try
             {
-                 ClientServiсe cs = new ClientServiсe("client.txt");
-                // Dictionary<Guid, Client> clients = cs.GetAll();
-                Dictionary<Guid, Client> clients = cs.GetAllClient();
+                //ClientFileServise cs = new ClientFileServise("client.txt");
+                ClientSQLService cs = new ClientSQLService("Clients");
+                
+                Dictionary<Guid, Client> clients = cs.GetAll();
 
                 body.Append("<body bgcolor='#FFFF40\'>");
                 body.Append(Environment.NewLine);
@@ -87,7 +88,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }     

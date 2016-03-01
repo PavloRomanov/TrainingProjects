@@ -20,7 +20,7 @@ namespace Routing.Pages
                 Guid id = new Guid(form["id"]);
 
                 Form formclient = fs.GetElement(id);
-                ClientServiсe cs = new ClientServiсe("client.txt");
+                ClientFileService cs = new ClientFileService("client.txt");
                 body.Append(Environment.NewLine);
                 body.Append("<p><b id='col'>Name client:  </b>").Append(cs.GetElement(formclient.IdClient).Name + " " + cs.GetElement(formclient.IdClient).Surname).Append("</p>");
                 body.Append(Environment.NewLine);

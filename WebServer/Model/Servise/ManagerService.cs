@@ -4,7 +4,7 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public class ManagerService : BaseService<Manager>
+    public class ManagerService : FileService<Manager>
     {
         public ManagerService(string path)
             : base(path)

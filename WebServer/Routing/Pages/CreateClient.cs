@@ -176,9 +176,9 @@ namespace Routing.Pages
                 try
                 {
                     Client client = new Client(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"]);
-                    ClientServiсe cs = new ClientServiсe("client.txt");
-                    //cs.Add(client);
-                    cs.AddClient(client);
+                    //IServise<Client> cs = new ClientFileServise("client.txt");
+                    ClientSQLService cs = new ClientSQLService("Clients");
+                    cs.Add(client);
                     
                     return new Response("", TypeOfAnswer.Redirection, "ClientsList");
                 }

@@ -15,10 +15,10 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ClientServiсe cs = new ClientServiсe("client.txt");
+                ClientSQLService cs = new ClientSQLService("Clients");
                 Guid id = new Guid(form["id"]);
                 //cs.Delete(id);
-                cs.DeleteClient(id);
+                cs.Delete(id);
             }
            catch(Exception)
             {

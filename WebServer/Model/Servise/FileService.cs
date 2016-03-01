@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public class BaseService<T> where T : ModelBase
+    public abstract class FileService<T> : IServise<T> where T : ModelBase
     {
         protected Dictionary<Guid, T> allhashmodels;
         protected Object access;
         private string fileName;        
 
-        public BaseService(string path)
+        public FileService(string path)
         {
             if (path == "")
                 throw new ArgumentException("No way !!!");
@@ -23,7 +23,7 @@ namespace Model.Servise
             fileName = path;
         }
 
-        public T GetElement(Guid key)
+        public virtual T GetElement(Guid key)
         {
             T rez;
             lock (access)
@@ -40,7 +40,7 @@ namespace Model.Servise
             return rez;
         }
 
-        public void Add(T model)
+        public virtual void Add(T model)
         {            
             lock (access)
             {
@@ -50,7 +50,7 @@ namespace Model.Servise
             }
         }
 
-       public void Delete(Guid id)  
+       public virtual void Delete(Guid id)  
         {
             lock (access)
             {
@@ -66,7 +66,7 @@ namespace Model.Servise
             }
         }
 
-        public void Update(T model)
+        public virtual void Update(T model)
         {
             if (model.Id == null)
                 throw new ArgumentNullException();
@@ -127,7 +127,7 @@ namespace Model.Servise
             }
         }
  
-        public Dictionary<Guid, T> GetAll()
+        public virtual Dictionary<Guid, T> GetAll()
         {
             this.DeSerialContract();
             return allhashmodels;
