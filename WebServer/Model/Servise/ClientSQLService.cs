@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Model.Servise
 {
-    public class ClientSQLService : SQLServise<Client>
+    public class ClientSQLService : SQLService<Client>, IService<Client> 
     {
         private string tableName;
         private List<string> columName;

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Model.Servise
 {
-    public abstract class SQLServise<T> : IServise<T> where T : ModelBase
+    public abstract class SQLService<T> : IService<T> where T : ModelBase
     {
         private string connectionString = "Data Source=.\\SQLEXPRESS; Initial Catalog=WebServiceDB;Integrated Security=true;";
         private string tableName;
@@ -15,7 +15,7 @@ namespace Model.Servise
         protected List<string> parameters = new List<string>();
 
 
-        public SQLServise(string tableName)
+        public SQLService(string tableName)
         {
             this.tableName = tableName;
         }

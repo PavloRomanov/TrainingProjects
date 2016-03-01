@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public abstract class FileService<T> : IServise<T> where T : ModelBase
+    public abstract class FileService<T> : IService<T> where T : ModelBase
     {
         protected Dictionary<Guid, T> allhashmodels;
         protected Object access;

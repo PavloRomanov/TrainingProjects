@@ -51,14 +51,15 @@
     <Compile Include="Entity\Manager.cs" />
     <Compile Include="Entity\ModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servise\AbstractServiseFactory.cs" />
+    <Compile Include="Servise\AbstractServiceFactory.cs" />
     <Compile Include="Servise\AppealServise.cs" />
-    <Compile Include="Servise\SQLServise.cs" />
+    <Compile Include="Servise\SQLServiceFactory.cs" />
+    <Compile Include="Servise\SQLService.cs" />
     <Compile Include="Servise\FileService.cs" />
     <Compile Include="Servise\ClientFileService.cs" />
     <Compile Include="Servise\ClientSQLService.cs" />
     <Compile Include="Servise\FormServise.cs" />
-    <Compile Include="Servise\IServise.cs" />
+    <Compile Include="Servise\IService.cs" />
     <Compile Include="Servise\ManagerService.cs" />
   </ItemGroup>
   <ItemGroup>

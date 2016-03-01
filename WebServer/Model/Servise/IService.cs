@@ -4,7 +4,7 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public interface IServise<T> where T : ModelBase
+    public interface IService<T> where T : ModelBase
     {
         T GetElement(Guid key);
         Dictionary<Guid, T> GetAll();
