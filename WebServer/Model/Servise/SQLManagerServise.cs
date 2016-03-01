@@ -14,8 +14,9 @@ namespace Model.Servise
               : base(connectionString)
          {
          }*/
-        /* public Manager FillFieldsOfModels(SqlDataReader reader)
+         public Manager FillFieldsOfModels(SqlDataReader reader)
           {
+          
              Manager manager = new Manager(
                      reader.GetGuid(0),
                      reader["name"].ToString(),
@@ -25,11 +26,12 @@ namespace Model.Servise
                      reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
                      reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
               return manager;
-          }*/
+          }
         private string connectionString = "Data Source=.\\SQLEXPRESS; Initial Catalog=WebServiceDB;Integrated Security=true;";
         public Manager GetManager(Guid id)
         {
             string queryString = "SELECT * FROM Managers WHERE ManagerId = @id";
+            Manager result=null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -37,21 +39,12 @@ namespace Model.Servise
                 command.Parameters["@id"].Value = id;
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                Manager manager=null;
                 while (reader.Read())
                 {
-                   
-                    manager = new Manager(
-                    reader.GetGuid(0),
-                    reader["name"].ToString(),
-                    reader["surname"].ToString(),
-                    reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
-                    reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
-                    reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
-                    reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
+                  result = FillFieldsOfModels( reader);                  
                 }
-                return manager;
             }
+            return result;
         }
 
         public List<Manager> GetAllManagers()
@@ -66,22 +59,15 @@ namespace Model.Servise
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var manager = new Manager(
-                                             reader.GetGuid(0),
-                                             reader["name"].ToString(),
-                                             reader["surname"].ToString(),
-                                             reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
-                                             reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
-                                             reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
-                                             reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
-                    list.Add(manager);
+                    
+                    list.Add(FillFieldsOfModels(reader));
                 }
                 return list;
             }
         }
         public int AddManager(Manager manager)
         {
-            string queryInsert = "INSERT INTO dbo.Managerss VALUES(@id, @name, @surname, @address, @phone, @login,@password)";
+            string queryInsert = "INSERT INTO dbo.Managerss VALUES(@id, @name, @surname,@experience, @address, @phone, @login,@password)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
@@ -93,6 +79,9 @@ namespace Model.Servise
 
                 command.Parameters.Add("@surname", SqlDbType.NVarChar);
                 command.Parameters["@surname"].SqlValue = manager.Surname;
+
+                command.Parameters.Add("@experience", SqlDbType.NVarChar);
+                command.Parameters["@experience"].SqlValue = manager.Work.ToString();
 
                 command.Parameters.Add(" @address", SqlDbType.NVarChar);
                 command.Parameters[" @address"].SqlValue = manager.Address;
@@ -138,45 +127,18 @@ namespace Model.Servise
             }
             return result;
         }
-        public int DeleteManager(Guid id)//-------------------------------?????
+        public int DeleteManager(Guid id)
         {
             string queryString = "DELETE FROM Managers WHERE ManagerId = @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
                 command.Parameters["@id"].SqlValue = id;
                 connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Manager manager = new Manager(reader.GetGuid(0),
-                                            reader["name"].ToString(),
-                                            reader["surname"].ToString(),
-                                            reader["address"].ToString(),
-                                            reader["phone"].ToString(),
-                                            reader["login"].ToString(),
-                                            reader["password"].ToString());
-                    if (manager.Id.Equals(id))
-                    {
-                        manager = null;
-                        break;
-                    }
-                }
                 return command.ExecuteNonQuery();
             }
-        }
-        public int DeleteAllManagers()
-        {
-            string queryString = "DELETE FROM Managers";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-                return command.ExecuteNonQuery();
-            }
-        }
+        }      
 
     }
 }

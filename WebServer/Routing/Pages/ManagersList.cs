@@ -20,10 +20,10 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder();
             try
             {
-                ManagerService ms = new ManagerService("manager.txt");
-                //SQLManagerServise sms = new SQLManagerServise();
-                Dictionary<Guid, Manager> managers = ms.GetAll();
-                //List<Manager> managers = sms.GetAllManagers();
+                //ManagerService ms = new ManagerService("manager.txt");
+                SQLManagerServise sms = new SQLManagerServise();
+                //Dictionary<Guid, Manager> managers = ms.GetAll();
+                List<Manager> managers = sms.GetAllManagers();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Managers</h1>");
                 body.Append(Environment.NewLine);
@@ -44,6 +44,10 @@ namespace Routing.Pages
                 body.Append(Environment.NewLine);
                 body.Append("<th>Phone</th>");
                 body.Append(Environment.NewLine);
+                body.Append("<th>Login</th>");
+                body.Append(Environment.NewLine);
+                body.Append("<th>Password</th>");
+                body.Append(Environment.NewLine);
                 body.Append("<th>controls</th>");
                 body.Append(Environment.NewLine);
                 body.Append("</tr>");
@@ -56,20 +60,34 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(n).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(man.Value.Name).Append("</td>");
+                   // body.Append("<td>").Append(man.Value.Name).Append("</td>");
+                    body.Append("<td>").Append(man.Name).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(man.Value.Surname).Append("</td>");
+                    //body.Append("<td>").Append(man.Value.Surname).Append("</td>");
+                    body.Append("<td>").Append(man.Surname).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
+                   // body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
+                    body.Append("<td>").Append(man.Work.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(man.Value.Address).Append("</td>");
+                   // body.Append("<td>").Append(man.Value.Address).Append("</td>");
+                    body.Append("<td>").Append(man.Address).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(man.Value.Phone).Append("</td>");
+                   // body.Append("<td>").Append(man.Value.Phone).Append("</td>");
+                    body.Append("<td>").Append(man.Phone).Append("</td>");
+                    body.Append(Environment.NewLine);
+                    // body.Append("<td>").Append(man.Value.Login).Append("</td>");
+                    body.Append("<td>").Append(man.Login).Append("</td>");
+                    body.Append(Environment.NewLine);
+                    // body.Append("<td>").Append(man.Value.Password).Append("</td>");
+                    body.Append("<td>").Append(man.Password).Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<td>");
-                    body.Append("<a href='ViewManager?id=").Append(man.Key).Append("'>View</a>");
-                    body.Append("<a href='UpdateManager?id=").Append(man.Key).Append("'>Update</a>");
-                    body.Append("<a href='DeleteManager?id=").Append(man.Key).Append("'>Delete</a>");
+                   // body.Append("<a href='ViewManager?id=").Append(man.Key).Append("'>View</a>");
+                   // body.Append("<a href='UpdateManager?id=").Append(man.Key).Append("'>Update</a>");
+                  //  body.Append("<a href='DeleteManager?id=").Append(man.Key).Append("'>Delete</a>");
+                    body.Append("<a href='ViewManager?id=").Append(man.Id).Append("'>View</a>");
+                    body.Append("<a href='UpdateManager?id=").Append(man.Id).Append("'>Update</a>");
+                    body.Append("<a href='DeleteManager?id=").Append(man.Id).Append("'>Delete</a>");
                     body.Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<tr>");
@@ -82,6 +100,7 @@ namespace Routing.Pages
                 body.Append("<a href='CreateManager'>   Create new manager </a>");
                 body.Append(Environment.NewLine);
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
