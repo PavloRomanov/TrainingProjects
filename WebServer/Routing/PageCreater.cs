@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Text;
+
 using System.Collections.Generic;
 using CollectionLibrary;
 using Routing.Pages;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using Model.Servise;
+using Model.Entity;
 
 namespace Routing
 {
@@ -39,6 +39,8 @@ namespace Routing
             pages.Add("DeleteForm", new DeleteForm());
             pages.Add("Contact", new Contact());
             pages.Add("NotFoundError", new NotFoundError());
+
+            
         }
 
         public static PageCreater Instance

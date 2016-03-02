@@ -7,7 +7,7 @@ using Model.Servise;
 
 namespace Model.Servise
 {
-    public abstract class AbstractServiceFactory<IService>
+    public abstract class AbstractServiceFactory
     {
         public abstract AbstractClientService CreateClientServise(string name);
         public abstract AbstractManagerService CreateManagerServise(string name);

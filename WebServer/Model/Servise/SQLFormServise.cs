@@ -9,15 +9,9 @@ namespace Model.Servise
 {
    public class SQLFormServise : SQLService<Form>
     {
-        private string tableName;
-        private List<string> columName;
-
         public SQLFormServise(string tableName)
             :base("Forms")
-        {
-            this.tableName = tableName;
-            this.columName = GetColumName(tableName);
-            SetParameters();
+        {        
         }
 
         public Form GetForm(Guid id)

@@ -6,31 +6,12 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public abstract class AbstractManagerService : IService<Manager>
+    public abstract class AbstractManagerService : SQLService<Manager>
     {
-        public void Add(Manager model)
+        public AbstractManagerService(string tableName)
+            :base("Managers")
         {
-            throw new NotImplementedException();
         }
-
-        public void Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Dictionary<Guid, Manager> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Manager GetElement(Guid key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Manager model)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

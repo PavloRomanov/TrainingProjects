@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Model.Servise
 {
-    public abstract class SQLService<T> : IService<T> where T : ModelBase
+    public abstract class SQLService<T> 
     {
         private string connectionString = "Data Source=.\\SQLEXPRESS; Initial Catalog=WebServiceDB;Integrated Security=true;";
         private string tableName;

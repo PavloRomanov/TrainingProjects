@@ -8,17 +8,12 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public class SQLManagerServise : SQLService<Manager>
+    public class SQLManagerServise : AbstractManagerService
     {
-        private string tableName;
-        private List<string> columName;
-
+        
         public SQLManagerServise(string tableName)
             :base("Managers")
         {
-            this.tableName = tableName;
-            this.columName = GetColumName(tableName);
-            SetParameters();
         }
 
         public override  Manager FillFieldsOfModels(SqlDataReader reader)

@@ -7,7 +7,7 @@ using Model.Servise;
 
 namespace Model.Servise
 {
-    public class SQLServiceFactory<SQLService> : AbstractServiceFactory<SQLService>
+    public class SQLServiceFactory : AbstractServiceFactory
     {
         public override AbstractClientService CreateClientServise(string name)
         {
@@ -17,7 +17,8 @@ namespace Model.Servise
         }
         public override AbstractManagerService CreateManagerServise(string name)
         {
-            throw new NotImplementedException();
+            SQLManagerServise sqlm = new SQLManagerServise("Managers");
+            return sqlm;
         }
         public override AbstractAppealService CreateAppealServise(string name)
         {
