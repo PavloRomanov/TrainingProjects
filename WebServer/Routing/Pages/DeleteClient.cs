@@ -15,7 +15,7 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ClientSQLService cs = new ClientSQLService("Clients");
+                SQLClientService cs = new SQLClientService("Clients");
                 Guid id = new Guid(form["id"]);
                 //cs.Delete(id);
                 cs.Delete(id);

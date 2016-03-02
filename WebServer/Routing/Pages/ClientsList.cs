@@ -19,7 +19,7 @@ namespace Routing.Pages
             try
             {
                 //ClientFileServise cs = new ClientFileServise("client.txt");
-                ClientSQLService cs = new ClientSQLService("Clients");
+                SQLClientService cs = new SQLClientService("Clients");
                 
                 Dictionary<Guid, Client> clients = cs.GetAll();
 

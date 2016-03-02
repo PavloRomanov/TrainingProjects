@@ -3,9 +3,9 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public class ClientFileService : FileService<Client>
+    public class ClientService : BaseService<Client>
     {
-        public ClientFileService(string path)
+        public ClientService(string path)
             : base(path)
         {
         }

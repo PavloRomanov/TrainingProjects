@@ -4,7 +4,7 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public class AppealServiсe : FileService<Appeal>
+    public class AppealServiсe : BaseService<Appeal>
     {
         public AppealServiсe(string path)
             : base(path)

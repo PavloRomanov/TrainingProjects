@@ -3,34 +3,64 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Model.Servise
 {
-   public class SQLFormServise : SQLBaseServise<Form>
+   public class SQLFormServise : SQLService<Form>
     {
+        private string tableName;
+        private List<string> columName;
 
-         public Form GetForm(Guid id)
-         {
-             string queryString = "SELECT * FROM Forms WHERE FormId = @id";
-             Form result = null;
-             using (SqlConnection connection = new SqlConnection(GetConnection()))
-             {
-                 SqlCommand command = new SqlCommand(queryString, connection);
-                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
-                 command.Parameters["@id"].Value = id;
-                 connection.Open();
-                 SqlDataReader reader = command.ExecuteReader();
-                 while (reader.Read())
-                 {
-                     result = FillFieldsOfModels(reader);
-                 }
-             }
-             return result;
-         }
+        public SQLFormServise(string tableName)
+            :base("Forms")
+        {
+            this.tableName = tableName;
+            this.columName = GetColumName(tableName);
+            SetParameters();
+        }
 
+        public Form GetForm(Guid id)
+        {
+            string queryString = "SELECT * FROM Forms WHERE FormId = @id";
+            Form result = null;
+            using (SqlConnection connection = new SqlConnection(GetConnection()))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
+                command.Parameters["@id"].Value = id;
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                   // result = FillFieldsOfModels(reader);
+                }
+            }
+            return result;
+          }
+                
+       protected override Form InitializeNewEntity(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Dictionary<Guid, Form> InitializeListNewEntitys(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Add(Form model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(Form model)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+        
 
         public override Form FillFieldsOfModels(SqlDataReader reader)
         {
@@ -88,5 +118,7 @@ namespace Model.Servise
                 return command.ExecuteNonQuery();
             }
         }
+
+      
     }
 }

@@ -17,7 +17,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<h1>ViewClient</h1>");
             try
             {
-                ClientSQLService cs = new ClientSQLService("Clients");
+                SQLClientService cs = new SQLClientService("Clients");
                 Guid id = new Guid(form["id"]);
 
                 Client client = cs.GetElement(id);

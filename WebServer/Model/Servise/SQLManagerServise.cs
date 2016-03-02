@@ -8,9 +8,20 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public class SQLManagerServise : SQLBaseServise<Manager>
-    {        
-         public override  Manager FillFieldsOfModels(SqlDataReader reader)
+    public class SQLManagerServise : SQLService<Manager>
+    {
+        private string tableName;
+        private List<string> columName;
+
+        public SQLManagerServise(string tableName)
+            :base("Managers")
+        {
+            this.tableName = tableName;
+            this.columName = GetColumName(tableName);
+            SetParameters();
+        }
+
+        public override  Manager FillFieldsOfModels(SqlDataReader reader)
           {
           
              Manager manager = new Manager(
@@ -137,7 +148,26 @@ namespace Model.Servise
                 connection.Open();
                 return command.ExecuteNonQuery();
             }
-        }      
+        }
 
+        protected override Manager InitializeNewEntity(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Dictionary<Guid, Manager> InitializeListNewEntitys(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Add(Manager model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(Manager model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

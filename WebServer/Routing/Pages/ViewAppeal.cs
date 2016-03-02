@@ -21,7 +21,7 @@ namespace Routing.Pages
             {
                 AppealServiсe aps = new AppealServiсe("appealclient.txt");
                 Guid id = new Guid(form["id"]);
-                ClientFileService cs = new ClientFileService("client.txt");
+                ClientService cs = new ClientService("client.txt");
                 Appeal appealclient = aps.GetElement(id);
 
                 body.Append(Environment.NewLine);

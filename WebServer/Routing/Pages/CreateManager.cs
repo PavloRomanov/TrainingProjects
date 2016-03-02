@@ -246,7 +246,7 @@ namespace Routing.Pages
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                    // ManagerService ms = new ManagerService("manager.txt");
-                    SQLManagerServise sms = new SQLManagerServise();
+                    SQLManagerServise sms = new SQLManagerServise("Managers");
                     manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                    // ms.Add(manager);
                      sms.AddManager(manager);

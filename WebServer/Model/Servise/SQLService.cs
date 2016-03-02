@@ -20,7 +20,11 @@ namespace Model.Servise
             this.tableName = tableName;
         }
 
-       
+        protected string GetConnection()
+        {
+            return connectionString;
+        }
+
         protected List<string> GetColumName(string tableName)
         {
             string queryString = new StringBuilder("select info.COLUMN_NAME from (select* from INFORMATION_SCHEMA.columns where TABLE_NAME = N'")
@@ -170,6 +174,8 @@ namespace Model.Servise
         }*/
         //ИЗМЕНЕНИЕ данных в таблице по ID
         public abstract void Update(T model);
-      
+
+        public abstract T FillFieldsOfModels(SqlDataReader reader);
+
     }
 }

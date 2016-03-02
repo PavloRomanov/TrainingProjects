@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public class ManagerService : FileService<Manager>
+    public class ManagerService : BaseService<Manager>
     {
         public ManagerService(string path)
             : base(path)

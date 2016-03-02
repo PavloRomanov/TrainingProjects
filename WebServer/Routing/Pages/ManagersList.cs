@@ -21,7 +21,7 @@ namespace Routing.Pages
             try
             {
                 //ManagerService ms = new ManagerService("manager.txt");
-                SQLManagerServise sms = new SQLManagerServise();
+                SQLManagerServise sms = new SQLManagerServise("Managers");
                 //Dictionary<Guid, Manager> managers = ms.GetAll();
                 List<Manager> managers = sms.GetAllManagers();
                 body.Append(Environment.NewLine);

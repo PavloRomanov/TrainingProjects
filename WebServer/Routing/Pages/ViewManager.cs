@@ -17,7 +17,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<h1>View Manager</h1>");
             try
             {
-                SQLManagerServise sms = new SQLManagerServise();
+                SQLManagerServise sms = new SQLManagerServise("Managers");
                 //ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
                 //Manager manager = ms.GetElement(id);

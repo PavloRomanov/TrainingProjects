@@ -4,7 +4,7 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public class FormServiсe : FileService<Form>
+    public class FormServiсe : BaseService<Form>
     {
         public FormServiсe(string path)
             : base(path)

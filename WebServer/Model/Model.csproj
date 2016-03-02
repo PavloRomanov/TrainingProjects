@@ -53,17 +53,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servise\AbstractServiceFactory.cs" />
     <Compile Include="Servise\AppealServise.cs" />
-    <Compile Include="Servise\BaseServise.cs" />
-    <Compile Include="Servise\ClientServise.cs" />
-    <Compile Include="Servise\DataStorage.cs" />
-    <Compile Include="Servise\DataFromDatabase.cs" />
-    <Compile Include="Servise\DataFromFile.cs" />
+    <Compile Include="Servise\ClientService.cs" />
+    <Compile Include="Servise\SQLClientService.cs" />
+    <Compile Include="Servise\BaseService.cs" />
     <Compile Include="Servise\FormServise.cs" />
     <Compile Include="Servise\IService.cs" />
     <Compile Include="Servise\ManagerService.cs" />
-    <Compile Include="Servise\SQLBaseServise.cs" />
+    <Compile Include="Servise\SQLService.cs" />
     <Compile Include="Servise\SQLFormServise.cs" />
     <Compile Include="Servise\SQLManagerServise.cs" />
+    <Compile Include="Servise\SQLServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CollectionLibrary\CollectionLibrary.csproj">

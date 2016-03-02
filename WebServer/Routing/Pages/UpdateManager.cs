@@ -23,7 +23,7 @@ namespace Routing.Pages
                // SQLManagerServise sms = new SQLManagerServise();
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                manager.Experience = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
+                manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                 ms.Update(manager);
                 //sms.UpdateManager(manager);
             }

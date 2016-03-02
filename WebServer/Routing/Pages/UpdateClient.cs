@@ -18,7 +18,7 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ClientSQLService cs = new ClientSQLService("client.txt");
+                SQLClientService cs = new SQLClientService("client.txt");
                 Guid id = new Guid(form["id"]);
                 Client client = new Client(id, form["name"], form["surname"], form["address"], form["phone"]);
                 //cs.Update(client);
@@ -44,7 +44,7 @@ namespace Routing.Pages
             try
             {
                 //ClientFileService cs = new ClientFileService("client.txt");
-                ClientSQLService cs = new ClientSQLService("Clients");
+                SQLClientService cs = new SQLClientService("Clients");
                 Guid id = new Guid(form["id"]);
 
                 //Client client = cs.GetElement(id);

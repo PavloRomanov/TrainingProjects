@@ -8,14 +8,14 @@ using System.Text;
 
 namespace Model.Servise
 {
-    public class ClientSQLService : SQLService<Client>, IService<Client> 
+    public class SQLClientService : SQLService<Client>, IService<Client> 
     {
         private string tableName;
         private List<string> columName;
         
         private string connectionString = "Data Source=.\\SQLEXPRESS; Initial Catalog=WebServiceDB;Integrated Security=true;";
 
-        public ClientSQLService(string tableName)
+        public SQLClientService(string tableName)
             :base("Clients")
         {
             this.tableName = tableName;
@@ -109,6 +109,11 @@ namespace Model.Servise
             }
             
             Console.WriteLine("~~~~~~~~~~~~~~~~~" + result + "~~~~~~~~~~~~~~~~~~~~~");
+        }
+
+        public override Client FillFieldsOfModels(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
         }
     }
 }

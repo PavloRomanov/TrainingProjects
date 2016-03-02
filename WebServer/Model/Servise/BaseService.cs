@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public abstract class FileService<T> : IService<T> where T : ModelBase
+    public abstract class BaseService<T> : IService<T> where T : ModelBase
     {
         protected Dictionary<Guid, T> allhashmodels;
         protected Object access;
         private string fileName;        
 
-        public FileService(string path)
+        public BaseService(string path)
         {
             if (path == "")
                 throw new ArgumentException("No way !!!");
