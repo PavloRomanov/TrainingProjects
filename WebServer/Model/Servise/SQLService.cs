@@ -18,6 +18,8 @@ namespace Model.Servise
         public SQLService(string tableName)
         {
             this.tableName = tableName;
+            this.columName = GetColumName(tableName);
+            SetParameters();
         }
 
         protected string GetConnection()
@@ -154,24 +156,8 @@ namespace Model.Servise
         }
 
         //ДОБАВЛЕНИЕ данных в таблицу
-        public abstract void Add(T model);        
-
-
-        //Строка запроса для изменения данных в таблице по ID        
-       /* protected string GetUpdateQuery()
-        {
-            StringBuilder query = new StringBuilder("UPDATE ")
-                .Append(tableName)
-                .Append(" SET ");
-            for (int i = 0; i < columName.Count; i++)
-            {
-                query.Append(columName[i]).Append("=")
-                .Append(parameters[i]).Append(", ");
-            }
-            query.Remove((query.Length - 2), 2).Append(";");
-
-            return query.ToString();
-        }*/
+        public abstract void Add(T model); 
+      
         //ИЗМЕНЕНИЕ данных в таблице по ID
         public abstract void Update(T model);
 
