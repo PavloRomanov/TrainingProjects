@@ -61,7 +61,7 @@ namespace Model.Servise
         protected abstract Dictionary<Guid, T> InitializeListNewEntitys(SqlDataReader reader);
 
 
-        //Строка запроса для полечения данных по ID
+        //Строка запроса для получения данных по ID
         protected string GetSelectQueryById()
         {
             StringBuilder query = new StringBuilder("SELECT * FROM ")
@@ -125,7 +125,7 @@ namespace Model.Servise
         }
 
         //УДАЛЕНИЕ данных по ID
-        public virtual void Delete(Guid id)
+        public virtual int Delete(Guid id)
         {
             string queryString = GetDeleteQuery();
 
@@ -136,7 +136,7 @@ namespace Model.Servise
                 command.Parameters["@id"].Value = id;
                 connection.Open();
                 command.ExecuteNonQuery();
-                //return command.ExecuteNonQuery();
+                return command.ExecuteNonQuery();
             }
         }
 
@@ -161,7 +161,7 @@ namespace Model.Servise
         //ИЗМЕНЕНИЕ данных в таблице по ID
         public abstract void Update(T model);
 
-        public abstract T FillFieldsOfModels(SqlDataReader reader);
+      
 
     }
 }

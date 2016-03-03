@@ -56,17 +56,17 @@
     <Compile Include="Servise\AbstractFormService.cs" />
     <Compile Include="Servise\AbstractManagerService.cs" />
     <Compile Include="Servise\AbstractServiceFactory.cs" />
-    <Compile Include="Servise\AppealServise.cs" />
+    <Compile Include="Servise\AppealService.cs" />
     <Compile Include="Servise\ClientService.cs" />
     <Compile Include="Servise\SQLAppealService.cs" />
     <Compile Include="Servise\SQLClientService.cs" />
     <Compile Include="Servise\BaseService.cs" />
-    <Compile Include="Servise\FormServise.cs" />
+    <Compile Include="Servise\FormService.cs" />
     <Compile Include="Servise\IService.cs" />
     <Compile Include="Servise\ManagerService.cs" />
     <Compile Include="Servise\SQLService.cs" />
-    <Compile Include="Servise\SQLFormServise.cs" />
-    <Compile Include="Servise\SQLManagerServise.cs" />
+    <Compile Include="Servise\SQLFormService.cs" />
+    <Compile Include="Servise\SQLManagerService.cs" />
     <Compile Include="Servise\SQLServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>

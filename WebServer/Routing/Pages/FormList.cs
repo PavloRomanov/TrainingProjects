@@ -15,14 +15,15 @@ namespace Routing.Pages
 
         protected override string Title { get { return "Form's List"; } }
 
-        protected override string AddBody(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             StringBuilder body = new StringBuilder();
             try
             {
 
-                FormServiсe aps = new FormServiсe("forms.txt");
-                Dictionary<Guid, Form> formclients = aps.GetAll();
+               // FormServiсe fps = new FormServiсe("forms.txt");
+                SQLFormService fps = new SQLFormService("Forms");
+                Dictionary<Guid, Form> formclients = fps.GetAll();
               
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Forms</h1>");
@@ -40,7 +41,8 @@ namespace Routing.Pages
 
                 body.Append("</tr>");
 
-                ClientService cs = new ClientService("client.txt");
+              //  ClientService cs = new ClientService("client.txt");
+                SQLClientService cs = new SQLClientService("Clients");
                 int n = 1;
                 foreach (var element in formclients)
                 {

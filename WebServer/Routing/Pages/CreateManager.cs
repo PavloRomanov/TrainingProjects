@@ -246,10 +246,10 @@ namespace Routing.Pages
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                    // ManagerService ms = new ManagerService("manager.txt");
-                    SQLManagerServise sms = new SQLManagerServise("Managers");
+                    SQLManagerService sms = new SQLManagerService("Managers");
                     manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                    // ms.Add(manager);
-                     sms.AddManager(manager);
+                     sms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }
                 catch (Exception ex)
@@ -268,7 +268,7 @@ namespace Routing.Pages
         {
             StringBuilder func = new StringBuilder();
             func.Append(Environment.NewLine);
-            func.Append("<script src='client.js'>").Append("</script>");
+            func.Append("<script src='valid.js'>").Append("</script>");
             return func.ToString();
         }
     }

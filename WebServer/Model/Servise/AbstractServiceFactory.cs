@@ -9,9 +9,9 @@ namespace Model.Servise
 {
     public abstract class AbstractServiceFactory
     {
-        public abstract AbstractClientService CreateClientServise(string name);
-        public abstract AbstractManagerService CreateManagerServise(string name);
-        public abstract AbstractAppealService CreateAppealServise(string name);
-        public abstract AbstractFormService CreateFormServise(string name);
+        public abstract AbstractClientService CreateClientService(string name);
+        public abstract AbstractManagerService CreateManagerService(string name);
+        public abstract AbstractAppealService CreateAppealService(string name);
+        public abstract AbstractFormService CreateFormService(string name);
     }
 }

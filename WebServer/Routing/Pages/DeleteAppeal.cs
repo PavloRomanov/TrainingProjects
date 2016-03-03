@@ -19,7 +19,8 @@ namespace Routing.Pages
         Response response;
             try
             {
-                AppealServiсe cs = new AppealServiсe("appealclient.txt");
+                //AppealServiсe cs = new AppealServiсe("appealclient.txt");
+                SQLAppealService cs = new SQLAppealService("Appeals");
                 Guid id = new Guid(form["id"]);
                 cs.Delete(id);
             }

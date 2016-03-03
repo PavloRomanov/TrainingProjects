@@ -17,11 +17,11 @@ namespace Routing.Pages
             try
             {
                 //FormServiсe fs = new FormServiсe("forms.txt");
-                SQLFormServise sfs = new SQLFormServise("Forms");
+                SQLFormService sfs = new SQLFormService("Forms");
                 Guid id = new Guid(form["id"]);
 
                // Form formclient = fs.GetElement(id);
-                Form formclient = sfs.GetForm(id);
+                Form formclient = sfs.GetElement(id);
                 // ClientServiсe cs = new ClientServiсe("client.txt");
                 SQLClientService cs = new SQLClientService("Clients");
                 Client c = cs.GetElement(formclient.IdClient);
@@ -52,34 +52,24 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(n).Append("</td>");
                     body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(element.Value.F1.ToString());
                     body.Append("<td>").Append(element.Value.F1.ToString());
+                    body.Append("<br>");                 
+                    body.Append("<td>").Append(element.Value.F2.ToString());
                     body.Append("<br>");
-                   // body.Append(element.Value.F2.ToString());
-                    body.Append("<td>").Append(element.Value.F1.ToString());
-                    body.Append("<br>");
-                   // body.Append(element.Value.F3.ToString());
                     body.Append("<td>").Append(element.Value.F3.ToString());
                     body.Append("<br>");
-                    //body.Append(element.Value.F4.ToString());
                     body.Append("<td>").Append(element.Value.F4.ToString());
                     body.Append("<br>");
-                   // body.Append(element.Value.F5.ToString()).Append("</td>");
                     body.Append(element.Value.F5.ToString()).Append("</td>");
                     body.Append("</td>").Append(Environment.NewLine);
-                   // body.Append("<td>").Append(element.Value.Answer1);
                     body.Append("<td>").Append(element.Value.Answer1);
                     body.Append("<br>");
-                   // body.Append(element.Value.Answer2);
                     body.Append(element.Value.Answer2);
                     body.Append("<br>");
-                   // body.Append(element.Value.Answer3);
                     body.Append(element.Value.Answer3);
                     body.Append("<br>");
-                    //body.Append(element.Value.Answer4);
                     body.Append(element.Value.Answer4);
                     body.Append("<br>");
-                    //body.Append(element.Value.Answer5).Append("</td>");
                     body.Append(element.Value.Answer5).Append("</td>");
                     body.Append("</td>").Append(Environment.NewLine);
                     body.Append("</tr>");
@@ -89,8 +79,8 @@ namespace Routing.Pages
                 body.Append("</table>");
                 body.Append("<br>");
                 // ManagerService ms = new ManagerService("manager.txt");
-                SQLManagerServise sms = new SQLManagerServise("Managers");
-                Manager man = sms.GetManager(formclient.IdManager);
+                SQLManagerService sms = new SQLManagerService("Managers");
+                Manager man = sms.GetElement(formclient.IdManager);
                 body.Append(Environment.NewLine);
                 // body.Append("<p><b id='col'>Manager:  </b>").Append(ms.GetElement(formclient.IdManager).Name + " " + ms.GetElement(formclient.IdManager).Surname).Append("</p>");
                 body.Append("<p><b id='col'>Manager:  </b>").Append(man.Name + " " + man.Surname);
