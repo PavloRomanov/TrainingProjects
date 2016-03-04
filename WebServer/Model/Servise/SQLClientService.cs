@@ -101,10 +101,6 @@ namespace Model.Servise
             Console.WriteLine("~~~~~~~~~~~~~~~~~" + result + "~~~~~~~~~~~~~~~~~~~~~");
         }
 
-        public override Client FillFieldsOfModels(SqlDataReader reader)
-        {
-            throw new NotImplementedException();
-        }      
-       
+  
     }
 }

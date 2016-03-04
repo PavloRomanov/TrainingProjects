@@ -125,7 +125,7 @@ namespace Model.Servise
         }
 
         //УДАЛЕНИЕ данных по ID
-        public virtual int Delete(Guid id)
+        public virtual void Delete(Guid id)
         {
             string queryString = GetDeleteQuery();
 
@@ -136,7 +136,7 @@ namespace Model.Servise
                 command.Parameters["@id"].Value = id;
                 connection.Open();
                 command.ExecuteNonQuery();
-                return command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 

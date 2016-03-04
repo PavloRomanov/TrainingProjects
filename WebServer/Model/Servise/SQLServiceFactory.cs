@@ -27,7 +27,7 @@ namespace Model.Servise
         }
         public override IFormService CreateFormServise()
         {
-            SQLFormServise sqlf = new SQLFormServise("Form");
+            SQLFormService sqlf = new SQLFormService("Form");
             return sqlf;
         }
         
