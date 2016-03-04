@@ -16,7 +16,7 @@ namespace Model.Servise
         {
         }
 
-        public  Manager FillFieldsOfModels(SqlDataReader reader)
+        public Manager FillFieldsOfModels(SqlDataReader reader)
         {
 
             Manager manager = new Manager(
@@ -147,13 +147,42 @@ namespace Model.Servise
 
         protected override Manager InitializeNewEntity(SqlDataReader reader)
         {
-            throw new NotImplementedException();
+            Manager manager = null;
+            while (reader.Read())
+            {
+                manager = new Manager(
+                     reader.GetGuid(0),
+                     reader["name"].ToString(),
+                     reader["surname"].ToString(),
+                     //reader["work"].ToString(),
+                     reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
+                     reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
+                     reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
+                     reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
+            }
+
+            return manager;
         }
 
         protected override Dictionary<Guid, Manager> InitializeListNewEntitys(SqlDataReader reader)
         {
-            throw new NotImplementedException();
-        }
+            Dictionary<Guid, Manager> managers = new Dictionary<Guid, Manager>();
+            while (reader.Read())
+            {
+                Manager manager = new Manager(
+                      reader.GetGuid(0),
+                      reader["name"].ToString(),
+                      reader["surname"].ToString(),
+                      // reader["work"].ToString(),
+                      reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
+                      reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
+                      reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
+                      reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
 
+                managers.Add(manager.Id, manager);
+            }
+
+            return managers;
+        }
     }
 }

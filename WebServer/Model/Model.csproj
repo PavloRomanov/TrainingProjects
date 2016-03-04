@@ -51,10 +51,6 @@
     <Compile Include="Entity\Manager.cs" />
     <Compile Include="Entity\ModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servise\AbstractAppealService.cs" />
-    <Compile Include="Servise\AbstractClientService.cs" />
-    <Compile Include="Servise\AbstractFormService.cs" />
-    <Compile Include="Servise\AbstractManagerService.cs" />
     <Compile Include="Servise\AbstractServiceFactory.cs" />
     <Compile Include="Servise\AppealService.cs" />
     <Compile Include="Servise\ClientService.cs" />
