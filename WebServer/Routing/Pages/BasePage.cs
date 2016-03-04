@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-//using CollectionLibrary;
-using Routing;
+using Model.Servise;
 
 namespace Routing.Pages
 {
     public abstract class BasePage : IBasePage
-    {        
-        public BasePage ()
-        {                    
+    {
+        protected AbstractServiceFactory serviceFactory;
+
+        public BasePage (AbstractServiceFactory sf = null)
+        {
+            serviceFactory = sf;
         }
 
         protected virtual string Title { get { return string.Empty; } }

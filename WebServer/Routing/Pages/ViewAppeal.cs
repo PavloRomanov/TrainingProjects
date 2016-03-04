@@ -11,7 +11,11 @@ namespace Routing.Pages
 {
    public class ViewAppeal : BasePage
     {
-  
+        public ViewAppeal(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;

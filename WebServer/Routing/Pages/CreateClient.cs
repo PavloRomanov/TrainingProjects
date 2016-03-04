@@ -9,6 +9,11 @@ namespace Routing.Pages
 {
     public class CreateClient : BasePage
     {
+        public CreateClient(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Create Client"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
@@ -175,9 +180,8 @@ namespace Routing.Pages
             {
                 try
                 {
-                    Client client = new Client(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"]);
-                    //IServise<Client> cs = new ClientFileServise("client.txt");
-                    SQLClientService cs = new SQLClientService("Clients");
+                    Client client = new Client(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"]);                   
+                    IClientService cs =serviceFactory.CreateClientServise();
                     cs.Add(client);
                     
                     return new Response("", TypeOfAnswer.Redirection, "ClientsList");

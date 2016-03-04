@@ -12,6 +12,11 @@ namespace Routing.Pages
 {
     public class UpdateManager : BasePage
     {
+        public UpdateManager(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Update Manager"; } }
 
         public override Response Post(IDictionary<string, string> form, string sessionId = null)
@@ -19,13 +24,13 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ManagerService ms = new ManagerService("manager.txt");
-               // SQLManagerServise sms = new SQLManagerServise();
+                //ManagerService ms = new ManagerService("manager.txt");
+                IManagerService sms = serviceFactory.CreateManagerServise();
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                 manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
-                ms.Update(manager);
-                //sms.UpdateManager(manager);
+                //ms.Update(manager);
+                sms.Update(manager);
             }
             catch (Exception ex)
             {
@@ -44,11 +49,11 @@ namespace Routing.Pages
             Response response;
             try
             {
-                ManagerService ms = new ManagerService("manager.txt");
-                //SQLManagerServise sms = new SQLManagerServise();
+                //ManagerService ms = new ManagerService("manager.txt");
+                IManagerService sms = serviceFactory.CreateManagerServise();
                 Guid id = new Guid(form["id"]);
-                Manager manager = ms.GetElement(id);
-                //Manager manager = sms.GetManager(id);
+                //Manager manager = ms.GetElement(id);
+                Manager manager = sms.GetElement(id);
                 HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateManager", errors);
                 htmlForm.SetAttribut("novalidate", "novalidate");
                 htmlForm.AddTag("br");

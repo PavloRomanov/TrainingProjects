@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Model.Servise
 {
-   public class SQLFormServise : SQLService<Form>
+   public class SQLFormServise : SQLService<Form>, IFormService
     {
         public SQLFormServise(string tableName)
             :base("Forms")

@@ -10,6 +10,11 @@ namespace Routing.Pages
 {
     public class ViewForm: BasePage   
 {
+        public ViewForm(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
             Response response;
@@ -17,13 +22,14 @@ namespace Routing.Pages
             try
             {
                 //FormServiсe fs = new FormServiсe("forms.txt");
-                SQLFormServise sfs = new SQLFormServise("Forms");
+                IFormService fs = serviceFactory.CreateFormServise();
                 Guid id = new Guid(form["id"]);
 
                // Form formclient = fs.GetElement(id);
-                Form formclient = sfs.GetForm(id);
+                Form formclient = fs.GetElement(id);
                 // ClientServiсe cs = new ClientServiсe("client.txt");
-                SQLClientService cs = new SQLClientService("Clients");
+                //SQLClientService cs = new SQLClientService("Clients");
+                IClientService cs = serviceFactory.CreateClientServise();
                 Client c = cs.GetElement(formclient.IdClient);
 
                 body.Append(Environment.NewLine);
@@ -43,8 +49,8 @@ namespace Routing.Pages
                 body.Append("<th id='col'>Answer</th>");
                 body.Append(Environment.NewLine);
                 body.Append("</tr>");
-                //var forms = fs.GetAll();
-                var forms = sfs.GetAll();
+                var forms = fs.GetAll();
+                //var forms = sfs.GetAll();
                 int n = 1;
                 foreach (var element in forms)
                 {
@@ -89,8 +95,8 @@ namespace Routing.Pages
                 body.Append("</table>");
                 body.Append("<br>");
                 // ManagerService ms = new ManagerService("manager.txt");
-                SQLManagerServise sms = new SQLManagerServise("Managers");
-                Manager man = sms.GetManager(formclient.IdManager);
+                IManagerService ms = serviceFactory.CreateManagerServise();
+                Manager man = ms.GetElement(formclient.IdManager);
                 body.Append(Environment.NewLine);
                 // body.Append("<p><b id='col'>Manager:  </b>").Append(ms.GetElement(formclient.IdManager).Name + " " + ms.GetElement(formclient.IdManager).Surname).Append("</p>");
                 body.Append("<p><b id='col'>Manager:  </b>").Append(man.Name + " " + man.Surname);

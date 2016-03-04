@@ -5,7 +5,7 @@ using Model.Entity;
 
 namespace Model.Servise
 {
-    public class SQLAppealService : AbstractAppealService
+    public class SQLAppealService : SQLService<Appeal>, IAppealService
     {
         public SQLAppealService(string tableName)
             :base("Appeals")

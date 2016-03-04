@@ -10,6 +10,11 @@ namespace Routing.Pages
 {
     class ClientsList : BasePage
     {
+        public ClientsList(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Client's List"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
@@ -18,9 +23,8 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder();
             try
             {
-                //ClientFileServise cs = new ClientFileServise("client.txt");
-                SQLClientService cs = new SQLClientService("Clients");
-                
+                IClientService cs = serviceFactory.CreateClientServise();
+
                 Dictionary<Guid, Client> clients = cs.GetAll();
 
                 body.Append("<body bgcolor='#FFFF40\'>");

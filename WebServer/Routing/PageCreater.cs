@@ -12,31 +12,33 @@ namespace Routing
     {
         private static readonly PageCreater instance = new PageCreater();
         public CollectionLibrary.MyHashTable<string, IBasePage> pages;
+        //AbstractServiceFactory serviceFactory = new FileServiceFactory();
+        AbstractServiceFactory serviceFactory = new SQLServiceFactory();
         
         private PageCreater()
         {
             pages = new CollectionLibrary.MyHashTable<string, IBasePage>();
             pages.Add("Index", new Index());
-            pages.Add("CreateClient", new CreateClient());
-            pages.Add("DeleteClient", new DeleteClient());
-            pages.Add("UpdateClient", new UpdateClient());
-            pages.Add("ClientsList", new ClientsList());
-            pages.Add("ViewClient", new ViewClient());
+            pages.Add("CreateClient", new CreateClient(serviceFactory));
+            pages.Add("DeleteClient", new DeleteClient(serviceFactory));
+            pages.Add("UpdateClient", new UpdateClient(serviceFactory));
+            pages.Add("ClientsList", new ClientsList(serviceFactory));
+            pages.Add("ViewClient", new ViewClient(serviceFactory));
             pages.Add("LogIn", new LogIn());
             pages.Add("LogOut", new LogOut());
-            pages.Add("CreateManager", new CreateManager());
-            pages.Add("ManagersList", new ManagersList());
-            pages.Add("ViewManager", new ViewManager());
-            pages.Add("UpdateManager", new UpdateManager());
-            pages.Add("DeleteManager", new DeleteManager());
-            pages.Add("CreateAppeal", new CreateAppeal());
-            pages.Add("AppealList", new AppealList());
-            pages.Add("ViewAppeal", new ViewAppeal());
-            pages.Add("DeleteAppeal", new DeleteAppeal());
-            pages.Add("CreateForm", new CreateForm());
-            pages.Add("FormList", new FormList());
-            pages.Add("ViewForm", new ViewForm());
-            pages.Add("DeleteForm", new DeleteForm());
+            pages.Add("CreateManager", new CreateManager(serviceFactory));
+            pages.Add("ManagersList", new ManagersList(serviceFactory));
+            pages.Add("ViewManager", new ViewManager(serviceFactory));
+            pages.Add("UpdateManager", new UpdateManager(serviceFactory));
+            pages.Add("DeleteManager", new DeleteManager(serviceFactory));
+            pages.Add("CreateAppeal", new CreateAppeal(serviceFactory));
+            pages.Add("AppealList", new AppealList(serviceFactory));
+            pages.Add("ViewAppeal", new ViewAppeal(serviceFactory));
+            pages.Add("DeleteAppeal", new DeleteAppeal(serviceFactory));
+            pages.Add("CreateForm", new CreateForm(serviceFactory));
+            pages.Add("FormList", new FormList(serviceFactory));
+            pages.Add("ViewForm", new ViewForm(serviceFactory));
+            pages.Add("DeleteForm", new DeleteForm(serviceFactory));
             pages.Add("Contact", new Contact());
             pages.Add("NotFoundError", new NotFoundError());
 

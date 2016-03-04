@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CollectionLibrary;
 using Model.Servise;
 
 namespace Routing.Pages
 {
     public class DeleteClient : IBasePage
     {
+        AbstractServiceFactory serviceFactory;
+        public DeleteClient(AbstractServiceFactory sf)         
+        {
+            serviceFactory = sf;
+        }
+
         public Response Get(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
         {
             Response response;
             try
             {
-                SQLClientService cs = new SQLClientService("Clients");
+                IClientService cs = serviceFactory.CreateClientServise();
                 Guid id = new Guid(form["id"]);
                 //cs.Delete(id);
                 cs.Delete(id);
@@ -30,7 +32,7 @@ namespace Routing.Pages
         }
 
        
-        public Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

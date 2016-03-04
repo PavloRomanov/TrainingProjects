@@ -10,7 +10,12 @@ using Routing.Pages.Helpers;
 namespace Routing.Pages
 {
    public class CreateForm : BasePage
-    {      
+    {
+        public CreateForm(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Form client's"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
@@ -19,7 +24,8 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Name client: ")
                 .SetAttribut("class", "lable");
-            ClientService cs = new ClientService("client.txt");
+            //ClientService cs = new ClientService("client.txt");
+            IClientService cs = serviceFactory.CreateClientServise();
             Dictionary<Guid, Client> clients = cs.GetAll();
          
             HtmlBaseTag selectclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")
@@ -140,7 +146,8 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Filled manager: ")
                  .SetAttribut("class", "lable");
-            ManagerService ms = new ManagerService("manager.txt");
+            //ManagerService ms = new ManagerService("manager.txt");
+            IManagerService ms = serviceFactory.CreateManagerServise();
             Dictionary<Guid, Manager> managers = ms.GetAll();
            
             HtmlBaseTag selectmanager = htmlForm.AddTag("select").SetAttribut("name", "managerId")
@@ -262,8 +269,9 @@ namespace Routing.Pages
                      formclient.Answer5 = form["form10"];
                  }
                  }
-                FormServiсe formser = new FormServiсe("forms.txt");
-                formser.Add(formclient);
+                //FormServiсe fs = new FormServiсe("forms.txt");
+                IFormService fs = serviceFactory.CreateFormServise();
+                fs.Add(formclient);
             }
             catch (Exception ex)
             {

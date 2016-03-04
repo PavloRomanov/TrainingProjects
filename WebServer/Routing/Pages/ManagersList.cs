@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Routing.Pages;
-using CollectionLibrary;
 using Model.Servise;
 using Model.Entity;
 
@@ -12,6 +8,11 @@ namespace Routing.Pages
 {
     public class ManagersList : BasePage
     {
+        public ManagersList(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Manager's List"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
@@ -21,9 +22,9 @@ namespace Routing.Pages
             try
             {
                 //ManagerService ms = new ManagerService("manager.txt");
-                SQLManagerServise sms = new SQLManagerServise("Managers");
-                //Dictionary<Guid, Manager> managers = ms.GetAll();
-                List<Manager> managers = sms.GetAllManagers();
+                IManagerService sms = serviceFactory.CreateManagerServise();
+                Dictionary<Guid, Manager> managers = sms.GetAll();
+                //List<Manager> managers = ms.GetAllManagers();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Managers</h1>");
                 body.Append(Environment.NewLine);
@@ -60,34 +61,34 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(n).Append("</td>");
                     body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(man.Value.Name).Append("</td>");
-                    body.Append("<td>").Append(man.Name).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Name).Append("</td>");
+                    //body.Append("<td>").Append(man.Name).Append("</td>");
                     body.Append(Environment.NewLine);
-                    //body.Append("<td>").Append(man.Value.Surname).Append("</td>");
-                    body.Append("<td>").Append(man.Surname).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Surname).Append("</td>");
+                    //body.Append("<td>").Append(man.Surname).Append("</td>");
                     body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
-                    body.Append("<td>").Append(man.Work.ToString()).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Work.ToString()).Append("</td>");
+                    //body.Append("<td>").Append(man.Work.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(man.Value.Address).Append("</td>");
-                    body.Append("<td>").Append(man.Address).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Address).Append("</td>");
+                    //body.Append("<td>").Append(man.Address).Append("</td>");
                     body.Append(Environment.NewLine);
-                   // body.Append("<td>").Append(man.Value.Phone).Append("</td>");
-                    body.Append("<td>").Append(man.Phone).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Phone).Append("</td>");
+                    //body.Append("<td>").Append(man.Phone).Append("</td>");
                     body.Append(Environment.NewLine);
-                    // body.Append("<td>").Append(man.Value.Login).Append("</td>");
-                    body.Append("<td>").Append(man.Login).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Login).Append("</td>");
+                    //body.Append("<td>").Append(man.Login).Append("</td>");
                     body.Append(Environment.NewLine);
-                    // body.Append("<td>").Append(man.Value.Password).Append("</td>");
-                    body.Append("<td>").Append(man.Password).Append("</td>");
+                    body.Append("<td>").Append(man.Value.Password).Append("</td>");
+                    //body.Append("<td>").Append(man.Password).Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<td>");
-                   // body.Append("<a href='ViewManager?id=").Append(man.Key).Append("'>View</a>");
-                   // body.Append("<a href='UpdateManager?id=").Append(man.Key).Append("'>Update</a>");
-                  //  body.Append("<a href='DeleteManager?id=").Append(man.Key).Append("'>Delete</a>");
-                    body.Append("<a href='ViewManager?id=").Append(man.Id).Append("'>View</a>");
-                    body.Append("<a href='UpdateManager?id=").Append(man.Id).Append("'>Update</a>");
-                    body.Append("<a href='DeleteManager?id=").Append(man.Id).Append("'>Delete</a>");
+                    body.Append("<a href='ViewManager?id=").Append(man.Key).Append("'>View</a>");
+                    body.Append("<a href='UpdateManager?id=").Append(man.Key).Append("'>Update</a>");
+                    body.Append("<a href='DeleteManager?id=").Append(man.Key).Append("'>Delete</a>");
+                    //body.Append("<a href='ViewManager?id=").Append(man.Id).Append("'>View</a>");
+                    //body.Append("<a href='UpdateManager?id=").Append(man.Id).Append("'>Update</a>");
+                    //body.Append("<a href='DeleteManager?id=").Append(man.Id).Append("'>Delete</a>");
                     body.Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<tr>");

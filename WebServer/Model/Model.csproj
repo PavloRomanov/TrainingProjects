@@ -58,6 +58,11 @@
     <Compile Include="Servise\AbstractServiceFactory.cs" />
     <Compile Include="Servise\AppealServise.cs" />
     <Compile Include="Servise\ClientService.cs" />
+    <Compile Include="Servise\FileServiceFactory.cs" />
+    <Compile Include="Servise\IAppealService.cs" />
+    <Compile Include="Servise\IClientService.cs" />
+    <Compile Include="Servise\IFormService.cs" />
+    <Compile Include="Servise\IManagerService.cs" />
     <Compile Include="Servise\SQLAppealService.cs" />
     <Compile Include="Servise\SQLClientService.cs" />
     <Compile Include="Servise\BaseService.cs" />

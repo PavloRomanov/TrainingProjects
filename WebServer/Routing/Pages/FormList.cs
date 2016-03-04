@@ -12,6 +12,10 @@ namespace Routing.Pages
 {
     public class FormList: BasePage
     {
+        public FormList(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
 
         protected override string Title { get { return "Form's List"; } }
 
@@ -21,8 +25,9 @@ namespace Routing.Pages
             try
             {
 
-                FormServiсe aps = new FormServiсe("forms.txt");
-                Dictionary<Guid, Form> formclients = aps.GetAll();
+                //FormServiсe fs = new FormServiсe("forms.txt");
+                IFormService fs = serviceFactory.CreateFormServise();
+                Dictionary<Guid, Form> formclients = fs.GetAll();
               
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Forms</h1>");
@@ -40,7 +45,9 @@ namespace Routing.Pages
 
                 body.Append("</tr>");
 
-                ClientService cs = new ClientService("client.txt");
+                //ClientService cs = new ClientService("client.txt");
+                IClientService cs = serviceFactory.CreateClientServise();
+
                 int n = 1;
                 foreach (var element in formclients)
                 {

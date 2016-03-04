@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Model.Servise
 {
-    public class SQLManagerServise : AbstractManagerService
+    public class SQLManagerServise : SQLService<Manager>, IManagerService
     {
         
         public SQLManagerServise(string tableName)
@@ -29,7 +29,7 @@ namespace Model.Servise
                      reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
               return manager;
           }
-        public Manager GetManager(Guid id)
+        public override Manager GetElement(Guid id)
         {
             string queryString = "SELECT * FROM Managers WHERE ManagerId = @id";
             Manager result=null;
@@ -48,7 +48,7 @@ namespace Model.Servise
             return result;
         }
 
-        public List<Manager> GetAllManagers()
+        public override Dictionary<Guid, Manager> GetAll()
         {
             string queryString = "SELECT * FROM Managers";
             using (SqlConnection connection = new SqlConnection(GetConnection()))
@@ -56,19 +56,20 @@ namespace Model.Servise
 
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                List<Manager> list = new List<Manager>();
+                Dictionary<Guid, Manager> list = new Dictionary<Guid, Manager>();
+                
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    
-                    list.Add(FillFieldsOfModels(reader));
+                    Manager manager = FillFieldsOfModels(reader);
+                    list.Add(manager.Id, manager);
                 }
                 return list;
             }
         }
-        public int AddManager(Manager manager)
+        public override void Add(Manager manager)
         {
-            string queryInsert = "INSERT INTO dbo.Managerss VALUES(@id, @name, @surname,@experience, @address, @phone, @login,@password)";
+            string queryInsert = "INSERT INTO dbo.Managers VALUES(@id, @name, @surname,@experience, @address, @phone, @login,@password)";
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
@@ -84,8 +85,8 @@ namespace Model.Servise
                 command.Parameters.Add("@experience", SqlDbType.NVarChar);
                 command.Parameters["@experience"].SqlValue = manager.Work.ToString();
 
-                command.Parameters.Add(" @address", SqlDbType.NVarChar);
-                command.Parameters[" @address"].SqlValue = manager.Address;
+                command.Parameters.Add("@address", SqlDbType.NVarChar);
+                command.Parameters["@address"].SqlValue = manager.Address;
 
                 command.Parameters.Add("@phone", SqlDbType.NVarChar);
                 command.Parameters["@phone"].SqlValue = manager.Phone;
@@ -97,10 +98,10 @@ namespace Model.Servise
                 command.Parameters["@password"].SqlValue = manager.Password;
 
                 connection.Open();
-                return command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
-        public int UpdateManager(Manager man)
+        public override void Update(Manager man)
         {
             string queryString = "UPDATE dbo.Managers SET Name = @name, Surname = @surname,Experience = @experience , Address = @address, Phone = @phone, Login = @login, Password = @password WHERE  ManagerId = @id";
             int result = 0;
@@ -129,8 +130,7 @@ namespace Model.Servise
                 Console.WriteLine("queryString = " + queryString);
                 result = command.ExecuteNonQuery();
 
-            }
-            return result;
+            }            
         }
         public int DeleteManager(Guid id)
         {
@@ -154,15 +154,6 @@ namespace Model.Servise
         {
             throw new NotImplementedException();
         }
-
-        public override void Add(Manager model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Update(Manager model)
-        {
-            throw new NotImplementedException();
-        }
+               
     }
 }
