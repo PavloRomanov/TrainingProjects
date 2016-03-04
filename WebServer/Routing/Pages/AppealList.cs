@@ -24,7 +24,8 @@ namespace Routing.Pages
             try
             {
 
-                AppealServiсe aps = new AppealServiсe("appealclient.txt");
+               // AppealServiсe aps = new AppealServiсe("appealclient.txt");
+                SQLAppealService aps = new SQLAppealService("Appeals");
                 Dictionary<Guid, Appeal> appealclients = aps.GetAll();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Appeals</h1>");
@@ -45,9 +46,9 @@ namespace Routing.Pages
                 body.Append("<th>Controls</th>");
                 body.Append(Environment.NewLine);
                 body.Append("</tr>");
-
-
-                ClientService cs = new ClientService("client.txt");      
+               
+                //ClientService cs = new ClientService("client.txt");
+                SQLClientService cs = new SQLClientService("Clients");      
                 int n = 1;
                 foreach (var element in appealclients)
                 {
@@ -85,7 +86,7 @@ namespace Routing.Pages
             return body.ToString();
         }
 
-        public override Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public override Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }     

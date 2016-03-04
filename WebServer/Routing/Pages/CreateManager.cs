@@ -248,9 +248,9 @@ namespace Routing.Pages
 
                 try
                 {
-                    Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);                   
+                    Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
                     IManagerService sms = serviceFactory.CreateManagerServise();
-                    manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);                   
+                    manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                     sms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }
@@ -270,7 +270,7 @@ namespace Routing.Pages
         {
             StringBuilder func = new StringBuilder();
             func.Append(Environment.NewLine);
-            func.Append("<script src='client.js'>").Append("</script>");
+            func.Append("<script src='valid.js'>").Append("</script>");
             return func.ToString();
         }
     }

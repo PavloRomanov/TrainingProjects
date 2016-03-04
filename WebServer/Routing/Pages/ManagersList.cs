@@ -85,10 +85,7 @@ namespace Routing.Pages
                     body.Append("<td>");
                     body.Append("<a href='ViewManager?id=").Append(man.Key).Append("'>View</a>");
                     body.Append("<a href='UpdateManager?id=").Append(man.Key).Append("'>Update</a>");
-                    body.Append("<a href='DeleteManager?id=").Append(man.Key).Append("'>Delete</a>");
-                    //body.Append("<a href='ViewManager?id=").Append(man.Id).Append("'>View</a>");
-                    //body.Append("<a href='UpdateManager?id=").Append(man.Id).Append("'>Update</a>");
-                    //body.Append("<a href='DeleteManager?id=").Append(man.Id).Append("'>Delete</a>");
+                    body.Append("<a href='DeleteManager?id=").Append(man.Key).Append("'>Delete</a>");                   
                     body.Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<tr>");

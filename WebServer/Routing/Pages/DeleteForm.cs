@@ -33,7 +33,7 @@ namespace Routing.Pages
             return new Response("", TypeOfAnswer.Redirection, "FormList");
         }
 
-        public Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

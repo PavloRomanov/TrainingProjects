@@ -23,9 +23,11 @@ namespace Routing.Pages
 
             try
             {
-                AppealServiсe aps = new AppealServiсe("appealclient.txt");
+                // AppealServiсe aps = new AppealServiсe("appealclient.txt");
+                // ClientService cs = new ClientService("client.txt");
+                SQLAppealService aps = new SQLAppealService("Appeals");
+                SQLClientService cs = new SQLClientService("Clients");
                 Guid id = new Guid(form["id"]);
-                ClientService cs = new ClientService("client.txt");
                 Appeal appealclient = aps.GetElement(id);
 
                 body.Append(Environment.NewLine);

@@ -27,7 +27,6 @@ namespace Routing.Pages
 
                 Dictionary<Guid, Client> clients = cs.GetAll();
 
-                body.Append("<body bgcolor='#FFFF40\'>");
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Client</h1>");
                 body.Append(Environment.NewLine);                

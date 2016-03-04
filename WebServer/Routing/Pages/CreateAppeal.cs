@@ -24,8 +24,10 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Client:")
                 .SetAttribut("class", "lable");
-            ClientService cs = new ClientService("client.txt");
-            Dictionary<Guid, Client> clients = cs.GetAll();
+            //ClientService cs = new ClientService("client.txt");
+           // Dictionary<Guid, Client> clients = cs.GetAll();
+            SQLClientService scs = new SQLClientService("Clients");
+            Dictionary<Guid, Client> clients = scs.GetAll();
             HtmlBaseTag selecclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")
                  .SetAttribut("class", "select")
                  .SetAttribut("size", "1");
@@ -48,7 +50,6 @@ namespace Routing.Pages
             {
                 selectWork.AddTag("option", element.Key.ToString())
                    .SetAttribut("value", element.Value.ToString());
-
             }
 
             htmlForm.AddTag("br");
@@ -86,9 +87,10 @@ namespace Routing.Pages
             //-----------------------------------------------------------------------------
             htmlForm.AddTag("lable", "Serviced manager:")
                 .SetAttribut("class", "lable");
-            ManagerService ms = new ManagerService("manager.txt");
-            Dictionary<Guid, Manager> managers = ms.GetAll();
-
+           // ManagerService ms = new ManagerService("manager.txt");
+           // Dictionary<Guid, Manager> managers = ms.GetAll();
+            SQLManagerService sms = new SQLManagerService("Managers");
+            Dictionary<Guid, Manager> managers = sms.GetAll();
             HtmlBaseTag selectmanager = htmlForm.AddTag("select").SetAttribut("name", "managerId")
                    .SetAttribut("class", "select")
                    .SetAttribut("size", "1");

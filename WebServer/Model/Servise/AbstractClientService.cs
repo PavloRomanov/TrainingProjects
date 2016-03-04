@@ -17,6 +17,6 @@ namespace Model.Servise
         protected abstract Client InitializeNewEntity(SqlDataReader reader);
         protected abstract Dictionary<Guid, Client> InitializeListNewEntitys(SqlDataReader reader); 
         public abstract Client FillFieldsOfModels(SqlDataReader reader);   
-       
+
     }
 }

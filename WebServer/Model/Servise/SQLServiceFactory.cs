@@ -17,7 +17,7 @@ namespace Model.Servise
         }
         public override IManagerService CreateManagerServise()
         {
-            SQLManagerServise sqlm = new SQLManagerServise("Managers");
+            SQLManagerService sqlm = new SQLManagerService("Managers");
             return sqlm;
         }
         public override IAppealService CreateAppealServise()
