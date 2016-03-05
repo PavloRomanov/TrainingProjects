@@ -23,7 +23,7 @@ namespace Model.Servise
                     reader.GetGuid(0),
                     reader["name"].ToString(),
                     reader["surname"].ToString(),
-                    (StageExperience.WorkExperience)Convert.ToInt32(reader["experience"]),//?
+                    (StageExperience.WorkExperience)Convert.ToInt32(reader["work"]),
                     reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
                     reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                     reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
@@ -68,13 +68,12 @@ namespace Model.Servise
         public override Dictionary<Guid, Manager> GetAll()
         {
             string queryString = "SELECT * FROM Managers";
+            Dictionary<Guid, Manager> list = new Dictionary<Guid, Manager>();
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
 
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
-                Dictionary<Guid, Manager> list = new Dictionary<Guid, Manager>();
-
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -86,7 +85,7 @@ namespace Model.Servise
         }
         public override void Add(Manager manager)
         {
-            string queryInsert = "INSERT INTO dbo.Managers VALUES(@id, @name, @surname,@experience, @address, @phone, @login,@password)";
+            string queryInsert = "INSERT INTO dbo.Managers VALUES(@id, @name, @surname,@work, @address, @phone, @login,@password)";
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
@@ -99,8 +98,8 @@ namespace Model.Servise
                 command.Parameters.Add("@surname", SqlDbType.NVarChar);
                 command.Parameters["@surname"].SqlValue = manager.Surname;
 
-                command.Parameters.Add("@experience", SqlDbType.NVarChar);
-                command.Parameters["@experience"].SqlValue = manager.Work.ToString();
+                command.Parameters.Add("@work", SqlDbType.Int);
+                command.Parameters["@work"].SqlValue = manager.Work;
 
                 command.Parameters.Add("@address", SqlDbType.NVarChar);
                 command.Parameters["@address"].SqlValue = manager.Address;
@@ -120,7 +119,7 @@ namespace Model.Servise
         }
         public override void Update(Manager man)
         {
-            string queryString = "UPDATE dbo.Managers SET Name = @name, Surname = @surname,Experience = @experience , Address = @address, Phone = @phone, Login = @login, Password = @password WHERE  ManagerId = @id";
+            string queryString = "UPDATE dbo.Managers SET Name = @name, Surname = @surname,Work = @work , Address = @address, Phone = @phone, Login = @login, Password = @password WHERE  ManagerId = @id";
             int result = 0;
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
@@ -132,8 +131,8 @@ namespace Model.Servise
                 command.Parameters.Add("@surname", SqlDbType.NVarChar);
                 command.Parameters["@surname"].Value = man.Surname;
 
-                command.Parameters.Add("@experience", SqlDbType.NVarChar);
-                command.Parameters["@experience"].Value = man.Work.ToString();
+                command.Parameters.Add("@work", SqlDbType.Int);
+                command.Parameters["@work"].Value = man.Work;
 
                 command.Parameters.Add("@address", SqlDbType.NVarChar);
                 command.Parameters["@address"].Value = man.Address;
@@ -171,7 +170,7 @@ namespace Model.Servise
                      reader.GetGuid(0),
                      reader["name"].ToString(),
                      reader["surname"].ToString(),
-                     (StageExperience.WorkExperience)Convert.ToInt32(reader["experience"]),
+                     (StageExperience.WorkExperience)Convert.ToInt32(reader["work"]),
                      reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
                      reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                      reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
@@ -190,7 +189,7 @@ namespace Model.Servise
                       reader.GetGuid(0),
                       reader["name"].ToString(),
                       reader["surname"].ToString(),
-                      (StageExperience.WorkExperience)Convert.ToInt32(reader["experience"]) ,
+                      (StageExperience.WorkExperience)Convert.ToInt32(reader["work"]) ,
                       reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
                       reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                       reader["login"] != DBNull.Value ? reader["login"].ToString() : "",

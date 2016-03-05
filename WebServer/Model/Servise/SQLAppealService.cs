@@ -41,21 +41,18 @@ namespace Model.Servise
         }
         public override void Add(Appeal appeal)
         {
-            string queryInsert = "INSERT INTO dbo.Appeals VALUES(@id, @clientId, @managerId,@appeal,@result, @comment, @reference)";
+            string queryInsert = "INSERT INTO dbo.Appeals VALUES(@id,@managerId, @clientId,@result, @comment, @reference,@appeal)";
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
                 command.Parameters["@id"].SqlValue = appeal.Id;
 
-                command.Parameters.Add("@clientId", SqlDbType.NVarChar);
-                command.Parameters["@clientId"].SqlValue = appeal.IdClient;
-
-                command.Parameters.Add("@managerId", SqlDbType.NVarChar);
+                command.Parameters.Add("@managerId", SqlDbType.UniqueIdentifier);
                 command.Parameters["@managerId"].SqlValue = appeal.IdManager;
 
-                command.Parameters.Add("@appeal", SqlDbType.NVarChar);
-                command.Parameters["@appeal"].SqlValue = appeal.ClientAppeal.ToString();
+                command.Parameters.Add("@clientId", SqlDbType.UniqueIdentifier);
+                command.Parameters["@clientId"].SqlValue = appeal.IdClient;
 
                 command.Parameters.Add("@result", SqlDbType.NVarChar);
                 command.Parameters["@result"].SqlValue = appeal.Rez;
@@ -65,6 +62,10 @@ namespace Model.Servise
 
                 command.Parameters.Add("@reference", SqlDbType.NVarChar);
                 command.Parameters["@reference"].SqlValue = appeal.References;
+
+                command.Parameters.Add("@appeal", SqlDbType.Int);
+                command.Parameters["@appeal"].SqlValue = appeal.ClientAppeal;
+
                 connection.Open();
                 var result = command.ExecuteNonQuery();
                 Console.WriteLine("~~~~~~~~~~~~~~~~~" + result + "~~~~~~~~~~~~~~~~~~~~~");
