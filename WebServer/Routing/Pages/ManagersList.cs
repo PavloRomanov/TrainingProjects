@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Routing.Pages;
-using CollectionLibrary;
 using Model.Servise;
 using Model.Entity;
 
@@ -12,6 +8,11 @@ namespace Routing.Pages
 {
     public class ManagersList : BasePage
     {
+        public ManagersList(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Manager's List"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
@@ -21,8 +22,7 @@ namespace Routing.Pages
             try
             {
                 //ManagerService ms = new ManagerService("manager.txt");
-                SQLManagerService sms = new SQLManagerService("Managers");
-                //Dictionary<Guid, Manager> managers = ms.GetAll();
+                IManagerService sms = serviceFactory.CreateManagerServise();
                 Dictionary<Guid, Manager> managers = sms.GetAll();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Managers</h1>");

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using Routing.Pages.Helpers;
-using CollectionLibrary;
 using Model.Entity;
 using Model.Servise;
 using System.Collections.Generic;
@@ -11,6 +10,11 @@ namespace Routing.Pages
 {
     public class UpdateClient : BasePage
     {
+        public UpdateClient(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Update Client"; } }
 
         public override Response Post(IDictionary<string, string> form, string sessionId = null)
@@ -18,10 +22,9 @@ namespace Routing.Pages
             Response response;
             try
             {
-                SQLClientService cs = new SQLClientService("client.txt");
+                IClientService cs = serviceFactory.CreateClientServise();
                 Guid id = new Guid(form["id"]);
-                Client client = new Client(id, form["name"], form["surname"], form["address"], form["phone"]);
-                //cs.Update(client);
+                Client client = new Client(id, form["name"], form["surname"], form["address"], form["phone"]);               
                 cs.Update(client);
 
             }
@@ -43,8 +46,7 @@ namespace Routing.Pages
             
             try
             {
-                //ClientFileService cs = new ClientFileService("client.txt");
-                SQLClientService cs = new SQLClientService("Clients");
+                IClientService cs = serviceFactory.CreateClientServise();
                 Guid id = new Guid(form["id"]);
 
                 //Client client = cs.GetElement(id);

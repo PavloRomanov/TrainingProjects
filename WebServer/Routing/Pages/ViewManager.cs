@@ -11,13 +11,17 @@ namespace Routing.Pages
 {
     public class ViewManager : BasePage
     {
+        public ViewManager(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             StringBuilder body = new StringBuilder("<h1>View Manager</h1>");
             try
             {
-                SQLManagerService sms = new SQLManagerService("Managers");
+                IManagerService sms = serviceFactory.CreateManagerServise();
                 //ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
                 //Manager manager = ms.GetElement(id);

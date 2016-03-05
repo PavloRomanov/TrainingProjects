@@ -12,6 +12,11 @@ namespace Routing.Pages
 {
     public class UpdateManager : BasePage
     {
+        public UpdateManager(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Update Manager"; } }
 
         public override Response Post(IDictionary<string, string> form, string sessionId = null)

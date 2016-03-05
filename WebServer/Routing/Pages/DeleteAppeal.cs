@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 //using CollectionLibrary;
 using Model.Servise;
-using Routing.Pages;
 
 namespace Routing.Pages
 {
     public class DeleteAppeal : IBasePage
     {
-       
+        AbstractServiceFactory serviceFactory;
+        public DeleteAppeal(AbstractServiceFactory sf)
+        {
+            serviceFactory = sf;
+        }
 
         public Response Get(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {

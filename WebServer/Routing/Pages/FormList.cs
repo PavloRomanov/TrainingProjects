@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Routing.Pages;
-using CollectionLibrary;
 using Model.Servise;
 using Model.Entity;
 
@@ -12,6 +8,10 @@ namespace Routing.Pages
 {
     public class FormList: BasePage
     {
+        public FormList(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
 
         protected override string Title { get { return "Form's List"; } }
 
@@ -21,9 +21,9 @@ namespace Routing.Pages
             try
             {
 
-               // FormServiсe fps = new FormServiсe("forms.txt");
-                SQLFormService fps = new SQLFormService("Forms");
-                Dictionary<Guid, Form> formclients = fps.GetAll();
+                //FormServiсe fs = new FormServiсe("forms.txt");
+                IFormService fs = serviceFactory.CreateFormServise();
+                Dictionary<Guid, Form> formclients = fs.GetAll();
               
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Forms</h1>");
@@ -41,8 +41,9 @@ namespace Routing.Pages
 
                 body.Append("</tr>");
 
-              //  ClientService cs = new ClientService("client.txt");
-                SQLClientService cs = new SQLClientService("Clients");
+                //ClientService cs = new ClientService("client.txt");
+                IClientService cs = serviceFactory.CreateClientServise();
+
                 int n = 1;
                 foreach (var element in formclients)
                 {

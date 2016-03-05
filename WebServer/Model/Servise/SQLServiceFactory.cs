@@ -9,25 +9,25 @@ namespace Model.Servise
 {
     public class SQLServiceFactory : AbstractServiceFactory
     {
-        public override AbstractClientService CreateClientService(string name)
+        public override IClientService CreateClientServise()
         {
             SQLClientService sqls = new SQLClientService("Clients");
             return sqls;
             
         }
-        public override AbstractManagerService CreateManagerService(string name)
+        public override IManagerService CreateManagerServise()
         {
             SQLManagerService sqlm = new SQLManagerService("Managers");
             return sqlm;
         }
-        public override AbstractAppealService CreateAppealService(string name)
+        public override IAppealService CreateAppealServise()
         {
             SQLAppealService sqla = new SQLAppealService("Appeals");
             return sqla;
         }
-        public override AbstractFormService CreateFormService(string name)
+        public override IFormService CreateFormServise()
         {
-            SQLFormService sqlf = new SQLFormService("Forms");
+            SQLFormService sqlf = new SQLFormService("Form");
             return sqlf;
         }
         

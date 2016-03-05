@@ -12,7 +12,7 @@ namespace Routing.Pages
 {
     public class CreateAppeal : BasePage
     {
-        public CreateAppeal()
+        public CreateAppeal(AbstractServiceFactory sf)
             : base()
         {
         }

@@ -11,13 +11,18 @@ namespace Routing.Pages
 {
     public class ViewClient : BasePage
     {
+        public ViewClient(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             StringBuilder body = new StringBuilder("<h1>ViewClient</h1>");
             try
             {
-                SQLClientService cs = new SQLClientService("Clients");
+                IClientService cs = serviceFactory.CreateClientServise();
                 Guid id = new Guid(form["id"]);
 
                 Client client = cs.GetElement(id);

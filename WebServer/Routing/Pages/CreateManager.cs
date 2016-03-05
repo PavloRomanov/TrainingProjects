@@ -2,7 +2,6 @@
 using Model.Entity;
 using Model.Servise;
 using System.Text;
-using CollectionLibrary;
 using Routing.Pages.Helpers;
 using System.Collections.Generic;
 
@@ -10,6 +9,10 @@ namespace Routing.Pages
 {
     public class CreateManager : BasePage
     {
+        public CreateManager(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
         protected override string Title { get { return "Create Manager"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
@@ -245,11 +248,9 @@ namespace Routing.Pages
                 try
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]), form["address"], form["phone"], form["login"], form["password"]);
-                   // ManagerService ms = new ManagerService("manager.txt");
-                    SQLManagerService sms = new SQLManagerService("Managers");
-                  //  manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
-                   // ms.Add(manager);
-                     sms.Add(manager);
+                    IManagerService sms = serviceFactory.CreateManagerServise();
+                   // manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
+                    sms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");
                 }
                 catch (Exception ex)
