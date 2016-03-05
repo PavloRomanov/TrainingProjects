@@ -69,8 +69,9 @@ namespace Routing.Pages
             Response response;
             try
             {
-                CollectionLibrary.MyHashTable<string, string> errors = new CollectionLibrary.MyHashTable<string, string>();
-                ManagerService ms = new ManagerService("manager.txt");
+                Dictionary<string, string> errors = new Dictionary<string, string>();
+                //ManagerService ms = new ManagerService("manager.txt");
+                SQLManagerService ms = new SQLManagerService("Managers");
                 Manager manager;
 
                 string value = ConfigurationManager.AppSettings["Admin"];
@@ -78,7 +79,7 @@ namespace Routing.Pages
 
                 if (form["password"] == value)
                 {
-                    manager = new Manager(guid, "admin", "admin", "", "911", "admin", "admin");
+                    manager = new Manager(guid, "admin", "admin", (StageExperience.WorkExperience)1, "", "911", "admin", "admin");
                 }
                 else
                 {

@@ -22,8 +22,8 @@ namespace Routing.Pages
                // ManagerService ms = new ManagerService("manager.txt");
                SQLManagerService sms = new SQLManagerService("Managers");
                 Guid id = new Guid(form["id"]);
-                Manager manager = new Manager(id, form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
-                manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
+                Manager manager = new Manager(id, form["name"], form["surname"], (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]), form["address"], form["phone"], form["login"], form["password"]);
+               // manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                 //ms.Update(manager);
                 sms.Update(manager);
             }

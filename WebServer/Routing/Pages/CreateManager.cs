@@ -244,10 +244,10 @@ namespace Routing.Pages
 
                 try
                 {
-                    Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"], form["login"], form["password"]);
+                    Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]), form["address"], form["phone"], form["login"], form["password"]);
                    // ManagerService ms = new ManagerService("manager.txt");
                     SQLManagerService sms = new SQLManagerService("Managers");
-                    manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
+                  //  manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                    // ms.Add(manager);
                      sms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");

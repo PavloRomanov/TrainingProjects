@@ -196,7 +196,7 @@ namespace Routing.Pages
         protected override string AddScript()
         {
             StringBuilder script = new StringBuilder("<script src=")
-                .Append("client.js").Append("></script>");
+                .Append("valid.js").Append("></script>");
 
             return script.ToString();           
         }

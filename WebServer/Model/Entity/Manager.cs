@@ -33,7 +33,7 @@ namespace Model.Entity
         [DataMember]
         public string Password { get; set; }
 
-        public Manager(Guid id, string name, string surname,/*int work,*/ string address, string phone, string login, string password)
+        public Manager(Guid id, string name, string surname,StageExperience.WorkExperience work, string address, string phone, string login, string password)
             : base(id)
         {
             Name = name;
@@ -42,7 +42,7 @@ namespace Model.Entity
             Phone = phone;
             Login = login;
             Password = password;
-           // Work = (StageExperience.WorkExperience) work;
+            Work = work;
         }
     }
 }

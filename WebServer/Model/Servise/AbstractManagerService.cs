@@ -11,7 +11,7 @@ namespace Model.Servise
     public abstract class AbstractManagerService : SQLService<Manager>
     {
         public AbstractManagerService(string tableName)
-            :base("Managers")
+            : base("Managers")
         {
         }
         protected override Manager InitializeNewEntity(SqlDataReader reader)
@@ -23,13 +23,13 @@ namespace Model.Servise
                      reader.GetGuid(0),
                      reader["name"].ToString(),
                      reader["surname"].ToString(),
-                     //reader["work"].ToString(),
+                     (StageExperience.WorkExperience)reader[3],
                      reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
                      reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                      reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
                      reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
             }
-     
+
             return manager;
         }
 
@@ -38,16 +38,16 @@ namespace Model.Servise
             Dictionary<Guid, Manager> managers = new Dictionary<Guid, Manager>();
             while (reader.Read())
             {
-               Manager manager = new Manager(
-                     reader.GetGuid(0),
-                     reader["name"].ToString(),
-                     reader["surname"].ToString(),
-                    // reader["work"].ToString(),
-                     reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
-                     reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
-                     reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
-                     reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
-                
+                Manager manager = new Manager(
+                      reader.GetGuid(0),
+                      reader["name"].ToString(),
+                      reader["surname"].ToString(),
+                      (StageExperience.WorkExperience)reader[3],
+                      reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
+                      reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
+                      reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
+                      reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
+
                 managers.Add(manager.Id, manager);
             }
 
@@ -60,7 +60,7 @@ namespace Model.Servise
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryString.ToString(), connection);
-                               
+
                 command.Parameters.Add("@ManagerId", SqlDbType.UniqueIdentifier);
                 command.Parameters["@ManagerId"].SqlValue = manager.Id;
 
@@ -122,6 +122,20 @@ namespace Model.Servise
                 result = command.ExecuteNonQuery();
             }
             Console.WriteLine("~~~~~~~~~~~~~~~~~" + result + "~~~~~~~~~~~~~~~~~~~~~");
+        }
+        public Manager GetElementByLogin(string login)
+        {
+            Manager manager;
+
+            foreach (var item in GetAll())
+            {
+                if (item.Value.Login == login)
+                {
+                    manager = item.Value;
+                    return manager;
+                }
+            }       
+            return null;       
         }
     }
 }
