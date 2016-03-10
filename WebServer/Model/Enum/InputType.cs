@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Routing.Pages.Helpers
-{
-    public struct AllTypeInputcs
-    {       
+namespace Model.Enum
+{   
         public enum InputType
         {
             Button,
@@ -21,5 +19,5 @@ namespace Routing.Pages.Helpers
             Submit,
             Text
         }
-    }
+    
 }

@@ -14,7 +14,7 @@ namespace Model.Servise
             :base("Clients")
         {
         }
-
+       
         protected override Client InitializeNewEntity(SqlDataReader reader)
         {
             Client client = null;
@@ -25,8 +25,7 @@ namespace Model.Servise
                 reader["name"].ToString(),
                 reader["surname"].ToString(),
                 reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
-                reader["phone"] != DBNull.Value ? reader["phone"].ToString() : ""
-            );
+                reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "");
             }
             return client;
         }

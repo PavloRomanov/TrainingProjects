@@ -4,7 +4,7 @@ using Routing.Pages.Helpers;
 using Model.Entity;
 using Model.Servise;
 using System.Collections.Generic;
-
+using Model.Enum;
 
 namespace Routing.Pages
 {
@@ -52,15 +52,15 @@ namespace Routing.Pages
                 //Client client = cs.GetElement(id);
                 Client client = cs.GetElement(id);
 
-                HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "UpdateClient", errors);
+                HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "UpdateClient", errors);
                 htmlForm.SetAttribut("novalidate", "novalidate");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Hidden, "id", client.Id.ToString()));
+                htmlForm.AddTag(new HtmlInput(InputType.Hidden, "id", client.Id.ToString()));
 
                 HtmlBaseTag div1 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
                 HtmlBaseTag divLabel1 = div1.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput1 = div1.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel1.AddTag("lable", "Name :");
-                divInput1.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "name", client.Name))
+                divInput1.AddTag(new HtmlInput(InputType.Text, "name", client.Name))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("required", "required")
                     .SetAttribut("onblur", "InputIsValid('name')");                
@@ -71,7 +71,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel2 = div2.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput2 = div2.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel2.AddTag("lable", "Surname :");
-                divInput2.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", client.Surname))
+                divInput2.AddTag(new HtmlInput(InputType.Text, "surname", client.Surname))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("required", "required")
                     .SetAttribut("onblur", "InputIsValid(this)");
@@ -82,7 +82,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel3 = div3.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput3 = div3.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel3.AddTag("lable", "Address :");
-                divInput3.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", client.Address))
+                divInput3.AddTag(new HtmlInput(InputType.Text, "address", client.Address))
                     .SetAttribut("maxlength", "50");
                 div3.AddTag("span").SetAttribut("id", "foraddress");
 
@@ -91,7 +91,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel4 = div4.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput4 = div4.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel4.AddTag("lable", "Phone :");
-                divInput4.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", client.Phone))
+                divInput4.AddTag(new HtmlInput(InputType.Text, "phone", client.Phone))
                     .SetAttribut("required", "required")
                     .SetAttribut("onblur", "InputIsValid(this)");
                 div4.AddTag("span").SetAttribut("id", "forphone");
@@ -100,9 +100,9 @@ namespace Routing.Pages
                 HtmlBaseTag div5 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
                 HtmlBaseTag divLabel5 = div5.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput5 = div5.AddTag("div", null).SetAttribut("class", "forinput");
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin")
+                divInput5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin")
                     .SetAttribut("class", "buttonsubmit"));
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit")
+                divInput5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit")
                     .SetAttribut("class", "buttonsubmit"));
 
                 StringBuilder body = new StringBuilder(Environment.NewLine);

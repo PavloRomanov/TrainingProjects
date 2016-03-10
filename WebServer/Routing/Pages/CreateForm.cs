@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Model.Servise;
 using Model.Entity;
 using Routing.Pages.Helpers;
+using Model.Enum;
 
 namespace Routing.Pages
 {
@@ -20,7 +21,7 @@ namespace Routing.Pages
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateForm", errors);
+            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateForm", errors);
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Name client: ")
                 .SetAttribut("class", "lable");
@@ -43,11 +44,11 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Yes")
                  .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form1", "yes"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form1", "yes"));
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "No")
                 .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form2", "no"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form2", "no"));
             //----------------------------------------------------------------
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Comment:")
@@ -64,11 +65,11 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Yes")
                .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form3", "yes"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form3", "yes"));
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "No")
                 .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form4", "no"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form4", "no"));
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Comment:")
                 .SetAttribut("class", "lable");
@@ -86,11 +87,11 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Yes")
                       .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form5", "yes"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form5", "yes"));
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "No")
                .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form6", "no"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form6", "no"));
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Comment:")
                 .SetAttribut("class", "lable");
@@ -108,11 +109,11 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Yes")
                 .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form7", "yes"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form7", "yes"));
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "No")
                 .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form8", "no"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form8", "no"));
              htmlForm.AddTag("br");
 
             htmlForm.AddTag("lable", "Comment:")
@@ -130,11 +131,11 @@ namespace Routing.Pages
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Yes")
                 .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form9", "yes"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form9", "yes"));
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "No")
                .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "form10", "no"));
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "form10", "no"));
              htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Comment:")
                 .SetAttribut("class", "lable");
@@ -160,9 +161,9 @@ namespace Routing.Pages
             }
 
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+            htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"))
                 .SetAttribut("class", "buttonclin");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+            htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"))
                 .SetAttribut("class", "buttonsubmit");
             htmlForm.AddTag("br");
             htmlForm.AddTag(new HtmlBaseTag("div")
@@ -180,15 +181,15 @@ namespace Routing.Pages
             {
 
                 Form formclient = new Form(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
-                formclient.F1 = AllFormsClient.FormsClient.Are_you_satisfied_with_the_service;
+                formclient.F1 = FormsClient.Are_you_satisfied_with_the_service;
                 formclient.Comment1 = form["comment1"];
-                formclient.F2 = AllFormsClient.FormsClient.Are_you_satisfied_with_the_speed_of_the_Internet;
+                formclient.F2 = FormsClient.Are_you_satisfied_with_the_speed_of_the_Internet;
                 formclient.Comment2 = form["comment2"];
-                 formclient.F3 = AllFormsClient.FormsClient.Do_you_like_the_service_manager;
+                 formclient.F3 = FormsClient.Do_you_like_the_service_manager;
                  formclient.Comment3 = form["comment3"];
-                 formclient.F4 = AllFormsClient.FormsClient.Do_you_use_the_Internet_and_TV;
+                 formclient.F4 = FormsClient.Do_you_use_the_Internet_and_TV;
                  formclient.Comment4 = form["comment4"];
-                 formclient.F5 = AllFormsClient.FormsClient.Do_you_want_to_participate_in_the_loyalty_program;
+                 formclient.F5 = FormsClient.Do_you_want_to_participate_in_the_loyalty_program;
                  formclient.Comment5 = form["comment5"];
                 if (form.ContainsKey("form1") == form.ContainsKey("form2"))
                 {

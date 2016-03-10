@@ -1,4 +1,5 @@
 ﻿
+using Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Routing.Pages.Helpers
     {
         public readonly IDictionary<string, string> _errors;
 
-        public HtmlForm(AllRequestMethods.RequestMethod method, string action, IDictionary<string, string> errors = null)
+        public HtmlForm(RequestMethod method, string action, IDictionary<string, string> errors = null)
             :base("form", null)
         {
             SetAttribut("name", "form");

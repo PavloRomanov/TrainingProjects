@@ -71,7 +71,7 @@ namespace Model.Servise
                 .Append(" = @id");
             return query.ToString();
         }
-
+      
         //ПОЛУЧЕНИЕ данных по ID
         public virtual T GetElement(Guid id)
         {
@@ -83,7 +83,7 @@ namespace Model.Servise
                 command.Parameters["@id"].Value = id;
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                T element = InitializeNewEntity(reader);
+                T element = InitializeNewEntity(reader);           
                 return element;
             }
         }

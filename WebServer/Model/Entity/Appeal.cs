@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Model.Enum;
+using System;
 using System.Runtime.Serialization;
 
 
 namespace Model.Entity
 {
-    
-
     [DataContract]
     public class Appeal : ModelBase
     {
         [DataMember]
-        public AllAppeals.ClientAppeal ClientAppeal { get; set; }
+        public ClientAppeal ClientAppeal { get; set; }
         [DataMember]
         public Guid IdManager { get; set; }
 
@@ -24,11 +23,12 @@ namespace Model.Entity
         [DataMember]
         public Guid IdClient { get; set; }
 
-        public Appeal(Guid id, Guid idclient, Guid idmanager)
+        public Appeal(Guid id, Guid idclient, Guid idmanager, ClientAppeal appeal)
             : base(id)
         {
             IdClient = idclient;
             IdManager = idmanager;
+            ClientAppeal = appeal;
         }
     }
 }

@@ -7,6 +7,7 @@ using Model.Servise;
 using Model.Entity;
 using System.Collections.Generic;
 using Routing.Pages.Helpers;
+using Model.Enum;
 
 namespace Routing.Pages
 {
@@ -20,7 +21,7 @@ namespace Routing.Pages
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateAppeal", errors);
+            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Client:")
                 .SetAttribut("class", "lable");
@@ -46,7 +47,7 @@ namespace Routing.Pages
             HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "reason")
                    .SetAttribut("class", "select")
                    .SetAttribut("size", "1");
-            foreach (KeyValuePair<AllAppeals.ClientAppeal, int> element in  AllAppeals.GetALL())
+            foreach (KeyValuePair<ClientAppeal, int> element in EnumService.GetAllClientAppeals())
             {
                 selectWork.AddTag("option", element.Key.ToString())
                    .SetAttribut("value", element.Value.ToString());
@@ -76,12 +77,12 @@ namespace Routing.Pages
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "Yes")
                  .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve1", "yes"))
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve1", "yes"))
                 .SetAttribut("class", "inrutradio");
             htmlForm.AddTag("br");
             htmlForm.AddTag("lable", "No")
                 .SetAttribut("class", "lableradio");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Radio, "solve2", "no"))
+            htmlForm.AddTag(new HtmlInput(InputType.Radio, "solve2", "no"))
                 .SetAttribut("class", "inrutradio");
             htmlForm.AddTag("br");
             //-----------------------------------------------------------------------------
@@ -100,9 +101,9 @@ namespace Routing.Pages
                    .SetAttribut("value", element.Key.ToString());
             }
             htmlForm.AddTag("br");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+            htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"))
                 .SetAttribut("class", "buttonclin");
-            htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+            htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"))
                 .SetAttribut("class", "buttonsubmit");
             htmlForm.AddTag("br");
 
@@ -120,9 +121,9 @@ namespace Routing.Pages
             Response response;
             try
             {              
-                Appeal appealclient = new Appeal(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
+                Appeal appealclient = new Appeal(Guid.NewGuid(), 
+                new Guid(form["clientId"]), new Guid(form["managerId"]), (ClientAppeal)Convert.ToInt32(form["reason"]));
 
-                appealclient.ClientAppeal = (AllAppeals.ClientAppeal)Convert.ToInt32(form["reason"]);
                 appealclient.Comment = form["comment"];
                 appealclient.References = form["references"];
 
@@ -141,7 +142,8 @@ namespace Routing.Pages
                         appealclient.Rez = form["solve2"];
                     }
                 }
-                AppealServiсe aser = new AppealServiсe("appealclient.txt");
+               // AppealServiсe aser = new AppealServiсe("appealclient.txt");
+                SQLAppealService aser = new SQLAppealService("Appeals");
                 aser.Add(appealclient);
             }
             catch (Exception ex)

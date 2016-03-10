@@ -69,10 +69,10 @@ namespace Model.Servise
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
                 command.Parameters["@id"].SqlValue = form.Id;
               
-                command.Parameters.Add("@managerId", SqlDbType.UniqueIdentifier);//////////////////////////////////
+                command.Parameters.Add("@managerId", SqlDbType.UniqueIdentifier);
                 command.Parameters["@managerId"].SqlValue = form.IdManager;
 
-                command.Parameters.Add("@clientId", SqlDbType.UniqueIdentifier);////////////////////////////////
+                command.Parameters.Add("@clientId", SqlDbType.UniqueIdentifier);
                 command.Parameters["@clientId"].SqlValue = form.IdClient;
 
                 command.Parameters.Add("@Answer1", SqlDbType.NVarChar);
@@ -128,18 +128,19 @@ namespace Model.Servise
 
         public int AddForm(Form form)
         {
-            string queryInsert = "INSERT INTO dbo.Managerss VALUES(@id, @nameclient, @namemanager,@Answer1, @Comment1, @Answer2, @Comment2,@Answer3,@Comment3,@Answer4,@Comment4,@Answer5,@Comment5)";
+            string queryInsert = "INSERT INTO dbo.Forms VALUES(@id, @managerId, @clientId,@Answer1,"+
+                                 "@Comment1, @Answer2, @Comment2,@Answer3,@Comment3,@Answer4,@Comment4,@Answer5,@Comment5)";
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
                 command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
                 command.Parameters["@id"].SqlValue = form.Id;
 
-                command.Parameters.Add("@nameclient", SqlDbType.NVarChar);
-                command.Parameters["@nameclient"].SqlValue = form.IdClient;
+                command.Parameters.Add("@managerId", SqlDbType.UniqueIdentifier);
+                command.Parameters["@managerId"].SqlValue = form.IdManager;
 
-                command.Parameters.Add("@namemanager", SqlDbType.NVarChar);
-                command.Parameters["@namemanager"].SqlValue = form.IdManager;
+                command.Parameters.Add("@clientId", SqlDbType.UniqueIdentifier);
+                command.Parameters["@clientId"].SqlValue = form.IdClient;
 
                 command.Parameters.Add("@Answer1", SqlDbType.NVarChar);
                 command.Parameters["@Answer1"].SqlValue = form.Answer1;

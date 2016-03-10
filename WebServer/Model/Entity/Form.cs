@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Enum;
+using System;
 using System.Runtime.Serialization;
 
 namespace Model.Entity
@@ -43,15 +44,15 @@ namespace Model.Entity
         [DataMember]
         public string Answer5 { get; set; }
         [DataMember]
-        public AllFormsClient.FormsClient F1 { get; set; }
+        public FormsClient F1 { get; set; }
        [DataMember]
-        public AllFormsClient.FormsClient F2 { get; set; }
+        public FormsClient F2 { get; set; }
          [DataMember]
-         public AllFormsClient.FormsClient F3 { get; set; }
+         public FormsClient F3 { get; set; }
          [DataMember]
-         public AllFormsClient.FormsClient F4 { get; set; }
+         public FormsClient F4 { get; set; }
          [DataMember]
-         public AllFormsClient.FormsClient F5 { get; set; }
+         public FormsClient F5 { get; set; }
 
 
     }

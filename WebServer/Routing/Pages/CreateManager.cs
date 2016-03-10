@@ -4,6 +4,7 @@ using Model.Servise;
 using System.Text;
 using Routing.Pages.Helpers;
 using System.Collections.Generic;
+using Model.Enum;
 
 namespace Routing.Pages
 {
@@ -17,14 +18,14 @@ namespace Routing.Pages
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
-            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateManager", errors);
+            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateManager", errors);
             htmlForm.SetAttribut("novalidate", "novalidate");
             if (errors != null && errors.Count > 0)
             {
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Name: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "name", form["name"]))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "name", form["name"]))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required");
@@ -38,7 +39,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Surname: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", form["surname"]))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", form["surname"]))
                  .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required");
@@ -53,7 +54,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Address: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", form["address"]))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "address", form["address"]))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters")
                     .SetAttribut("required", "required");
@@ -67,7 +68,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Phone: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", form["phone"]))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", form["phone"]))
                     .SetAttribut("placeholder", "000-000-00-00")
                     .SetAttribut("required", "required");
                 if (errors.ContainsKey("name"))
@@ -80,7 +81,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Login: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", form["login"]))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "login", form["login"]))
                     .SetAttribut("maxlength", "10")
                     .SetAttribut("placeholder", "max length of 10 characters")
                     .SetAttribut("required", "required");
@@ -94,7 +95,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Password: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Password, "password", form["password"]))
+                htmlForm.AddTag(new HtmlInput(InputType.Password, "password", form["password"]))
                     .SetAttribut("maxlength", "10")
                     .SetAttribut("placeholder", "max length of 10 characters")
                     .SetAttribut("required", "required");
@@ -113,7 +114,7 @@ namespace Routing.Pages
                 HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")
                      .SetAttribut("class", "select")
                      .SetAttribut("size", "1");
-                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in StageExperience.GetALL())
+                foreach (KeyValuePair<WorkExperience, int> element in EnumService.GetAllWorkExperience())
                 {
 
                     if (element.Key.Equals(form["experience"]))
@@ -129,9 +130,9 @@ namespace Routing.Pages
                     }
                 }
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"))
                     .SetAttribut("class", "buttonclin");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"))
                     .SetAttribut("class", "buttonsubmit");
                 htmlForm.AddTag("br");
             }
@@ -140,7 +141,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Name: ")
                      .SetAttribut("class", "lable");
-                htmlForm.AddTag((new HtmlInput(AllTypeInputcs.InputType.Text, "name", ""))
+                htmlForm.AddTag((new HtmlInput(InputType.Text, "name", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters"))
                     .SetAttribut("required", "required");
@@ -148,7 +149,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Surname: ")
                      .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", ""))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "surname", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required");
@@ -156,7 +157,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Address: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", ""))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "address", ""))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters")
                     .SetAttribut("required", "required");
@@ -164,14 +165,14 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Phone: ")
                .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", ""))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "phone", ""))
                     .SetAttribut("placeholder", "000-000-00-00")
                     .SetAttribut("required", "required");
                 htmlForm.AddTag("span").SetAttribut("id", "forphone");
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Login: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "login", ""))
+                htmlForm.AddTag(new HtmlInput(InputType.Text, "login", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required");
@@ -179,7 +180,7 @@ namespace Routing.Pages
                 htmlForm.AddTag("br");
                 htmlForm.AddTag("lable", "Password: ")
                  .SetAttribut("class", "lable");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Password, "password", ""))
+                htmlForm.AddTag(new HtmlInput(InputType.Password, "password", ""))
                     .SetAttribut("maxlength", "10")
                     .SetAttribut("placeholder", "max length of 10 characters")
                     .SetAttribut("required", "required");
@@ -190,16 +191,16 @@ namespace Routing.Pages
                 HtmlBaseTag selectWork = htmlForm.AddTag("select").SetAttribut("name", "experience")
                    .SetAttribut("class", "select")
                    .SetAttribut("size", "1");
-                foreach (KeyValuePair<StageExperience.WorkExperience, int> element in StageExperience.GetALL())
+                foreach (KeyValuePair<WorkExperience, int> element in EnumService.GetAllWorkExperience())
                 {
                     selectWork.AddTag("option", element.Key.ToString())
                        .SetAttribut("value", element.Value.ToString());
 
                 }
                 htmlForm.AddTag("br");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin"))
+                htmlForm.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin"))
                     .SetAttribut("class", "buttonclin");
-                htmlForm.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit"))
+                htmlForm.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit"))
                     .SetAttribut("class", "buttonsubmit");
                 htmlForm.AddTag("br");
             }
@@ -247,7 +248,7 @@ namespace Routing.Pages
 
                 try
                 {
-                    Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]), form["address"], form["phone"], form["login"], form["password"]);
+                    Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], (WorkExperience)Convert.ToInt32(form["experience"]), form["address"], form["phone"], form["login"], form["password"]);
                     IManagerService sms = serviceFactory.CreateManagerServise();
                    // manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                     sms.Add(manager);

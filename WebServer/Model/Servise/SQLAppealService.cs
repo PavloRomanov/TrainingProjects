@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using Model.Entity;
+using Model.Enum;
 
 namespace Model.Servise
 {
@@ -21,7 +22,8 @@ namespace Model.Servise
                 appeal = new Appeal(
                 reader.GetGuid(0),
                 reader.GetGuid(1),
-                reader.GetGuid(2));
+                reader.GetGuid(2),
+                (ClientAppeal)Convert.ToInt32(reader[6]));
             }
             return appeal;
         }
@@ -33,7 +35,8 @@ namespace Model.Servise
                 Appeal appeal = new Appeal(
                 reader.GetGuid(0),
                 reader.GetGuid(1),
-                reader.GetGuid(2));
+                reader.GetGuid(2),
+                (ClientAppeal)Convert.ToInt32(reader[6]));
                 appeals.Add(appeal.Id, appeal);
             }
 

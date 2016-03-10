@@ -4,6 +4,7 @@ using Model.Entity;
 using Model.Servise;
 using Routing.Pages.Helpers;
 using System.Collections.Generic;
+using Model.Enum;
 
 namespace Routing.Pages
 {
@@ -18,7 +19,7 @@ namespace Routing.Pages
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {          
-            HtmlForm htmlForm = new HtmlForm(AllRequestMethods.RequestMethod.POST, "CreateClient", errors);
+            HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateClient", errors);
             htmlForm.SetAttribut("novalidate", "novalidate");
 
 
@@ -28,7 +29,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel1 = div1.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput1 = div1.AddTag("div", null).SetAttribut("class", "forinput");                
                 divLabel1.AddTag("lable", "Name :");
-                divInput1.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "name", form["name"]))
+                divInput1.AddTag(new HtmlInput(InputType.Text, "name", form["name"]))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -42,7 +43,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel2 = div2.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput2 = div2.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel2.AddTag("lable", "Surname :");
-                divInput2.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", form["surname"]))
+                divInput2.AddTag(new HtmlInput(InputType.Text, "surname", form["surname"]))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -56,7 +57,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel3 = div3.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput3 = div3.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel3.AddTag("lable", "Address :");
-                divInput3.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", form["address"]))
+                divInput3.AddTag(new HtmlInput(InputType.Text, "address", form["address"]))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
 
@@ -68,7 +69,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel4 = div4.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput4 = div4.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel4.AddTag("lable", "Phone :");
-                divInput4.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", form["phone"]))
+                divInput4.AddTag(new HtmlInput(InputType.Text, "phone", form["phone"]))
                     .SetAttribut("placeholder", "000-000-00-00")
                     .SetAttribut("required", "required")
                     .SetAttribut("onblur", "InputIsValid(this)");
@@ -80,9 +81,9 @@ namespace Routing.Pages
                 HtmlBaseTag div5 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
                 HtmlBaseTag divLabel5 = div5.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput5 = div5.AddTag("div", null).SetAttribut("class", "forinput");
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin")
+                divInput5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin")
                      .SetAttribut("class", "buttonsubmit"));
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit")
+                divInput5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit")
                     .SetAttribut("class", "buttonsubmit"));
 
             }
@@ -92,7 +93,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel1 = div1.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput1 = div1.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel1.AddTag("lable", "Name :");
-                divInput1.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "name", ""))
+                divInput1.AddTag(new HtmlInput(InputType.Text, "name", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -104,7 +105,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel2 = div2.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput2 = div2.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel2.AddTag("lable", "Surname :");                
-                divInput2.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "surname", ""))
+                divInput2.AddTag(new HtmlInput(InputType.Text, "surname", ""))
                     .SetAttribut("maxlength", "15")
                     .SetAttribut("placeholder", "max length of 15 characters")
                     .SetAttribut("required", "required")
@@ -116,7 +117,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel3 = div3.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput3 = div3.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel3.AddTag("lable", "Address :");
-                divInput3.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "address", ""))
+                divInput3.AddTag(new HtmlInput(InputType.Text, "address", ""))
                     .SetAttribut("maxlength", "50")
                     .SetAttribut("placeholder", "max length of 50 characters");
                 divInput3.AddTag("span").SetAttribut("id", "foraddress");
@@ -126,7 +127,7 @@ namespace Routing.Pages
                 HtmlBaseTag divLabel4 = div4.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput4 = div4.AddTag("div", null).SetAttribut("class", "forinput");
                 divLabel4.AddTag("lable", "Phone :");
-                divInput4.AddTag(new HtmlInput(AllTypeInputcs.InputType.Text, "phone", ""))
+                divInput4.AddTag(new HtmlInput(InputType.Text, "phone", ""))
                     .SetAttribut("placeholder", "000-000-00-00")
                     .SetAttribut("required", "required")
                     .SetAttribut("onblur", "InputIsValid(this)");
@@ -136,9 +137,9 @@ namespace Routing.Pages
                 HtmlBaseTag div5 = htmlForm.AddTag("div", null).SetAttribut("class", "row");
                 HtmlBaseTag divLabel5 = div5.AddTag("div", null).SetAttribut("class", "forlabel");
                 HtmlBaseTag divInput5 = div5.AddTag("div", null).SetAttribut("class", "forinput");
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Reset, "Reset", "Clin")
+                divInput5.AddTag(new HtmlInput(InputType.Reset, "Reset", "Clin")
                     .SetAttribut("class", "buttonsubmit"));
-                divInput5.AddTag(new HtmlInput(AllTypeInputcs.InputType.Submit, "Submit", "Submit")
+                divInput5.AddTag(new HtmlInput(InputType.Submit, "Submit", "Submit")
                     .SetAttribut("class", "buttonsubmit"));
             }
             

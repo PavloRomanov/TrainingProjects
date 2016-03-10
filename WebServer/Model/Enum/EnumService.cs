@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Entity
+namespace Model.Enum
 {
-    public struct AllAppeals
+   public class EnumService
     {
-        public enum ClientAppeal
+        public static Dictionary<WorkExperience, int> GetAllWorkExperience()
         {
-            Low_speed_Internet = 1,
-            No_internet_connection,
-            Change_of_tariff_plan,
-            Installation_of_additional_equipment,
-            Another_question
-        }
+            var exp = new Dictionary<WorkExperience, int>();
 
-        public static Dictionary<ClientAppeal, int> GetALL()
+            exp.Add(WorkExperience.Experience_1year, 1);
+            exp.Add(WorkExperience.Experience_3year, 3);
+            exp.Add(WorkExperience.Experience_5year, 5);
+            exp.Add(WorkExperience.Experience_more5year, 6);
+            return exp;
+        }
+        public static Dictionary<ClientAppeal, int> GetAllClientAppeals()
         {
             var exp = new Dictionary<ClientAppeal, int>();
-           
+
             exp.Add(ClientAppeal.Another_question, 1);
             exp.Add(ClientAppeal.Change_of_tariff_plan, 2);
             exp.Add(ClientAppeal.Installation_of_additional_equipment, 3);

@@ -5,6 +5,7 @@ using Model.Entity;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using Model.Enum;
 
 namespace Model.Servise
 {
@@ -23,7 +24,7 @@ namespace Model.Servise
                     reader.GetGuid(0),
                     reader["name"].ToString(),
                     reader["surname"].ToString(),
-                    (StageExperience.WorkExperience)Convert.ToInt32(reader["work"]),
+                    (WorkExperience)Convert.ToInt32(reader["work"]),
                     reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
                     reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                     reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
@@ -170,7 +171,7 @@ namespace Model.Servise
                      reader.GetGuid(0),
                      reader["name"].ToString(),
                      reader["surname"].ToString(),
-                     (StageExperience.WorkExperience)Convert.ToInt32(reader["work"]),
+                     (WorkExperience)Convert.ToInt32(reader["work"]),
                      reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
                      reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                      reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
@@ -189,7 +190,7 @@ namespace Model.Servise
                       reader.GetGuid(0),
                       reader["name"].ToString(),
                       reader["surname"].ToString(),
-                      (StageExperience.WorkExperience)Convert.ToInt32(reader["work"]) ,
+                      (WorkExperience)Convert.ToInt32(reader["work"]) ,
                       reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
                       reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                       reader["login"] != DBNull.Value ? reader["login"].ToString() : "",

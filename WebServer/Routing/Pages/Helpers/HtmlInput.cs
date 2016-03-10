@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Text;
 using CollectionLibrary;
+using Model.Enum;
 
 namespace Routing.Pages.Helpers
 {
     public class HtmlInput : HtmlBaseTag
     {
        
-        public HtmlInput(AllTypeInputcs.InputType type, string name, string value)
+        public HtmlInput(InputType type, string name, string value)
         : base("input")
         {
             SetAttribut("type", type.ToString());

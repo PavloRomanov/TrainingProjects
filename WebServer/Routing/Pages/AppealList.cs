@@ -45,7 +45,8 @@ namespace Routing.Pages
                 body.Append("</tr>");
                
                 //ClientService cs = new ClientService("client.txt");
-                SQLClientService cs = new SQLClientService("Clients");      
+               // SQLClientService cs = new SQLClientService("Clients");
+                IClientService cs = serviceFactory.CreateClientServise();
                 int n = 1;
                 foreach (var element in appealclients)
                 {
@@ -53,7 +54,8 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(n).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(cs.GetElement(element.Value.IdClient).Name +" "+ cs.GetElement(element.Value.IdClient).Surname).Append("</td>");//???????
+                    body.Append("<td>").Append(cs.GetElement(element.Value.IdClient).Name +
+                                " "+ cs.GetElement(element.Value.IdClient).Surname).Append("</td>");                   
                     body.Append(Environment.NewLine);             
                     body.Append("<td>").Append(element.Value.ClientAppeal.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);

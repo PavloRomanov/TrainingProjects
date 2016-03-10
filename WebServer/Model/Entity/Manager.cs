@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
+using Model.Enum;
 
 namespace Model.Entity
 {
@@ -19,7 +19,7 @@ namespace Model.Entity
         public string Surname { get; set; }
 
         [DataMember]
-        public StageExperience.WorkExperience Work { get; set; }
+        public WorkExperience Work { get; set; }
 
         [DataMember]
         public string Address { get; set; }
@@ -33,7 +33,7 @@ namespace Model.Entity
         [DataMember]
         public string Password { get; set; }
 
-        public Manager(Guid id, string name, string surname,StageExperience.WorkExperience work, string address, string phone, string login, string password)
+        public Manager(Guid id, string name, string surname,WorkExperience work, string address, string phone, string login, string password)
             : base(id)
         {
             Name = name;

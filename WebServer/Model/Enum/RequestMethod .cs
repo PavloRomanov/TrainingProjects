@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Routing.Pages.Helpers
+namespace  Model.Enum
 {
-   public struct AllRequestMethods
-    {
-        public enum RequestMethod
+         public enum RequestMethod
         {
             GET,
             POST
         }
-    }
+    
 }
