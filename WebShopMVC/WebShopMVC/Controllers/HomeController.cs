@@ -10,9 +10,15 @@ namespace WebShopMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View();  
         }
 
+        public ActionResult DataTime()
+         {
+            int hour = DateTime.Now.Hour;
+            ViewBag.Greeting = hour < 12 ? "Good morning" : "Good evening";
+           return View();
+         }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
