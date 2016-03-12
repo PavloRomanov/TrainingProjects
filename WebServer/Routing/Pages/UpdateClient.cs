@@ -22,7 +22,7 @@ namespace Routing.Pages
             Response response;
             try
             {
-                IClientService cs = serviceFactory.CreateClientServise();
+                IClientService cs = serviceFactory.CreateClientService();
                 Guid id = new Guid(form["id"]);
                 Client client = new Client(id, form["name"], form["surname"], form["address"], form["phone"]);               
                 cs.Update(client);
@@ -46,7 +46,7 @@ namespace Routing.Pages
             
             try
             {
-                IClientService cs = serviceFactory.CreateClientServise();
+                IClientService cs = serviceFactory.CreateClientService();
                 Guid id = new Guid(form["id"]);
 
                 //Client client = cs.GetElement(id);

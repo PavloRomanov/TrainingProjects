@@ -23,12 +23,15 @@ namespace Model.Entity
         [DataMember]
         public Guid IdClient { get; set; }
 
-        public Appeal(Guid id, Guid idclient, Guid idmanager, ClientAppeal appeal)
+        public Appeal(Guid id, Guid idmanager, Guid idclient, ClientAppeal appeal)
             : base(id)
         {
             IdClient = idclient;
             IdManager = idmanager;
             ClientAppeal = appeal;
+            Rez = "";
+            Comment = "";
+            References = "";
         }
     }
 }

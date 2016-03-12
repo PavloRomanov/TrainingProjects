@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using CollectionLibrary;
 using Routing.Pages.Helpers;
 using Model.Servise;
 using Model.Entity;
@@ -71,8 +70,8 @@ namespace Routing.Pages
             {
                 Dictionary<string, string> errors = new Dictionary<string, string>();
                 //ManagerService ms = new ManagerService("manager.txt");
-                SQLManagerService ms = new SQLManagerService("Managers");
-                Manager manager;
+                IManagerService ms = serviceFactory.CreateManagerService();
+                Manager manager = null;
 
                 string value = ConfigurationManager.AppSettings["Admin"];
                 Guid guid = new Guid("c32f3d67-26da-4cba-9595-8a9f0efa0e5b");
@@ -82,11 +81,10 @@ namespace Routing.Pages
                     manager = new Manager(guid, "admin", "admin", (WorkExperience)1, "", "911", "admin", "admin");
                 }
                 else
-                {
-                    manager = ms.GetElementByLogin(form["login"]);
+                {                  
+                    manager = ((SQLManagerService)ms).GetElementByLogin(form["login"]);
                 }
                     
-
                 if (manager == null)
                 {                    
                     errors.Add("login", "User with such login does not exist!");                    

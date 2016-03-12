@@ -9,11 +9,16 @@ namespace Model.Entity
     public class Form : ModelBase
     { 
 
-        public Form(Guid id, Guid idclient, Guid idmanager)
+        public Form(Guid id, Guid idmanager, Guid idclient)
             : base(id)
         {
             IdClient = idclient;
             IdManager = idmanager;
+            F1 = (FormsClient)1;
+            F2 = (FormsClient)2;
+            F3 = (FormsClient)3;
+            F4 = (FormsClient)4;
+            F5 = (FormsClient)5;
         }
 
         [DataMember]

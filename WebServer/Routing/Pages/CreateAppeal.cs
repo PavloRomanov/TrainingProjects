@@ -1,8 +1,6 @@
 ﻿
 using System;
-using CollectionLibrary;
 using System.Text;
-using System.Threading.Tasks;
 using Model.Servise;
 using Model.Entity;
 using System.Collections.Generic;
@@ -14,7 +12,7 @@ namespace Routing.Pages
     public class CreateAppeal : BasePage
     {
         public CreateAppeal(AbstractServiceFactory sf)
-            : base()
+            : base(sf)
         {
         }
         protected override string Title { get { return "Create Appeal"; } }
@@ -23,12 +21,11 @@ namespace Routing.Pages
         {
             HtmlForm htmlForm = new HtmlForm(RequestMethod.POST, "CreateAppeal", errors);
             htmlForm.AddTag("br");
-            htmlForm.AddTag("lable", "Client:")
+            htmlForm.AddTag("lable", "Name client:")
                 .SetAttribut("class", "lable");
             //ClientService cs = new ClientService("client.txt");
-           // Dictionary<Guid, Client> clients = cs.GetAll();
-            SQLClientService scs = new SQLClientService("Clients");
-            Dictionary<Guid, Client> clients = scs.GetAll();
+            IClientService cs = serviceFactory.CreateClientService();
+            Dictionary<Guid, Client> clients = cs.GetAll();
             HtmlBaseTag selecclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")
                  .SetAttribut("class", "select")
                  .SetAttribut("size", "1");
@@ -89,8 +86,7 @@ namespace Routing.Pages
             htmlForm.AddTag("lable", "Serviced manager:")
                 .SetAttribut("class", "lable");
            // ManagerService ms = new ManagerService("manager.txt");
-           // Dictionary<Guid, Manager> managers = ms.GetAll();
-            SQLManagerService sms = new SQLManagerService("Managers");
+            IManagerService sms = serviceFactory.CreateManagerService();
             Dictionary<Guid, Manager> managers = sms.GetAll();
             HtmlBaseTag selectmanager = htmlForm.AddTag("select").SetAttribut("name", "managerId")
                    .SetAttribut("class", "select")
@@ -121,8 +117,8 @@ namespace Routing.Pages
             Response response;
             try
             {              
-                Appeal appealclient = new Appeal(Guid.NewGuid(), 
-                new Guid(form["clientId"]), new Guid(form["managerId"]), (ClientAppeal)Convert.ToInt32(form["reason"]));
+                Appeal appealclient = new Appeal(Guid.NewGuid(),
+                new Guid(form["managerId"]),  new Guid(form["clientId"]), (ClientAppeal)Convert.ToInt32(form["reason"]));
 
                 appealclient.Comment = form["comment"];
                 appealclient.References = form["references"];
@@ -142,8 +138,8 @@ namespace Routing.Pages
                         appealclient.Rez = form["solve2"];
                     }
                 }
-               // AppealServiсe aser = new AppealServiсe("appealclient.txt");
-                SQLAppealService aser = new SQLAppealService("Appeals");
+                // AppealServiсe aser = new AppealServiсe("appealclient.txt");
+                IAppealService aser = serviceFactory.CreateAppealService();
                 aser.Add(appealclient);
             }
             catch (Exception ex)

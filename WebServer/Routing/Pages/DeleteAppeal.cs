@@ -20,9 +20,10 @@ namespace Routing.Pages
             try
             {
                 //AppealServiсe cs = new AppealServiсe("appealclient.txt");
-                SQLAppealService cs = new SQLAppealService("Appeals");
+                IAppealService aps = serviceFactory.CreateAppealService();
+          
                 Guid id = new Guid(form["id"]);
-                cs.Delete(id);
+                aps.Delete(id);
             }
             catch (Exception)
             {

@@ -249,7 +249,7 @@ namespace Routing.Pages
                 try
                 {
                     Manager manager = new Manager(Guid.NewGuid(), form["name"], form["surname"], (WorkExperience)Convert.ToInt32(form["experience"]), form["address"], form["phone"], form["login"], form["password"]);
-                    IManagerService sms = serviceFactory.CreateManagerServise();
+                    IManagerService sms = serviceFactory.CreateManagerService();
                    // manager.Work = (StageExperience.WorkExperience)Convert.ToInt32(form["experience"]);
                     sms.Add(manager);
                     return new Response("", TypeOfAnswer.Redirection, "ManagersList");

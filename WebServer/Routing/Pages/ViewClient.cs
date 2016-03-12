@@ -22,7 +22,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<h1>ViewClient</h1>");
             try
             {
-                IClientService cs = serviceFactory.CreateClientServise();
+                IClientService cs = serviceFactory.CreateClientService();
                 Guid id = new Guid(form["id"]);
 
                 Client client = cs.GetElement(id);

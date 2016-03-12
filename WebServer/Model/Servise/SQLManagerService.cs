@@ -17,10 +17,12 @@ namespace Model.Servise
         {
         }
 
-        public Manager FillFieldsOfModels(SqlDataReader reader)
+        protected override Manager InitializeNewEntity(SqlDataReader reader)
         {
-
-            Manager manager = new Manager(
+            Manager manager = null;
+            while (reader.Read())
+            {
+                manager = new Manager(
                     reader.GetGuid(0),
                     reader["name"].ToString(),
                     reader["surname"].ToString(),
@@ -29,6 +31,7 @@ namespace Model.Servise
                     reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
                     reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
                     reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
+            }
             return manager;
         }
         public Manager GetElementByLogin(string login)
@@ -47,46 +50,31 @@ namespace Model.Servise
             return null;
         }
         
-        public override Manager GetElement(Guid id)
+     
+        protected override Dictionary<Guid, Manager> InitializeListNewEntitys(SqlDataReader reader)
         {
-            string queryString = "SELECT * FROM Managers WHERE ManagerId = @id";
-            Manager result = null;
-            using (SqlConnection connection = new SqlConnection(GetConnection()))
+            Dictionary<Guid, Manager> managers = new Dictionary<Guid, Manager>();
+            while (reader.Read())
             {
-                SqlCommand command = new SqlCommand(queryString, connection);
-                command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
-                command.Parameters["@id"].Value = id;
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    result = FillFieldsOfModels(reader);
-                }
+                   Manager manager = new Manager(
+                   reader.GetGuid(0),
+                   reader["name"].ToString(),
+                   reader["surname"].ToString(),
+                   (WorkExperience)Convert.ToInt32(reader["work"]),
+                   reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
+                   reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
+                   reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
+                   reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
+               
+                managers.Add(manager.Id, manager);
             }
-            return result;
-        }
 
-        public override Dictionary<Guid, Manager> GetAll()
-        {
-            string queryString = "SELECT * FROM Managers";
-            Dictionary<Guid, Manager> list = new Dictionary<Guid, Manager>();
-            using (SqlConnection connection = new SqlConnection(GetConnection()))
-            {
-
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Manager manager = FillFieldsOfModels(reader);
-                    list.Add(manager.Id, manager);
-                }
-                return list;
-            }
+            return managers;
         }
+    
         public override void Add(Manager manager)
         {
-            string queryInsert = "INSERT INTO dbo.Managers VALUES(@id, @name, @surname,@work, @address, @phone, @login,@password)";
+            string queryInsert = GetInsertQuery();
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
@@ -148,58 +136,6 @@ namespace Model.Servise
                 result = command.ExecuteNonQuery();
 
             }
-        }
-        public int DeleteManager(Guid id)
-        {
-            string queryString = "DELETE FROM Managers WHERE ManagerId = @id";
-            using (SqlConnection connection = new SqlConnection(GetConnection()))
-            {
-                SqlCommand command = new SqlCommand(queryString, connection);
-                command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
-                command.Parameters["@id"].SqlValue = id;
-                connection.Open();
-                return command.ExecuteNonQuery();
-            }
-        }
-
-        protected override Manager InitializeNewEntity(SqlDataReader reader)
-        {
-            Manager manager = null;
-            while (reader.Read())
-            {
-                manager = new Manager(
-                     reader.GetGuid(0),
-                     reader["name"].ToString(),
-                     reader["surname"].ToString(),
-                     (WorkExperience)Convert.ToInt32(reader["work"]),
-                     reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
-                     reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
-                     reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
-                     reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
-            }
-
-            return manager;
-        }
-
-        protected override Dictionary<Guid, Manager> InitializeListNewEntitys(SqlDataReader reader)
-        {
-            Dictionary<Guid, Manager> managers = new Dictionary<Guid, Manager>();
-            while (reader.Read())
-            {
-                Manager manager = new Manager(
-                      reader.GetGuid(0),
-                      reader["name"].ToString(),
-                      reader["surname"].ToString(),
-                      (WorkExperience)Convert.ToInt32(reader["work"]) ,
-                      reader["address"] != DBNull.Value ? reader["address"].ToString() : "",
-                      reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "",
-                      reader["login"] != DBNull.Value ? reader["login"].ToString() : "",
-                      reader["password"] != DBNull.Value ? reader["password"].ToString() : "");
-
-                managers.Add(manager.Id, manager);
-            }
-
-            return managers;
         }
     }
 }

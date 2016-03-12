@@ -1,5 +1,6 @@
 ﻿using System;
 using Model.Servise;
+using System.Collections.Generic;
 
 namespace Routing.Pages
 {
@@ -11,12 +12,12 @@ namespace Routing.Pages
             serviceFactory = sf;
         }
 
-        public Response Get(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null, System.Collections.Generic.IDictionary<string, string> errors = null)
+        public Response Get(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)
         {
             Response response;
             try
             {
-                IManagerService ms = serviceFactory.CreateManagerServise();
+                IManagerService ms = serviceFactory.CreateManagerService();
                 Guid id = new Guid(form["id"]);
                 ms.Delete(id);
             }
@@ -30,7 +31,7 @@ namespace Routing.Pages
         }
 
 
-        public Response Post(System.Collections.Generic.IDictionary<string, string> form, string sessionId = null)
+        public Response Post(IDictionary<string, string> form, string sessionId = null)
         {
             throw new NotImplementedException();
         }

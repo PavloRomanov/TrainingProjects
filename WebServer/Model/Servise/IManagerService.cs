@@ -5,6 +5,7 @@ using Model.Entity;
 namespace Model.Servise
 {
     public interface IManagerService : IService<Manager>
-    {
+    {       
+          
     }
 }

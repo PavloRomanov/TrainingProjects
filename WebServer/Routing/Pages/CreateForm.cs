@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CollectionLibrary;
 using System.Text;
-using System.Threading.Tasks;
 using Model.Servise;
 using Model.Entity;
 using Routing.Pages.Helpers;
@@ -10,14 +8,14 @@ using Model.Enum;
 
 namespace Routing.Pages
 {
-   public class CreateForm : BasePage
+    public class CreateForm : BasePage
     {      
         public CreateForm(AbstractServiceFactory sf)
             :base(sf)
         {
         }
 
-        protected override string Title { get { return "Form client's"; } }
+        protected override string Title { get { return "CreateForm"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null,IDictionary<string, string> errors = null)
         {
@@ -26,7 +24,7 @@ namespace Routing.Pages
             htmlForm.AddTag("lable", "Name client: ")
                 .SetAttribut("class", "lable");
             //ClientService cs = new ClientService("client.txt");
-            IClientService cs = serviceFactory.CreateClientServise();
+            IClientService cs = serviceFactory.CreateClientService();
             Dictionary<Guid, Client> clients = cs.GetAll();
          
             HtmlBaseTag selectclient = htmlForm.AddTag("select").SetAttribut("name", "clientId")
@@ -148,7 +146,7 @@ namespace Routing.Pages
             htmlForm.AddTag("lable", "Filled manager: ")
                  .SetAttribut("class", "lable");
             //ManagerService ms = new ManagerService("manager.txt");
-            IManagerService ms = serviceFactory.CreateManagerServise();
+            IManagerService ms = serviceFactory.CreateManagerService();
             Dictionary<Guid, Manager> managers = ms.GetAll();
            
             HtmlBaseTag selectmanager = htmlForm.AddTag("select").SetAttribut("name", "managerId")
@@ -180,7 +178,7 @@ namespace Routing.Pages
             try
             {
 
-                Form formclient = new Form(Guid.NewGuid(), new Guid(form["clientId"]), new Guid(form["managerId"]));
+                Form formclient = new Form(Guid.NewGuid(), new Guid(form["managerId"]), new Guid(form["clientId"]));
                 formclient.F1 = FormsClient.Are_you_satisfied_with_the_service;
                 formclient.Comment1 = form["comment1"];
                 formclient.F2 = FormsClient.Are_you_satisfied_with_the_speed_of_the_Internet;
@@ -271,7 +269,7 @@ namespace Routing.Pages
                  }
                  }
                 //FormServiсe fs = new FormServiсe("forms.txt");
-                IFormService fs = serviceFactory.CreateFormServise();
+                IFormService fs = serviceFactory.CreateFormService();
                 fs.Add(formclient);
             }
             catch (Exception ex)

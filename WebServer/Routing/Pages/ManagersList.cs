@@ -22,7 +22,7 @@ namespace Routing.Pages
             try
             {
                 //ManagerService ms = new ManagerService("manager.txt");
-                IManagerService sms = serviceFactory.CreateManagerServise();
+                IManagerService sms = serviceFactory.CreateManagerService();
                 Dictionary<Guid, Manager> managers = sms.GetAll();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Managers</h1>");

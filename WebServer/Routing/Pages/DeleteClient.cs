@@ -17,7 +17,7 @@ namespace Routing.Pages
             Response response;
             try
             {
-                IClientService cs = serviceFactory.CreateClientServise();
+                IClientService cs = serviceFactory.CreateClientService();
                 Guid id = new Guid(form["id"]);
                 //cs.Delete(id);
                 cs.Delete(id);

@@ -21,7 +21,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder("<h1>View Manager</h1>");
             try
             {
-                IManagerService sms = serviceFactory.CreateManagerServise();
+                IManagerService sms = serviceFactory.CreateManagerService();
                 //ManagerService ms = new ManagerService("manager.txt");
                 Guid id = new Guid(form["id"]);
                 //Manager manager = ms.GetElement(id);

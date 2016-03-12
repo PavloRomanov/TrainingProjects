@@ -22,7 +22,7 @@ namespace Routing.Pages
             {
 
                 //FormServiсe fs = new FormServiсe("forms.txt");
-                IFormService fs = serviceFactory.CreateFormServise();
+                IFormService fs = serviceFactory.CreateFormService();
                 Dictionary<Guid, Form> formclients = fs.GetAll();
               
                 body.Append(Environment.NewLine);
@@ -42,7 +42,7 @@ namespace Routing.Pages
                 body.Append("</tr>");
 
                 //ClientService cs = new ClientService("client.txt");
-                IClientService cs = serviceFactory.CreateClientServise();
+                IClientService cs = serviceFactory.CreateClientService();
                
                 int n = 1;
                 foreach (var element in formclients)
@@ -51,7 +51,8 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(n).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(cs.GetElement(element.Value.IdClient).Name +" "+ cs.GetElement(element.Value.IdClient).Surname).Append("</td>");
+                    var client = cs.GetElement(element.Value.IdClient);
+                    body.Append("<td>").Append(client.Name +" "+ client.Surname).Append("</td>");
                     body.Append(Environment.NewLine);
                     body.Append("<td><a href='ViewForm?id=").Append(element.Key).Append("'>View</a>");
                     body.Append("<a href='DeleteForm?id=").Append(element.Key).Append("'>Delete</a></td>");

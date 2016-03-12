@@ -182,7 +182,7 @@ namespace Routing.Pages
                 try
                 {
                     Client client = new Client(Guid.NewGuid(), form["name"], form["surname"], form["address"], form["phone"]);                   
-                    IClientService cs =serviceFactory.CreateClientServise();
+                    IClientService cs =serviceFactory.CreateClientService();
                     cs.Add(client);
                     
                     return new Response("", TypeOfAnswer.Redirection, "ClientsList");

@@ -26,7 +26,9 @@ namespace Routing.Pages
             try
             {
                // ManagerService ms = new ManagerService("manager.txt");
-               SQLManagerService sms = new SQLManagerService("Managers");
+         
+                IManagerService sms = serviceFactory.CreateManagerService();
+              
                 Guid id = new Guid(form["id"]);
                 Manager manager = new Manager(id, form["name"], form["surname"], (WorkExperience)Convert.ToInt32(form["experience"]), form["address"], form["phone"], form["login"], form["password"]);
                 //ms.Update(manager);
@@ -50,7 +52,7 @@ namespace Routing.Pages
             try
             {
                 //ManagerService ms = new ManagerService("manager.txt");
-                SQLManagerService sms = new SQLManagerService("Managers");
+                IManagerService sms = serviceFactory.CreateManagerService();
                 Guid id = new Guid(form["id"]);
                 //Manager manager = ms.GetElement(id);
                 Manager manager = sms.GetElement(id);

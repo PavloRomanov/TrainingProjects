@@ -20,9 +20,8 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder();
             try
             {
-
-               // AppealServiсe aps = new AppealServiсe("appealclient.txt");
-                SQLAppealService aps = new SQLAppealService("Appeals");
+                // AppealServiсe aps = new AppealServiсe("appealclient.txt");
+                IAppealService aps = serviceFactory.CreateAppealService();
                 Dictionary<Guid, Appeal> appealclients = aps.GetAll();
                 body.Append(Environment.NewLine);
                 body.Append("<h1>List Appeals</h1>");
@@ -46,7 +45,7 @@ namespace Routing.Pages
                
                 //ClientService cs = new ClientService("client.txt");
                // SQLClientService cs = new SQLClientService("Clients");
-                IClientService cs = serviceFactory.CreateClientServise();
+                IClientService cs = serviceFactory.CreateClientService();
                 int n = 1;
                 foreach (var element in appealclients)
                 {
@@ -54,8 +53,8 @@ namespace Routing.Pages
                     body.Append(Environment.NewLine);
                     body.Append("<td>").Append(n).Append("</td>");
                     body.Append(Environment.NewLine);
-                    body.Append("<td>").Append(cs.GetElement(element.Value.IdClient).Name +
-                                " "+ cs.GetElement(element.Value.IdClient).Surname).Append("</td>");                   
+                    var client = cs.GetElement(element.Value.IdClient);
+                    body.Append("<td>").Append(client.Name +" "+ client.Surname).Append("</td>");                   
                     body.Append(Environment.NewLine);             
                     body.Append("<td>").Append(element.Value.ClientAppeal.ToString()).Append("</td>");
                     body.Append(Environment.NewLine);

@@ -20,7 +20,7 @@ namespace Routing.Pages
             StringBuilder body = new StringBuilder();
             try
             {
-                IClientService cs = serviceFactory.CreateClientServise();
+                IClientService cs = serviceFactory.CreateClientService();
 
                 Dictionary<Guid, Client> clients = cs.GetAll();
 

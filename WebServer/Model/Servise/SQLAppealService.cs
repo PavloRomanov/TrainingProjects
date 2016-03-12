@@ -24,6 +24,9 @@ namespace Model.Servise
                 reader.GetGuid(1),
                 reader.GetGuid(2),
                 (ClientAppeal)Convert.ToInt32(reader[6]));
+                appeal.Rez = reader.GetString(3);
+                appeal.Comment = reader.GetString(4);
+                appeal.References = reader.GetString(5);
             }
             return appeal;
         }
@@ -37,6 +40,9 @@ namespace Model.Servise
                 reader.GetGuid(1),
                 reader.GetGuid(2),
                 (ClientAppeal)Convert.ToInt32(reader[6]));
+                appeal.Rez = reader.GetString(3);
+                appeal.Comment = reader.GetString(4);
+                appeal.References = reader.GetString(5);
                 appeals.Add(appeal.Id, appeal);
             }
 
@@ -44,12 +50,12 @@ namespace Model.Servise
         }
         public override void Add(Appeal appeal)
         {
-            string queryInsert = "INSERT INTO dbo.Appeals VALUES(@id,@managerId, @clientId,@result, @comment, @reference,@appeal)";
+            string queryInsert = GetInsertQuery();
             using (SqlConnection connection = new SqlConnection(GetConnection()))
             {
                 SqlCommand command = new SqlCommand(queryInsert, connection);
-                command.Parameters.Add("@id", SqlDbType.UniqueIdentifier);
-                command.Parameters["@id"].SqlValue = appeal.Id;
+                command.Parameters.Add("@appealId", SqlDbType.UniqueIdentifier);
+                command.Parameters["@appealId"].SqlValue = appeal.Id;
 
                 command.Parameters.Add("@managerId", SqlDbType.UniqueIdentifier);
                 command.Parameters["@managerId"].SqlValue = appeal.IdManager;
@@ -60,14 +66,14 @@ namespace Model.Servise
                 command.Parameters.Add("@result", SqlDbType.NVarChar);
                 command.Parameters["@result"].SqlValue = appeal.Rez;
 
-                command.Parameters.Add("@Comment", SqlDbType.NVarChar);
-                command.Parameters["@Comment"].SqlValue = appeal.Comment;
+                command.Parameters.Add("@comment", SqlDbType.NVarChar);
+                command.Parameters["@comment"].SqlValue = appeal.Comment;
 
-                command.Parameters.Add("@reference", SqlDbType.NVarChar);
-                command.Parameters["@reference"].SqlValue = appeal.References;
+                command.Parameters.Add("@references", SqlDbType.NVarChar);
+                command.Parameters["@references"].SqlValue = appeal.References;
 
-                command.Parameters.Add("@appeal", SqlDbType.Int);
-                command.Parameters["@appeal"].SqlValue = appeal.ClientAppeal;
+                command.Parameters.Add("@clientappeal", SqlDbType.Int);
+                command.Parameters["@clientappeal"].SqlValue = appeal.ClientAppeal;
 
                 connection.Open();
                 var result = command.ExecuteNonQuery();
