@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Web.Mvc;
 using System.Web;
-using System.Web.Mvc;
+using System.Linq;
 
 namespace WebShopMVC.Controllers
 {
@@ -13,12 +11,7 @@ namespace WebShopMVC.Controllers
             return View();  
         }
 
-        public ActionResult DataTime()
-         {
-            int hour = DateTime.Now.Hour;
-            ViewBag.Greeting = hour < 12 ? "Good morning" : "Good evening";
-           return View();
-         }
+       
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -32,5 +25,6 @@ namespace WebShopMVC.Controllers
 
             return View();
         }
+      
     }
 }
