@@ -4,7 +4,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Model
+namespace Model.Entities
 {
     [Table("Products")]
     public class Product

@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Entities
 {
+    [Table("Categories")]
     public class Category
     {
         [Key]
