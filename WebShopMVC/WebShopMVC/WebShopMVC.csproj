@@ -212,10 +212,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\My\RsvpForm.cshtml" />
     <Content Include="Views\My\Ok.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\List.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
