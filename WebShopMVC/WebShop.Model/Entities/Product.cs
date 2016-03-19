@@ -11,13 +11,16 @@ namespace WebShop.Model.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
 
-        [Required]
+        [Required, MaxLength(30)]
         public string ProductName { get; set; }
 
         public int CategoryId { get; set; }
 
         public int SubcategoryId { get; set; }
-
+        [Required]
+        public decimal Price { get; set; }
+        public ushort Discount { get; set; }
+        [MaxLength(200)]
         public string Description { get; set; }
 
     }
