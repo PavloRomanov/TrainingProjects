@@ -14,3 +14,8 @@ Update-database -ProjectName WebShop.Model
 
  >>откатить до указанной миграции миграция
 Update-database -ProjectName WebShop.Model -TargetMigration (имя миграции)
+
+
+___________Список выполненных миграций________________
+1. Add-Migration _after_merge -ProjectName WebShop.Model
+2. Add-Migration _add_Clients -ProjectName WebShop.Model

@@ -233,6 +233,10 @@
       <Project>{e49b6269-4074-428e-a907-28cd37eb837c}</Project>
       <Name>WebShop.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebShop.Service\WebShop.Service.csproj">
+      <Project>{7c64c188-40be-4e23-9c1e-e7fcba0bb6de}</Project>
+      <Name>WebShop.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
