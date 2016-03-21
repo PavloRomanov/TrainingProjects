@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebShop.Model.ViewModel;
 
-namespace WebShop.Service
+namespace WebShop.Service.Contract
 {
     public interface IService<T>
     {

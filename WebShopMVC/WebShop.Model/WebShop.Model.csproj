@@ -65,6 +65,14 @@
     <Compile Include="Migrations\201603201845563_AddChangeProduct2.Designer.cs">
       <DependentUpon>201603201845563_AddChangeProduct2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603211043079__after_merge.cs" />
+    <Compile Include="Migrations\201603211043079__after_merge.Designer.cs">
+      <DependentUpon>201603211043079__after_merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603211049232__add_Clients.cs" />
+    <Compile Include="Migrations\201603211049232__add_Clients.Designer.cs">
+      <DependentUpon>201603211049232__add_Clients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
@@ -80,6 +88,15 @@
     <EmbeddedResource Include="Migrations\201603171655459_MyCoolMigration.resx">
       <DependentUpon>201603171655459_MyCoolMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603211043079__after_merge.resx">
+      <DependentUpon>201603211043079__after_merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603211049232__add_Clients.resx">
+      <DependentUpon>201603211049232__add_Clients.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Migrations\readme.txt" />
     <EmbeddedResource Include="Migrations\201603201843019_AddChangeProduct.resx">
       <DependentUpon>201603201843019_AddChangeProduct.cs</DependentUpon>
     </EmbeddedResource>

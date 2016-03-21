@@ -5,13 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
+using WebShop.Service;
+using WebShop.Service.Contract;
 
 
 namespace WebShopMVC.Controllers
 {
     public class ClientController : Controller
     {
-        // GET: Client
+        private IClientService clientService;
+
+        public ClientController()
+        {
+            clientService = ServiceLocator.GetClientService();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -19,7 +27,8 @@ namespace WebShopMVC.Controllers
 
         public ActionResult List()
         {
-            return View();
+            var model = clientService.GetAll();
+            return View(model);
         }
 
         //--Create--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,8 +42,12 @@ namespace WebShopMVC.Controllers
         [HttpPost]
         public ActionResult Create(ClientViewModel model)
         {
-            //сохраняем клиента в базе
-            return View();
+            if(ModelState.IsValid)
+            {
+                clientService.Create(model);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
         }
 
         //--Update--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
