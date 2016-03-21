@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WebShop.Model;
 using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
@@ -29,16 +30,35 @@ namespace WebShop.Service.Realization
             }
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<ClientViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            var model = new List<ClientViewModel>();
+            using (var context = new WebShopMVCContext())
+            {
+                model = context.Clients.Select(m => new ClientViewModel
+                {
+                    ClientId = m.ClientId,
+                    FirstName = m.FirstName,
+                    LastName = m.LastName,
+                    Login = m.Login,
+                    Password = m.Password,
+                    Email = m.Email,
+                    Phone = m.Phone
+                }).ToList();
+            }
+            return model;
         }
 
+        public void Delete(int id)
+        {
+            using (var context = new WebShopMVCContext())
+            {
+                context.Clients.Remove(
+                    context.Clients.Where(m => m.ClientId == id).FirstOrDefault());
+                context.SaveChanges();
+            }
+        }
+       
         public ClientViewModel GetModelById(int id)
         {
             throw new NotImplementedException();
