@@ -4,19 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebShop.Model.ViewModel;
+using WebShop.Service;
+using WebShop.Service.Contract;
+
 namespace WebShopMVC.Controllers
 {
     public class ProductController : Controller
     {
+        private IProductService productService;
+
+        public ProductController()
+        {
+            productService = ServiceLocator.GetProductService();
+        }
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult List()
         {
-            return View();
-        }
 
+            var model = productService.GetAll();
+            return View(model);
+        }
+//----------------------------------------------------
         [HttpGet]
         public ActionResult Create()
         {
@@ -26,22 +37,35 @@ namespace WebShopMVC.Controllers
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
         {
-            
-            return View("Create",model);
+            if (ModelState.IsValid)
+            {
+                productService.Create(model);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
+        }
+//----------------------------------------------------------------
+        [HttpGet]
+        public ActionResult Update(ProductViewModel model)
+        {
+            return View(model);
         }
 
-       /* [HttpGet]
-         public ActionResult Update(ProductViewModel model)
-         {
-         var remodel = model;
-             return View("Update", remodel);
-         }
-
-         [HttpPost]
-         public ActionResult Update(ProductViewModel model)
-         {
-
-             return View("Index", model);
-         }*/
+        [HttpPost]
+       /* public ActionResult Update(ProductViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                productService.Update(model);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
+        }*/
+//------------------------------------------------------------------------------
+        public ActionResult Delete(ProductViewModel model)
+        {
+            model = null;//////////////////////////////////????????????
+            return RedirectToAction("Index", "Home");
+        }
     }
-}
+    }

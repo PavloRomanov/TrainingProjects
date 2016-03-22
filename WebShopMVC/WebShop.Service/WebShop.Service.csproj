@@ -30,17 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="EntityFramework.Fakes">
+      <HintPath>FakesAssemblies\EntityFramework.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,19 +50,20 @@
   <ItemGroup>
     <Compile Include="Contract\IClientService.cs" />
     <Compile Include="Contract\IService.cs" />
+    <Compile Include="Contract\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realization\ClientService.cs" />
+    <Compile Include="Realization\ProductService.cs" />
     <Compile Include="ServiceLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Fakes Include="Fakes\EntityFramework.fakes" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebShop.Model\WebShop.Model.csproj">
       <Project>{e49b6269-4074-428e-a907-28cd37eb837c}</Project>
       <Name>WebShop.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

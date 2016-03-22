@@ -69,10 +69,7 @@
     <Compile Include="Migrations\201603211043079__after_merge.Designer.cs">
       <DependentUpon>201603211043079__after_merge.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603211049232__add_Clients.cs" />
-    <Compile Include="Migrations\201603211049232__add_Clients.Designer.cs">
-      <DependentUpon>201603211049232__add_Clients.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\201603211049232__add_Clients.cs.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
@@ -90,9 +87,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603211043079__after_merge.resx">
       <DependentUpon>201603211043079__after_merge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603211049232__add_Clients.resx">
-      <DependentUpon>201603211049232__add_Clients.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

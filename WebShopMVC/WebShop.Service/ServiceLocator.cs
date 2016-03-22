@@ -10,5 +10,9 @@ namespace WebShop.Service
         {
             return new ClientService();
         }
+        public static IProductService GetProductService()
+        {
+            return new ProductService();
+        }
     }
 }

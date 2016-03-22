@@ -1,0 +1,93 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WebShop.Model;
+using WebShop.Model.Entities;
+using WebShop.Model.ViewModel;
+
+namespace WebShop.Service.Realization
+{
+    public class ProductService : IProductService
+    {
+        public void Create(ProductViewModel model)
+        {
+            Product product = new Product
+            {
+                ProductId = model.ProductId,
+                ProductName = model.ProductName,
+                CategoryId = model.CategoryId,
+                SubcategoryId = model.SubcategoryId,
+                Price = model.Price,
+                Discount = model.Discount,
+                Description = model.Description
+            };
+            using (var context = new WebShopMVCContext())
+            {
+                context.Products.Add(product);
+                context.SaveChanges();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var context = new WebShopMVCContext())
+            {
+                var product = context.Products.Find(id);
+                product = null;/////////////////////////////////////////????????????
+                context.SaveChanges();
+            }
+        }
+        public IEnumerable<ProductViewModel> GetAll()
+        {
+            var list = new List<ProductViewModel>();
+            using (var context = new WebShopMVCContext())
+            {
+                list = context.Products.Select(m => new ProductViewModel {
+                    ProductId = m.ProductId,
+                    ProductName = m.ProductName,
+                    CategoryId = m.CategoryId,
+                    SubcategoryId = m.SubcategoryId,
+                    Price = m.Price,
+                    Discount = m.Discount,
+                    Description = m.Description}).ToList();
+            }
+            return list;
+        }
+        public ProductViewModel GetModelById(int id)
+        {
+            ProductViewModel model;
+
+            using (var context = new WebShopMVCContext())
+            {
+                var product = context.Products.Find(id);
+                model = new ProductViewModel
+                {
+                    ProductId = product.ProductId,
+                    ProductName = product.ProductName,
+                    CategoryId = product.CategoryId,
+                    SubcategoryId = product.SubcategoryId,
+                    Price = product.Price,
+                    Discount = product.Discount,
+                    Description = product.Description
+                };
+            }
+            return model;
+        }
+        public void Update(ProductViewModel model)
+        {
+            using (var context = new WebShopMVCContext())
+            {
+            var product = context.Products.Find(model.ProductId);
+            product.ProductName = model.ProductName;
+            product.CategoryId = model.CategoryId;
+            product.SubcategoryId = model.SubcategoryId;
+            product.Price = model.Price;
+            product.Discount = model.Discount;
+            product.Description = model.Description;
+            context.SaveChanges();
+            }
+        }
+    }
+}

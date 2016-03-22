@@ -31,6 +31,6 @@ namespace WebShop.Model.ViewModel
         [Display(Name = "Discount")]
         [StringLength(2, MinimumLength = 1)]
         [RegularExpression(@"\d{2}|\d")]
-        public ushort Discount { get; set; }
+        public int Discount { get; set; }
     }
 }
