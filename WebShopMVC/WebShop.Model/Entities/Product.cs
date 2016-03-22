@@ -17,9 +17,12 @@ namespace WebShop.Model.Entities
         public int CategoryId { get; set; }
 
         public int SubcategoryId { get; set; }
+
         [Required]
         public decimal Price { get; set; }
-        public ushort Discount { get; set; }
+
+        public int Discount { get; set; }
+
         [MaxLength(200)]
         public string Description { get; set; }
 
