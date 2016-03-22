@@ -24,13 +24,13 @@ namespace WebShop.Model.ViewModel
 
         [Display(Name = "Price of product")]
         [Required]
-        [RegularExpression(@"\d{1,7}\,\d{2}|\d{3}")]
+        [RegularExpression(@"\d{1,7}\.\d{2}|\d{3}")]
         [StringLength(10, MinimumLength = 2)]
         public decimal Price { get; set; }
 
         [Display(Name = "Discount")]
         [StringLength(2, MinimumLength = 1)]
         [RegularExpression(@"\d{2}|\d")]
-        public ushort Discount { get; set; }
+        public int Discount { get; set; }
     }
 }
