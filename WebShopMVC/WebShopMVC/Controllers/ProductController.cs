@@ -46,13 +46,14 @@ namespace WebShopMVC.Controllers
         }
 //----------------------------------------------------------------
         [HttpGet]
-        public ActionResult Update(ProductViewModel model)
+        public ActionResult Update(int id)
         {
+            var model= productService.GetModelById(id);
             return View(model);
         }
 
         [HttpPost]
-       /* public ActionResult Update(ProductViewModel model)
+        public ActionResult Update(ProductViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -60,11 +61,11 @@ namespace WebShopMVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
-        }*/
+        }
 //------------------------------------------------------------------------------
         public ActionResult Delete(ProductViewModel model)
         {
-            model = null;//////////////////////////////////????????????
+            productService.Delete(model.ProductId);            
             return RedirectToAction("Index", "Home");
         }
     }

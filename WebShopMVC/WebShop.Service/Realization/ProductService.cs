@@ -34,8 +34,9 @@ namespace WebShop.Service.Realization
         {
             using (var context = new WebShopMVCContext())
             {
+                
                 var product = context.Products.Find(id);
-                product = null;/////////////////////////////////////////????????????
+                context.Products.Remove(product);               
                 context.SaveChanges();
             }
         }
