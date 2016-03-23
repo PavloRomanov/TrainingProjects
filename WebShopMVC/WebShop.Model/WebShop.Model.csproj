@@ -53,23 +53,6 @@
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Subcategory.cs" />
-    <Compile Include="Migrations\201603171655459_MyCoolMigration.cs" />
-    <Compile Include="Migrations\201603171655459_MyCoolMigration.Designer.cs">
-      <DependentUpon>201603171655459_MyCoolMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603201843019_AddChangeProduct.cs" />
-    <Compile Include="Migrations\201603201843019_AddChangeProduct.Designer.cs">
-      <DependentUpon>201603201843019_AddChangeProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603201845563_AddChangeProduct2.cs" />
-    <Compile Include="Migrations\201603201845563_AddChangeProduct2.Designer.cs">
-      <DependentUpon>201603201845563_AddChangeProduct2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603211043079__after_merge.cs" />
-    <Compile Include="Migrations\201603211043079__after_merge.Designer.cs">
-      <DependentUpon>201603211043079__after_merge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603211049232__add_Clients.cs.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
@@ -82,21 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603171655459_MyCoolMigration.resx">
-      <DependentUpon>201603171655459_MyCoolMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603211043079__after_merge.resx">
-      <DependentUpon>201603211043079__after_merge.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Migrations\readme.txt" />
-    <EmbeddedResource Include="Migrations\201603201843019_AddChangeProduct.resx">
-      <DependentUpon>201603201843019_AddChangeProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603201845563_AddChangeProduct2.resx">
-      <DependentUpon>201603201845563_AddChangeProduct2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

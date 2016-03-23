@@ -57,13 +57,13 @@
     <Compile Include="ServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\EntityFramework.fakes" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WebShop.Model\WebShop.Model.csproj">
       <Project>{e49b6269-4074-428e-a907-28cd37eb837c}</Project>
       <Name>WebShop.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fakes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
