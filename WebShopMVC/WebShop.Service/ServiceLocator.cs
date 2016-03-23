@@ -1,5 +1,5 @@
 ﻿using System;
-using WebShop.Service.Realization;
+using WebShop.Service.Implementation;
 using WebShop.Service.Contract;
 
 namespace WebShop.Service

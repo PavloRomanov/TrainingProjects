@@ -7,7 +7,7 @@ using WebShop.Model;
 using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
 
-namespace WebShop.Service.Realization
+namespace WebShop.Service.Implementation
 {
     public class ProductService : IProductService
     {
@@ -34,8 +34,9 @@ namespace WebShop.Service.Realization
         {
             using (var context = new WebShopMVCContext())
             {
+                
                 var product = context.Products.Find(id);
-                product = null;/////////////////////////////////////////????????????
+                context.Products.Remove(product);               
                 context.SaveChanges();
             }
         }
