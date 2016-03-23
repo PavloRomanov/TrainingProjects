@@ -7,7 +7,7 @@ using WebShop.Model;
 using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
 
-namespace WebShop.Service.Realization
+namespace WebShop.Service.Implementation
 {
     public class ProductService : IProductService
     {

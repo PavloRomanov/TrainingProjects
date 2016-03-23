@@ -26,6 +26,13 @@
                     <li>@Html.ActionLink("О программе", "About", "Home")</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Категории", "Category", "Category")</li>
+                            <li>@Html.ActionLink("Подкатегории", "SubCategory", "Category")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

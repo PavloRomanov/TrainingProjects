@@ -6,7 +6,7 @@ using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
 using WebShop.Service.Contract;
 
-namespace WebShop.Service.Realization
+namespace WebShop.Service.Implementation
 {
     public class ClientService : IClientService
     {
