@@ -14,5 +14,15 @@ namespace WebShop.Service
         {
             return new ProductService();
         }
+
+        public static ICategoryService GetCategoryService()
+        {
+            return new CategoryService();
+        }
+
+        public static ISubcategoryService GetSubcategoryService()
+        {
+            return new SubcategoryService();
+        }
     }
 }

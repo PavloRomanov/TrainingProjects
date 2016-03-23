@@ -165,6 +165,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SubcategoryController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -215,6 +217,12 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Product\Update.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\List.cshtml" />
+    <Content Include="Views\Category\Update.cshtml" />
+    <Content Include="Views\Subcategory\Create.cshtml" />
+    <Content Include="Views\Subcategory\List.cshtml" />
+    <Content Include="Views\Subcategory\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
