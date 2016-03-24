@@ -11,7 +11,7 @@ namespace WebShop.Model.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SubcategoryId { get; set; }
 
-        [Required]
+        [Required, MaxLength(40)]
         public string SubcategoryName { get; set; }
 
         public int CategoryId { get; set; }

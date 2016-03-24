@@ -57,11 +57,17 @@
     <Compile Include="Migrations\201603231023544__firstMigration.Designer.cs">
       <DependentUpon>201603231023544__firstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603231942528__updateCategoryMigration.cs" />
+    <Compile Include="Migrations\201603231942528__updateCategoryMigration.Designer.cs">
+      <DependentUpon>201603231942528__updateCategoryMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\SubcategoryViewModel.cs" />
     <Compile Include="WebShopMVSContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +80,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603231023544__firstMigration.resx">
       <DependentUpon>201603231023544__firstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603231942528__updateCategoryMigration.resx">
+      <DependentUpon>201603231942528__updateCategoryMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

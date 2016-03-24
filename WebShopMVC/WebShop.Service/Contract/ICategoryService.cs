@@ -7,12 +7,12 @@ using WebShop.Model.ViewModel;
 
 namespace WebShop.Service.Contract
 {
-   public interface IProductService
+    public interface ICategoryService
     {
-        IEnumerable<ProductViewModel> GetAll();
-        ProductViewModel GetModelById(int id);
-        void Create(ProductViewModel model);
-        void Update(ProductViewModel model);
+        IEnumerable<CategoryViewModel> GetAll();
+        CategoryViewModel GetModelById(int id);
+        void Create(CategoryViewModel model);
+        void Update(CategoryViewModel model);
         void Delete(int id);
     }
 }

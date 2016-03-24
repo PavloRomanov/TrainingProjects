@@ -12,7 +12,7 @@ namespace WebShop.Model.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryId { get; set; }
 
-        [Required]
+        [Required, MaxLength(40)]
         public string CategoryName { get; set; }
     }
 }

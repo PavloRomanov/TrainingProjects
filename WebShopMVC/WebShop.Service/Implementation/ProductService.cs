@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebShop.Model;
 using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
+using WebShop.Service.Contract;
 
 namespace WebShop.Service.Implementation
 {
