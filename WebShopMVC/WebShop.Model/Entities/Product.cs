@@ -13,11 +13,14 @@ namespace WebShop.Model.Entities
 
         [Required, MaxLength(30)]
         public string ProductName { get; set; }
-
+        [Required]
         public int CategoryId { get; set; }
-
+        //[ForeignKey("CategoryId")]
+       // public Category category { get; set; }
+        [Required]
         public int SubcategoryId { get; set; }
-
+        //[ForeignKey("SubcategoryId")]
+       // public Subcategory subcategory { get; set; }
         [Required]
         public decimal Price { get; set; }
 

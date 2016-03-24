@@ -27,7 +27,7 @@ namespace WebShopMVC.Controllers
             var model = productService.GetAll();
             return View(model);
         }
-//----------------------------------------------------
+//---------------------------------------------------------------
         [HttpGet]
         public ActionResult Create()
         {
@@ -40,7 +40,7 @@ namespace WebShopMVC.Controllers
             if (ModelState.IsValid)
             {
                 productService.Create(model);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("List", "Product");
             }
             return View(model);
         }
@@ -58,7 +58,7 @@ namespace WebShopMVC.Controllers
             if (ModelState.IsValid)
             {
                 productService.Update(model);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("List", "Product");
             }
             return View(model);
         }
@@ -66,7 +66,7 @@ namespace WebShopMVC.Controllers
         public ActionResult Delete(ProductViewModel model)
         {
             productService.Delete(model.ProductId);            
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "Product");
         }
     }
     }

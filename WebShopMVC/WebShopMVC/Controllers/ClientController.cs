@@ -51,6 +51,25 @@ namespace WebShopMVC.Controllers
         }
 
         //--Update--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var model = clientService.GetModelById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Update(ClientViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                clientService.Update(model);
+                return RedirectToAction("List", "Client");
+            }
+            return View(model);
+        }
+
         //--Delete--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 }
