@@ -1,14 +1,11 @@
-﻿@model IEnumerable<WebShop.Model.ViewModel.ProductViewModel>
+﻿@model IEnumerable <WebShop.Model.ViewModel.ProductViewModel>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Сatalog";
 }
 
-<h2>List of Produts</h2>
+<h2>Сatalog of Product</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr style="visibility: hidden;">
         <th>
@@ -19,7 +16,8 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductName)
-        </th>     
+        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
@@ -44,6 +42,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
@@ -54,11 +53,11 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Update", new {  id=item.ProductId }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.ProductId })                
+                @Html.ActionLink("Edit", "Update", new { id = item.ProductId })|
+                @Html.ActionLink("Details", "Details", new {  id=item.ProductId })|
+                @Html.ActionLink("Delete", "Сatalog", new { id = item.ProductId })
             </td>
         </tr>
     }
 
 </table>
-

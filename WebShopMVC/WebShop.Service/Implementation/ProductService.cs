@@ -18,7 +18,6 @@ namespace WebShop.Service.Implementation
             {
                 ProductId = model.ProductId,
                 ProductName = model.ProductName,
-                CategoryId = model.CategoryId,
                 SubcategoryId = model.SubcategoryId,
                 Price = model.Price,
                 Discount = model.Discount,
@@ -49,7 +48,6 @@ namespace WebShop.Service.Implementation
                 list = context.Products.Select(m => new ProductViewModel {
                     ProductId = m.ProductId,
                     ProductName = m.ProductName,
-                    CategoryId = m.CategoryId,
                     SubcategoryId = m.SubcategoryId,
                     Price = m.Price,
                     Discount = m.Discount,
@@ -68,7 +66,6 @@ namespace WebShop.Service.Implementation
                 {
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
-                    CategoryId = product.CategoryId,
                     SubcategoryId = product.SubcategoryId,
                     Price = product.Price,
                     Discount = product.Discount,
@@ -83,7 +80,6 @@ namespace WebShop.Service.Implementation
             {
             var product = context.Products.Find(model.ProductId);
             product.ProductName = model.ProductName;
-            product.CategoryId = model.CategoryId;
             product.SubcategoryId = model.SubcategoryId;
             product.Price = model.Price;
             product.Discount = model.Discount;

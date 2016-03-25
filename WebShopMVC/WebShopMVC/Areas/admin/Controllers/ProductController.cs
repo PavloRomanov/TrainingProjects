@@ -7,37 +7,41 @@ using WebShop.Model.ViewModel;
 using WebShop.Service;
 using WebShop.Service.Contract;
 
-namespace WebShopMVC.Controllers
+namespace WebShopMVC.Areas.admin.Controllers
 {
     public class ProductController : Controller
     {
+
         private IProductService productService;
 
         public ProductController()
         {
             productService = ServiceLocator.GetProductService();
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
+
+        // GET: admin/Product
         public ActionResult Details(int id)
         {
             return View();
         }
-        public ActionResult List()
+        public ActionResult Index()
         {
-
-            var model = productService.GetAll();
-            return View(model);
+            return View();
         }
-        //---------------------------------------------------------------
         [HttpGet]
         public ActionResult Create()
         {
             var model = new ProductViewModel();
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var model = productService.GetModelById(id);
+            return View(model);
+        }
+        // POST: admin/Product
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
         {
@@ -48,14 +52,6 @@ namespace WebShopMVC.Controllers
             }
             return View(model);
         }
-        //----------------------------------------------------------------
-        [HttpGet]
-        public ActionResult Update(int id)
-        {
-            var model = productService.GetModelById(id);
-            return View(model);
-        }
-
         [HttpPost]
         public ActionResult Update(ProductViewModel model)
         {
@@ -66,6 +62,16 @@ namespace WebShopMVC.Controllers
             }
             return View(model);
         }
-
+//-------------------------------------------------------------------------------------
+        public ActionResult List()
+        {
+            var model = productService.GetAll();
+            return View(model);
+        }
+        public ActionResult Delete(int id)
+        {
+            productService.Delete(id);
+            return RedirectToAction("List", "Product");
+        }
     }
-}   
+}

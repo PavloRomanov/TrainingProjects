@@ -1,10 +1,13 @@
 ﻿@model WebShop.Model.ViewModel.ProductViewModel
 
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "Edit";
 }
 
-<h2>UpdateProduct</h2>
+<h2>Edit of Product</h2>
+
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -20,6 +23,7 @@
             </div>
         </div>
         <div class="form-group" style="visibility: hidden;">
+
             @Html.LabelFor(model => model.SubcategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SubcategoryId, new { htmlAttributes = new { @class = "form-control" } })
@@ -29,18 +33,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
         </div>
-        </div>      
-            <div class="form-group">
-                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                </div>
+    </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
+        </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -62,12 +67,12 @@
                     <input type="submit" value="Enter" class="btn btn-default" />
                 </div>
             </div>
-            }
+}
 
-            <div>
-                @Html.ActionLink("Back to List", "List")
-            </div>
+<div>
+    @Html.ActionLink("Back to Сatalog", "Сatalog")
+</div>
 
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-            }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
