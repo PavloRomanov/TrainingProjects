@@ -13,11 +13,18 @@ namespace WebShopMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+             routes.MapRoute(
+                 name: "Defaults",
+                 url: "{controller}/{action}/{id}",
+                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+           
+          /*  routes.MapRoute(
+                    "HomeRout",
+                   "App/{action}/{id}", new {controller="Home "}, new[] { "WebShopMVC.Controllers " });*/
+
+           /* routes.MapRoute(
+                    "MainProductRout",
+                   "App/{action}/{id}", new { controller = "Product " }, new[] { "WebShopMVC.Controllers" });*/
         }
     }
 }

@@ -10,7 +10,6 @@ namespace WebShop.Model.ViewModel
     public class ProductViewModel
     {
         public int ProductId { get; set; }
-        public int CategoryId { get; set; }
         public int SubcategoryId { get; set; }
 
         [Display(Name = "Name of product")]

@@ -2,23 +2,27 @@
 
 namespace WebShopMVC.Areas.admin
 {
-    public class adminAreaRegistration : AreaRegistration 
+    public class AdminAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "admin";
+                return "Admin";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "admin_default",
-                "admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Admin_default",
+                "Admin/{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional },new[] { "WebShopMVC.Controllers" }
             );
+
+            context.MapRoute(
+                    "ProductRout",
+                   "App/{action}/{id}", new { controller = "Product " }, new[] { "WebShopMVC.Controllers" });
         }
     }
 }
