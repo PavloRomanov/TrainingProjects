@@ -15,5 +15,8 @@ namespace WebShop.Model.Entities
         public string SubcategoryName { get; set; }
 
         public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
     }
 }
