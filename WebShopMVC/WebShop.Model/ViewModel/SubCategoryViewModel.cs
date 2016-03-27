@@ -13,9 +13,13 @@ namespace WebShop.Model.ViewModel
 
         public int CategoryId { get; set; }
 
+        public string CategoryName { get; set; }
+
         [Display(Name = "Name of SubCategory")]
         [Required]
         [StringLength(40, MinimumLength = 2)]
         public string SubcategoryName { get; set; }
+
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }

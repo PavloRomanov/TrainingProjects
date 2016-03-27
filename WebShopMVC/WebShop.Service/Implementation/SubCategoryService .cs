@@ -18,6 +18,7 @@ namespace WebShop.Service.Implementation
 
             Subcategory subcategory = new Subcategory
             {
+                CategoryId = model.CategoryId,
                 SubcategoryName = model.SubcategoryName
             };
 
@@ -45,12 +46,28 @@ namespace WebShop.Service.Implementation
             var list = new List<SubcategoryViewModel>();
             using (var context = new WebShopMVCContext())
             {
-                list = context.Subcategories.Select(m => new SubcategoryViewModel
+                list = context.Subcategories.Include("Categories").Select(m => new SubcategoryViewModel
                 {
-                    SubcategoryName = m.SubcategoryName
+                    CategoryId = m.CategoryId,
+                    SubcategoryId = m.SubcategoryId,
+                    SubcategoryName = m.SubcategoryName,
+                    CategoryName = m.Category.CategoryName
                 }).ToList();
             }
             return list;
+        }
+
+        public SubcategoryViewModel GetNewSubcategoryViewModelWithCategory()
+        {
+            SubcategoryViewModel model = new SubcategoryViewModel();
+
+            using (var context = new WebShopMVCContext())
+            {
+                model.Categories = context.Categories.Select(c => new CategoryViewModel
+                { CategoryName = c.CategoryName, CategoryId = c.CategoryId }).ToList();
+               
+            }
+            return model;
         }
 
         public SubcategoryViewModel GetModelById(int id)
@@ -62,7 +79,11 @@ namespace WebShop.Service.Implementation
                 var subcategory = context.Subcategories.Find(id);
                 model = new SubcategoryViewModel
                 {
-                    SubcategoryName = subcategory.SubcategoryName
+                    CategoryId = subcategory.CategoryId,
+                    SubcategoryId = subcategory.SubcategoryId,
+                    SubcategoryName = subcategory.SubcategoryName,
+                    Categories = context.Categories.Select(c => new CategoryViewModel
+                        { CategoryName = c.CategoryName, CategoryId = c.CategoryId }).ToList()
                 };
 
             }
@@ -76,7 +97,8 @@ namespace WebShop.Service.Implementation
             {
                 var subcategory = context.Subcategories.Find(model.SubcategoryId);
                 subcategory.SubcategoryName = model.SubcategoryName;
-                context.SaveChangesAsync();
+                subcategory.CategoryId = model.CategoryId;
+                context.SaveChanges();
             }
         }
     }

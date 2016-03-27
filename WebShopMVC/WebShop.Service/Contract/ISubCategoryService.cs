@@ -14,5 +14,6 @@ namespace WebShop.Service.Contract
         void Create(SubcategoryViewModel model);
         void Update(SubcategoryViewModel model);
         void Delete(int id);
+        SubcategoryViewModel GetNewSubcategoryViewModelWithCategory();
     }
 }

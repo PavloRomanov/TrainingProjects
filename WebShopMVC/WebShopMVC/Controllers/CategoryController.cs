@@ -25,11 +25,11 @@ namespace WebShopMVC.Controllers
             return View(model);
         }
 
-        // GET: Category/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: Category/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         // GET: Category/Create
         public ActionResult Create()

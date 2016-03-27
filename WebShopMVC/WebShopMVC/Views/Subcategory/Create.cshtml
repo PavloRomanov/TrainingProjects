@@ -1,4 +1,4 @@
-﻿@model WebShop.Model.Entities.Subcategory
+﻿@model WebShop.Model.ViewModel.SubcategoryViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -7,10 +7,10 @@
 <h2>Create Subcategory</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Subcategory</h4>
         <hr />
@@ -26,8 +26,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "CategoryId", "CategoryName"))
+                @*@Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })*@
             </div>
         </div>
 

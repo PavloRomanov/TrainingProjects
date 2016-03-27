@@ -47,6 +47,7 @@ namespace WebShop.Service.Implementation
             {
                 list = context.Categories.Select(m => new CategoryViewModel
                 {
+                    CategoryId = m.CategoryId,
                     CategoryName = m.CategoryName
                 }).ToList();
             }
@@ -62,6 +63,7 @@ namespace WebShop.Service.Implementation
                 var category = context.Categories.Find(id);
                 model = new CategoryViewModel
                 {
+                    CategoryId = category.CategoryId,
                     CategoryName = category.CategoryName
                 };
 
@@ -76,7 +78,7 @@ namespace WebShop.Service.Implementation
             {
                 var category = context.Categories.Find(model.CategoryId);
                 category.CategoryName = model.CategoryName;
-                context.SaveChangesAsync();
+                context.SaveChanges();
             }
         }
     }

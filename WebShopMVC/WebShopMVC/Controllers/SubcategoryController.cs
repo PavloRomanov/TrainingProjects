@@ -34,8 +34,8 @@ namespace WebShopMVC.Controllers
         // GET: Subcategory/Create
         public ActionResult Create()
         {
-            var model = new SubcategoryViewModel();
-            return View();
+            var model = subcategoryService.GetNewSubcategoryViewModelWithCategory();
+            return View(model);
         }
 
         // POST: Subcategory/Create
