@@ -11,6 +11,7 @@ namespace WebShop.Service.Contract
     {
         IEnumerable<ProductViewModel> GetAll();
         ProductViewModel GetModelById(int id);
+        ProductViewModel GetNewProductViewModelWithSubcategory();
         void Create(ProductViewModel model);
         void Update(ProductViewModel model);
         void Delete(int id);

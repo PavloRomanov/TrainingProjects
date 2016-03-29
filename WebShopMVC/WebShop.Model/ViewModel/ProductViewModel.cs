@@ -10,24 +10,35 @@ namespace WebShop.Model.ViewModel
     public class ProductViewModel
     {
         public int ProductId { get; set; }
+  
         public int SubcategoryId { get; set; }
+
 
         [Display(Name = "Name of product")]
         [Required]
         [StringLength(30, MinimumLength = 2)]
         public string ProductName { get; set; }
 
+
         [Display(Name = "Discription of product")]
         [StringLength(200)]
         public string Description { get; set; }
 
-        [Display(Name = "Price of product")]
+
+        [Display(Name = "Price")]
         [Required]
         [RegularExpression(@"\d{1,7}\.\d{2}|\d{3}")]
         public decimal Price { get; set; }
 
+
         [Display(Name = "Discount")]
         [RegularExpression(@"\d{2}|\d")]
         public int Discount { get; set; }
+
+
+        public string SubcategoryName { get; set; }
+
+        public IEnumerable<SubcategoryViewModel> Subcategories { get; set; }
     }
 }
+

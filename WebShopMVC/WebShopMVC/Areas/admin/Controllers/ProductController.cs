@@ -31,7 +31,7 @@ namespace WebShopMVC.Areas.admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new ProductViewModel();
+            var model = productService.GetNewProductViewModelWithSubcategory();
             return View();
         }
 
@@ -41,7 +41,7 @@ namespace WebShopMVC.Areas.admin.Controllers
             var model = productService.GetModelById(id);
             return View(model);
         }
-        // POST: admin/Product
+        // POST: admin/Product-----------------------------------------------------------------------
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
         {

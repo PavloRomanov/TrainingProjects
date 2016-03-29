@@ -7,7 +7,7 @@ using WebShop.Model.ViewModel;
 using WebShop.Service;
 using WebShop.Service.Contract;
 
-namespace WebShopMVC.Controllers
+namespace WebShopMVC.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
@@ -48,7 +48,7 @@ namespace WebShopMVC.Controllers
                 return RedirectToAction("List", "Category");
             }
             return View(model);
-                       
+
         }
 
         // GET: Category/Update/5

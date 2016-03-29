@@ -6,8 +6,11 @@
 
 <h2>Сatalog of Product</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
-    <tr style="visibility: hidden;">
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProductId)
         </th>
@@ -16,8 +19,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        
+        </th>       
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>

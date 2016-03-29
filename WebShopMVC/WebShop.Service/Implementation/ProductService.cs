@@ -22,6 +22,7 @@ namespace WebShop.Service.Implementation
                 Price = model.Price,
                 Discount = model.Discount,
                 Description = model.Description
+
             };
             using (var context = new WebShopMVCContext())
             {
@@ -30,31 +31,41 @@ namespace WebShop.Service.Implementation
             }
         }
 
-        public void Delete(int id)
-        {
-            using (var context = new WebShopMVCContext())
-            {
-                
-                var product = context.Products.Find(id);
-                context.Products.Remove(product);               
-                context.SaveChanges();
-            }
-        }
         public IEnumerable<ProductViewModel> GetAll()
         {
             var list = new List<ProductViewModel>();
             using (var context = new WebShopMVCContext())
             {
-                list = context.Products.Select(m => new ProductViewModel {
+                list = context.Products.Include("Subcategories").Select(m => new ProductViewModel
+                {
                     ProductId = m.ProductId,
                     ProductName = m.ProductName,
                     SubcategoryId = m.SubcategoryId,
                     Price = m.Price,
                     Discount = m.Discount,
-                    Description = m.Description}).ToList();
+                    Description = m.Description,
+                    SubcategoryName = m.Subcategory.SubcategoryName
+                }).ToList();
             }
             return list;
         }
+        public ProductViewModel GetNewProductViewModelWithSubcategory()
+        {
+            ProductViewModel model = new ProductViewModel();
+
+            using (var context = new WebShopMVCContext())
+            {
+                model.Subcategories = context.Subcategories.Select(c => new SubcategoryViewModel
+                {
+                    SubcategoryName = c.SubcategoryName,
+                    SubcategoryId = c.SubcategoryId
+                }).ToList();
+
+            }
+            return model;
+        }
+       
+
         public ProductViewModel GetModelById(int id)
         {
             ProductViewModel model;
@@ -69,11 +80,18 @@ namespace WebShop.Service.Implementation
                     SubcategoryId = product.SubcategoryId,
                     Price = product.Price,
                     Discount = product.Discount,
-                    Description = product.Description
+                    Description = product.Description,
+                    Subcategories = context.Subcategories.Select(c => new SubcategoryViewModel
+                    {
+                        SubcategoryName = c.SubcategoryName,
+                        SubcategoryId = c.SubcategoryId
+                    }).ToList()
                 };
             }
             return model;
         }
+
+
         public void Update(ProductViewModel model)
         {
             using (var context = new WebShopMVCContext())
@@ -85,6 +103,17 @@ namespace WebShop.Service.Implementation
             product.Discount = model.Discount;
             product.Description = model.Description;
             context.SaveChanges();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var context = new WebShopMVCContext())
+            {
+
+                var product = context.Products.Find(id);
+                context.Products.Remove(product);
+                context.SaveChanges();
             }
         }
     }

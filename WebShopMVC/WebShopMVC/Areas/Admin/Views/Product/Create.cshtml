@@ -1,39 +1,42 @@
 ﻿@model WebShop.Model.ViewModel.ProductViewModel
 
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "Create";
 }
 
-<h2>UpdateProduct</h2>
+<h2>NewProduct</h2>
+
 @using (Html.BeginForm())
-{
+{ 
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <hr />
-        @Html.ValidationSummary(true, "Смотри , что пишешь!!!", new { @class = "text-danger" })
-        <div class="form-group" style="visibility: hidden;">
-            @Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                 <!--<div class="form-group" style="visibility: hidden;">
+                @Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" }) 
+                 <div class="col-md-10">
                 @Html.EditorFor(model => model.ProductId, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group" style="visibility: hidden;">
+                        </div> 
+                         </div>-->
+        <div class="form-group">
             @Html.LabelFor(model => model.SubcategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubcategoryId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SubcategoryId, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.SubcategoryId, new SelectList(Model.Subcategories, "SubcategoryId", "SubcategoryName"))
+                @* @Html.EditorFor(model => model.SubcategoryId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubcategoryId, "", new { @class = "text-danger" })*@
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control"} })
-                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        </div>      
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -41,6 +44,7 @@
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                 </div>
             </div>
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -62,12 +66,13 @@
                     <input type="submit" value="Enter" class="btn btn-default" />
                 </div>
             </div>
-            }
+        </div>
+}
 
-            <div>
-                @Html.ActionLink("Back to List", "List")
-            </div>
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
 
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-            }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

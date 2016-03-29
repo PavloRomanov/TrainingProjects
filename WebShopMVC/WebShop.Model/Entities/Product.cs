@@ -12,7 +12,7 @@ namespace WebShop.Model.Entities
 
         public int SubcategoryId { get; set; }
         [ForeignKey("SubcategoryId")]
-        public Subcategory subcategory { get; set; }
+        public Subcategory Subcategory { get; set; }
         [Required, MaxLength(30)]
         public string ProductName { get; set; }      
         [Required]
@@ -23,5 +23,6 @@ namespace WebShop.Model.Entities
         [MaxLength(200)]
         public string Description { get; set; }
 
+ 
     }
 }

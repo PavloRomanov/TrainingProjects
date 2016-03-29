@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
 using WebShop.Service;
 using WebShop.Service.Contract;
 
-
-namespace WebShopMVC.Controllers
+namespace WebShopMVC.Areas.Admin.Controllers
 {
     public class ClientController : Controller
     {
@@ -42,7 +40,7 @@ namespace WebShopMVC.Controllers
         [HttpPost]
         public ActionResult Create(ClientViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 clientService.Create(model);
                 return RedirectToAction("Index", "Home");

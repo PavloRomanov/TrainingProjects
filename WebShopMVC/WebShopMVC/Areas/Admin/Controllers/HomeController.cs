@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebShop.Model.ViewModel;
 
-namespace WebShopMVC.Controllers
+namespace WebShopMVC.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
@@ -41,7 +41,5 @@ namespace WebShopMVC.Controllers
         {
             return View();
         }
-
-
     }
 }
