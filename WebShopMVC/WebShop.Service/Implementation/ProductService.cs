@@ -83,7 +83,7 @@ namespace WebShop.Service.Implementation
                     Description = product.Description,
                     Subcategories = context.Subcategories.Select(c => new SubcategoryViewModel
                     {
-                        SubcategoryName = c.SubcategoryName,
+                       // SubcategoryName = c.SubcategoryName,
                         SubcategoryId = c.SubcategoryId
                     }).ToList()
                 };
