@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebShop.Model.Entities
 {
 
-    public class Client
+    public class Client : Base
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebShop.Model.Entities
 {
     [Table("Subcategories")]
-    public class Subcategory
+    public class Subcategory : Base
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

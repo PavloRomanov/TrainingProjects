@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Base.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Product.cs" />
@@ -68,6 +69,10 @@
     <Compile Include="Migrations\201603261032332_updateSubcategoryMigration.cs" />
     <Compile Include="Migrations\201603261032332_updateSubcategoryMigration.Designer.cs">
       <DependentUpon>201603261032332_updateSubcategoryMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603300955255_addRowVersionForEntity.cs" />
+    <Compile Include="Migrations\201603300955255_addRowVersionForEntity.Designer.cs">
+      <DependentUpon>201603300955255_addRowVersionForEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603261032332_updateSubcategoryMigration.resx">
       <DependentUpon>201603261032332_updateSubcategoryMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603300955255_addRowVersionForEntity.resx">
+      <DependentUpon>201603300955255_addRowVersionForEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
