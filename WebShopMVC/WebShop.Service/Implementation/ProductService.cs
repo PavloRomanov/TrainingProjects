@@ -101,6 +101,7 @@ namespace WebShop.Service.Implementation
             product.Price = model.Price;
             product.Discount = model.Discount;
             product.Description = model.Description;
+            product.RowVersion = new DateTime();
             context.SaveChanges();
             }
         }
