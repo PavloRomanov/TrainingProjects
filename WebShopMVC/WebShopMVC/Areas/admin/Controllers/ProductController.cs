@@ -32,7 +32,7 @@ namespace WebShopMVC.Areas.admin.Controllers
         public ActionResult Create()
         {
             var model = productService.GetNewProductViewModelWithSubcategory();
-            return View();
+            return View(model);
         }
 
         [HttpGet]

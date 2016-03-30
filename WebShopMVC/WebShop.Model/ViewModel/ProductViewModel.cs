@@ -32,13 +32,11 @@ namespace WebShop.Model.ViewModel
 
 
         [Display(Name = "Discount")]
+        [Range(0, 100)]
         [RegularExpression(@"\d{2}|\d")]
         public int Discount { get; set; }
 
-
-        public string SubcategoryName { get; set; }
-
-        public IEnumerable<SubcategoryViewModel> Subcategories { get; set; }
+        public IEnumerable<PartViewSubcategoriesForProduct> Subcategories { get; set; }
     }
 }
 

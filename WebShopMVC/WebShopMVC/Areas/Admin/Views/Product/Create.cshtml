@@ -23,9 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubcategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SubcategoryId, new SelectList(Model.Subcategories, "SubcategoryId", "SubcategoryName"))
-                @* @Html.EditorFor(model => model.SubcategoryId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SubcategoryId, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.SubcategoryId, new SelectList(Model.Subcategories, "SubcategoryId", "SubcategoryName"))                
             </div>
         </div>
 

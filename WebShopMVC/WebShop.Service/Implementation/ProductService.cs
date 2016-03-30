@@ -36,15 +36,14 @@ namespace WebShop.Service.Implementation
             var list = new List<ProductViewModel>();
             using (var context = new WebShopMVCContext())
             {
-                list = context.Products.Include("Subcategories").Select(m => new ProductViewModel
+                list = context.Products.Select(m => new ProductViewModel
                 {
                     ProductId = m.ProductId,
                     ProductName = m.ProductName,
                     SubcategoryId = m.SubcategoryId,
                     Price = m.Price,
                     Discount = m.Discount,
-                    Description = m.Description,
-                    SubcategoryName = m.Subcategory.SubcategoryName
+                    Description = m.Description
                 }).ToList();
             }
             return list;
@@ -55,7 +54,7 @@ namespace WebShop.Service.Implementation
 
             using (var context = new WebShopMVCContext())
             {
-                model.Subcategories = context.Subcategories.Select(c => new SubcategoryViewModel
+                model.Subcategories = context.Subcategories.Select(c => new PartViewSubcategoriesForProduct
                 {
                     SubcategoryName = c.SubcategoryName,
                     SubcategoryId = c.SubcategoryId
@@ -81,9 +80,9 @@ namespace WebShop.Service.Implementation
                     Price = product.Price,
                     Discount = product.Discount,
                     Description = product.Description,
-                    Subcategories = context.Subcategories.Select(c => new SubcategoryViewModel
+                    Subcategories = context.Subcategories.Select(c => new PartViewSubcategoriesForProduct
                     {
-                       // SubcategoryName = c.SubcategoryName,
+                        SubcategoryName = c.SubcategoryName,
                         SubcategoryId = c.SubcategoryId
                     }).ToList()
                 };
