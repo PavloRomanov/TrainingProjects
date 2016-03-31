@@ -28,9 +28,9 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Categories", "", "Category")</li>
-                        <li>@Html.ActionLink("Subcategories", "", "SubCategory")</li>
-                        <li>@Html.ActionLink("Products", "", "Product")</li>
+                        <li>@Html.ActionLink("Categories", "List", "Category", new { area = "Admin" }, null)</li>
+                        <li>@Html.ActionLink("Subcategories", "List", "SubCategory", new { area = "Admin" }, null)</li>
+                        <li>@Html.ActionLink("Products", "List", "Product", new { area = "Admin" }, null)</li>
                     </ul>
                 </li>
                     </ul>
