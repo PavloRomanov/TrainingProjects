@@ -34,7 +34,7 @@ namespace WebShopMVC.Areas.Admin.Controllers
         // GET: Subcategory/Create
         public ActionResult Create()
         {
-            var model = subcategoryService.GetNewSubcategoryViewModelWithCategory();
+            var model = subcategoryService.GetNewSubcategoryViewModelWithCategories();
             return View(model);
         }
 

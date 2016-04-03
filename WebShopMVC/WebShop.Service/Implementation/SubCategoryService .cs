@@ -57,9 +57,9 @@ namespace WebShop.Service.Implementation
             return list;
         }
 
-        public SubcategoryViewModel GetNewSubcategoryViewModelWithCategory()
+        public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
         {
-            SubcategoryViewModel model = new SubcategoryViewModel();
+            CompositeSubcategoryViewModel model = new CompositeSubcategoryViewModel();
 
             using (var context = new WebShopMVCContext())
             {
@@ -70,14 +70,14 @@ namespace WebShop.Service.Implementation
             return model;
         }
 
-        public SubcategoryViewModel GetModelById(int id)
+        public CompositeSubcategoryViewModel GetModelById(int id)
         {
-            SubcategoryViewModel model;
+            CompositeSubcategoryViewModel model;
 
             using (var context = new WebShopMVCContext())
             {
                 var subcategory = context.Subcategories.Find(id);
-                model = new SubcategoryViewModel
+                model = new CompositeSubcategoryViewModel
                 {
                     CategoryId = subcategory.CategoryId,
                     SubcategoryId = subcategory.SubcategoryId,

@@ -9,19 +9,15 @@ namespace WebShop.Model.ViewModel
 {
     public class SubcategoryViewModel
     {
-        public int SubcategoryId { get; set; }
-
         public int CategoryId { get; set; }
 
+        public string CategoryName { get; set; }
+
+        public int SubcategoryId { get; set; }
 
         [Display(Name = "Name of SubCategory")]
         [Required]
         [StringLength(40, MinimumLength = 2)]
         public string SubcategoryName { get; set; }
-
-
-        public string CategoryName { get; set; }
-
-        public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }
