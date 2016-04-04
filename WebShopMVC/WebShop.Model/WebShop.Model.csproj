@@ -79,6 +79,7 @@
     <Compile Include="Validation\ValidForProduct.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
+    <Compile Include="ViewModel\CompositeCategoryViewModel.cs" />
     <Compile Include="ViewModel\CompositeSubcategoryViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PartViewSubcategoriesForProduct.cs" />
