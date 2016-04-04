@@ -40,7 +40,7 @@ namespace WebShopMVC.Areas.Admin.Controllers
 
         // POST: Subcategory/Create
         [HttpPost]
-        public ActionResult Create(SubcategoryViewModel model)
+        public ActionResult Create(CompositeSubcategoryViewModel model)
         {
             if (ModelState.IsValid)
             {
