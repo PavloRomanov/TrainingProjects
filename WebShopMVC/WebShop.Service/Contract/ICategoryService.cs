@@ -10,6 +10,7 @@ namespace WebShop.Service.Contract
     public interface ICategoryService
     {
         IEnumerable<CategoryViewModel> GetAll();
+        IEnumerable<CompositeCategoryViewModel> GetAllWithSubcategory();
         CategoryViewModel GetModelById(int id);
         void Create(CategoryViewModel model);
         void Update(CategoryViewModel model);

@@ -1,6 +1,18 @@
-﻿@model IEnumerable<WebShop.Model.ViewModel.CategoryViewModel>
+﻿@model IEnumerable<WebShop.Model.ViewModel.CompositeCategoryViewModel>
 
-@foreach (var category in Model)
-{
-
-}
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+    @foreach (var category in Model)
+    {
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">@category.CategoryName<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            @foreach (var subcategory in category.Subcategories)
+            {
+                <li>@Html.ActionLink(subcategory.SubcategoryName, "List", "Product")</li>
+            }
+            </ul>
+        </li>
+    }
+    </ul>
+</div>

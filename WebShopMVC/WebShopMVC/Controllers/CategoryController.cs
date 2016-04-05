@@ -21,9 +21,9 @@ namespace WebShopMVC.Controllers
         // GET: Category
         public ActionResult List()
         {
-            var model = categoryService.GetAll();
+            var model = categoryService.GetAllWithSubcategory();
 
-            return View(model);
+            return PartialView("_PartialCategory", model);
         }
 
     }
