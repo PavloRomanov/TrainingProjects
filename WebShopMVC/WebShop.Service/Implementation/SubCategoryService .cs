@@ -98,7 +98,6 @@ namespace WebShop.Service.Implementation
                 var subcategory = context.Subcategories.Find(model.SubcategoryId);
                 subcategory.SubcategoryName = model.SubcategoryName;
                 subcategory.CategoryId = model.CategoryId;
-                subcategory.RowVersion = new DateTime();
                 context.SaveChanges();
             }
         }

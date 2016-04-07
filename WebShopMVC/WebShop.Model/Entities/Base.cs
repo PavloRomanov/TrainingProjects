@@ -10,11 +10,6 @@ namespace WebShop.Model.Entities
 {
     public class Base
     {
-        public Base()
-        {
-            this.RowVersion = new DateTime();
-        }
-
         [ConcurrencyCheck]
         [Required]
         [Column(TypeName="DateTime2")]

@@ -97,7 +97,6 @@ namespace WebShop.Service.Implementation
             {
                 var category = context.Categories.Find(model.CategoryId);
                 category.CategoryName = model.CategoryName;
-                category.RowVersion = new DateTime();
                 context.SaveChanges();
             }
         }
