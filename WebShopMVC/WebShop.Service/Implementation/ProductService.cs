@@ -22,7 +22,6 @@ namespace WebShop.Service.Implementation
                 Price = model.Price,
                 Discount = model.Discount,
                 Description = model.Description
-
             };
             using (var context = new WebShopMVCContext())
             {
@@ -109,7 +108,6 @@ namespace WebShop.Service.Implementation
         {
             using (var context = new WebShopMVCContext())
             {
-
                 var product = context.Products.Find(id);
                 context.Products.Remove(product);
                 context.SaveChanges();

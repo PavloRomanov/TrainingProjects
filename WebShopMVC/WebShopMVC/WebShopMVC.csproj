@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Controllers\SubcategoryController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,6 +187,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Pictures\Edit.png" />
+    <Content Include="Pictures\Fridge Atlant.jpg" />
+    <Content Include="Pictures\iron.jpg" />
+    <Content Include="Pictures\Microwave.jpg" />
+    <Content Include="Pictures\Крупная бытовая техника.jpg" />
+    <Content Include="Pictures\Мелкая бытовая техника.jpg" />
+    <Content Include="Pictures\products 2.jpg" />
+    <Content Include="Pictures\products.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -233,6 +242,9 @@
     <Content Include="Areas\Admin\Views\Category\List.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Update.cshtml" />
     <Content Include="Views\Shared\_PartialCategory.cshtml" />
+    <Content Include="Views\Product\ListAllProduct.cshtml" />
+    <Content Include="Views\Product\GetOneProduct.cshtml" />
+    <Content Include="Views\Product\ListProductSubcategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
