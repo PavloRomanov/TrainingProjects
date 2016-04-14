@@ -1,0 +1,22 @@
+﻿body {
+     padding-top: 200px;
+     padding-bottom: 40px;
+}
+.body-content {
+    padding-left: 15px;
+}
+.dl-vertical dt {
+    white-space: normal;
+}
+.not-visible {
+  visibility: hidden;
+}
+.subcategory, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subcategory > li {
+  float: left;
+}

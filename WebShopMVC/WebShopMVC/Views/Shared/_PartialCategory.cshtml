@@ -7,9 +7,10 @@
             <ul>
                 @foreach (var subcategory in category.Subcategories)
                 {
-                    <li>@Html.ActionLink(subcategory.SubcategoryName, "List", "Product")</li>
+                    <li>@Html.ActionLink(subcategory.SubcategoryName, "ListSubcategories", "Product")</li>
                 }
             </ul>
         </li>
     }
+    <li>@Html.ActionLink("All Products", "ListAllproduct", "Product")</li>
 </ul>

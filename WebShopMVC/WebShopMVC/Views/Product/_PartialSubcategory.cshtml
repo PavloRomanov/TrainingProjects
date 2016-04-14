@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WebShop.Model.ViewModel.CompositeSubcategoryViewModel>
+
+@{
+    ViewBag.Title = "ListProductSubcategories";
+}
+
+<h2> Sucategory</h2>
+
+<img src='Pictures/Large home appliances.jpg' alt='product1' style='float:right ; width: 40%; height: 300px;'>
+<img src='Pictures/Small home appliances.jpg' alt='product2' style='float:right ; width: 40%; height: 300px;'>
+
+  <ul class="subcategory">
+    @foreach (var subcategory in Model)
+    {
+        <li>@Html.ActionLink(subcategory.SubcategoryName, "ProducsOfSubcategory", "Product")</li>
+    }
+</ul>

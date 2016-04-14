@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebShop.Model.ViewModel;
 using WebShop.Service;
 using WebShop.Service.Contract;
 namespace WebShopMVC.Controllers
@@ -11,10 +12,12 @@ namespace WebShopMVC.Controllers
     {
 
         private IProductService productService;
+        private ISubcategoryService subService;
 
         public ProductController()
         {
             productService = ServiceLocator.GetProductService();
+            subService = ServiceLocator.GetSubcategoryService();
         }
         // GET: Product
         public ActionResult Index()
@@ -31,11 +34,13 @@ namespace WebShopMVC.Controllers
             var model = productService.GetModelById(Id);
             return View(model);
         }
-        public ActionResult ListProductSubcategories()//--------------------------------?????
+        //------------------------------------------------------------------------------------  
+        // GET: Subcategories
+        public ActionResult ListSubcategories()
         {
-            var model = productService.GetAll();
-            return View(model);
-        }
+            var model = subService.GetNewSubcategoryViewModelWithCategories();
 
+            return PartialView("_PartialSubcategory", model);
+        }
     }
 }

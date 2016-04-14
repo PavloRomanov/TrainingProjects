@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Controllers\SubcategoryController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,9 +184,18 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\StyleSubcategory.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Pictures\Edit.png" />
+    <Content Include="Pictures\Fridge Atlant.jpg" />
+    <Content Include="Pictures\iron.jpg" />
+    <Content Include="Pictures\Microwave.jpg" />
+    <Content Include="Pictures\products 2.jpg" />
+    <Content Include="Pictures\products.jpg" />
+    <Content Include="Pictures\Large home appliances.jpg" />
+    <Content Include="Pictures\Small home appliances.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -234,6 +244,10 @@
     <Content Include="Areas\Admin\Views\Category\List.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Update.cshtml" />
     <Content Include="Views\Shared\_PartialCategory.cshtml" />
+    <Content Include="Views\Product\GetOneProduct.cshtml" />
+    <Content Include="Views\Product\ListAllProduct.cshtml" />
+    <Content Include="Views\Product\_PartialSubcategory.cshtml" />
+    <Content Include="Views\Product\ProducsOfSubcategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
