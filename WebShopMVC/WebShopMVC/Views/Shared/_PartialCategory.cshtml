@@ -3,11 +3,12 @@
 <ul class="category">
     @foreach (var category in Model)
     {
-        <li><a href="#">@category.CategoryName</a>
+        <li>@Html.ActionLink(category.CategoryName, "ListSubcategories", "Subcategory")
+
             <ul>
                 @foreach (var subcategory in category.Subcategories)
                 {
-                    <li>@Html.ActionLink(subcategory.SubcategoryName, "ListSubcategories", "Product")</li>
+                    <li>@Html.ActionLink(subcategory.SubcategoryName, "ProductsOfSubcategory", "Product")</li>
                 }
             </ul>
         </li>

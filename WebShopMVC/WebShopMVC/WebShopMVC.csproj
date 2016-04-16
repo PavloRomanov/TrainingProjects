@@ -174,6 +174,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SubcategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,8 +235,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\About.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Client\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Client\List.cshtml" />
@@ -246,8 +247,8 @@
     <Content Include="Views\Shared\_PartialCategory.cshtml" />
     <Content Include="Views\Product\GetOneProduct.cshtml" />
     <Content Include="Views\Product\ListAllProduct.cshtml" />
-    <Content Include="Views\Product\_PartialSubcategory.cshtml" />
-    <Content Include="Views\Product\ProducsOfSubcategory.cshtml" />
+    <Content Include="Views\Subcategory\_PartialSubcategory.cshtml" />
+    <Content Include="Views\Product\ProductsOfSubcategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

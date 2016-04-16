@@ -56,19 +56,23 @@ namespace WebShop.Service.Implementation
             }
             return list;
         }
-
         public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
         {
-            CompositeSubcategoryViewModel model = new CompositeSubcategoryViewModel();
-
-            using (var context = new WebShopMVCContext())
-            {
-                model.Categories = context.Categories.Select(c => new CategoryViewModel
-                { CategoryName = c.CategoryName, CategoryId = c.CategoryId }).ToList();
-               
-            }
-            return model;
+            throw new NotImplementedException();
         }
+        /*  public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
+          {
+              CompositeSubcategoryViewModel model = new CompositeSubcategoryViewModel();
+
+              using (var context = new WebShopMVCContext())
+              {
+                  model.Categories = context.Categories.Select(c => new CategoryViewModel
+                  { CategoryName = c.CategoryName, CategoryId = c.CategoryId }).ToList();
+
+              }
+              return model;
+         
+    } */
 
         public CompositeSubcategoryViewModel GetModelById(int id)
         {

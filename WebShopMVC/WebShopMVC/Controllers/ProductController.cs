@@ -12,35 +12,46 @@ namespace WebShopMVC.Controllers
     {
 
         private IProductService productService;
-        private ISubcategoryService subService;
+       
 
         public ProductController()
         {
             productService = ServiceLocator.GetProductService();
-            subService = ServiceLocator.GetSubcategoryService();
         }
+
+
         // GET: Product
         public ActionResult Index()
         {
             return View();
         }
+
+
         public ActionResult ListAllProduct()
         {
             var model = productService.GetAll();
             return View(model);
         }
+
+
         public ActionResult GetOneProduct(int Id)
         {
             var model = productService.GetModelById(Id);
             return View(model);
         }
-        //------------------------------------------------------------------------------------  
-        // GET: Subcategories
-        public ActionResult ListSubcategories()
+        public ActionResult ProductsOfSubcategory(int Id)
         {
-            var model = subService.GetNewSubcategoryViewModelWithCategories();
 
-            return PartialView("_PartialSubcategory", model);
+            var mod = productService.GetAll();
+            List<ProductViewModel> model= new List<ProductViewModel>();
+            foreach (var element in mod)
+            {
+                if(element.SubcategoryId == Id)
+                {
+                    model.Add(element);
+                }
+            }
+            return View(model);
         }
     }
 }

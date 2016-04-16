@@ -52,6 +52,7 @@
     <Compile Include="Entities\Base.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Subcategory.cs" />
     <Compile Include="Migrations\201603231023544__firstMigration.cs" />

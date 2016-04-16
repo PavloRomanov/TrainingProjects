@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebShop.Model.ViewModel.ProductViewModel>
+
+@{
+    ViewBag.Title = "ProductsOfSubcategory";
+}
+
+<h2>ProducsOfSubcategory</h2>
+
+@foreach (var item in Model)
+{
+
+            @item.ProductName
+
+
+            @item.Price
+
+
+            @item.Discount
+
+
+            @item.Description
+
+
+            @Html.ActionLink("Detail", "GetOneProduct", new { id = item.ProductId })
+}
