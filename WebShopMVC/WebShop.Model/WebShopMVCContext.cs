@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using WebShop.Model.Entities;
 
+
 namespace WebShop.Model
 {
     public class WebShopMVCContext : DbContext

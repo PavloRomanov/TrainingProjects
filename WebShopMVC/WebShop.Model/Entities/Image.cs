@@ -8,25 +8,24 @@ using System.Threading.Tasks;
 
 namespace WebShop.Model.Entities
 {
-    public class Image: Base
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ImageId{get; set;}
-        
-        public int ProductId { get; set; }
+public class Image : Base
+{
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int ImageId { get; set; }
 
-        [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+    public int ProductId { get; set; }
 
-        [Required, MaxLength(30)]
-        public string FileName { get; set; }
+    [ForeignKey("ProductId")]
+    public Product Product { get; set; }
 
-        [Required]
-        public bool MainPicture { get; set; }
+    [Required, MaxLength(30)]
+    public string FileName { get; set; }
 
-        [Required]
-        public byte[] Picture;       
+    [Required]
+    public bool MainPicture { get; set; }
 
-    }
+    [Required]
+    public byte[] Picture;
+}
 }
