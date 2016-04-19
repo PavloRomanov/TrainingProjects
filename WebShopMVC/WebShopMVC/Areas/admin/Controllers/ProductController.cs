@@ -28,6 +28,7 @@ namespace WebShopMVC.Areas.admin.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -35,13 +36,6 @@ namespace WebShopMVC.Areas.admin.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult Update(int id)
-        {
-            var model = productService.GetModelById(id);
-            return View(model);
-        }
-        // POST: admin/Product-----------------------------------------------------------------------
         [HttpPost]
         public ActionResult Create(ProductViewModel model)
         {
@@ -52,6 +46,14 @@ namespace WebShopMVC.Areas.admin.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var model = productService.GetModelById(id);
+            return View(model);
+        }
+        
         [HttpPost]
         public ActionResult Update(ProductViewModel model)
         {

@@ -24,5 +24,10 @@ namespace WebShop.Service
         {
             return new SubcategoryService();
         }
+
+        public static IImageService GetImageService()
+        {
+            return new ImageService();
+        }
     }
 }

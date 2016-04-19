@@ -82,6 +82,7 @@
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\CompositeCategoryViewModel.cs" />
     <Compile Include="ViewModel\CompositeSubcategoryViewModel.cs" />
+    <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PartViewSubcategoriesForProduct.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />

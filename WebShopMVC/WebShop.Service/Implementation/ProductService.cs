@@ -47,6 +47,24 @@ namespace WebShop.Service.Implementation
             }
             return list;
         }
+        public IEnumerable<ProductViewModel> GetProductsOfSubcategory(int Id)
+        {
+            var list = new List<ProductViewModel>();
+            using (var context = new WebShopMVCContext())
+            {
+                list = context.Products.Select(m => new ProductViewModel
+                {
+                    ProductId = m.ProductId,
+                    ProductName = m.ProductName,
+                    SubcategoryId = m.SubcategoryId,
+                    Price = m.Price,
+                    Discount = m.Discount,
+                    Description = m.Description
+                }).Where(m => m.ProductId == Id).ToList();
+           
+            }
+            return list;
+        }
         public ProductViewModel GetNewProductViewModelWithSubcategory()
         {
             ProductViewModel model = new ProductViewModel();
@@ -63,7 +81,6 @@ namespace WebShop.Service.Implementation
             return model;
         }
        
-
         public ProductViewModel GetModelById(int id)
         {
             ProductViewModel model;
@@ -88,7 +105,6 @@ namespace WebShop.Service.Implementation
             }
             return model;
         }
-
 
         public void Update(ProductViewModel model)
         {

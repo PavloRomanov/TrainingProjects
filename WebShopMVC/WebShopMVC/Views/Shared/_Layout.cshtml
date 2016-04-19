@@ -31,8 +31,8 @@
     </div>
     <div class="container body-content">
         @Html.Action("List", "Category")
+       @* @Html.Action("ListSubcategories", "Subcategory")*@
         @RenderBody()
-        <hr />
         <footer class="panel-footer">
             <p>&copy; @DateTime.Now.Year – SSC</p>
         </footer>

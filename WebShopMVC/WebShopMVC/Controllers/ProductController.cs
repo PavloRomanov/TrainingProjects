@@ -26,31 +26,26 @@ namespace WebShopMVC.Controllers
             return View();
         }
 
-
+        [HttpGet]
         public ActionResult ListAllProduct()
         {
             var model = productService.GetAll();
             return View(model);
         }
 
-
-        public ActionResult GetOneProduct(int Id)
+        [HttpGet]
+        public ActionResult Detail(int Id)
         {
             var model = productService.GetModelById(Id);
             return View(model);
         }
+
+        [HttpGet]
         public ActionResult ProductsOfSubcategory(int Id)
         {
 
-            var mod = productService.GetAll();
-            List<ProductViewModel> model= new List<ProductViewModel>();
-            foreach (var element in mod)
-            {
-                if(element.SubcategoryId == Id)
-                {
-                    model.Add(element);
-                }
-            }
+            var model = productService.GetProductsOfSubcategory(Id);
+           
             return View(model);
         }
     }

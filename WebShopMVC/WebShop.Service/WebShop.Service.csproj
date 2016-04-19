@@ -42,11 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\IImageService.cs" />
     <Compile Include="Contract\ISubcategoryService.cs" />
     <Compile Include="Contract\ICategoryService.cs" />
     <Compile Include="Contract\IClientService.cs" />
     <Compile Include="Contract\IService.cs" />
     <Compile Include="Contract\IProductService.cs" />
+    <Compile Include="Implementation\ImageService.cs" />
     <Compile Include="Implementation\SubcategoryService .cs" />
     <Compile Include="Implementation\CategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -22,9 +22,11 @@ namespace WebShop.Model.Entities
         [Required, MaxLength(30)]
         public string FileName { get; set; }
 
-        public string MainPicture { get; set; }
+        [Required]
+        public bool MainPicture { get; set; }
 
-        public byte[] Pictures;       
+        [Required]
+        public byte[] Picture;       
 
     }
 }
