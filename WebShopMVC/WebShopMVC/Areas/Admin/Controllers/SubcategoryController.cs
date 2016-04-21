@@ -34,13 +34,13 @@ namespace WebShopMVC.Areas.Admin.Controllers
         // GET: Subcategory/Create
         public ActionResult Create()
         {
-            var model = new SubcategoryViewModel();
+            var model = subcategoryService.GetNewSubcategoryViewModelWithCategories();
             return View(model);
         }
 
         // POST: Subcategory/Create
         [HttpPost]
-        public ActionResult Create(CompositeSubcategoryViewModel model)
+        public ActionResult Create(SubcategoryViewModel model)
         {
             if (ModelState.IsValid)
             {

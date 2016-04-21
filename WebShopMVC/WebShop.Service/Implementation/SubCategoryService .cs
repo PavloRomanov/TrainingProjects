@@ -56,11 +56,8 @@ namespace WebShop.Service.Implementation
             }
             return list;
         }
-        public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
-        {
-            throw new NotImplementedException();
-        }
-        /*  public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
+       
+          public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
           {
               CompositeSubcategoryViewModel model = new CompositeSubcategoryViewModel();
 
@@ -72,7 +69,7 @@ namespace WebShop.Service.Implementation
               }
               return model;
          
-    } */
+    } 
 
         public CompositeSubcategoryViewModel GetModelById(int id)
         {

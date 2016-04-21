@@ -8,7 +8,7 @@
             <ul>
                 @foreach (var subcategory in category.Subcategories)
                 {
-                    <li>@Html.ActionLink(subcategory.SubcategoryName, "ProductsOfSubcategory", "Product", new {id = subcategory.SubcategoryId})</li>
+                    <li>@Html.ActionLink(subcategory.SubcategoryName, "ProductsOfSubcategory", "Product", new {id = subcategory.SubcategoryId},null)</li>
                 }
             </ul>
         </li>

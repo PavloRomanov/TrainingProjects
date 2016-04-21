@@ -27,7 +27,7 @@ namespace WebShopMVC.Controllers
         {
             var model = subService.GetAll();
 
-            return PartialView("ListSubcategory", model);
+            return View("ListSubcategory", model);
         }
         
     }

@@ -12,6 +12,6 @@
   <ul class="subcategory">
     @foreach (var subcategory in Model)
     {
-        <li>@Html.ActionLink(subcategory.SubcategoryName,"ProductsOfSubcategory","Product", new { id = subcategory.SubcategoryId })</li>
+        <li>@Html.ActionLink(subcategory.SubcategoryName,"ProductsOfSubcategory","Product", new { id = subcategory.SubcategoryId },null)</li>
     }
 </ul>

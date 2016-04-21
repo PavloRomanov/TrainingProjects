@@ -19,13 +19,14 @@ public class Image : Base
     [ForeignKey("ProductId")]
     public Product Product { get; set; }
 
-    [Required, MaxLength(30)]
-    public string FileName { get; set; }
+   // [Required, MaxLength(30)]
 
-    [Required]
+   // public string FileName { get; set; }
+
+ 
+  //  [HiddenInput(DisplayValue = false)]
     public bool MainPicture { get; set; }
-
-    [Required]
-    public byte[] Picture;
+    public byte[] Picture { get; set; }
+    public string ImageMineType { get; set; }
 }
 }

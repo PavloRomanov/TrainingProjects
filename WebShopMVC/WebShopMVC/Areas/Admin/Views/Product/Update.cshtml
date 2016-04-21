@@ -1,4 +1,4 @@
-﻿@model WebShop.Model.ViewModel.ProductViewModel
+﻿@model WebShop.Model.ViewModel.ProductViewModelWithImage
 
 @{
     ViewBag.Title = "Edit";
@@ -8,8 +8,26 @@
 
 
 <img src='~/Pictures/Edit.png' alt='Edit' style='width: 70%; height: 200px; border: 0'>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Udate","Admin",FormMethod.Post, new { enctipe = "multipart/from-data" }))
 {
+    @Html.EditorForModel()
+    <div class="editor-label">Image</div>
+    <div class="editor-field">
+        @if (Model.Picture == null)
+        {
+            @:None
+    }
+        else
+        {
+            <img width=600 height="400" scr="@Url.Action("Image","Image",new {Model.ProductId})" />
+        }
+        <div>Upload new image:<input type="file" name="Image" /></div>
+    </div>
+
+
+
+
+
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">

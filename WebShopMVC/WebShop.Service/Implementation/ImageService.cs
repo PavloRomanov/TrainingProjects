@@ -12,31 +12,16 @@ namespace WebShop.Service.Implementation
 {
     public class ImageService : IImageService
     {
-       /* public byte[] CreatePicture("")
-        {
-            byte[] pic = new byte[];
-            return pic;
-        }*/
+      
         public void Create(ImageViewModel model)
         {
-            Image product = new Image
-            {
-                ImageId = model.ImageId,
-                ProductId = model.ProductId,
-                FileName = model.FileName,
-                MainPicture = model.MainPicture,
-                Picture = model.Picture
-            };
+            
+            throw new NotImplementedException();
         }
 
         public void Delete(int id)
         {
-            using (var context = new WebShopMVCContext())
-            {
-                var image = context.Images.Find(id);
-                context.Images.Remove(image);
-                context.SaveChanges();
-            }
+            throw new NotImplementedException();
         }
 
         public IEnumerable<ImageViewModel> GetAll()
@@ -53,5 +38,8 @@ namespace WebShop.Service.Implementation
         {
             throw new NotImplementedException();
         }
+
+     
+        
     }
 }

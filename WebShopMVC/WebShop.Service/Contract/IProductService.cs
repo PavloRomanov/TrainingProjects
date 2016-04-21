@@ -14,7 +14,7 @@ namespace WebShop.Service.Contract
         IEnumerable<ProductViewModel> GetProductsOfSubcategory(int Id);
         ProductViewModel GetNewProductViewModelWithSubcategory();
         void Create(ProductViewModel model);
-        void Update(ProductViewModel model);
+        void Update(ProductViewModelWithImage model);
         void Delete(int id);
     }
 }

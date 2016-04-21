@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201604191510596__addImage.Designer.cs">
       <DependentUpon>201604191510596__addImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604211605031_changeImage.cs" />
+    <Compile Include="Migrations\201604211605031_changeImage.Designer.cs">
+      <DependentUpon>201604211605031_changeImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidForProduct.cs" />
@@ -90,6 +94,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PartViewSubcategoriesForProduct.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModelWithImage.cs" />
     <Compile Include="ViewModel\SubcategoryViewModel.cs" />
     <Compile Include="WebShopMVCContext.cs" />
   </ItemGroup>
@@ -118,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604191510596__addImage.resx">
       <DependentUpon>201604191510596__addImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604211605031_changeImage.resx">
+      <DependentUpon>201604211605031_changeImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

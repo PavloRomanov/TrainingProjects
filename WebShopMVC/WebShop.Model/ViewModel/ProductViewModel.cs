@@ -37,6 +37,7 @@ namespace WebShop.Model.ViewModel
         public int Discount { get; set; }
 
         public IEnumerable<PartViewSubcategoriesForProduct> Subcategories { get; set; }
+        public IEnumerable<ImageViewModel> Images { get; set; }
     }
 }
 

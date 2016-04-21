@@ -28,7 +28,7 @@ namespace WebShopMVC.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var model = new ImageViewModel();
-            return View();
+            return View(model);
         }
 
         [HttpPost]
