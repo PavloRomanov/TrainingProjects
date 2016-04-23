@@ -106,7 +106,7 @@ namespace WebShop.Service.Implementation
             return model;
         }
 
-        public void Update(ProductViewModelWithImage model)
+        public void Update(ProductViewModel model)
         {
             using (var context = new WebShopMVCContext())
             {
@@ -117,12 +117,6 @@ namespace WebShop.Service.Implementation
             product.Discount = model.Discount;
             product.Description = model.Description;
             context.SaveChanges();
-                //----------------------------------------------------------------------------
-               /* var picture = context.Images.Find(model.ProductId);
-                picture.Picture = model.Picture;
-                picture.ImageMineType = model.ImageMineType;
-                picture.MainPicture = model.MainPicture;
-            context.SaveChanges();*/
             }
         }
 

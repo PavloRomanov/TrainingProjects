@@ -55,16 +55,10 @@ namespace WebShopMVC.Areas.admin.Controllers
         }
         
         [HttpPost]
-        public ActionResult Update(ProductViewModelWithImage model,HttpPostedFileBase image)
+        public ActionResult Update(ProductViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                if(image!= null)
-                {
-                    model.ImageMineType = image.ContentType;
-                    model.Picture = new byte[image.ContentLength];
-                    image.InputStream.Read(model.Picture, 0, image.ContentLength);
-                }
+            {             
                 productService.Update(model);
                 return RedirectToAction("List", "Product");
             }

@@ -41,10 +41,29 @@ namespace WebShopMVC.Areas.Admin.Controllers
             }         
             return View(model);
         }
+
         public ActionResult Delete(int id)
         {
             imageService.Delete(id);
             return RedirectToAction("List", "Image");//??
+        }
+
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var model = imageService.GetModelById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Udate(ImageViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                imageService.Update(model);
+                return RedirectToAction("List", "Image");//??
+            }
+           return View(model);
         }
     }
 }

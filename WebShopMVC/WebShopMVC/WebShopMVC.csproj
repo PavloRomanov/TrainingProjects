@@ -212,6 +212,7 @@
     <Content Include="Areas\Admin\Views\Subcategory\List.cshtml" />
     <Content Include="Areas\Admin\Views\Subcategory\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Image\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -255,7 +256,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
