@@ -15,7 +15,7 @@ namespace WebShop.Model.ViewModel
 
 
         [Display(Name = "Name of product")]
-        [Required]
+        [Required(ErrorMessage ="please enter name product")]
         [StringLength(30, MinimumLength = 2)]
         public string ProductName { get; set; }
 
@@ -26,7 +26,7 @@ namespace WebShop.Model.ViewModel
 
 
         [Display(Name = "Price")]
-        [Required]
+        [Required(ErrorMessage = "please enter price of product")]
         [RegularExpression(@"\d{1,7}\.\d{2}|\d{3}")]
         public decimal Price { get; set; }
 

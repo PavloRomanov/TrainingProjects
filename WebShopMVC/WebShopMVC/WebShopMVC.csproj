@@ -174,7 +174,6 @@
     <Compile Include="Areas\Admin\Controllers\SubcategoryController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SubcategoryController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +212,7 @@
     <Content Include="Areas\Admin\Views\Subcategory\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Image\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Image\ListImage.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

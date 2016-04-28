@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebShop.Model;
 using WebShop.Model.ViewModel;
 using WebShop.Service;
 using WebShop.Service.Contract;
@@ -20,9 +21,10 @@ namespace WebShopMVC.Areas.admin.Controllers
         }
 
         // GET: admin/Product
-        public ActionResult Details(int id)
+        public ActionResult Details(int Id)
         {
-            return View();
+           // var model = productService.GetModelById(Id);
+            return RedirectToAction("List", "Product");
         }
         public ActionResult Index()
         {
@@ -74,6 +76,24 @@ namespace WebShopMVC.Areas.admin.Controllers
         {
             productService.Delete(id);
             return RedirectToAction("List", "Product");
+        }
+
+        public FileContentResult Image(int productId)
+        {
+
+            using (var context = new WebShopMVCContext())
+            {
+                var image = context.Images.FirstOrDefault(p => p.ProductId == productId);
+
+                if (image != null)
+                {
+                    return File(image.Picture, image.ImageMineType);
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
 }

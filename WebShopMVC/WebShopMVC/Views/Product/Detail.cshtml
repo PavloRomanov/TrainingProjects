@@ -1,4 +1,4 @@
-﻿@model WebShop.Model.ViewModel.ProductViewModel
+﻿@model WebShop.Model.ViewModel.ProductViewModelWithPartImage
 
 @{
     ViewBag.Title = "Selected Product";
@@ -6,8 +6,16 @@
 
 <br>
 <h1>@Model.ProductName</h1>
+@foreach(var element in Model.Images)
+{
+    @if (element.ProductId == Model.ProductId && Model.MainPicture == true)
+    {
+        <div class="iso">
 
-<img src='/Pictures/iron.jpg' alt='Iron' style='float:left ; width: 60%; height: 400px;'>   
+            <img width="60" height="100" src= "@Url.Action("GetImage","Image", new  {Model.ProductId })"/>
+        </div>
+    }
+}  
            
 <h2> @Model.Price  <b>$</b></h2>
 <br>

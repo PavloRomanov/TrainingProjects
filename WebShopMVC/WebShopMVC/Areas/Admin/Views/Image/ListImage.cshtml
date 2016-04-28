@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebShop.Model.ViewModel.ImageViewModel>
+
+@{
+    ViewBag.Title = "ListImages";
+}
+
+<h2>ListImages</h2>
+
+<table class="table">
+    <tr>
+        <th>File name</th>
+        <th>MainPicture </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.FileName
+            </td>
+            <td>
+                @item.MainPicture.ToString()
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ImageId })
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

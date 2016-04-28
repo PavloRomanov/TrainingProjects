@@ -19,14 +19,15 @@ public class Image : Base
     [ForeignKey("ProductId")]
     public Product Product { get; set; }
 
-        //  [Required, MaxLength(30)]
+    [Required, MaxLength(30)]
 
-        // public string FileName { get; set; }
+    public string FileName { get; set; }
 
-        // public HttpPostedFileBase image  { get; set; }
+    public bool MainPicture { get; set; }
 
-        public bool MainPicture { get; set; }
     public byte[] Picture { get; set; }
+
+//[Display]
     public string ImageMineType { get; set; }
 }
 }

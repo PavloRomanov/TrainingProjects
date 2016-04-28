@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebShop.Model.ViewModel
 {
-    public class ProductViewModelWithImage:ProductViewModel
+   public class ProductViewModelWithPartImage: ProductViewModel
     {
-        public byte[] Picture { get; set; }
-        public string ImageMineType { get; set; }
-
         public bool MainPicture { get; set; }
-
     }
 }

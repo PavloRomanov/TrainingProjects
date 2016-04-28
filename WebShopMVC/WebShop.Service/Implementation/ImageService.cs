@@ -18,44 +18,15 @@ namespace WebShop.Service.Implementation
             {
             ImageId= model.ImageId,
             ProductId = model.ProductId,
-            Picture = model.Picture,
-            ImageMineType = model.ImageMineType,
+            FileName = model.FileName,
+            Picture = new byte [model.Image.ContentLength],
+            ImageMineType = model.Image.ContentType,
             MainPicture = model.MainPicture
+
         };
             using (var context = new WebShopMVCContext())
             {
                  context.Images.Add(picture);
-                 context.SaveChanges();
-            }
-        }
-        public ImageViewModel GetModelById(int id)
-        {
-            ImageViewModel model;
-
-            using (var context = new WebShopMVCContext())
-            {
-                var picture = context.Images.Find(id);
-                model = new ImageViewModel
-                {
-                    ImageId = picture.ImageId,
-                    ProductId = picture.ProductId,
-                    Picture = picture.Picture,
-                    ImageMineType = picture.ImageMineType,
-                    MainPicture = picture.MainPicture
-                };
-            }
-            return model;
-        }
-
-        public void Update(ImageViewModel model)
-        {
-            using (var context = new WebShopMVCContext())
-            {
-                 var picture = context.Images.Find(model.ImageId);
-                 picture.ProductId = model.ProductId;
-                 picture.Picture = model.Picture;
-                 picture.ImageMineType = model.ImageMineType;
-                 picture.MainPicture = model.MainPicture;
                  context.SaveChanges();
             }
         }

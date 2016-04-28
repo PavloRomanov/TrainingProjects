@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebShop.Model;
 using WebShop.Model.ViewModel;
 using WebShop.Service;
 using WebShop.Service.Contract;
@@ -47,23 +48,24 @@ namespace WebShopMVC.Areas.Admin.Controllers
             imageService.Delete(id);
             return RedirectToAction("List", "Image");//??
         }
-
-        [HttpGet]
-        public ActionResult Update(int id)
+        //------------------------------------------------------------------------
+        public FileContentResult GetImage(int productId)
         {
-            var model = imageService.GetModelById(id);
-            return View(model);
-        }
 
-        [HttpPost]
-        public ActionResult Udate(ImageViewModel model)
-        {
-            if (ModelState.IsValid)
+            using (var context = new WebShopMVCContext())
             {
-                imageService.Update(model);
-                return RedirectToAction("List", "Image");//??
+                var image = context.Images.FirstOrDefault(p => p.ProductId == productId);
+
+                if (image != null)
+                {
+                    return File(image.Picture, image.ImageMineType);
+                }
+                else
+                {
+                    return null;
+                }
             }
-           return View(model);
         }
+
     }
 }
