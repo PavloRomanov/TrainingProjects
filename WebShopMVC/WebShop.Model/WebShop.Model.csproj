@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -94,12 +95,11 @@
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\CompositeCategoryViewModel.cs" />
     <Compile Include="ViewModel\CompositeSubcategoryViewModel.cs" />
-    <Compile Include="ViewModel\HttpPostedFileBase.cs" />
-    <Compile Include="ViewModel\ImageViewModel.cs" />
+    <Compile Include="ViewModel\MainImageViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\PartImageViewModel.cs" />
     <Compile Include="ViewModel\PartViewSubcategoriesForProduct.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
-    <Compile Include="ViewModel\ProductViewModelWithPartImage.cs" />
     <Compile Include="ViewModel\SubcategoryViewModel.cs" />
     <Compile Include="WebShopMVCContext.cs" />
   </ItemGroup>

@@ -26,19 +26,20 @@ namespace WebShopMVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int Id)
         {
-            var model = new ImageViewModel();
+            var model = new MainImageViewModel();
+            model.ProductId = Id;
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(ImageViewModel model)
+        public ActionResult Create(MainImageViewModel model)
         {
             if (ModelState.IsValid)
             {
                 imageService.Create(model);
-                return RedirectToAction("List", "Image");//??
+                return RedirectToAction("List", "Image");
             }         
             return View(model);
         }
@@ -46,15 +47,22 @@ namespace WebShopMVC.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             imageService.Delete(id);
-            return RedirectToAction("List", "Image");//??
+            return RedirectToAction("List", "Image");
         }
         //------------------------------------------------------------------------
-        public FileContentResult GetImage(int productId)
+        public ActionResult List()
+        {
+            var model = imageService.GetAll();
+            return View(model);
+        }
+
+
+        public FileContentResult GetImage(int imageId)
         {
 
             using (var context = new WebShopMVCContext())
             {
-                var image = context.Images.FirstOrDefault(p => p.ProductId == productId);
+                var image = context.Images.FirstOrDefault(i => i.ImageId == imageId);
 
                 if (image != null)
                 {

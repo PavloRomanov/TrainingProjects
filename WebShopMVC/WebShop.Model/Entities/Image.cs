@@ -27,7 +27,6 @@ public class Image : Base
 
     public byte[] Picture { get; set; }
 
-//[Display]
     public string ImageMineType { get; set; }
 }
 }

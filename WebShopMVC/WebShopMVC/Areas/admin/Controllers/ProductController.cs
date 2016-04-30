@@ -21,9 +21,9 @@ namespace WebShopMVC.Areas.admin.Controllers
         }
 
         // GET: admin/Product
-        public ActionResult Details(int Id)
+        public ActionResult Detail(int Id)
         {
-           // var model = productService.GetModelById(Id);
+            var model = productService.GetModelById(Id);
             return RedirectToAction("List", "Product");
         }
         public ActionResult Index()
@@ -78,22 +78,5 @@ namespace WebShopMVC.Areas.admin.Controllers
             return RedirectToAction("List", "Product");
         }
 
-        public FileContentResult Image(int productId)
-        {
-
-            using (var context = new WebShopMVCContext())
-            {
-                var image = context.Images.FirstOrDefault(p => p.ProductId == productId);
-
-                if (image != null)
-                {
-                    return File(image.Picture, image.ImageMineType);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
     }
 }

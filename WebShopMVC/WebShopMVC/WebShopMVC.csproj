@@ -191,9 +191,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Pictures\Edit.png" />
-    <Content Include="Pictures\Fridge Atlant.jpg" />
-    <Content Include="Pictures\iron.jpg" />
-    <Content Include="Pictures\Microwave.jpg" />
+    <Content Include="Pictures\Manager.jpg" />
+    <Content Include="Pictures\no-face.gif" />
+    <Content Include="Pictures\No-photography.jpg" />
     <Content Include="Pictures\products 2.jpg" />
     <Content Include="Pictures\products.jpg" />
     <Content Include="Pictures\Large home appliances.jpg" />
@@ -212,7 +212,7 @@
     <Content Include="Areas\Admin\Views\Subcategory\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Image\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Image\ListImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Image\List.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

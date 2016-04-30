@@ -47,7 +47,7 @@ namespace WebShop.Service.Implementation
             }
             return list;
         }
-        public IEnumerable<ProductViewModel> GetProductsOfSubcategory(int Id)
+        public IEnumerable<ProductViewModel> GetProductsOfSubcategory(int id)
         {
             var list = new List<ProductViewModel>();
             using (var context = new WebShopMVCContext())
@@ -60,7 +60,7 @@ namespace WebShop.Service.Implementation
                     Price = m.Price,
                     Discount = m.Discount,
                     Description = m.Description
-                }).Where(m => m.ProductId == Id).ToList();
+                }).Where(m => m.SubcategoryId == id).ToList();
            
             }
             return list;
@@ -100,7 +100,15 @@ namespace WebShop.Service.Implementation
                     {
                         SubcategoryName = c.SubcategoryName,
                         SubcategoryId = c.SubcategoryId
+                    }).ToList(),
+                    Figures = context.Images.Select(f => new PartImageViewModel
+                    {
+                    MainPicture = f.MainPicture,
+                    FileName = f.FileName,
+                    ImageId = f.ImageId,
+                    ProductId = f.ProductId
                     }).ToList()
+
                 };
             }
             return model;

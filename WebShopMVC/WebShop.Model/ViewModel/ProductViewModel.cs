@@ -10,7 +10,8 @@ namespace WebShop.Model.ViewModel
     public class ProductViewModel
     {
         public int ProductId { get; set; }
-  
+
+        [Display(Name = "Subcategories")]
         public int SubcategoryId { get; set; }
 
 
@@ -37,7 +38,7 @@ namespace WebShop.Model.ViewModel
         public int Discount { get; set; }
 
         public IEnumerable<PartViewSubcategoriesForProduct> Subcategories { get; set; }
-        public IEnumerable<ImageViewModel> Images { get; set; }
+        public IEnumerable<PartImageViewModel> Figures { get; set; }
     }
 }
 

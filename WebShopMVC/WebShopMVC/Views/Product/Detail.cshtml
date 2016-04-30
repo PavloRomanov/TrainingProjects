@@ -1,4 +1,4 @@
-﻿@model WebShop.Model.ViewModel.ProductViewModelWithPartImage
+﻿@model WebShop.Model.ViewModel.ProductViewModel
 
 @{
     ViewBag.Title = "Selected Product";
@@ -6,30 +6,36 @@
 
 <br>
 <h1>@Model.ProductName</h1>
-@foreach(var element in Model.Images)
+@foreach (var element in Model.Figures)
 {
-    @if (element.ProductId == Model.ProductId && Model.MainPicture == true)
+    bool notImage = true;
+    if (element.ProductId == Model.ProductId && element.MainPicture)
     {
         <div class="iso">
 
-            <img width="60" height="100" src= "@Url.Action("GetImage","Image", new  {Model.ProductId })"/>
+            <img width="700" height="500" src= "@Url.Action("GetImage","Image", new  {element.ImageId })"/>
+        </div>
+         notImage = false;
+    }
+    if(notImage)
+    {
+        <div class="iso">
+
+            <img src='~/Pictures/No-photography.jpg' alt='Edit' style='width: 30%; height: 30%; border: 0'>
         </div>
     }
-}  
-           
-<h2> @Model.Price  <b>$</b></h2>
-<br>
-<br>
-<h4 style="color:red;text-align:center"> Сharacteristics : </h4>
+} 
+<br> 
+  @Html.ActionLink("Add to Basket ", "Basket", "Product")
+<div>
+    <h2> @Model.Price  <b>$</b></h2>
+</div>
 
+<div>
+<h4 style="color:red;text-align:center"> Сharacteristics : </h4>
 <ul style="list-style-type: square;color:green;text-align:center;">
     <li>@Model.Description</li>
 </ul>
+</div>
 
-
-
-
-
-
- @Html.ActionLink("Add to Basket ", "Basket", "Product")
 

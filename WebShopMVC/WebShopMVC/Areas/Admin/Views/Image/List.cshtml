@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebShop.Model.ViewModel.ImageViewModel>
+﻿@model IEnumerable<WebShop.Model.ViewModel.PartImageViewModel>
 
 @{
     ViewBag.Title = "ListImages";
@@ -30,6 +30,5 @@
     }
 </table>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@Html.ActionLink("Back to list Products ", "List", "Product")
+

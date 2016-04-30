@@ -9,7 +9,8 @@ namespace WebShop.Service.Contract
 {
    public interface IImageService
     {
-        void Create(ImageViewModel model);
+        void Create(MainImageViewModel model);
+        IEnumerable<PartImageViewModel> GetAll();
         void Delete(int id);
     }
 }
