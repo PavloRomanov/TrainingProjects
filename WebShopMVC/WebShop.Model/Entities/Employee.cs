@@ -4,16 +4,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebShop.Model.Entities
 {
-    [Table("Clients")]
-    public class Client : User
+    [Table("Employees")]
+    public class Employee : User
     {
         [Required, MaxLength(20)]
         public string FirstName { get; set; }
 
-        [MaxLength(20)]
+        [Required, MaxLength(20)]
         public string LastName { get; set; }
+
+        [MaxLength(256)]
+        public string Address { get; set; }
 
         [MaxLength(16)]
         public string Phone { get; set; }
+
+        public Role Role { get; set; }
     }
 }

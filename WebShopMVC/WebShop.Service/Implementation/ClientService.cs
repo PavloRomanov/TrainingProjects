@@ -14,7 +14,6 @@ namespace WebShop.Service.Implementation
         {
             Client client = new Client
             {
-                ClientId = model.ClientId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Login = model.Login,
@@ -37,7 +36,6 @@ namespace WebShop.Service.Implementation
             {
                 model = context.Clients.Select(m => new ClientViewModel
                 {
-                    ClientId = m.ClientId,
                     FirstName = m.FirstName,
                     LastName = m.LastName,
                     Login = m.Login,
@@ -54,7 +52,7 @@ namespace WebShop.Service.Implementation
             using (var context = new WebShopMVCContext())
             {
                 context.Clients.Remove(
-                    context.Clients.Where(m => m.ClientId == id).FirstOrDefault());
+                    context.Clients.Where(m => m.UserId == id).FirstOrDefault());
                 context.SaveChanges();
             }
         }

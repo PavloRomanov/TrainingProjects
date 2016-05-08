@@ -56,21 +56,22 @@ namespace WebShop.Service.Implementation
         }
 
         public IEnumerable<CompositeCategoryViewModel> GetAllWithSubcategory()
-        {
+        {           
             using (var context = new WebShopMVCContext())
-            {
-                //context.Database.Log = message => Trace.Write(message);
-                return context.Categories.Select(c => new CompositeCategoryViewModel
-                {
-                    CategoryId = c.CategoryId,
-                    CategoryName = c.CategoryName,
-                    Subcategories = context.Subcategories.Where(s => s.CategoryId == c.CategoryId).Select(s => new SubcategoryViewModel
-                    {
-                        SubcategoryId = s.SubcategoryId,
-                        SubcategoryName = s.SubcategoryName
-                    })
-                }).ToList();
-            }
+             {
+                 //context.Database.Log = message => Trace.Write(message);
+
+                 return context.Categories.Select(c => new CompositeCategoryViewModel
+                 {
+                     CategoryId = c.CategoryId,
+                     CategoryName = c.CategoryName,
+                     Subcategories = context.Subcategories.Where(s => s.CategoryId == c.CategoryId).Select(s => new SubcategoryViewModel
+                     {
+                         SubcategoryId = s.SubcategoryId,
+                         SubcategoryName = s.SubcategoryName
+                     })
+                 }).ToList();
+             }
         }
 
         public CategoryViewModel GetModelById(int id)

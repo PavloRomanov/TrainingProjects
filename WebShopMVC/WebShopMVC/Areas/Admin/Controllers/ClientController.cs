@@ -9,9 +9,9 @@ using WebShop.Service.Contract;
 
 namespace WebShopMVC.Areas.Admin.Controllers
 {
-    public class ClientController : Controller
+    public class ClientController// : Controller
     {
-        private IClientService clientService;
+       /* private IClientService clientService;
 
         public ClientController()
         {
@@ -66,7 +66,7 @@ namespace WebShopMVC.Areas.Admin.Controllers
                 return RedirectToAction("List", "Client");
             }
             return View(model);
-        }
+        }*/
 
         //--Delete--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
