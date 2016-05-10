@@ -29,17 +29,5 @@ namespace WebShopMVC.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Login()
-        {
-            var model = new LoginViewModel();
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(LoginViewModel model)
-        {
-            return View();
-        }
     }
 }

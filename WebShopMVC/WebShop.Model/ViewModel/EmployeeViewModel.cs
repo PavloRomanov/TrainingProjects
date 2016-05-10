@@ -7,7 +7,7 @@ namespace WebShop.Model.ViewModel
 {
     public class EmployeeViewModel : UserViewModel
     {
-        /*[Display(Name = "First name : ")]
+        [Display(Name = "First name : ")]
         [Required(ErrorMessage = "Please, enter first name!")]
         [MaxLength(256)]
         public string FirstName { get; set; }
@@ -29,6 +29,6 @@ namespace WebShop.Model.ViewModel
 
         [Display(Name = "Access level : ")]
         [Required(ErrorMessage = "Please, choose access level!")]
-        public Role Role { get; set; }*/
+        public Role Role { get; set; }
     }
 }

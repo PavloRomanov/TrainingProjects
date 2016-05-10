@@ -37,6 +37,24 @@ namespace WebShopMVC.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            var model = employeeService.GetEmployeeById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Update(EmployeeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                employeeService.Update(model);
+                return RedirectToAction("List");
+            }
+            return View(model);
+        }
+
         public ActionResult List()
         {
             IEnumerable<EmployeeViewModel> model = employeeService.GetAllEmployee();

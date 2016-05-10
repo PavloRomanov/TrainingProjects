@@ -8,6 +8,7 @@ namespace WebShop.Service.Contract
     {
         UserViewModel GetUserByLogin(string login);
         UserViewModel GertUserByEmail(string email);
+        UserViewModel GetUserByLoginAndPassword(string login, string password);
         void Create(UserViewModel model);
         void Update(UserViewModel model);
     }

@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubcategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -215,6 +216,9 @@
     <Content Include="Areas\Admin\Views\Shared\_PartialCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Image\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Image\List.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\List.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -258,7 +262,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Employee\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>

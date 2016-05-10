@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebShop.Model;
+using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
 using WebShop.Service.Contract;
 
@@ -10,7 +12,24 @@ namespace WebShop.Service.Implementation
     {
         public void Create(EmployeeViewModel model)
         {
-            throw new NotImplementedException();
+            Employee employee = new Employee
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Login = model.Login,
+                Password = model.Password,
+                Address = model.Address,
+                Email = model.Email,
+                Phone = model.Phone,
+                IsEmployee = model.IsEmployee,
+                Role = model.Role
+            };
+
+            using (var context = new WebShopMVCContext())
+            {
+                context.Employees.Add(employee);
+                context.SaveChanges();
+            }
         }
 
         public void Delete(int id)
@@ -20,17 +39,66 @@ namespace WebShop.Service.Implementation
 
         public IEnumerable<EmployeeViewModel> GetAllEmployee()
         {
-            throw new NotImplementedException();
+            var model = new List<EmployeeViewModel>();
+
+            using (var context = new WebShopMVCContext())
+            {
+                model = context.Employees.Select(m => new EmployeeViewModel
+                {
+                    UserId = m.UserId,
+                    FirstName = m.FirstName,
+                    LastName = m.LastName,
+                    Address = m.Address,
+                    Email = m.Email,
+                    Phone = m.Phone,
+                    Login = m.Login,
+                    Password = m.Password,
+                    IsEmployee = m.IsEmployee,
+                    Role = m.Role
+                }).ToList();
+            }
+            return model;
         }
 
         public EmployeeViewModel GetEmployeeById(int id)
         {
-            throw new NotImplementedException();
+            EmployeeViewModel model = new EmployeeViewModel();
+            using (var context = new WebShopMVCContext())
+            {
+                var employee = context.Employees.Find(id);
+
+                model.UserId = id;
+                employee.FirstName = model.FirstName;
+                model.LastName = employee.LastName;
+                model.Address = employee.Address;
+                model.Email = employee.Email;
+                model.Phone = employee.Phone;
+                model.Login = employee.Login;
+                model.Password = employee.Password;
+                model.IsEmployee = employee.IsEmployee;
+                model.Role = employee.Role;
+            }
+            return model;
         }
 
         public void Update(EmployeeViewModel model)
         {
-            throw new NotImplementedException();
+            using (var context = new WebShopMVCContext())
+            {
+                var employee = context.Employees.Find(model.UserId);
+
+                employee.FirstName = model.FirstName;
+                employee.LastName = model.LastName;
+                employee.Address = model.Address;
+                employee.Email = model.Email;
+                employee.Phone = model.Phone;
+                employee.Login = model.Login;
+                employee.Password = model.Password;
+                employee.IsEmployee = model.IsEmployee;
+                employee.Role = model.Role;
+
+                context.SaveChanges();
+            }
         }
     }
 }

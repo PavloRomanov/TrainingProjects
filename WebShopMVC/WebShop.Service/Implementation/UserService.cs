@@ -34,17 +34,35 @@ namespace WebShop.Service.Implementation
 
              using (var context = new WebShopMVCContext())
              {
-                 model = context.Users.Select(m => new UserViewModel
+                 model = context.Users.Where(m => m.Email == email)
+                    .Select(m => new UserViewModel
                  {
                      UserId = m.UserId,
                      Email = m.Email,
                      Login = m.Login,
                      Password = m.Password,
                      IsEmployee = m.IsEmployee
-                 }).Where(m => m.Email == email).SingleOrDefault();
+                 }).SingleOrDefault();
              }
              return model;
          }
+
+        public UserViewModel GetUserByLoginAndPassword(string login, string password)
+        {
+            UserViewModel model;
+            using (var context = new WebShopMVCContext())
+            {
+                model = context.Users.Where(m => m.Login == login && m.Password == password && m.IsEmployee == true)
+                    .Select(m => new UserViewModel
+                    {
+                        UserId = m.UserId,
+                        Login = m.Login,
+                        Email = m.Email,
+                        IsEmployee = m.IsEmployee
+                    }).SingleOrDefault();
+            }
+            return model;
+        }
 
          public UserViewModel GetUserByLogin(string login)
          {
