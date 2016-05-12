@@ -18,8 +18,6 @@ namespace WebShop.Model.Entities
         public string Password { get; set; }
 
         [MaxLength(30)]
-        public string Email { get; set; }
-
-        public bool IsEmployee { get; set; }
+        public string Email { get; set; }        
     }
 }

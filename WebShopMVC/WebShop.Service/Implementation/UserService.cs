@@ -17,8 +17,7 @@ namespace WebShop.Service.Implementation
                  UserId = model.UserId,
                  Login = model.Login,
                  Password = model.Password,
-                 Email = model.Email,
-                 IsEmployee = false
+                 Email = model.Email
              };
 
              using (var context = new WebShopMVCContext())
@@ -41,7 +40,6 @@ namespace WebShop.Service.Implementation
                      Email = m.Email,
                      Login = m.Login,
                      Password = m.Password,
-                     IsEmployee = m.IsEmployee
                  }).SingleOrDefault();
              }
              return model;
@@ -52,13 +50,12 @@ namespace WebShop.Service.Implementation
             UserViewModel model;
             using (var context = new WebShopMVCContext())
             {
-                model = context.Users.Where(m => m.Login == login && m.Password == password && m.IsEmployee == true)
+                model = context.Users.Where(m => m.Login == login && m.Password == password)
                     .Select(m => new UserViewModel
                     {
                         UserId = m.UserId,
                         Login = m.Login,
                         Email = m.Email,
-                        IsEmployee = m.IsEmployee
                     }).SingleOrDefault();
             }
             return model;
@@ -75,7 +72,6 @@ namespace WebShop.Service.Implementation
                      Email = m.Email,
                      Login = m.Login,
                      Password = m.Password,
-                     IsEmployee = m.IsEmployee
                  }).Where(m => m.Login == login).SingleOrDefault();
              }
              return model;
@@ -90,7 +86,6 @@ namespace WebShop.Service.Implementation
                  user.Login = model.Login;
                  user.Password = model.Password;
                  user.Email = model.Email;
-                 user.IsEmployee = false;
 
                  context.SaveChanges();
              }

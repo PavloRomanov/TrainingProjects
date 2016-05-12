@@ -20,8 +20,7 @@ namespace WebShop.Service.Implementation
                 Password = model.Password,
                 Address = model.Address,
                 Email = model.Email,
-                Phone = model.Phone,
-                IsEmployee = model.IsEmployee,
+                Phone = model.Phone,                
                 Role = model.Role
             };
 
@@ -53,7 +52,6 @@ namespace WebShop.Service.Implementation
                     Phone = m.Phone,
                     Login = m.Login,
                     Password = m.Password,
-                    IsEmployee = m.IsEmployee,
                     Role = m.Role
                 }).ToList();
             }
@@ -75,7 +73,6 @@ namespace WebShop.Service.Implementation
                 model.Phone = employee.Phone;
                 model.Login = employee.Login;
                 model.Password = employee.Password;
-                model.IsEmployee = employee.IsEmployee;
                 model.Role = employee.Role;
             }
             return model;
@@ -94,7 +91,6 @@ namespace WebShop.Service.Implementation
                 employee.Phone = model.Phone;
                 employee.Login = model.Login;
                 employee.Password = model.Password;
-                employee.IsEmployee = model.IsEmployee;
                 employee.Role = model.Role;
 
                 context.SaveChanges();
