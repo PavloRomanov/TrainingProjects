@@ -30,5 +30,11 @@ namespace WebShop.Model.ViewModel
         [Display(Name = "Access level : ")]
         [Required(ErrorMessage = "Please, choose access level!")]
         public Role Role { get; set; }
+
+        [Display(Name = "Is bloced")]
+        public bool IsBlocked { get; set; }
+
+        [Display(Name = "Is deleted")]
+        public bool IsDelete { get; set; }
     }
 }

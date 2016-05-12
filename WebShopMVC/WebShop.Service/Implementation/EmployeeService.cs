@@ -74,6 +74,29 @@ namespace WebShop.Service.Implementation
                 model.Login = employee.Login;
                 model.Password = employee.Password;
                 model.Role = employee.Role;
+                model.RowVersion = employee.RowVersion;
+            }
+            return model;
+        }
+
+        public EmployeeViewModel GetEmployeeByLoginAndPassword(string login, string password)
+        {
+            EmployeeViewModel model;
+            using (var context = new WebShopMVCContext())
+            {
+                model = context.Employees.Where(m => m.Login == login && m.Password == password)
+                    .Select(m => new EmployeeViewModel
+                    {
+                        UserId = m.UserId,
+                        Login = m.Login,
+                        Email = m.Email,
+                        FirstName = m.FirstName,
+                        LastName = m.LastName,
+                        Phone = m.Phone,
+                        Address = m.Address,
+                        Role = m.Role,
+                        RowVersion = m.RowVersion                        
+                    }).SingleOrDefault();
             }
             return model;
         }

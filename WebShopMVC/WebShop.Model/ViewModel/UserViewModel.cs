@@ -5,7 +5,7 @@ using WebShop.Model.Entities;
 
 namespace WebShop.Model.ViewModel
 {
-    public class UserViewModel
+    public class UserViewModel : BaseVievModel
     {
         public int UserId { get; set; }
                 
@@ -21,9 +21,8 @@ namespace WebShop.Model.ViewModel
 
         [Display(Name = "Email : ")]
         [Required(ErrorMessage = "Please, enter email!")]
-        [StringLength(10, MinimumLength = 3)]
+        [MaxLength(30)]
         public string Email { get; set; }
-
-        public bool IsEmployee { get; set; }
+       
     }
 }

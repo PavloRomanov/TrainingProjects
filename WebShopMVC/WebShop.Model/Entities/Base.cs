@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebShop.Model.Entities
 {
-    public class Base
+    public abstract class Base
     {
         [ConcurrencyCheck]
         [Required]
