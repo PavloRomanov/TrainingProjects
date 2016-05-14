@@ -35,5 +35,9 @@ namespace WebShop.Service
         {
             return new ImageService();
         }
+        public static ICartService GetCartService()
+        {
+            return new CartService();
+        }
     }
 }
