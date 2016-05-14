@@ -9,7 +9,7 @@ namespace WebShop.Model.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(WebShop.Model.WebShopMVCContext context)
