@@ -6,11 +6,6 @@ namespace WebShop.Service
 {
     public static class ServiceLocator
     {
-        public static IUserService GetUserService()
-        {
-            return new UserService();
-        }
-
         public static IClientService GetClientService()
         {
             return new ClientService();

@@ -104,9 +104,14 @@
     <Compile Include="Migrations\201605120713285_DeleteIsEmployeeFromUser.Designer.cs">
       <DependentUpon>201605120713285_DeleteIsEmployeeFromUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605121342581_Add_IsDelete_and_IsBlocked.cs" />
+    <Compile Include="Migrations\201605121342581_Add_IsDelete_and_IsBlocked.Designer.cs">
+      <DependentUpon>201605121342581_Add_IsDelete_and_IsBlocked.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidForProduct.cs" />
+    <Compile Include="ViewModel\BaseVievModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\CompositeCategoryViewModel.cs" />
@@ -161,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605120713285_DeleteIsEmployeeFromUser.resx">
       <DependentUpon>201605120713285_DeleteIsEmployeeFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605121342581_Add_IsDelete_and_IsBlocked.resx">
+      <DependentUpon>201605121342581_Add_IsDelete_and_IsBlocked.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebShop.Model.Entities
 {
     [Table("Users")]
-    public class User : VersionEntiti
+    public abstract class User : Base
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

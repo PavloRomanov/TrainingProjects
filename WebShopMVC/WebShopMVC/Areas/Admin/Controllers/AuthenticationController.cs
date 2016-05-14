@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -10,13 +8,12 @@ using WebShop.Service.Contract;
 
 namespace WebShopMVC.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class AuthenticationController : Controller
     {
-        private readonly IUserService userService;
-
-        public UserController()
+        private readonly IEmployeeService employeeService;
+        public AuthenticationController()
         {
-            userService = ServiceLocator.GetUserService();
+            employeeService = ServiceLocator.GetEmployeeService();
         }
 
         [HttpGet]
@@ -28,10 +25,10 @@ namespace WebShopMVC.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var currentUser = userService.GetUserByLoginAndPassword(model.Login, model.Password);
-                if(currentUser != null)
+                var currentUser = employeeService.GetEmployeeByLoginAndPassword(model.Login, model.Password);
+                if (currentUser != null)
                 {
                     var authTicket = new FormsAuthenticationTicket(
                         1,
@@ -39,12 +36,13 @@ namespace WebShopMVC.Areas.Admin.Controllers
                         DateTime.Now,
                         DateTime.Now.AddMinutes(60),
                         true,
-                        null
+                        "Employee;" + (currentUser.Role).ToString()
                         );
 
                     string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     HttpContext.Response.Cookies.Add(authCookie);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -53,10 +51,10 @@ namespace WebShopMVC.Areas.Admin.Controllers
                     return View(model);
                 }
             }
-            return View(model);            
+            return View(model);
         }
 
-        // GET: Admin/User
+        // GET: Admin/Authentication
         public ActionResult Index()
         {
             return View();
