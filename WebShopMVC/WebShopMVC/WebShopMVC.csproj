@@ -193,6 +193,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Pictures\Cart.jpg" />
     <Content Include="Pictures\Edit.png" />
     <Content Include="Pictures\Manager.jpg" />
     <Content Include="Pictures\no-face.gif" />
@@ -258,12 +259,12 @@
     <Content Include="Views\Product\ListAllProduct.cshtml" />
     <Content Include="Views\Subcategory\ListSubcategory.cshtml" />
     <Content Include="Views\Product\ProductsOfSubcategory.cshtml" />
+    <Content Include="Views\Cart\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Cart\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
