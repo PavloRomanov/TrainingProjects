@@ -1,0 +1,24 @@
+﻿@model  IEnumerable<WebShop.Model.ViewModel.CartItemViewModel>
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>List</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        @item.Product.ProductName
+    </div>
+        <div>
+            @item.Quantity
+        </div>
+}
+<div>
+    @Html.ActionLink("Order", "Order")
+</div>
+
+<div class="iso">
+    <img src='~/Pictures/Cart.jpg' alt='ListCart' style='width: 30%; height: 30%; border: 0'>
+</div>

@@ -8,18 +8,19 @@
 
 @foreach (var item in Model)
 {
-
-            @item.ProductName
-
-
-            @item.Price
+    <div>
+        @item.ProductName
 
 
-            @item.Discount
+        @item.Price
 
 
-            @item.Description
+        @item.Discount
 
-    <br>
-            @Html.ActionLink("Detail", "Detail", new { id = item.ProductId })
+
+        @item.Description
+
+        <br>
+        @Html.ActionLink("Detail", "Detail", new { id = item.ProductId })
+    </div>
 }

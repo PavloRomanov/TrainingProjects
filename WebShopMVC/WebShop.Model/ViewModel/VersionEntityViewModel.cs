@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebShop.Service.Contract;
 
-namespace WebShop.Service.Implementation
+namespace WebShop.Model.ViewModel
 {
-     public class CartService:ICartService
+    public abstract class VersionEntityViewModel
     {
+        public DateTime RowVersion { get; set; }
     }
 }

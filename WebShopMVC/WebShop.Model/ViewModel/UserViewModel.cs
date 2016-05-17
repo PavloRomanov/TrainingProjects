@@ -5,7 +5,7 @@ using WebShop.Model.Entities;
 
 namespace WebShop.Model.ViewModel
 {
-    public class UserViewModel : BaseVievModel
+    public class UserViewModel : VersionEntityViewModel
     {
         public int UserId { get; set; }
                 
