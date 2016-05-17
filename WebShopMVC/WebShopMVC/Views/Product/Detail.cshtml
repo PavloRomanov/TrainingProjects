@@ -6,36 +6,46 @@
 
 <br>
 <h1>@Model.ProductName</h1>
-@foreach (var element in Model.Figures)
+@{bool notImage = true; }
+@foreach (var image in Model.Images)
 {
-    bool notImage = true;
-    if (element.ProductId == Model.ProductId && element.MainPicture)
+    if (image.MainPicture)
     {
         <div class="iso">
 
-            <img width="700" height="500" src= "@Url.Action("GetImage","Image", new  {element.ImageId })"/>
+            <img width="700" height="500" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
         </div>
-         notImage = false;
+        notImage = false;
+        break;
     }
-    if(notImage)
-    {
-        <div class="iso">
+}
+@if (notImage)
+{
+    <div class="iso">
 
-            <img src='~/Pictures/No-photography.jpg' alt='Edit' style='width: 30%; height: 30%; border: 0'>
-        </div>
-    }
-} 
-<br> 
-  @Html.ActionLink("Add to Basket ", "Cart", "CartItem")
+        <img src='~/Pictures/No-photography.jpg' alt='Edit' style='width: 30%; height: 30%; border: 0'>
+    </div>
+}
 <div>
     <h2> @Model.Price  <b>$</b></h2>
 </div>
-
 <div>
-<h4 style="color:red;text-align:center"> Сharacteristics : </h4>
-<ul style="list-style-type: square;color:green;text-align:center;">
-    <li>@Model.Description</li>
-</ul>
+    @foreach (var image in Model.Images)
+    {
+        if (!image.MainPicture)
+        {
+            <div class="iso">
+                <img width="300" height="200" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
+            </div>
+        }
+    }
 </div>
-
+<div>
+    <h4 style="color:red;text-align:center"> Сharacteristics : </h4>
+    <ul style="list-style-type: square;color:green;text-align:center;">
+        <li>@Model.Description</li>
+    </ul>
+</div>
+<br>
+@Html.ActionLink("Add to Basket ", "AddToCart", "CartItem", new { id = Model.ProductId, q = 1 }, null)
 

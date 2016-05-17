@@ -20,28 +20,24 @@ namespace WebShopMVC.Controllers
         public ActionResult AddToCart(int productId, int quantity)
         {
             cartService.AddItem(productId, quantity);
-            return RedirectToAction("List", "Cart"); ;
+            return RedirectToAction("Cart", "CartItem"); ;
         }
 
         public ActionResult DeleteAll()
         {
             cartService.ClearCart();
-            return RedirectToAction("List", "Cart"); ;
+            return RedirectToAction("Cart", "CartItem"); ;
         }
         public ActionResult Delete(int productId)
         {
             cartService.RemoveUnit(productId);
-            return RedirectToAction("List", "Cart");
+            return RedirectToAction("Cart", "CartItem");
         }
         public ActionResult TotalSum()
         {
             cartService.TotalAmountOfPurchases();
-            return RedirectToAction("List", "Cart");
+            return RedirectToAction("", "CartItem");
         }
-        public ActionResult List()
-        {
-          
-            return View();
-        }
+       
     }
 }

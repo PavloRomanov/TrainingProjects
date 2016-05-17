@@ -101,7 +101,7 @@ namespace WebShop.Service.Implementation
                         SubcategoryName = c.SubcategoryName,
                         SubcategoryId = c.SubcategoryId
                     }).ToList(),
-                    Figures = context.Images.Select(f => new PartImageViewModel
+                    Images = context.Images.Select(f => new PartImageViewModel
                     {
                     MainPicture = f.MainPicture,
                     FileName = f.FileName,
