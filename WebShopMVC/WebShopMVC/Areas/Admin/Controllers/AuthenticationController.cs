@@ -36,7 +36,7 @@ namespace WebShopMVC.Areas.Admin.Controllers
                         DateTime.Now,
                         DateTime.Now.AddMinutes(60),
                         true,
-                        "Employee;" + (currentUser.Role).ToString()
+                        "Employee," + (currentUser.Role).ToString()
                         );
 
                     string encryptedTicket = FormsAuthentication.Encrypt(authTicket);

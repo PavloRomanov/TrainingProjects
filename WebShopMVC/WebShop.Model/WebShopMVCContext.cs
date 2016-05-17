@@ -29,7 +29,7 @@ namespace WebShop.Model
 
             foreach (var entity in selectedEntityList)
             {
-                ((VersionEntiti)entity.Entity).RowVersion = DateTime.UtcNow;
+                ((VersionEntity)entity.Entity).RowVersion = DateTime.UtcNow;
             }
 
             return base.SaveChanges();

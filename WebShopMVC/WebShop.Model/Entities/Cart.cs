@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebShop.Model.Entities
 {
-    public class Cart : VersionEntiti
+    public class Cart : VersionEntity
     {
         public class CartLine
         {

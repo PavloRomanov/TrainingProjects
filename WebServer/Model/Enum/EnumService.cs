@@ -28,6 +28,7 @@ namespace Model.Enum
             exp.Add(ClientAppeal.Low_speed_Internet, 4);
             exp.Add(ClientAppeal.No_internet_connection, 5);
             return exp;
+            
         }
     }
 }
