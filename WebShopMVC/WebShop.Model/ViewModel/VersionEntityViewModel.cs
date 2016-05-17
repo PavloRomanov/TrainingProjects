@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebShop.Model.ViewModel
 {
-    public abstract class BaseVievModel
+    public abstract class VersionEntityViewModel
     {
         public DateTime RowVersion { get; set; }
     }

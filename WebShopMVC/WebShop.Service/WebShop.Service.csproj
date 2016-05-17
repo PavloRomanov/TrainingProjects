@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contract\ICartService.cs" />
+    <Compile Include="Contract\ICartItemService.cs" />
     <Compile Include="Contract\IEmployeeService.cs" />
     <Compile Include="Contract\IImageService.cs" />
     <Compile Include="Contract\ISubcategoryService.cs" />
@@ -51,7 +51,7 @@
     <Compile Include="Contract\IClientService.cs" />
     <Compile Include="Contract\IService.cs" />
     <Compile Include="Contract\IProductService.cs" />
-    <Compile Include="Implementation\CartService.cs" />
+    <Compile Include="Implementation\CartItemService.cs" />
     <Compile Include="Implementation\EmployeeService.cs" />
     <Compile Include="Implementation\ImageService.cs" />
     <Compile Include="Implementation\SubcategoryService .cs" />

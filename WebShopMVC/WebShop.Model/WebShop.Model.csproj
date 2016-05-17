@@ -50,8 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\VersionEntiti.cs" />
-    <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\VersionEntity.cs" />
+    <Compile Include="Entities\CartItem.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Employee.cs" />
@@ -112,11 +112,15 @@
     <Compile Include="Migrations\201605151202486_AddCart.Designer.cs">
       <DependentUpon>201605151202486_AddCart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605171332410_ChangeCart.cs" />
+    <Compile Include="Migrations\201605171332410_ChangeCart.Designer.cs">
+      <DependentUpon>201605171332410_ChangeCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidForProduct.cs" />
-    <Compile Include="ViewModel\BaseVievModel.cs" />
-    <Compile Include="ViewModel\CartViewModel.cs" />
+    <Compile Include="ViewModel\VersionEntityViewModel.cs" />
+    <Compile Include="ViewModel\CartItemViewModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\CompositeCategoryViewModel.cs" />
@@ -177,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605151202486_AddCart.resx">
       <DependentUpon>201605151202486_AddCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605171332410_ChangeCart.resx">
+      <DependentUpon>201605171332410_ChangeCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

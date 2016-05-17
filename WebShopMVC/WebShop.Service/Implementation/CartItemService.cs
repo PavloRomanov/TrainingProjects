@@ -10,17 +10,17 @@ using WebShop.Service.Contract;
 
 namespace WebShop.Service.Implementation
 {
-    public class CartService : ICartService
+    public class CartItemService : ICartItemService
     {
-        List<Cart> lineCollection = new List<Cart>();//??
-        public void AddItem(Product product, int quantity)
+        List<CartItem> Cart = new List<CartItem>();
+        public void AddItem(int productId, int quantity)
         {
-            Cart line = lineCollection
-                    .Where(p => p.Product.ProductId == product.ProductId)
+            CartItem line = Cart
+                    .Where(p => p.Product.ProductId == productId)
                     .FirstOrDefault();
             if (line == null)
             {
-                lineCollection.Add(new Cart { Product = product, Quantity = quantity });
+                Cart.Add(new CartItem { ProductId = productId, Quantity = quantity });
             }
             else
             {
@@ -30,18 +30,18 @@ namespace WebShop.Service.Implementation
 
         public void ClearCart()
         {
-            lineCollection.Clear();
+            Cart.Clear();
         }
 
-        public IEnumerable<CartViewModel> GetAll()
+        public IEnumerable<CartItemViewModel> GetAll()
         {
-            var list = new List<CartViewModel>();
+            var list = new List<CartItemViewModel>();
             using (var context = new WebShopMVCContext())
             {
-                list = context.Carts.Select(m => new CartViewModel
+                list = context.CartItems.Select(m => new CartItemViewModel
                 {
-                    CartId = m.CartId,
-                    Product = m.Product,
+                    CartItemId = m.CartItemId,
+                    ProductId = m.ProductId,
                     ClientId = m.ClientId,
                     Quantity = m.Quantity,     
                 }).ToList();
@@ -51,12 +51,12 @@ namespace WebShop.Service.Implementation
 
         public void RemoveUnit(int Id)
         {
-            lineCollection.RemoveAll(r => r.Product.ProductId == Id);
+            Cart.RemoveAll(r => r.Product.ProductId == Id);
         }
 
         public decimal TotalAmountOfPurchases()
         {
-            return lineCollection.Sum(s => s.Product.Price * s.Quantity);
+            return Cart.Sum(s => s.Product.Price * s.Quantity);
         }
     }
 }

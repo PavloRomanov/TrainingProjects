@@ -10,16 +10,16 @@ using WebShop.Service.Contract;
 
 namespace WebShopMVC.Controllers
 {
-    public class CartController : Controller
+    public class CartItemController : Controller
     {
-        private ICartService cartService;
-        public CartController()
+        private ICartItemService cartService;
+        public CartItemController()
         {
-            cartService = ServiceLocator.GetCartService();
+            cartService = ServiceLocator.GetCartItemService();
         }
-        public ActionResult AddToCart(Product product, int quantity)
+        public ActionResult AddToCart(int productId, int quantity)
         {
-            cartService.AddItem(product, quantity);
+            cartService.AddItem(productId, quantity);
             return RedirectToAction("List", "Cart"); ;
         }
 

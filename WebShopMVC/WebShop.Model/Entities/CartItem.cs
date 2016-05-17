@@ -8,18 +8,21 @@ using System.Threading.Tasks;
 
 namespace WebShop.Model.Entities
 {
-    [Table("Carts")]
-    public class Cart : VersionEntiti
+    [Table("CartItems")]
+    public class CartItem : VersionEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CartId { get; set; }
+        public int CartItemId { get; set; }
 
         public int ClientId { get; set; }
 
         [ForeignKey("ClientId")]
         public Client Client { get; set; }
 
+        public int ProductId { get; set; }
+
+        [ForeignKey("ProductId")]
         public Product Product { get; set; }
 
         [Required]

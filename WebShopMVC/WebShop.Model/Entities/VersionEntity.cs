@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebShop.Model.Entities
 {
-    public abstract class VersionEntiti
+    public abstract class VersionEntity
     {
         [ConcurrencyCheck]
         [Required]

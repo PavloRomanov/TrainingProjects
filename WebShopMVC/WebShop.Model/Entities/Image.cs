@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebShop.Model.Entities
 {
-public class Image : VersionEntiti
+public class Image : VersionEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

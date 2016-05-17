@@ -16,7 +16,7 @@ namespace WebShop.Model
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Subcategory> Subcategories { get; set; }        
-        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -29,7 +29,7 @@ namespace WebShop.Model
 
             foreach (var entity in selectedEntityList)
             {
-                ((VersionEntiti)entity.Entity).RowVersion = DateTime.UtcNow;
+                ((VersionEntity)entity.Entity).RowVersion = DateTime.UtcNow;
             }
 
             return base.SaveChanges();

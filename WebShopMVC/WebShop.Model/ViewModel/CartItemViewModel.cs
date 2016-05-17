@@ -8,15 +8,17 @@ using WebShop.Model.Entities;
 
 namespace WebShop.Model.ViewModel
 {
-   public class CartViewModel
+   public class CartItemViewModel
     {       
-        public int CartId;
+        public int CartItemId;
 
         [Display(Name = "Clients")]
         public int ClientId { get; set; }
 
-        public Product Product { get; set; }
+        [Display(Name = "Products")]
+        public int ProductId { get; set; }
 
+        public Product Product { get; set; }
 
         [Display(Name = "Quantity units sold")]
         [Required(ErrorMessage = "please enter quantity of product")]

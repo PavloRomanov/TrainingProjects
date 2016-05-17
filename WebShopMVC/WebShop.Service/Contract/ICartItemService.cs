@@ -8,12 +8,12 @@ using WebShop.Model.ViewModel;
 
 namespace WebShop.Service.Contract
 {
-    public interface ICartService
+    public interface ICartItemService
     {
-        void AddItem(Product product, int quantity);
+        void AddItem(int Id, int quantity);
         void RemoveUnit(int Id);
         void ClearCart();
         decimal TotalAmountOfPurchases();
-        IEnumerable<CartViewModel> GetAll();
+        IEnumerable<CartItemViewModel> GetAll();
     }
 }
