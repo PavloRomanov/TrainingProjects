@@ -39,7 +39,7 @@ namespace WebShopMVC
             }
 
             // retrieve roles from UserData
-            string[] roles = authTicket.UserData.Split(';');
+            string[] roles = authTicket.UserData.Split(',');
 
             if (Context.User != null)
                 Context.User = new GenericPrincipal(Context.User.Identity, roles);

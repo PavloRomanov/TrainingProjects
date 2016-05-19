@@ -2,11 +2,13 @@
 
 namespace WebShop.Model.Entities
 {
+    [Flags]
     public enum Role
     {
-        Admin,
-        Manager,
-        Accountant,
-        SupportService
+        None = 0,
+        Admin = 1,
+        Manager = 2,
+        Accountant = 4,
+        SupportService = 8
     }
 }

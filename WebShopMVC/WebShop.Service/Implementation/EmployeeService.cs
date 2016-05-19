@@ -21,7 +21,10 @@ namespace WebShop.Service.Implementation
                 Address = model.Address,
                 Email = model.Email,
                 Phone = model.Phone,                
-                Role = model.Role
+                Role = model.Role,
+                IsBlocked = model.IsBlocked,
+                IsDelete = model.IsDelete,
+                RowVersion = model.RowVersion
             };
 
             using (var context = new WebShopMVCContext())
@@ -52,7 +55,10 @@ namespace WebShop.Service.Implementation
                     Phone = m.Phone,
                     Login = m.Login,
                     Password = m.Password,
-                    Role = m.Role
+                    Role = m.Role,
+                    IsBlocked = m.IsBlocked,
+                    IsDelete = m.IsDelete,
+                    RowVersion = m.RowVersion
                 }).ToList();
             }
             return model;
@@ -74,6 +80,8 @@ namespace WebShop.Service.Implementation
                 model.Login = employee.Login;
                 model.Password = employee.Password;
                 model.Role = employee.Role;
+                model.IsBlocked = employee.IsBlocked;
+                model.IsDelete = employee.IsDelete;
                 model.RowVersion = employee.RowVersion;
             }
             return model;
@@ -95,7 +103,9 @@ namespace WebShop.Service.Implementation
                         Phone = m.Phone,
                         Address = m.Address,
                         Role = m.Role,
-                        RowVersion = m.RowVersion                        
+                        IsBlocked = m.IsBlocked,
+                        IsDelete = m.IsDelete,
+                        RowVersion = m.RowVersion
                     }).SingleOrDefault();
             }
             return model;
@@ -115,9 +125,14 @@ namespace WebShop.Service.Implementation
                 employee.Login = model.Login;
                 employee.Password = model.Password;
                 employee.Role = model.Role;
+                employee.IsBlocked = model.IsBlocked;
+                employee.IsDelete = model.IsDelete;
+                employee.RowVersion = model.RowVersion;
 
                 context.SaveChanges();
             }
         }
+
+       
     }
 }

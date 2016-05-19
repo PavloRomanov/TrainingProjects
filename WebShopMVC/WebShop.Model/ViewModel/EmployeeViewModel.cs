@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebShop.Model.Entities;
 
@@ -30,6 +31,8 @@ namespace WebShop.Model.ViewModel
         [Display(Name = "Access level : ")]
         [Required(ErrorMessage = "Please, choose access level!")]
         public Role Role { get; set; }
+
+        public IDictionary<int, string> ListOfRoles { get; set; }
 
         [Display(Name = "Is bloced")]
         public bool IsBlocked { get; set; }

@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using WebShop.Service;
 using WebShop.Service.Contract;
+using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
 using WebShop.Service.Implementation;
 
 namespace WebShopMVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService employeeService;
@@ -20,13 +22,23 @@ namespace WebShopMVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var model = new EmployeeViewModel();
-            return View();
+            model.ListOfRoles = new Dictionary<int, string>();
+            
+            model.ListOfRoles.Add((int)Role.None, Role.None.ToString());
+            model.ListOfRoles.Add((int)Role.Admin, Role.Admin.ToString());
+            model.ListOfRoles.Add((int)Role.Manager, Role.Manager.ToString());
+            model.ListOfRoles.Add((int)Role.Accountant, Role.Accountant.ToString());
+            model.ListOfRoles.Add((int)Role.SupportService, Role.SupportService.ToString());
+
+            return View(model);
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(EmployeeViewModel model)
         {
             if (ModelState.IsValid)
@@ -38,6 +50,7 @@ namespace WebShopMVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id)
         {
             var model = employeeService.GetEmployeeById(id);
@@ -45,6 +58,7 @@ namespace WebShopMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(EmployeeViewModel model)
         {
             if (ModelState.IsValid)
