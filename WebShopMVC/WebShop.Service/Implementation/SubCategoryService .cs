@@ -56,8 +56,22 @@ namespace WebShop.Service.Implementation
             }
             return list;
         }
-       
-          public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
+        public IEnumerable<SubcategoryViewModel> GetAllById(int categoryId)
+        {
+            var list = new List<SubcategoryViewModel>();
+            using (var context = new WebShopMVCContext())
+            {
+                list = context.Subcategories.Include("Categories").Where(c => c.CategoryId == categoryId).Select(m => new SubcategoryViewModel
+                {
+                    CategoryId = m.CategoryId,
+                    SubcategoryId = m.SubcategoryId,
+                    SubcategoryName = m.SubcategoryName,
+                    CategoryName = m.Category.CategoryName
+                }).ToList();
+            }
+            return list;
+        }
+        public CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories()
           {
               CompositeSubcategoryViewModel model = new CompositeSubcategoryViewModel();
 

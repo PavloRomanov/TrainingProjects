@@ -10,15 +10,12 @@ namespace WebShopMVC.Controllers
 {
     public class ProductController : Controller
     {
-
         private IProductService productService;
        
-
         public ProductController()
         {
             productService = ServiceLocator.GetProductService();
         }
-
 
         // GET: Product
         public ActionResult Index()
@@ -43,9 +40,7 @@ namespace WebShopMVC.Controllers
         [HttpGet]
         public ActionResult ProductsOfSubcategory(int Id)
         {
-
             var model = productService.GetProductsOfSubcategory(Id);
-           
             return View(model);
         }
        

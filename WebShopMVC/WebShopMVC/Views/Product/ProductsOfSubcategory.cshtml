@@ -3,24 +3,29 @@
 @{
     ViewBag.Title = "ProductsOfSubcategory";
 }
-
+<br />
 <h2>ProductsOfSubcategory</h2>
 
-@foreach (var item in Model)
+@foreach (var product in Model)
 {
     <div>
-        @item.ProductName
+        @foreach (var picture in product.Images)
+        {
+            if (picture.MainPicture)
+            {
+                <img width="100" height="100" src="@Url.Action("GetImage", "Image", new { picture.ImageId })" />
+                break;
+            }
+        }
+        <h3> @product.ProductName</h3>
 
 
-        @item.Price
+        <h2 style="color:red">@product.Price</h2>
 
-
-        @item.Discount
-
-
-        @item.Description
+        <p>Discount on items:  <b>@product.Discount %</b></p>
 
         <br>
-        @Html.ActionLink("Detail", "Detail", new { id = item.ProductId })
+        @Html.ActionLink("Detail", "Detail", new { id = product.ProductId })
+        @*@Html.ActionLink("Add Cart", "CartItem", new { id = product.ProductId, q=1 })*@
     </div>
 }

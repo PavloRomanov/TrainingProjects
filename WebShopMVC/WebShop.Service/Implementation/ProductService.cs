@@ -59,9 +59,16 @@ namespace WebShop.Service.Implementation
                     SubcategoryId = m.SubcategoryId,
                     Price = m.Price,
                     Discount = m.Discount,
-                    Description = m.Description
+                    Description = m.Description,
+                    Images = context.Images.Select(f => new PartImageViewModel
+                    {
+                        MainPicture = f.MainPicture,
+                        FileName = f.FileName,
+                        ImageId = f.ImageId,
+                        ProductId = f.ProductId
+                    }).Where(p => p.ProductId == m.ProductId).ToList()
                 }).Where(m => m.SubcategoryId == id).ToList();
-           
+
             }
             return list;
         }
@@ -80,7 +87,7 @@ namespace WebShop.Service.Implementation
             }
             return model;
         }
-       
+
         public ProductViewModel GetModelById(int id)
         {
             ProductViewModel model;
@@ -103,11 +110,11 @@ namespace WebShop.Service.Implementation
                     }).ToList(),
                     Images = context.Images.Select(f => new PartImageViewModel
                     {
-                    MainPicture = f.MainPicture,
-                    FileName = f.FileName,
-                    ImageId = f.ImageId,
-                    ProductId = f.ProductId
-                    }).ToList()
+                        MainPicture = f.MainPicture,
+                        FileName = f.FileName,
+                        ImageId = f.ImageId,
+                        ProductId = f.ProductId
+                    }).Where(p=>p.ProductId==id).ToList()
 
                 };
             }
@@ -118,13 +125,13 @@ namespace WebShop.Service.Implementation
         {
             using (var context = new WebShopMVCContext())
             {
-            var product = context.Products.Find(model.ProductId);
-            product.ProductName = model.ProductName;
-            product.SubcategoryId = model.SubcategoryId;
-            product.Price = model.Price;
-            product.Discount = model.Discount;
-            product.Description = model.Description;
-            context.SaveChanges();
+                var product = context.Products.Find(model.ProductId);
+                product.ProductName = model.ProductName;
+                product.SubcategoryId = model.SubcategoryId;
+                product.Price = model.Price;
+                product.Discount = model.Discount;
+                product.Description = model.Description;
+                context.SaveChanges();
             }
         }
 
