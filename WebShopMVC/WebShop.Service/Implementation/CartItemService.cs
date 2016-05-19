@@ -12,40 +12,40 @@ namespace WebShop.Service.Implementation
 {
     public class CartItemService : ICartItemService
     {
-
-        List<CartItemViewModel> Cart;
-
-        public void AddItem(int productId, int quantity)
+        public void AddItem(int clientId,int productId, int quantity)
         {
+                CartItem item =new CartItem
+                {
+                    ProductId = productId,
+                    ClientId = clientId,
+                    Quantity = quantity
+                };
+
             using (var context = new WebShopMVCContext())
             {
-                Cart = context.CartItems.Select(m => new CartItemViewModel
-                {
-                    ProductId = m.ProductId,
-                    ClientId = m.ClientId,
-                    Product = m.Product,
-                    Quantity = m.Quantity
-                }).ToList();
-                CartItemViewModel line = Cart
-                        .Where(p => p.ProductId == productId)
-                        .FirstOrDefault();
-                if (line == null)
-                {
-                    Cart.Add(new CartItemViewModel { ProductId = productId, Quantity = quantity });
-                }
-                else
-                {
-                    line.Quantity += quantity;
-                }
-
+                context.CartItems.Add(item);
+                context.SaveChanges();
             }
         }
         public void ClearCart()
         {
-            Cart.Clear();
+            var list = new List<CartItem>();
+            using (var context = new WebShopMVCContext())
+            {
+                list = context.CartItems.Select(m => new CartItem
+                {
+                    CartItemId = m.CartItemId,
+                    ClientId = m.ClientId,
+                    Client= m.Client,
+                    ProductId = m.ProductId,
+                    Product = m.Product,
+                    Quantity = m.Quantity
+                }).ToList();
+            }
+            list.Clear();
         }
 
-        public IEnumerable<CartItemViewModel> GetAll()
+        public IEnumerable<CartItemViewModel> GetCart()
         {
             var list = new List<CartItemViewModel>();
             using (var context = new WebShopMVCContext())
@@ -64,7 +64,19 @@ namespace WebShop.Service.Implementation
 
         public void RemoveUnit(int Id)
         {
-            Cart.RemoveAll(r => r.ProductId == Id);
+            var list = new List<CartItemViewModel>();
+            using (var context = new WebShopMVCContext())
+            {
+                list = context.CartItems.Select(m => new CartItemViewModel
+                {
+                    CartItemId = m.CartItemId,
+                    ClientId = m.ClientId,
+                    ProductId = m.ProductId,
+                    Product = m.Product,
+                    Quantity = m.Quantity
+                }).Where(r => r.ProductId == Id).ToList();
+            }
+            list.Clear();
         }
 
         public decimal TotalAmountOfPurchases()

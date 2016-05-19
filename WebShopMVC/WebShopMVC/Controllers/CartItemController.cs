@@ -17,9 +17,10 @@ namespace WebShopMVC.Controllers
         {
             cartService = ServiceLocator.GetCartItemService();
         }
-        public ActionResult AddToCart(int Id, int quantity=1)
+        public ActionResult AddToCart(int productId, int quantity=1)
         {
-            cartService.AddItem(Id, quantity);
+           // User.Identity
+            cartService.AddItem(clientId,productId, quantity);
             return View() ;
         }
 
