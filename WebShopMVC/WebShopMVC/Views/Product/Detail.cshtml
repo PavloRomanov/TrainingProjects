@@ -47,5 +47,10 @@
     </ul>
 </div>
 <br>
-@Html.ActionLink("Add to Basket ", "AddToCart", "CartItem", new { id = Model.ProductId, q = 1 }, null)
+@Html.ActionLink("Add to Basket ", "AddToCart", "CartItem", new {id = Model.ProductId, quantity = 1 }, null)
 
+@using (Html.BeginForm("AddToCart", "CartItem"))
+{
+    @Html.HiddenFor(x =>x.ProductId)
+    <input type="submit" value="Add to cart"/>
+}

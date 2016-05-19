@@ -4,17 +4,19 @@
     ViewBag.Title = "ListProductSubcategories";
 }
 
-<div>
-    <img src='/Pictures/Large home appliances.jpg' alt='product1' style='float:right ; width: 40%; height: 300px;'>
+<div class="fon1">
+ <img src='/Pictures/Large home appliances.jpg' alt='product1' style='float:right ; width: 40%; height: 300px;'>
 </div>
 
-<div>
+<div class="fon2">
 <img src='/Pictures/Small home appliances.jpg' alt='product2' style='float:right ; width: 40%; height: 300px;'>
 </div>
-
-  <ul class="subcategory">
-    @foreach (var subcategory in Model)
-    {
-        <li>@Html.ActionLink(subcategory.SubcategoryName,"ProductsOfSubcategory","Product", new { id = subcategory.SubcategoryId },null)</li>
-    }
-</ul>
+<br />
+<div class="submenu ">
+    <ul class="subcategory">
+        @foreach (var subcategory in Model)
+        {
+            <li>@Html.ActionLink(subcategory.SubcategoryName, "ProductsOfSubcategory", "Product", new { id = subcategory.SubcategoryId }, null)</li>
+        }
+    </ul>
+</div>

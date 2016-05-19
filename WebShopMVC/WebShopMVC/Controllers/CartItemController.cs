@@ -17,16 +17,16 @@ namespace WebShopMVC.Controllers
         {
             cartService = ServiceLocator.GetCartItemService();
         }
-        public ActionResult AddToCart(int productId, int quantity)
+        public ActionResult AddToCart(int Id, int quantity=1)
         {
-            cartService.AddItem(productId, quantity);
-            return RedirectToAction("Cart", "CartItem"); ;
+            cartService.AddItem(Id, quantity);
+            return View() ;
         }
 
         public ActionResult DeleteAll()
         {
             cartService.ClearCart();
-            return RedirectToAction("Cart", "CartItem"); ;
+            return RedirectToAction("Cart", "CartItem"); 
         }
         public ActionResult Delete(int productId)
         {
@@ -36,7 +36,7 @@ namespace WebShopMVC.Controllers
         public ActionResult TotalSum()
         {
             cartService.TotalAmountOfPurchases();
-            return RedirectToAction("", "CartItem");
+            return RedirectToAction("Cart", "CartItem");
         }
        
     }

@@ -23,10 +23,9 @@ namespace WebShopMVC.Controllers
         }
 
         // GET: Subcategories
-        public ActionResult ListSubcategories()
+        public ActionResult ListSubcategories(int categoryId)
         {
-            var model = subService.GetAll();
-
+            var model = subService.GetAllById(categoryId);
             return View("ListSubcategory", model);
         }
         

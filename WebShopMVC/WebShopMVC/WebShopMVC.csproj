@@ -193,15 +193,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Pictures\Cart.jpg" />
-    <Content Include="Pictures\Edit.png" />
-    <Content Include="Pictures\Manager.jpg" />
-    <Content Include="Pictures\no-face.gif" />
-    <Content Include="Pictures\No-photography.jpg" />
-    <Content Include="Pictures\products 2.jpg" />
-    <Content Include="Pictures\products.jpg" />
-    <Content Include="Pictures\Large home appliances.jpg" />
-    <Content Include="Pictures\Small home appliances.jpg" />
+    <Content Include="Areas\Pictures\Cart.jpg" />
+    <Content Include="Areas\Pictures\Edit.png" />
+    <Content Include="Areas\Pictures\Manager.jpg" />
+    <Content Include="Areas\Pictures\no-face.gif" />
+    <Content Include="Areas\Pictures\No-photography.jpg" />
+    <Content Include="Areas\Pictures\products 2.jpg" />
+    <Content Include="Areas\Pictures\products.jpg" />
+    <Content Include="Areas\Pictures\Large home appliances.jpg" />
+    <Content Include="Areas\Pictures\Small home appliances.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -259,7 +259,7 @@
     <Content Include="Views\Product\ListAllProduct.cshtml" />
     <Content Include="Views\Subcategory\ListSubcategory.cshtml" />
     <Content Include="Views\Product\ProductsOfSubcategory.cshtml" />
-    <Content Include="Views\CartItem\Cart.cshtml" />
+    <Content Include="Views\CartItem\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,22 +12,34 @@ namespace WebShop.Service.Implementation
 {
     public class CartItemService : ICartItemService
     {
-        List<CartItem> Cart = new List<CartItem>();
+
+        List<CartItemViewModel> Cart;
+
         public void AddItem(int productId, int quantity)
         {
-            CartItem line = Cart
-                    .Where(p => p.Product.ProductId == productId)
-                    .FirstOrDefault();
-            if (line == null)
+            using (var context = new WebShopMVCContext())
             {
-                Cart.Add(new CartItem { ProductId = productId, Quantity = quantity });
-            }
-            else
-            {
-                line.Quantity += quantity;
+                Cart = context.CartItems.Select(m => new CartItemViewModel
+                {
+                    ProductId = m.ProductId,
+                    ClientId = m.ClientId,
+                    Product = m.Product,
+                    Quantity = m.Quantity
+                }).ToList();
+                CartItemViewModel line = Cart
+                        .Where(p => p.ProductId == productId)
+                        .FirstOrDefault();
+                if (line == null)
+                {
+                    Cart.Add(new CartItemViewModel { ProductId = productId, Quantity = quantity });
+                }
+                else
+                {
+                    line.Quantity += quantity;
+                }
+
             }
         }
-
         public void ClearCart()
         {
             Cart.Clear();
@@ -41,9 +53,10 @@ namespace WebShop.Service.Implementation
                 list = context.CartItems.Select(m => new CartItemViewModel
                 {
                     CartItemId = m.CartItemId,
-                    ProductId = m.ProductId,
                     ClientId = m.ClientId,
-                    Quantity = m.Quantity,     
+                    ProductId = m.ProductId,
+                    Product = m.Product,
+                    Quantity = m.Quantity     
                 }).ToList();
             }
             return list;
@@ -51,7 +64,7 @@ namespace WebShop.Service.Implementation
 
         public void RemoveUnit(int Id)
         {
-            Cart.RemoveAll(r => r.Product.ProductId == Id);
+            Cart.RemoveAll(r => r.ProductId == Id);
         }
 
         public decimal TotalAmountOfPurchases()

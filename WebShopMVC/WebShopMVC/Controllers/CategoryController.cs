@@ -25,6 +25,5 @@ namespace WebShopMVC.Controllers
 
             return PartialView("_PartialCategory", model);
         }
-
     }
 }

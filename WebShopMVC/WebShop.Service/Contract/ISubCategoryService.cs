@@ -9,6 +9,7 @@ namespace WebShop.Service.Contract
 {
     public interface ISubcategoryService
     {
+        IEnumerable<SubcategoryViewModel> GetAllById(int categoryId);
         IEnumerable<SubcategoryViewModel> GetAll();
         CompositeSubcategoryViewModel GetModelById(int id);
         CompositeSubcategoryViewModel GetNewSubcategoryViewModelWithCategories();
