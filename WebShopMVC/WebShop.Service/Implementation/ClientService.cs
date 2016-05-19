@@ -47,6 +47,26 @@ namespace WebShop.Service.Implementation
             return model;
         }
 
+        public ClientViewModel GetClientByLoginAndPassword(string login, string password)
+        {
+            ClientViewModel model;
+            using (var context = new WebShopMVCContext())
+            {
+                model = context.Clients.Where(m => m.Login == login && m.Password == password)
+                    .Select(m => new ClientViewModel
+                    {
+                        UserId = m.UserId,
+                        Login = m.Login,
+                        Email = m.Email,
+                        FirstName = m.FirstName,
+                        LastName = m.LastName,
+                        Phone = m.Phone,                        
+                        RowVersion = m.RowVersion
+                    }).SingleOrDefault();
+            }
+            return model;
+        }
+
         public void Delete(int id)
         {
             using (var context = new WebShopMVCContext())

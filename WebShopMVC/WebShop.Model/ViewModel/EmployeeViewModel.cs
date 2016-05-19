@@ -32,7 +32,7 @@ namespace WebShop.Model.ViewModel
         [Required(ErrorMessage = "Please, choose access level!")]
         public Role Role { get; set; }
 
-        public IDictionary<int, string> ListOfRoles { get; set; }
+        public IList<string> ListOfRoles { get; set; }
 
         [Display(Name = "Is bloced")]
         public bool IsBlocked { get; set; }

@@ -26,13 +26,13 @@ namespace WebShopMVC.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var model = new EmployeeViewModel();
-            model.ListOfRoles = new Dictionary<int, string>();
+            model.ListOfRoles = new List<string>();
             
-            model.ListOfRoles.Add((int)Role.None, Role.None.ToString());
-            model.ListOfRoles.Add((int)Role.Admin, Role.Admin.ToString());
-            model.ListOfRoles.Add((int)Role.Manager, Role.Manager.ToString());
-            model.ListOfRoles.Add((int)Role.Accountant, Role.Accountant.ToString());
-            model.ListOfRoles.Add((int)Role.SupportService, Role.SupportService.ToString());
+            model.ListOfRoles.Add(Role.None.ToString());
+            model.ListOfRoles.Add(Role.Admin.ToString());
+            model.ListOfRoles.Add(Role.Manager.ToString());
+            model.ListOfRoles.Add(Role.Accountant.ToString());
+            model.ListOfRoles.Add(Role.SupportService.ToString());
 
             return View(model);
         }

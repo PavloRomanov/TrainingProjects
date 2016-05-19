@@ -9,6 +9,7 @@ namespace WebShop.Service.Contract
     { 
         IEnumerable<ClientViewModel> GetAll();
         ClientViewModel GetModelById(int id);
+        ClientViewModel GetClientByLoginAndPassword(string login, string password);
         void Create(ClientViewModel model);
         void Update(ClientViewModel model);
         void Delete(int id);

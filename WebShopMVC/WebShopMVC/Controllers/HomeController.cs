@@ -4,6 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebShop.Model.ViewModel;
+using System.Web.Security;
+using System.Security.Principal;
+using System.Web.Optimization;
+using System.Web.Routing;
+using WebShopMVC;
+
+
 
 namespace WebShopMVC.Controllers
 {
@@ -11,6 +18,28 @@ namespace WebShopMVC.Controllers
     {
         public ActionResult Index()
         {
+           /* HttpCookie authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null || authCookie.Value == "")
+                return View(); 
+
+            FormsAuthenticationTicket authTicket;
+            try
+            {
+                authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+            }
+            catch
+            {
+                return View(); ;
+            }
+
+            // retrieve roles from UserData
+            string[] names = authTicket.UserData.Split(',');
+
+            foreach (var el in names)
+            {
+                ViewBag.Greeting += el + " ";
+            }*/
+            
             return View();
         }
 
