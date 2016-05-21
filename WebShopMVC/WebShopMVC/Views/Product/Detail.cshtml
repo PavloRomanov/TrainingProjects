@@ -47,7 +47,7 @@
     </ul>
 </div>
 <br>
-@Html.ActionLink("Add to Basket ", "AddToCart", "CartItem", new {id = Model.ProductId, quantity = 1 }, null)
+@Html.ActionLink("Add to Basket ", "AddToCart", "CartItem", new { productId = Model.ProductId, quantity = 1 }, null)
 
 @using (Html.BeginForm("AddToCart", "CartItem"))
 {

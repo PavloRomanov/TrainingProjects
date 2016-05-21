@@ -13,7 +13,7 @@ namespace WebShop.Service.Contract
         void AddItem(int clientId,int productId, int quantity);
         void RemoveUnit(int Id);
         void ClearCart();
-        decimal TotalAmountOfPurchases();
+       // decimal TotalAmountOfPurchases();
         IEnumerable<CartItemViewModel> GetCart();
     }
 }
