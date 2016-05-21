@@ -8,7 +8,7 @@ using System.Web.Security;
 using System.Security.Principal;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebShopMVC;
+using WebShop.Service.Extension;
 
 
 
@@ -17,30 +17,8 @@ namespace WebShopMVC.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-           /* HttpCookie authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie == null || authCookie.Value == "")
-                return View(); 
-
-            FormsAuthenticationTicket authTicket;
-            try
-            {
-                authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-            }
-            catch
-            {
-                return View(); ;
-            }
-
-            // retrieve roles from UserData
-            string[] names = authTicket.UserData.Split(',');
-
-            foreach (var el in names)
-            {
-                ViewBag.Greeting += el + " ";
-            }*/
-            
-            return View();
+        {                     
+                return View();
         }
 
         public ActionResult About()

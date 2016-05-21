@@ -79,7 +79,22 @@ namespace WebShop.Service.Implementation
        
         public ClientViewModel GetModelById(int id)
         {
-            throw new NotImplementedException();
+            ClientViewModel model;
+            using (var context = new WebShopMVCContext())
+            {
+                model = context.Clients.Where(m => m.UserId == id)
+                    .Select(m => new ClientViewModel
+                    {
+                        UserId = m.UserId,
+                        Login = m.Login,
+                        Email = m.Email,
+                        FirstName = m.FirstName,
+                        LastName = m.LastName,
+                        Phone = m.Phone,
+                        RowVersion = m.RowVersion
+                    }).SingleOrDefault();
+            }
+            return model;
         }
 
         public void Update(ClientViewModel model)

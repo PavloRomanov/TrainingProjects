@@ -41,7 +41,7 @@ namespace WebShopMVC.Controllers
 
                     var authTicket = new FormsAuthenticationTicket(
                         1,
-                        currentUser.Login,
+                        currentUser.UserId.ToString(),
                         DateTime.Now,
                         DateTime.Now.AddMinutes(60),
                         true,
