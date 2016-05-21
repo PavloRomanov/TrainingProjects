@@ -10,10 +10,10 @@ namespace WebShop.Service.Contract
 {
     public interface ICartItemService
     {
-        void AddItem(int productId, int quantity);
+        void AddItem(int clientId,int productId, int quantity);
         void RemoveUnit(int Id);
         void ClearCart();
-        decimal TotalAmountOfPurchases();
-        IEnumerable<CartItemViewModel> GetAll();
+       // decimal TotalAmountOfPurchases();
+        IEnumerable<CartItemViewModel> GetCart();
     }
 }

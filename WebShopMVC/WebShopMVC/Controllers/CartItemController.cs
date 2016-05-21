@@ -17,27 +17,29 @@ namespace WebShopMVC.Controllers
         {
             cartService = ServiceLocator.GetCartItemService();
         }
-        public ActionResult AddToCart(int Id, int quantity=1)
+        public ActionResult AddToCart(int productId, int quantity = 1)
         {
-            cartService.AddItem(Id, quantity);
-            return View() ;
+            //User.Identity 
+            int clientId = 1;  //?????????      
+            cartService.AddItem(clientId, productId, quantity);
+            var model = cartService.GetCart();
+            return View(model);
         }
-
         public ActionResult DeleteAll()
         {
             cartService.ClearCart();
-            return RedirectToAction("Cart", "CartItem"); 
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Delete(int productId)
         {
             cartService.RemoveUnit(productId);
             return RedirectToAction("Cart", "CartItem");
         }
-        public ActionResult TotalSum()
+        /*public ActionResult TotalSum()
         {
             cartService.TotalAmountOfPurchases();
             return RedirectToAction("Cart", "CartItem");
-        }
+        }*/
        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using WebShop.Model;
 using WebShop.Model.Entities;
 using WebShop.Model.ViewModel;
@@ -12,40 +13,48 @@ namespace WebShop.Service.Implementation
 {
     public class CartItemService : ICartItemService
     {
-
-        List<CartItemViewModel> Cart;
-
-        public void AddItem(int productId, int quantity)
+        public void AddItem(int clientId, int productId, int quantity)
         {
-            using (var context = new WebShopMVCContext())
+            CartItem item = new CartItem
             {
-                Cart = context.CartItems.Select(m => new CartItemViewModel
+                ProductId = productId,
+                ClientId = clientId,
+                Quantity = quantity
+            };
+            if (clientId != null)
+            {
+                using (var context = new WebShopMVCContext())
                 {
-                    ProductId = m.ProductId,
-                    ClientId = m.ClientId,
-                    Product = m.Product,
-                    Quantity = m.Quantity
-                }).ToList();
-                CartItemViewModel line = Cart
-                        .Where(p => p.ProductId == productId)
-                        .FirstOrDefault();
-                if (line == null)
-                {
-                    Cart.Add(new CartItemViewModel { ProductId = productId, Quantity = quantity });
+                    context.CartItems.Add(item);
+                    context.SaveChanges();
                 }
-                else
-                {
-                    line.Quantity += quantity;
-                }
-
+            }
+            else
+            {
+                HttpContext context = HttpContext.Current;
+                List < CartItem> cart = (List<CartItem>)(context.Session["Cart"]);
+               // context.Session["Cart"] = cart.Add(item);  //?????????????????????????      
             }
         }
         public void ClearCart()
         {
-            Cart.Clear();
+            var list = new List<CartItem>();
+            using (var context = new WebShopMVCContext())
+            {
+                list = context.CartItems.Select(m => new CartItem
+                {
+                    CartItemId = m.CartItemId,
+                    ClientId = m.ClientId,
+                    Client = m.Client,
+                    ProductId = m.ProductId,
+                    Product = m.Product,
+                    Quantity = m.Quantity
+                }).ToList();
+                context.CartItems.RemoveRange(list);
+                context.SaveChanges();
+            }
         }
-
-        public IEnumerable<CartItemViewModel> GetAll()
+        public IEnumerable<CartItemViewModel> GetCart()
         {
             var list = new List<CartItemViewModel>();
             using (var context = new WebShopMVCContext())
@@ -64,12 +73,17 @@ namespace WebShop.Service.Implementation
 
         public void RemoveUnit(int Id)
         {
-            Cart.RemoveAll(r => r.ProductId == Id);
+          
+            using (var context = new WebShopMVCContext())
+            {
+                var product = context.CartItems.Find(Id);             
+                context.CartItems.Remove(product);
+                context.SaveChanges();
+            }
         }
-
-        public decimal TotalAmountOfPurchases()
+      /*  public decimal TotalAmountOfPurchases()
         {
             return Cart.Sum(s => s.Product.Price * s.Quantity);
-        }
+        }*/
     }
 }
