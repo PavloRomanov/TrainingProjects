@@ -10,14 +10,24 @@ namespace WebShop.Service.Extension
         public static ClientViewModel GetClient(this IPrincipal principal)
         {
             ClientViewModel client = new ClientViewModel();
-            
+
             if (GenericPrincipal.Current.Identity.IsAuthenticated)
             {
                 IClientService clientService = ServiceLocator.GetClientService();
                 int id = Convert.ToInt32(GenericPrincipal.Current.Identity.Name);
-                client = clientService.GetModelById(id);                    
+                client = clientService.GetModelById(id);
             }
             return client;
+        }
+        public static int GetClientId(this IPrincipal principal)
+        {
+            int id = default(int);
+            if (GenericPrincipal.Current.Identity.IsAuthenticated)
+            {
+                IClientService clientService = ServiceLocator.GetClientService();
+                id = Convert.ToInt32(GenericPrincipal.Current.Identity.Name);
+            }
+            return id;
         }
     }
 }

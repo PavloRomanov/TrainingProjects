@@ -9,24 +9,27 @@
 @foreach (var item in Model)
 {
     <div>
-        @item.Product.ProductName
+        <h4><b>@item.Product.ProductName</b></h4>
     </div>
-        <div>
-            @item.Quantity
-        </div>
+    <div>
+        @item.Quantity x @item.Product.Price = <b style="color:forestgreen">???</b>
+        @Html.ActionLink("Remove the product", "Delete", "CartItem",new { productId = item.ProductId}, null)
+    </div>
 }
-<div>
-    @Html.ActionLink("Order", "Order")
-</div>
-
+<div><h3>Total: </h3><b style="color:red">300000000</b></div>
 <div class="iso">
     <img src='~/Pictures/Cart.jpg' alt='Cart' style='width: 30%; height: 30%; border: 0'>
 </div>
 <br />
 <div>
-    <input type="submit" value="BackToShopping" />
+    @Html.ActionLink("BackToShopping ", "Index", "Home")
 </div>
 <br />
 <div>
-    <input type="submit" value="Order"/>
+    <input type="submit" value="Order" />
 </div>
+
+<div>
+    @Html.ActionLink("Clean of cart", "DeleteAll", "CartItem")
+</div>
+<br />

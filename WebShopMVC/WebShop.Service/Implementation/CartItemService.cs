@@ -21,19 +21,10 @@ namespace WebShop.Service.Implementation
                 ClientId = clientId,
                 Quantity = quantity
             };
-            if (clientId != null)
+            using (var context = new WebShopMVCContext())
             {
-                using (var context = new WebShopMVCContext())
-                {
-                    context.CartItems.Add(item);
-                    context.SaveChanges();
-                }
-            }
-            else
-            {
-                HttpContext context = HttpContext.Current;
-                List < CartItem> cart = (List<CartItem>)(context.Session["Cart"]);
-               // context.Session["Cart"] = cart.Add(item);  //?????????????????????????      
+                context.CartItems.Add(item);
+                context.SaveChanges();
             }
         }
         public void ClearCart()
@@ -54,7 +45,7 @@ namespace WebShop.Service.Implementation
                 context.SaveChanges();
             }
         }
-        public IEnumerable<CartItemViewModel> GetCart()
+        public IEnumerable<CartItemViewModel> GetAllCartItem()
         {
             var list = new List<CartItemViewModel>();
             using (var context = new WebShopMVCContext())
