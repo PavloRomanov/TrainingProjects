@@ -10,9 +10,9 @@ namespace WebShop.Service.Contract
 {
    public interface ICartItemSessionService
     {
-        void AddItem(int clientId,int productId, int quantity);
+        void AddItem(ProductViewModel product, int quantity);
         void RemoveUnit(int Id);
         void ClearCart();
-        IEnumerable<CartItem> GetCartFromSession();
+        IEnumerable<CartItemViewModel> GetCartFromSession();
     }
 }

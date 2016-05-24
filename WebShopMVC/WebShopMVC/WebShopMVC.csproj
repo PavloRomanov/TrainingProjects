@@ -263,7 +263,6 @@
     <Content Include="Views\Client\Login.cshtml" />
     <Content Include="Views\Client\Create.cshtml" />
     <Content Include="Views\Client\Update.cshtml" />
-    <Content Include="Views\CartItem\AddToCart.cshtml" />
     <Content Include="Views\CartItem\GetCart.cshtml" />
   </ItemGroup>
   <ItemGroup>

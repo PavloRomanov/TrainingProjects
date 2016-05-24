@@ -13,23 +13,32 @@ namespace WebShop.Service.UsingSession
 {
    public class CartItemSessionService: ICartItemSessionService
     {
-        public void AddItem(int clienId,int productId, int quantity = 1)
+        public void AddItem(ProductViewModel product, int quantity)//??
         {
-            List<CartItem> cart;
-            CartItem item = new CartItem
+            Product prod = new Product
             {
-                ProductId = productId,
-                ClientId = clienId,
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Price = product.Price,
+                SubcategoryId = product.SubcategoryId,
+                Discount = product.Discount,
+                Description = product.Description
+            };
+            List <CartItemViewModel> cart;
+            CartItemViewModel item = new CartItemViewModel
+            {
+                ProductId = product.ProductId,
+                Product = prod,
                 Quantity = quantity
             };
             HttpContext context = HttpContext.Current;
             if (context.Session["Cart"]==null)
             {
-               cart = new List<CartItem>();
+               cart = new List<CartItemViewModel>();
             }
             else
             {
-                cart = (List<CartItem>)(context.Session["Cart"]);
+                cart = (List<CartItemViewModel>)(context.Session["Cart"]);
             }
             cart.Add(item);
             context.Session["Cart"] = cart;
@@ -43,7 +52,7 @@ namespace WebShop.Service.UsingSession
             context.Session["Cart"] = cart;
         }
 
-        public IEnumerable<CartItem> GetCartFromSession()//???
+        public IEnumerable<CartItemViewModel> GetCartFromSession()
         {
             HttpContext context = HttpContext.Current;
             if (context.Session["Cart"] == null)
@@ -52,7 +61,7 @@ namespace WebShop.Service.UsingSession
             }
             else
             {
-                List<CartItem> cart = (List<CartItem>)(context.Session["Cart"]);
+                List<CartItemViewModel> cart = (List<CartItemViewModel>)(context.Session["Cart"]);
                 return cart;
             }
         }
@@ -60,7 +69,7 @@ namespace WebShop.Service.UsingSession
         public void RemoveUnit(int Id)
         {
             HttpContext context = HttpContext.Current;
-            List<CartItem> cart = (List<CartItem>)(context.Session["Cart"]);
+            List<CartItemViewModel> cart = (List<CartItemViewModel>)(context.Session["Cart"]);
             var item = cart.Find(x=> x.ProductId== Id);
             cart.Remove(item);
             context.Session["Cart"] = cart;

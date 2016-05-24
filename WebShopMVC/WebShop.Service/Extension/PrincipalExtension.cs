@@ -19,13 +19,12 @@ namespace WebShop.Service.Extension
             }
             return client;
         }
-        public static int GetClientId(this IPrincipal principal)
+        public static int? GetClientId(this IPrincipal principal)
         {
-            int id = default(int);
+            int ?id = null;
             if (GenericPrincipal.Current.Identity.IsAuthenticated)
             {
-                IClientService clientService = ServiceLocator.GetClientService();
-                id = Convert.ToInt32(GenericPrincipal.Current.Identity.Name);
+                return id = Convert.ToInt32(GenericPrincipal.Current.Identity.Name);              
             }
             return id;
         }

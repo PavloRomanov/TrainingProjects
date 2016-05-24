@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using WebShop.Model.Entities;
+using WebShop.Model.ViewModel;
 using WebShop.Service;
 using WebShop.Service.Contract;
 using WebShop.Service.Extension;
@@ -17,19 +18,17 @@ namespace WebShopMVC.Controllers
             cartService = ServiceLocator.GetCartItemService();
             cartItemSessionService = ServiceLocator.GetCartItemSessionService();
         }
-        public ActionResult AddToCart(int productId, int quantity=1)
+        public ActionResult AddToCart(ProductViewModel product,int quantity=1)
         {
-            if (User.GetClient().Login != null)//////////////////////////////////////////
+            if (User.GetClientId() != null)
             {
-                cartService.AddItem(User.GetClientId(), productId, quantity);
-                var model = cartService.GetAllCartItem();
-                return View(model);
+                cartService.AddItem((int)User.GetClientId(), product.ProductId, quantity);
+                return RedirectToAction("GetCart", "CartItem");
             }
             else
             {
-                cartItemSessionService.AddItem(User.GetClientId(), productId, quantity);
-                var model = cartItemSessionService.GetCartFromSession();
-                return View(model);
+                cartItemSessionService.AddItem(product, quantity);
+                return RedirectToAction("GetCart", "CartItem");
             }
         }
         public ActionResult DeleteAll()
@@ -56,9 +55,16 @@ namespace WebShopMVC.Controllers
             }
         }
 
-        /*public ActionResult TotalSum()
+        /*public ActionResult TotalSum(int quantity, decimal price)
         {
-            cartService.TotalAmountOfPurchases();
+        if(User.GetClient().Login != null)
+            {
+            cartService.TotalAmountOfPurchases(quantity, price);
+            }
+            else
+            {
+            cartItemSessionService.TotalAmountOfPurchases(quantity, price);
+            }
             return RedirectToAction("Cart", "CartItem");
         }*/
 
