@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contract\ICartItemService.cs" />
+    <Compile Include="Contract\ICartItemSessionService.cs" />
     <Compile Include="Contract\IEmployeeService.cs" />
     <Compile Include="Contract\IImageService.cs" />
     <Compile Include="Contract\ISubcategoryService.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Implementation\ClientService.cs" />
     <Compile Include="Implementation\ProductService.cs" />
     <Compile Include="ServiceLocator.cs" />
+    <Compile Include="ImplementationWithSession\CartItemSessionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebShop.Model\WebShop.Model.csproj">

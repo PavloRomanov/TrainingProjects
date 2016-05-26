@@ -260,11 +260,10 @@
     <Content Include="Views\Product\ListAllProduct.cshtml" />
     <Content Include="Views\Subcategory\ListSubcategory.cshtml" />
     <Content Include="Views\Product\ProductsOfSubcategory.cshtml" />
-    <Content Include="Views\CartItem\Cart.cshtml" />
     <Content Include="Views\Client\Login.cshtml" />
     <Content Include="Views\Client\Create.cshtml" />
     <Content Include="Views\Client\Update.cshtml" />
-    <Content Include="Views\CartItem\AddToCart.cshtml" />
+    <Content Include="Views\CartItem\GetCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebShop.Model.ViewModel.CartItemViewModel>
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Your cart</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h4><b>@item.Product.ProductName</b></h4>
+    </div>
+    <div>
+        @item.Quantity x @item.Product.Price =  <b style="color:forestgreen">???</b>
+        <br />
+
+        @Html.ActionLink("Remove the product", "Delete", "CartItem", new { productId = item.ProductId }, null)
+    </div>
+}
+<div><h3>Total: </h3><b style="color:red">???</b></div>
+<div class="iso">
+    <img src='~/Pictures/Cart.jpg' alt='Cart' style='width: 30%; height: 30%; border: 0'>
+</div>
+<br />
+<div>
+    @Html.ActionLink("Back to shopping ", "Index", "Home")
+</div>
+<br />
+<div>
+    @Html.ActionLink("Clean of cart", "DeleteAll", "CartItem")
+</div>
+<br />
+<div>
+    using(@Html.BeginForm("","Order"))
+    {
+    <input type="submit" value="Make an order" />
+    }
+</div>

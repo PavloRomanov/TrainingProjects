@@ -1,6 +1,7 @@
 ﻿using System;
 using WebShop.Service.Implementation;
 using WebShop.Service.Contract;
+using WebShop.Service.UsingSession;
 
 namespace WebShop.Service
 {
@@ -38,6 +39,11 @@ namespace WebShop.Service
         public static ICartItemService GetCartItemService()
         {
             return new CartItemService();
+        }
+        //Session
+        public static ICartItemSessionService GetCartItemSessionService()
+        {
+            return new CartItemSessionService();
         }
     }
 }
