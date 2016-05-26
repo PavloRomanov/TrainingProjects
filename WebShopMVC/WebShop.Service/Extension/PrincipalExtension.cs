@@ -24,10 +24,12 @@ namespace WebShop.Service.Extension
         {  
             if (GenericPrincipal.Current.Identity.IsAuthenticated)
             {
-                int id = Convert.ToInt32(GenericPrincipal.Current.Identity.Name);
-                return id;
+                return Convert.ToInt32(GenericPrincipal.Current.Identity.Name);                
             }
-            return null;
+            else
+            {
+                return null;
+            }
         }
     }
 }

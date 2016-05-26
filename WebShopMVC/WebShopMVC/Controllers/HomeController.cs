@@ -23,11 +23,7 @@ namespace WebShopMVC.Controllers
                 ClientViewModel client = User.GetClient();
                 Session["ClientName"] = client.FirstName + " " + client.LastName;
                 ViewBag.ClientName = Session["ClientName"];
-            }
-
-            Session["ClientName"] = "Ivan Ivanov";
-            ViewBag.ClientName = Session["ClientName"];
-
+            }           
             return View();
         }
 

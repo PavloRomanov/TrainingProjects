@@ -38,7 +38,7 @@ namespace WebShopMVC.Controllers
                     if (currentUser.FirstName != null)
                         name = currentUser.FirstName + " " + currentUser.LastName;
                     name = currentUser.Login;
-
+                    
                     var authTicket = new FormsAuthenticationTicket(
                         1,
                         currentUser.UserId.ToString(),
