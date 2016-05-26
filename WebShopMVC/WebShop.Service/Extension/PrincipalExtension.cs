@@ -19,5 +19,15 @@ namespace WebShop.Service.Extension
             }
             return client;
         }
+
+        public static int? GetClientId(this IPrincipal principal)
+        {  
+            if (GenericPrincipal.Current.Identity.IsAuthenticated)
+            {
+                int id = Convert.ToInt32(GenericPrincipal.Current.Identity.Name);
+                return id;
+            }
+            return null;
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace WebShopMVC
 
             if (Context.User != null)
                 Context.User = new GenericPrincipal(Context.User.Identity, roles);
+
         }
     }
 }

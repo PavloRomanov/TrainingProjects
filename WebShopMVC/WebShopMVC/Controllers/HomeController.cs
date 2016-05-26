@@ -17,8 +17,18 @@ namespace WebShopMVC.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {                     
-                return View();
+        {
+            if(User.GetClientId() != null)
+            {
+                ClientViewModel client = User.GetClient();
+                Session["ClientName"] = client.FirstName + " " + client.LastName;
+                ViewBag.ClientName = Session["ClientName"];
+            }
+
+            Session["ClientName"] = "Ivan Ivanov";
+            ViewBag.ClientName = Session["ClientName"];
+
+            return View();
         }
 
         public ActionResult About()
