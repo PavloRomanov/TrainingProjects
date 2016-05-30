@@ -13,22 +13,12 @@ namespace WebShop.Service.UsingSession
 {
    public class CartItemSessionService: ICartItemSessionService
     {
-        public void AddItem(ProductViewModel product, int quantity)//??
+        public void AddItem(int productId, int quantity)
         {
-            Product prod = new Product
-            {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                Price = product.Price,
-                SubcategoryId = product.SubcategoryId,
-                Discount = product.Discount,
-                Description = product.Description
-            };
             List <CartItemViewModel> cart;
             CartItemViewModel item = new CartItemViewModel
             {
-                ProductId = product.ProductId,
-                Product = prod,
+                ProductId = productId,
                 Quantity = quantity
             };
             HttpContext context = HttpContext.Current;
@@ -51,7 +41,6 @@ namespace WebShop.Service.UsingSession
             cart.Clear();
             context.Session["Cart"] = cart;
         }
-
         public IEnumerable<CartItemViewModel> GetCartFromSession()
         {
             HttpContext context = HttpContext.Current;
@@ -61,9 +50,39 @@ namespace WebShop.Service.UsingSession
             }
             else
             {
-                List<CartItemViewModel> cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+                var cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+
+                var list = new List<Product>();
+                foreach (var item in cart)
+                {
+                    using (var contextBd = new WebShopMVCContext())
+                    {
+                        list = contextBd.Products.Select(m => new Product
+                        {
+                            ProductId = m.ProductId,
+                            ProductName = m.ProductName,
+                            Price = m.Price,
+                            Discount = m.Discount
+                        }).Where(p => p.ProductId == item.ProductId).ToList();///???
+                    }
+                }
+
+                foreach (var item in cart)
+                {
+                    foreach (var product in list)
+                    {
+                        if (item.ProductId == product.ProductId)
+                        {
+                            item.Product.ProductName = product.ProductName;///////////////////////?????
+                            item.Product.Price = product.Price;
+                            item.Product.Discount = product.Discount;
+                            break;
+                        }
+                    }
+                }
                 return cart;
             }
+
         }
 
         public void RemoveUnit(int Id)

@@ -18,16 +18,16 @@ namespace WebShopMVC.Controllers
             cartService = ServiceLocator.GetCartItemService();
             cartItemSessionService = ServiceLocator.GetCartItemSessionService();
         }
-        public ActionResult AddToCart(ProductViewModel product,int quantity=1)
+        public ActionResult AddToCart(int productId,int quantity=1)
         {
             if (User.GetClientId() != null)
             {
-                cartService.AddItem((int)User.GetClientId(), product.ProductId, quantity);
+                cartService.AddItem((int)User.GetClientId(), productId, quantity);
                 return RedirectToAction("GetCart", "CartItem");
             }
             else
             {
-                cartItemSessionService.AddItem(product, quantity);
+                cartItemSessionService.AddItem(productId, quantity);
                 return RedirectToAction("GetCart", "CartItem");
             }
         }
