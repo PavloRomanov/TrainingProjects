@@ -11,6 +11,11 @@ namespace Routing.Pages
 {
     public class LogIn : BasePage
     {
+        public LogIn(AbstractServiceFactory sf)
+            :base(sf)
+        {
+        }
+
         protected override string Title { get { return "Log In"; } }
 
         protected override string AddBody(IDictionary<string, string> form, string sessionId = null, IDictionary<string, string> errors = null)

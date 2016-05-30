@@ -24,7 +24,7 @@ namespace Routing
             pages.Add("UpdateClient", new UpdateClient(serviceFactory));
             pages.Add("ClientsList", new ClientsList(serviceFactory));
             pages.Add("ViewClient", new ViewClient(serviceFactory));
-            pages.Add("LogIn", new LogIn());
+            pages.Add("LogIn", new LogIn(serviceFactory));
             pages.Add("LogOut", new LogOut());
             pages.Add("CreateManager", new CreateManager(serviceFactory));
             pages.Add("ManagersList", new ManagersList(serviceFactory));
