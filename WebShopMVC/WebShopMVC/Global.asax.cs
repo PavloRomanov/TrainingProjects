@@ -38,13 +38,14 @@ namespace WebShopMVC
                 return;
             }
 
-            // retrieve roles from UserData
-            string[] roles = authTicket.UserData.Split(',');            
-           
-            if (Context.User != null)
+            if (authTicket != null)
             {
-                Context.User = new GenericPrincipal(Context.User.Identity, roles);
-            } 
+                string[] roles = authTicket.UserData.Split(',');
+                GenericIdentity id = new GenericIdentity(authTicket.Name);
+                GenericPrincipal principal = new GenericPrincipal(id, roles);
+                Context.User = principal;
+            }              
+           
         }
 
        
