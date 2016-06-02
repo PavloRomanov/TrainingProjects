@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <link rel="stylesheet" href="../Content/StyleLayout.css" type="text/css" />
     <title>WebShop</title>
 </head>
 <body>
@@ -12,8 +13,8 @@
        </section>
        <section id="site_map">
            <nav class="site_nav">
-               <a href="About/Home" class="site_nav_href">Shipping and payment</a>
-               <a href="Contact/Home" class="site_nav_href">Contact information</a>
+               <a href="../../Home/About" class="site_nav_href">Shipping and payment</a>
+               <a href="../../Home/Contact" class="site_nav_href">Contact information</a>
                <a href="#" class="site_nav_href">Guarantee</a>
                <a href="#" class="site_nav_href">Track order</a>
            </nav>
@@ -28,23 +29,44 @@
            <div class="greeting">
                <p>Hello, <span class="user_name">...</span></p>
            </div>
-           <div class="cart_button">
-               <img />
-               <a href="">Cart</a>
+           <div class="cart_button">               
+               <a href="../Client/Login"><img src="../Images/entrance.png" />Login</a>
+               <a href="../CartItem/GetCart"><img src="../Images/cart.png" />Cart</a>
            </div>
        </section>       
    </header>
+    
+    <section id="sidebar">
+        <nav class="category_nav">
+            <h3>Product category</h3>
+            <ul>
+                <li class="category_list"><a href="#">Category_1 <img src="../Images/pointer.jpg" /></li>
+                <li class="category_list"><a href="#">Category_2<img src="../Images/pointer.jpg" /></a></li>
+                <li class="category_list"><a href="#">Category_3<img src="../Images/pointer.jpg" /></a></li>
+                <li class="category_list"><a href="#">Category_4<img src="../Images/pointer.jpg" /></a></li>
+                <li class="category_list"><a href="#">Category_5<img src="../Images/pointer.jpg" /></a></li>
+                <li class="category_list"><a href="#">Category_6<img src="../Images/pointer.jpg" /></a></li>
+            </ul>
+        </nav>
+    </section>
+
     <section id="posts">
         <article class="content">
             @RenderBody()
         </article>
     </section>
-    <section id="sidebar">
-
-    </section>
-
+   
     <footer id="page_footer">
-        <p>&copy; 2016 - SSCo</p>
+        <section class="footer_section">
+            <p>&copy; 2016 - SSCo</p>
+        </section>
+        <section class="footer_section">
+            <h4>WebShopMVC in social networks</h4>
+            <ul class="icon_list">
+                <li class="social_icon"><a href="#"><img src="../Images/facebook.png" /></a></li>
+                <li class="social_icon"><a href="#"><img src="../Images/vcontact.png" /></a></li>
+            </ul>           
+        </section>        
     </footer>
 </body>
 </html>

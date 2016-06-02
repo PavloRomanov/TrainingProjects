@@ -1,0 +1,48 @@
+﻿body {
+    width: 98%;
+    height: 98%;
+    margin: 15px auto;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: 5px solid red;
+}
+#site_map {
+     width: 58%;
+}
+#logo, #user_section {
+    width: 18%;
+}
+
+#sidebar {
+    float:left;
+    width:22%;
+    margin: 5px auto;
+    padding: 5px;
+    border: 1px solid blue;
+}
+ #posts {
+     float:left;
+     width:76%;
+     margin: 5px auto;
+     padding: 5px;
+     border: 1px solid blue;
+ }
+
+ footer {
+     clear:both;
+ }
+
+/* .social_icon, .footer_section {
+     display: inline-block;
+ }*/
+ .footer_section {
+     width:49%;
+ }
+ 
+#logo, #site_map, #user_section, .social_icon, .footer_section {
+    display: inline-block;
+}
+
+
+
+
