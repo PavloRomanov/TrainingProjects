@@ -54,19 +54,5 @@ namespace WebShopMVC.Controllers
                 return View(model);
             }
         }
-
-        /*public ActionResult TotalSum(int quantity, decimal price)
-        {
-        if(User.GetClient().Login != null)
-            {
-            cartService.TotalAmountOfPurchases(quantity, price);
-            }
-            else
-            {
-            cartItemSessionService.TotalAmountOfPurchases(quantity, price);
-            }
-            return RedirectToAction("Cart", "CartItem");
-        }*/
-
     }
 }

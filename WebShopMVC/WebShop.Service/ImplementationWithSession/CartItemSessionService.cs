@@ -15,8 +15,8 @@ namespace WebShop.Service.UsingSession
     {
         public void AddItem(int productId, int quantity)
         {
-            List <CartItemViewModel> cart;
-            CartItemViewModel item = new CartItemViewModel
+            List <PartCartItemViewModel> cart;
+            PartCartItemViewModel item = new PartCartItemViewModel
             {
                 ProductId = productId,
                 Quantity = quantity
@@ -24,11 +24,11 @@ namespace WebShop.Service.UsingSession
             HttpContext context = HttpContext.Current;
             if (context.Session["Cart"]==null)
             {
-               cart = new List<CartItemViewModel>();
+               cart = new List<PartCartItemViewModel>();
             }
             else
             {
-                cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+                cart = (List<PartCartItemViewModel>)(context.Session["Cart"]);
             }
             cart.Add(item);
             context.Session["Cart"] = cart;
@@ -37,7 +37,7 @@ namespace WebShop.Service.UsingSession
         public void ClearCart()
         {
             HttpContext context = HttpContext.Current;
-            List<CartItem> cart=(List<CartItem>)(context.Session["Cart"]);
+            List<PartCartItemViewModel> cart=(List<PartCartItemViewModel>)(context.Session["Cart"]);
             cart.Clear();
             context.Session["Cart"] = cart;
         }
@@ -50,7 +50,30 @@ namespace WebShop.Service.UsingSession
             }
             else
             {
-                var cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+                /* var cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+                 foreach (var item in cart)
+                 {
+                     using (var contextBd = new WebShopMVCContext())
+                     {
+                         ProductViewModel product = contextBd.Products.Select(p => new ProductViewModel
+                         {
+                             ProductId = p.ProductId,
+                             ProductName = p.ProductName,
+                             SubcategoryId = p.SubcategoryId,
+                             Price = p.Price,
+                             Discount = p.Discount,
+                             Description = p.Description,
+                         }).Where(p => p.ProductId == item.ProductId).SingleOrDefault();
+
+                        item.Product = product;
+                     }
+                 }
+                 return cart;
+             }*/
+
+                var cart = (List<PartCartItemViewModel>)(context.Session["Cart"]);
+                List<CartItemViewModel> list = new List<CartItemViewModel>();
+                List<ProductViewModel> products = new List<ProductViewModel>();
                 foreach (var item in cart)
                 {
                     using (var contextBd = new WebShopMVCContext())
@@ -65,10 +88,25 @@ namespace WebShop.Service.UsingSession
                             Description = p.Description,
                         }).Where(p => p.ProductId == item.ProductId).SingleOrDefault();
 
-                       item.Product = product;
+                        products.Add(product);
+                    }
+
+                    foreach (var product in products)
+                    {
+                        if (product.ProductId == item.ProductId)
+                        {
+                            CartItemViewModel cartitem = new CartItemViewModel
+                            {
+                                ProductId = product.ProductId,
+                                Product = product,
+                                Quantity = item.Quantity
+                            };
+                            list.Add(cartitem);
+                        }
                     }
                 }
-                return cart;
+
+                return list;
             }
         }
 

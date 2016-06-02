@@ -21,13 +21,13 @@
 }
 @if (notImage)
 {
-    <div class="iso">
+    <div class="iso1">
 
         <img src='~/Pictures/No-photography.jpg' alt='Edit' style='width: 30%; height: 30%; border: 0'>
     </div>
 }
 <div>
-    <a href="c:\users\pserg\source\repos\trainingprojects\webshopmvc\webshop.service\implementation\cartitemservice.cs">c:\users\pserg\source\repos\trainingprojects\webshopmvc\webshop.service\implementation\cartitemservice.cs</a>
+  
     <h2> @Model.Price  <b>$</b></h2>
 </div>
 <div>
@@ -35,7 +35,7 @@
     {
         if (!image.MainPicture)
         {
-            <div class="iso">
+            <div class="iso2">
                 <img width="300" height="200" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
             </div>
         }

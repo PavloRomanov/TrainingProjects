@@ -59,5 +59,17 @@ namespace WebShopMVC.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ViewResult Register()
+        {
+            return View();
+        }
     }
 }

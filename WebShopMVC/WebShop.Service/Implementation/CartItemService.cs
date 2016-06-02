@@ -72,17 +72,13 @@ namespace WebShop.Service.Implementation
 
         public void RemoveUnit(int productId)
         {
-          
+
             using (var context = new WebShopMVCContext())
             {
-                var product = context.CartItems.Find(productId);             
+                var product = context.CartItems.Find(productId);
                 context.CartItems.Remove(product);
                 context.SaveChanges();
             }
         }
-      /*  public decimal TotalAmountOfPurchases()
-        {
-            return Cart.Sum(s => s.Product.Price * s.Quantity);
-        }*/
     }
 }

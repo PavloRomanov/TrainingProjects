@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title>WebShop</title>
+</head>
+<body>
+   <header id="page_header">
+       <section id="logo">
+           <h1>Welcome to WebShopMVC</h1>
+       </section>
+       <section id="site_map">
+           <nav class="site_nav">
+               <a href="About/Home" class="site_nav_href">Shipping and payment</a>
+               <a href="Contact/Home" class="site_nav_href">Contact information</a>
+               <a href="#" class="site_nav_href">Guarantee</a>
+               <a href="#" class="site_nav_href">Track order</a>
+           </nav>
+           <div class="search_wrap">
+               <form name="search" method="get" action="#">
+                   <input class="search_input" type="text" />
+                   <input type="submit" value="Send" />
+               </form>               
+           </div>
+       </section>
+       <section id="user_section">
+           <div class="greeting">
+               <p>Hello, <span class="user_name">...</span></p>
+           </div>
+           <div class="cart_button">
+               <img />
+               <a href="">Cart</a>
+           </div>
+       </section>       
+   </header>
+    <section id="posts">
+        <article class="content">
+            @RenderBody()
+        </article>
+    </section>
+    <section id="sidebar">
+
+    </section>
+
+    <footer id="page_footer">
+        <p>&copy; 2016 - SSCo</p>
+    </footer>
+</body>
+</html>

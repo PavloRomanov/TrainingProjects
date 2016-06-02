@@ -57,6 +57,18 @@ namespace WebShopMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ViewResult Register()
+        {
+            return View();
+        }
+
         //~~~~~~~~~~~~~~~~~~~~~ CREATE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         [HttpGet]
