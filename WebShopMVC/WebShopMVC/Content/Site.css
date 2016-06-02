@@ -89,7 +89,7 @@ textarea {
   border: 3px solid #254e7b;
   border-top-width: 0px;
 }
-/*.div.fon1{
+/*div.fon1{
     background-image: url('/Pictures/Large home appliances.png');
     background-repeat: repeat;
     background-attachment:local;
@@ -97,7 +97,7 @@ textarea {
     height: 300px;
     float:right ;
 }
-.div.fon2{
+div.fon2{
     background-image: url('/Pictures/Small home appliances.png');
     background-repeat: repeat;
     background-attachment: local;

@@ -51,38 +51,25 @@ namespace WebShop.Service.UsingSession
             else
             {
                 var cart = (List<CartItemViewModel>)(context.Session["Cart"]);
-
-                var list = new List<Product>();
                 foreach (var item in cart)
                 {
                     using (var contextBd = new WebShopMVCContext())
                     {
-                        list = contextBd.Products.Select(m => new Product
+                        ProductViewModel product = contextBd.Products.Select(p => new ProductViewModel
                         {
-                            ProductId = m.ProductId,
-                            ProductName = m.ProductName,
-                            Price = m.Price,
-                            Discount = m.Discount
-                        }).Where(p => p.ProductId == item.ProductId).ToList();///???
-                    }
-                }
+                            ProductId = p.ProductId,
+                            ProductName = p.ProductName,
+                            SubcategoryId = p.SubcategoryId,
+                            Price = p.Price,
+                            Discount = p.Discount,
+                            Description = p.Description,
+                        }).Where(p => p.ProductId == item.ProductId).SingleOrDefault();
 
-                foreach (var item in cart)
-                {
-                    foreach (var product in list)
-                    {
-                        if (item.ProductId == product.ProductId)
-                        {
-                            item.Product.ProductName = product.ProductName;///////////////////////?????
-                            item.Product.Price = product.Price;
-                            item.Product.Discount = product.Discount;
-                            break;
-                        }
+                       item.Product = product;
                     }
                 }
                 return cart;
             }
-
         }
 
         public void RemoveUnit(int Id)

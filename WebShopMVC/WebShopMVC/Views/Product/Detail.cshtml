@@ -27,6 +27,7 @@
     </div>
 }
 <div>
+    <a href="c:\users\pserg\source\repos\trainingprojects\webshopmvc\webshop.service\implementation\cartitemservice.cs">c:\users\pserg\source\repos\trainingprojects\webshopmvc\webshop.service\implementation\cartitemservice.cs</a>
     <h2> @Model.Price  <b>$</b></h2>
 </div>
 <div>
@@ -47,15 +48,9 @@
     </ul>
 </div>
 <br>
-@*@Html.ActionLink("Add to Basket ", "AddToCart", "CartItem", new {product = this.Model,quantity = 1 }, null)*@
 
 @using (Html.BeginForm("AddToCart", "CartItem"))
 {
     @Html.HiddenFor(x => x.ProductId)
-    @Html.HiddenFor(x => x.ProductName)
-    @Html.HiddenFor(x => x.Price)
-    @Html.HiddenFor(x => x.SubcategoryId)
-    @Html.HiddenFor(x => x.Discount)
-    @Html.HiddenFor(x => x.Description)
     <input type="submit" value="Add to Basket"/>
 }
