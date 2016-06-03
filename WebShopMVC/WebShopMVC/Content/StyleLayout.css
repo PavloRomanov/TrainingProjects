@@ -1,38 +1,61 @@
 ﻿body {
     width: 98%;
     height: 98%;
-    margin: 15px auto;
+    margin: 0px 10px 0px 0px;
     padding: 10px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    border: 5px solid red;
+    background-color:whitesmoke;
 }
-#page_header, #page_footer {
-     background-color: burlywood;
+#page_header{
+    padding: 1px;
+     background-color:black;    
 }
 #logo {
+    position:relative;
     width: 26%;
     display:block;
+    margin: 0px;
+    height: 100%;
+
 }
 #site_map {
      width: 59%;
 }
+.search_wrap, .greeting {   
+    height: 30px;   
+}
+
+.greeting {
+     background-color:red;
+     width: 100%;
+     margin: 5px 0px 5px 0px;
+}
+
 #user_section {
     width: 12%;
 }
-.site_nav {
+.site_nav, .search_wrap {
     width: 98%;
-}
-.site_nav_link {
-    display:inline-block;
-    text-decoration:none;
-    width: 23%;
-    height: 30px;
-    color:firebrick;
-    background-color:darkseagreen;
-    margin: 5px auto;
-    padding: 6px;
+    margin: 5px;
 }
 
+
+.link_blok, .user_link_blok {    
+    display:inline-block;
+    height: 30px;    
+    background-color:red;
+    padding: 10px;
+    text-align:center;  
+}
+
+.user_link_blok {
+    padding: 0;
+}
+
+a{
+    text-decoration:none;
+    color:black;    
+}
 
 #sidebar {
     float:left;
@@ -40,6 +63,15 @@
     margin: 5px auto;
     padding: 5px;
     border: 1px solid blue;
+}
+.category_li {
+    display: block;    
+    width: 98%;
+    height: 25px;
+    color:brown;
+    background-color:bisque;
+    margin: 1px auto;
+    padding: 3px;
 }
  #posts {
      float:left;
@@ -49,9 +81,11 @@
      border: 1px solid blue;
  }
 
- footer {
+ 
+ #page_footer {
+     background-color:lightgray;
      clear:both;
- }
+}
 
 /* .social_icon, .footer_section {
      display: inline-block;

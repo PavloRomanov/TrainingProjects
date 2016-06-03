@@ -15,5 +15,7 @@ namespace WebShop.Model.Entities
 
         [MaxLength(16)]
         public string Phone { get; set; }
+
+        public DateTime Birthday { get; set; }
     }
 }
