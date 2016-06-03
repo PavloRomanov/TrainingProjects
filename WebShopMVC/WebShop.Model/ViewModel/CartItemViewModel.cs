@@ -18,7 +18,7 @@ namespace WebShop.Model.ViewModel
         [Display(Name = "Products")]
         public int ProductId { get; set; }
 
-        public Product Product { get; set; }
+        public ProductViewModel Product { get; set; }
 
         [Display(Name = "Quantity units sold")]
         [Required(ErrorMessage = "please enter quantity of product")]

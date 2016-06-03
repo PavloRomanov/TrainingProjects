@@ -21,12 +21,13 @@
 }
 @if (notImage)
 {
-    <div class="iso">
+    <div class="iso1">
 
         <img src='~/Pictures/No-photography.jpg' alt='Edit' style='width: 30%; height: 30%; border: 0'>
     </div>
 }
 <div>
+  
     <h2> @Model.Price  <b>$</b></h2>
 </div>
 <div>
@@ -34,7 +35,7 @@
     {
         if (!image.MainPicture)
         {
-            <div class="iso">
+            <div class="iso2">
                 <img width="300" height="200" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
             </div>
         }
@@ -47,15 +48,9 @@
     </ul>
 </div>
 <br>
-@*@Html.ActionLink("Add to Basket ", "AddToCart", "CartItem", new {product = this.Model,quantity = 1 }, null)*@
 
 @using (Html.BeginForm("AddToCart", "CartItem"))
 {
     @Html.HiddenFor(x => x.ProductId)
-    @Html.HiddenFor(x => x.ProductName)
-    @Html.HiddenFor(x => x.Price)
-    @Html.HiddenFor(x => x.SubcategoryId)
-    @Html.HiddenFor(x => x.Discount)
-    @Html.HiddenFor(x => x.Description)
     <input type="submit" value="Add to Basket"/>
 }

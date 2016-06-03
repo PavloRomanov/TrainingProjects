@@ -21,7 +21,6 @@ namespace WebShop.Service.Implementation
                 CategoryId = model.CategoryId,
                 SubcategoryName = model.SubcategoryName
             };
-
             using (var context = new WebShopMVCContext())
             {
                 context.Subcategories.Add(subcategory);

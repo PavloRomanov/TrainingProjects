@@ -15,8 +15,8 @@ namespace WebShop.Service.UsingSession
     {
         public void AddItem(int productId, int quantity)
         {
-            List <CartItemViewModel> cart;
-            CartItemViewModel item = new CartItemViewModel
+            List <PartCartItemViewModel> cart;
+            PartCartItemViewModel item = new PartCartItemViewModel
             {
                 ProductId = productId,
                 Quantity = quantity
@@ -24,11 +24,11 @@ namespace WebShop.Service.UsingSession
             HttpContext context = HttpContext.Current;
             if (context.Session["Cart"]==null)
             {
-               cart = new List<CartItemViewModel>();
+               cart = new List<PartCartItemViewModel>();
             }
             else
             {
-                cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+                cart = (List<PartCartItemViewModel>)(context.Session["Cart"]);
             }
             cart.Add(item);
             context.Session["Cart"] = cart;
@@ -37,7 +37,7 @@ namespace WebShop.Service.UsingSession
         public void ClearCart()
         {
             HttpContext context = HttpContext.Current;
-            List<CartItem> cart=(List<CartItem>)(context.Session["Cart"]);
+            List<PartCartItemViewModel> cart=(List<PartCartItemViewModel>)(context.Session["Cart"]);
             cart.Clear();
             context.Session["Cart"] = cart;
         }
@@ -50,39 +50,64 @@ namespace WebShop.Service.UsingSession
             }
             else
             {
-                var cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+                /* var cart = (List<CartItemViewModel>)(context.Session["Cart"]);
+                 foreach (var item in cart)
+                 {
+                     using (var contextBd = new WebShopMVCContext())
+                     {
+                         ProductViewModel product = contextBd.Products.Select(p => new ProductViewModel
+                         {
+                             ProductId = p.ProductId,
+                             ProductName = p.ProductName,
+                             SubcategoryId = p.SubcategoryId,
+                             Price = p.Price,
+                             Discount = p.Discount,
+                             Description = p.Description,
+                         }).Where(p => p.ProductId == item.ProductId).SingleOrDefault();
 
-                var list = new List<Product>();
+                        item.Product = product;
+                     }
+                 }
+                 return cart;
+             }*/
+
+                var cart = (List<PartCartItemViewModel>)(context.Session["Cart"]);
+                List<CartItemViewModel> list = new List<CartItemViewModel>();
+                List<ProductViewModel> products = new List<ProductViewModel>();
                 foreach (var item in cart)
                 {
                     using (var contextBd = new WebShopMVCContext())
                     {
-                        list = contextBd.Products.Select(m => new Product
+                        ProductViewModel product = contextBd.Products.Select(p => new ProductViewModel
                         {
-                            ProductId = m.ProductId,
-                            ProductName = m.ProductName,
-                            Price = m.Price,
-                            Discount = m.Discount
-                        }).Where(p => p.ProductId == item.ProductId).ToList();///???
-                    }
-                }
+                            ProductId = p.ProductId,
+                            ProductName = p.ProductName,
+                            SubcategoryId = p.SubcategoryId,
+                            Price = p.Price,
+                            Discount = p.Discount,
+                            Description = p.Description,
+                        }).Where(p => p.ProductId == item.ProductId).SingleOrDefault();
 
-                foreach (var item in cart)
-                {
-                    foreach (var product in list)
+                        products.Add(product);
+                    }
+
+                    foreach (var product in products)
                     {
-                        if (item.ProductId == product.ProductId)
+                        if (product.ProductId == item.ProductId)
                         {
-                            item.Product.ProductName = product.ProductName;///////////////////////?????
-                            item.Product.Price = product.Price;
-                            item.Product.Discount = product.Discount;
-                            break;
+                            CartItemViewModel cartitem = new CartItemViewModel
+                            {
+                                ProductId = product.ProductId,
+                                Product = product,
+                                Quantity = item.Quantity
+                            };
+                            list.Add(cartitem);
                         }
                     }
                 }
-                return cart;
-            }
 
+                return list;
+            }
         }
 
         public void RemoveUnit(int Id)

@@ -89,19 +89,27 @@ textarea {
   border: 3px solid #254e7b;
   border-top-width: 0px;
 }
-/*.div.fon1{
+div.fon1{
     background-image: url('/Pictures/Large home appliances.png');
     background-repeat: repeat;
     background-attachment:local;
     width: 200px;
-    height: 300px;
-    float:right ;
+    height: 100px;
+    float:initial ;
 }
-.div.fon2{
+div.fon2{
     background-image: url('/Pictures/Small home appliances.png');
     background-repeat: repeat;
     background-attachment: local;
-    width: 400px;
-    height: 300px;
-    float:right ;
-}*/
+    width: 0.01px;
+    height: 1px;
+    float:inherit ;
+}
+div.iso {
+    background-image: url('/Pictures/Small home appliances.png');
+    background-repeat: repeat;
+    background-attachment: local;
+    width: 200px;
+    height: 100px;
+    float: initial;
+}

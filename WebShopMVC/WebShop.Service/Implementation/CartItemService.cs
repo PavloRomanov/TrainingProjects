@@ -55,26 +55,30 @@ namespace WebShop.Service.Implementation
                     CartItemId = m.CartItemId,
                     ClientId = m.ClientId,
                     ProductId = m.ProductId,
-                    Product = m.Product,
-                    Quantity = m.Quantity     
+                    Product = context.Products.Select(p => new ProductViewModel//??
+                    {
+                        ProductId = p.ProductId,
+                        ProductName = p.ProductName,
+                        SubcategoryId = p.SubcategoryId,
+                        Price = p.Price,
+                        Discount = p.Discount,
+                        Description = p.Description,
+                    }).Where(p => p.ProductId == m.ProductId).SingleOrDefault(),
+                    Quantity = m.Quantity
                 }).ToList();
             }
             return list;
         }
 
-        public void RemoveUnit(int Id)
+        public void RemoveUnit(int productId)
         {
-          
+
             using (var context = new WebShopMVCContext())
             {
-                var product = context.CartItems.Find(Id);             
+                var product = context.CartItems.Find(productId);
                 context.CartItems.Remove(product);
                 context.SaveChanges();
             }
         }
-      /*  public decimal TotalAmountOfPurchases()
-        {
-            return Cart.Sum(s => s.Product.Price * s.Quantity);
-        }*/
     }
 }
