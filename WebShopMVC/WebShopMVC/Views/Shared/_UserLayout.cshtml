@@ -9,17 +9,17 @@
 <body>
    <header id="page_header">
        <section id="logo">
-           <h1>Welcome to WebShopMVC</h1>
+           <img src="../Images/logo2.png" />
        </section>
        <section id="site_map">
            <nav class="site_nav">
-               <a href="../../Home/About" class="site_nav_href">Shipping and payment</a>
-               <a href="../../Home/Contact" class="site_nav_href">Contact information</a>
-               <a href="#" class="site_nav_href">Guarantee</a>
-               <a href="#" class="site_nav_href">Track order</a>
+               <a href="../../Home/About" class="site_nav_link">Shipping and payment</a>
+               <a href="../../Home/Contact" class="site_nav_link">Contact information</a>
+               <a href="#" class="site_nav_link">Guarantee</a>
+               <a href="#" class="site_nav_link">Track order</a>
            </nav>
            <div class="search_wrap">
-               <form name="search" method="get" action="#">
+               <form name="search" method="get" onsubmit="alert('Sorry...  the search does not work!'); return false">
                    <input class="search_input" type="text" />
                    <input type="submit" value="Send" />
                </form>               
@@ -39,14 +39,15 @@
     <section id="sidebar">
         <nav class="category_nav">
             <h3>Product category</h3>
-            <ul>
+            @Html.Action("List", "Category")
+            <!--<ul>
                 <li class="category_list"><a href="#">Category_1 <img src="../Images/pointer.jpg" /></li>
                 <li class="category_list"><a href="#">Category_2<img src="../Images/pointer.jpg" /></a></li>
                 <li class="category_list"><a href="#">Category_3<img src="../Images/pointer.jpg" /></a></li>
                 <li class="category_list"><a href="#">Category_4<img src="../Images/pointer.jpg" /></a></li>
                 <li class="category_list"><a href="#">Category_5<img src="../Images/pointer.jpg" /></a></li>
                 <li class="category_list"><a href="#">Category_6<img src="../Images/pointer.jpg" /></a></li>
-            </ul>
+            </ul>-->
         </nav>
     </section>
 

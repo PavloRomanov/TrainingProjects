@@ -6,12 +6,33 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     border: 5px solid red;
 }
+#page_header, #page_footer {
+     background-color: burlywood;
+}
+#logo {
+    width: 26%;
+    display:block;
+}
 #site_map {
-     width: 58%;
+     width: 59%;
 }
-#logo, #user_section {
-    width: 18%;
+#user_section {
+    width: 12%;
 }
+.site_nav {
+    width: 98%;
+}
+.site_nav_link {
+    display:inline-block;
+    text-decoration:none;
+    width: 23%;
+    height: 30px;
+    color:firebrick;
+    background-color:darkseagreen;
+    margin: 5px auto;
+    padding: 6px;
+}
+
 
 #sidebar {
     float:left;
