@@ -11,9 +11,8 @@
 {
     if (image.MainPicture)
     {
-        <div class="iso">
-
-            <img width="700" height="500" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
+        <div class="mainImage">
+            <img src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
         </div>
         notImage = false;
         break;
@@ -21,7 +20,7 @@
 }
 @if (notImage)
 {
-    <div class="iso1">
+    <div>
 
         <img src='~/Pictures/No-photography.jpg' alt='Edit' style='width: 30%; height: 30%; border: 0'>
     </div>

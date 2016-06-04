@@ -33,12 +33,26 @@ namespace WebShopMVC.Controllers
         }
         public ActionResult DeleteAll()
         {
-            cartService.ClearCart();
+            if (User.GetClientId() != null)
+            {
+                cartService.ClearCart();
+            }
+            else
+            {
+                cartItemSessionService.ClearCart();
+            }
             return RedirectToAction("Index", "Home");
         }
         public ActionResult Delete(int productId)
         {
-            cartService.RemoveUnit(productId);
+            if(User.GetClientId() != null)
+            {
+                cartService.RemoveUnit(productId);
+            }
+            else
+            {
+                cartItemSessionService.RemoveUnit(productId);
+            }
             return RedirectToAction("GetCart", "CartItem");
         }
         public ActionResult GetCart()

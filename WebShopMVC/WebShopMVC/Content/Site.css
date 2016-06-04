@@ -90,16 +90,14 @@ textarea {
   border-top-width: 0px;
 }
 div.fon1{
-    background-image: url('/Pictures/Large home appliances.png');
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-attachment:local;
     width: 200px;
     height: 100px;
     float:initial ;
 }
 div.fon2{
-    background-image: url('/Pictures/Small home appliances.png');
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-attachment: local;
     width: 0.01px;
     height: 1px;
@@ -108,8 +106,23 @@ div.fon2{
 div.iso {
     background-image: url('/Pictures/Small home appliances.png');
     background-repeat: repeat;
-    background-attachment: local;
+    background-attachment:initial;
     width: 200px;
     height: 100px;
-    float: initial;
+    float: right;
+}
+div.iso2 {
+    background-repeat: repeat;
+    background-attachment:initial;
+    width: 30px;
+    height: 100px;
+    float: right;
+}
+div.mainImage{
+    background-attachment:fixed;
+    /*background-position : 10% 60%;*/
+    background-position : 80px 100px;
+    background-repeat :no-repeat;
+    width: 700px;
+    height:500px;
 }

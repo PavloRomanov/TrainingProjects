@@ -11,20 +11,20 @@ using WebShop.Service.Contract;
 
 namespace WebShop.Service.UsingSession
 {
-   public class CartItemSessionService: ICartItemSessionService
+    public class CartItemSessionService : ICartItemSessionService
     {
         public void AddItem(int productId, int quantity)
         {
-            List <PartCartItemViewModel> cart;
+            List<PartCartItemViewModel> cart;
             PartCartItemViewModel item = new PartCartItemViewModel
             {
                 ProductId = productId,
                 Quantity = quantity
             };
             HttpContext context = HttpContext.Current;
-            if (context.Session["Cart"]==null)
+            if (context.Session["Cart"] == null)
             {
-               cart = new List<PartCartItemViewModel>();
+                cart = new List<PartCartItemViewModel>();
             }
             else
             {
@@ -37,10 +37,11 @@ namespace WebShop.Service.UsingSession
         public void ClearCart()
         {
             HttpContext context = HttpContext.Current;
-            List<PartCartItemViewModel> cart=(List<PartCartItemViewModel>)(context.Session["Cart"]);
+            List<PartCartItemViewModel> cart = (List<PartCartItemViewModel>)(context.Session["Cart"]);
             cart.Clear();
             context.Session["Cart"] = cart;
         }
+
         public IEnumerable<CartItemViewModel> GetCartFromSession()
         {
             HttpContext context = HttpContext.Current;
@@ -50,27 +51,6 @@ namespace WebShop.Service.UsingSession
             }
             else
             {
-                /* var cart = (List<CartItemViewModel>)(context.Session["Cart"]);
-                 foreach (var item in cart)
-                 {
-                     using (var contextBd = new WebShopMVCContext())
-                     {
-                         ProductViewModel product = contextBd.Products.Select(p => new ProductViewModel
-                         {
-                             ProductId = p.ProductId,
-                             ProductName = p.ProductName,
-                             SubcategoryId = p.SubcategoryId,
-                             Price = p.Price,
-                             Discount = p.Discount,
-                             Description = p.Description,
-                         }).Where(p => p.ProductId == item.ProductId).SingleOrDefault();
-
-                        item.Product = product;
-                     }
-                 }
-                 return cart;
-             }*/
-
                 var cart = (List<PartCartItemViewModel>)(context.Session["Cart"]);
                 List<CartItemViewModel> list = new List<CartItemViewModel>();
                 List<ProductViewModel> products = new List<ProductViewModel>();
@@ -113,15 +93,11 @@ namespace WebShop.Service.UsingSession
         public void RemoveUnit(int Id)
         {
             HttpContext context = HttpContext.Current;
-            List<CartItemViewModel> cart = (List<CartItemViewModel>)(context.Session["Cart"]);
-            var item = cart.Find(x=> x.ProductId== Id);
+            List<PartCartItemViewModel> cart = (List<PartCartItemViewModel>)(context.Session["Cart"]);
+            var item = cart.Find(x => x.ProductId == Id);
             cart.Remove(item);
             context.Session["Cart"] = cart;
         }
-        /*  public decimal TotalAmountOfPurchases()
-          {
-              return Cart.Sum(s => s.Product.Price * s.Quantity);
-          }*/
     }
 }
 
