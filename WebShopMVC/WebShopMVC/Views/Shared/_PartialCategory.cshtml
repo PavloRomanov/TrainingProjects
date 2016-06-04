@@ -3,7 +3,7 @@
 <ul class="category">
     @foreach (var category in Model)
     {
-        <li>@Html.ActionLink(category.CategoryName, "ListSubcategories", "Subcategory",new {categoryId = category.CategoryId },null)
+        <li class="category_li">@Html.ActionLink(category.CategoryName, "ListSubcategories", "Subcategory",new {categoryId = category.CategoryId, @class = "category_link" },null)
 
             <ul>
                 @foreach (var subcategory in category.Subcategories)
@@ -13,5 +13,5 @@
             </ul>
         </li>
     }
-    <li>@Html.ActionLink("AllProducts", "ListAllproduct", "Product")</li>
+    @*<li>@Html.ActionLink("AllProducts", "ListAllproduct", "Product")</li>*@
 </ul>
