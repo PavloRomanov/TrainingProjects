@@ -103,15 +103,8 @@ div.fon2{
     height: 1px;
     float:inherit ;
 }
+
 div.iso {
-    background-image: url('/Pictures/Small home appliances.png');
-    background-repeat: repeat;
-    background-attachment:initial;
-    width: 200px;
-    height: 100px;
-    float: right;
-}
-div.iso2 {
     background-repeat: repeat;
     background-attachment:initial;
     width: 30px;
@@ -125,4 +118,12 @@ div.mainImage{
     background-repeat :no-repeat;
     width: 700px;
     height:500px;
+}
+div.notImage{
+    background-attachment:fixed;
+    /*background-position : 10% 60%;*/
+    background-position : 80px 100px;
+    background-repeat :no-repeat;
+    width: 500px;
+    height:400px;
 }
