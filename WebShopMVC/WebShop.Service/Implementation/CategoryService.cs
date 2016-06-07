@@ -54,7 +54,7 @@ namespace WebShop.Service.Implementation
             }
             return list;
         }
-
+       
         public IEnumerable<CompositeCategoryViewModel> GetAllWithSubcategory()
         {           
             using (var context = new WebShopMVCContext())
@@ -86,10 +86,8 @@ namespace WebShop.Service.Implementation
                     CategoryId = category.CategoryId,
                     CategoryName = category.CategoryName
                 };
-
             }
             return model;
-
         }
 
         public void Update(CategoryViewModel model)

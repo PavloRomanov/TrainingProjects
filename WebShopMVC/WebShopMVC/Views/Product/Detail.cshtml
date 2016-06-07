@@ -6,14 +6,14 @@
 
 <br>
 <h1>@Model.ProductName</h1>
+<div class="mainImage">
 @{bool notImage = true; }
 @foreach (var image in Model.Images)
 {
     if (image.MainPicture)
     {
-        <div class="iso">
-
-            <img width="700" height="500" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
+        <div class="mainImageDetail">
+            <img src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
         </div>
         notImage = false;
         break;
@@ -21,13 +21,12 @@
 }
 @if (notImage)
 {
-    <div class="iso1">
-
+    <div class="notImage">
         <img src='~/Pictures/No-photography.jpg' alt='Edit' style='width: 30%; height: 30%; border: 0'>
     </div>
 }
-<div>
-  
+    <div>
+    </div>
     <h2> @Model.Price  <b>$</b></h2>
 </div>
 <div>
@@ -35,8 +34,8 @@
     {
         if (!image.MainPicture)
         {
-            <div class="iso2">
-                <img width="300" height="200" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
+            <div class="iso">
+                <img width="200" height="200" src="@Url.Action("GetImage", "Image", new { image.ImageId })" />
             </div>
         }
     }
@@ -52,5 +51,5 @@
 @using (Html.BeginForm("AddToCart", "CartItem"))
 {
     @Html.HiddenFor(x => x.ProductId)
-    <input type="submit" value="Add to Basket"/>
+    <input type="submit" value="Add to Basket" />
 }
