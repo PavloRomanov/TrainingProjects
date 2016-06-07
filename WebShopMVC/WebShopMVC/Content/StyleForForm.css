@@ -1,0 +1,30 @@
+﻿fieldset{
+    margin: 1.250em;
+}
+
+.for_group_elem{ 
+    position: relative;
+    height: 2.5em;    
+}
+ .for_control {
+      width: 30%;
+      height: 1.625em;      
+      position: absolute;
+      left: 15%;
+ }
+
+.for_label{
+    top: 0.813em;    
+    width: 10%;    
+    position: absolute;
+    left: 2%;
+    display:inline-block;
+}
+
+.danger_mesage {   
+    color: red;
+    height: 1.5em;
+    /*display: inline-block;
+    position: relative;
+    left: 50%;*/
+}
