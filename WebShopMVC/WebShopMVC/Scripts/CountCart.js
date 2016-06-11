@@ -1,3 +1,3 @@
 ﻿var cost;
 var count;
-all_cost = function(cost,count){return cost*count;}
+function all_cost(cost, count) { return cost * count; }
