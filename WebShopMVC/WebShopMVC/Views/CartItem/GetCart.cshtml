@@ -2,27 +2,29 @@
 
 @{
     ViewBag.Title = "Cart";
+    decimal total = 0;
 }
-<script src="../Scripts/countcart.js" type="text/javascript"></script>
+
 <h2>Your cart</h2>
-@{decimal total=0;}
 @foreach (var item in Model)
 {
     <div>
         <h4><b>@item.Product.ProductName</b></h4>
     </div>
     <div>
-        @item.Quantity x @item.Product.Price = <b style="color:forestgreen">
-        <script type="text/javascript">@total+=function all_cost(@item.Quantity, @item.Product.Price,@item.Product.Discount){return @item.Quantity*(@item.Product.Price*@item.Product.Discount*0.01}</script></b>
+        @{var oneTotal = item.Quantity * (item.Product.Price - (item.Product.Price * (decimal)item.Product.Discount * 0.01m));}
+        @item.Quantity X @item.Product.Price X @item.Product.Discount%= <b style="color:forestgreen">@oneTotal.ToString("0.00")</b>
+        @{total += oneTotal;
+        }
         <br />
     </div>
     <div>
         @Html.ActionLink("Remove the product", "Delete", "CartItem", new { productId = item.ProductId }, null)
     </div>
-}
-<div><h3>Total:<b style="color:red">@total</b></h3></div>
+            }
+<div><h3>Total:<b style="color:red">@total.ToString("0.00")</b></h3></div>
 <div class="iso">
-    <img src='~/Pictures/Cart.jpg' alt='Cart' >
+    <img src='~/Pictures/Cart.jpg' alt='Cart'>
 </div>
 <br />
 <div>
@@ -34,8 +36,8 @@
 </div>
 <br />
 <div>
-   @using(Html.BeginForm("","Order"))
+    @using (Html.BeginForm("", "Order"))
     {
-    <input type="submit" value="Make an order" />
+        <input type="submit" value="Make an order" />
     }
 </div>

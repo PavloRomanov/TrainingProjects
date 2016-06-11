@@ -6,14 +6,14 @@ using WebShop.Service.Implementation;
 using System.Web.Mvc;
 namespace WebShop.Service.Infrastructure
 {
-    public class NinjectDependencyResolver//: IDependencyResolver
+    public class NinjectDependencyResolver: IDependencyResolver
     {
         private IKernel kernel;
 
         public NinjectDependencyResolver(IKernel kernelParam)
         {
             kernel = kernelParam;
-            AddBindings();
+           // AddBindings();
         }
 
         public object GetService(Type serviceType)
@@ -26,9 +26,5 @@ namespace WebShop.Service.Infrastructure
             return kernel.GetAll(serviceType);
         }
 
-        private void AddBindings()
-        {
-            kernel.Bind<IProductService>().To<ProductService>();
-        }
     }
 }
