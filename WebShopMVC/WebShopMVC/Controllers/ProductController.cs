@@ -39,7 +39,7 @@ namespace WebShopMVC.Controllers
         public ActionResult ListAllProduct()
         {           
             // var model = productService.GetAll();
-            var model = prod.GetAll();
+            var model = serviceProduct.GetAll();
             return View(model);
         }
 
@@ -47,7 +47,7 @@ namespace WebShopMVC.Controllers
         public ActionResult Detail(int Id)
         {
             //var model = productService.GetModelById(Id);
-            var model = prod.GetModelById(Id);
+            var model = serviceProduct.GetModelById(Id);
             return View(model);
         }
 
@@ -55,7 +55,7 @@ namespace WebShopMVC.Controllers
         public ActionResult ProductsOfSubcategory(int Id)
         {
             // var model = productService.GetProductsOfSubcategory(Id);
-            var model = prod.GetProductsOfSubcategory(Id);
+            var model = serviceProduct.GetProductsOfSubcategory(Id);
             return View(model);
         }
        
