@@ -14,19 +14,19 @@ namespace WebShopMVC.Controllers
     public class ProductController : Controller
     {
         //private IProductService productService;
-        private IProductService prod;
+        private IProductService serviceProduct;
 
         public ProductController()
         {
            // productService = ServiceLocator.GetProductService();
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<IProductService>().To<ProductService>();
-            prod = ninjectKernel.Get<IProductService>();
+            serviceProduct = ninjectKernel.Get<IProductService>();
         }
         //--------------------------------------------------------------------
-        /*public ProductController(IProductService productParam)
+        /*public ProductController(IProductService serviceproduct)
         {
-            prod = productParam;
+           serviceProduct = serviceproduct;
         }*/
         //----------------------------------------------------------------------
         // GET: Product
