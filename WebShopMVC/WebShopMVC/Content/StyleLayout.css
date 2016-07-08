@@ -1,4 +1,8 @@
-﻿body {
+﻿html{
+     width: 100%;
+      margin: 0px;
+}
+body {
     width: 98%;
     height: 98%;
     margin: 0px 10px 0px 0px;
@@ -73,12 +77,13 @@ a{
     margin: 1px auto;
     padding: 3px;
 }
- #posts {
+ #posts {     
      float:left;
      width:76%;
      margin: 5px auto;
      padding: 5px;
      border: 1px solid blue;
+     overflow: auto;
  }
 
  
